@@ -38,84 +38,34 @@
     </header>
 
     <!-- Main Portal Section -->
-    <section id="portal" class="portal">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Portal de Navegação</h2>
-                <p>Escolha uma área para conhecer nossos serviços especializados</p>
-            </div>
+    <main class="portal-container">
+        <div class="portal-title animate-on-scroll fade-in">
+            <h1>Portal de Navegação</h1>
+            <p>Escolha uma área para conhecer nossos serviços especializados</p>
+        </div>
 
-            <div class="portal-map animate-on-scroll fade-in">
-                <!-- Main node (root) -->
-                <div class="portal-node main-node">
-                    <div class="node-content">
-                        <h3>Portal Principal</h3>
-                        <p>Clínica Infantil Especializada</p>
-                    </div>
-                    
-                    <!-- Connecting lines to children -->
-                    <div class="node-connections">
-                        <div class="connection-line left"></div>
-                        <div class="connection-line right"></div>
-                    </div>
-                </div>
-                
-                <!-- Child nodes (level 1) -->
-                <div class="portal-level">
-                    <div class="portal-node sub-node eibm-node animate-on-scroll slide-up" data-delay="200">
-                        <a href="eibm.html" class="node-content">
-                            <h3>EIBM</h3>
-                            <p>Especialidades Integradas e Bem-estar Multidisciplinar</p>
-                        </a>
-                        
-                        <!-- Connecting lines to children -->
-                        <div class="node-connections">
-                            <div class="connection-line left"></div>
-                            <div class="connection-line center"></div>
-                            <div class="connection-line right"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="portal-node sub-node transtornos-node animate-on-scroll slide-up" data-delay="400">
-                        <a href="transtornos.html" class="node-content">
-                            <h3>Transtornos Alimentares</h3>
-                            <p>Diagnóstico e tratamento especializado</p>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Child nodes of EIBM (level 2) -->
-                <div class="portal-level eibm-children">
-                    <div class="portal-node sub-sub-node especialidades-node animate-on-scroll slide-up" data-delay="600">
-                        <a href="especialidades.html" class="node-content">
-                            <h3>Especialidades Integradas</h3>
-                            <p>Nossas especialidades clínicas</p>
-                        </a>
-                    </div>
-                    
-                    <div class="portal-node sub-sub-node ideia-node animate-on-scroll slide-up" data-delay="700">
-                        <a href="ideia.html" class="node-content">
-                            <h3>IDEIA</h3>
-                            <p>Intervenção e Desenvolvimento</p>
-                        </a>
-                    </div>
-                    
-                    <div class="portal-node sub-sub-node terapias-node animate-on-scroll slide-up" data-delay="800">
-                        <a href="terapias.html" class="node-content">
-                            <h3>Terapias</h3>
-                            <p>Abordagens terapêuticas</p>
-                        </a>
-                    </div>
-                </div>
+        <div class="portal-navigation">
+            <div class="portal-main-item animate-on-scroll fade-in" data-delay="200">
+                <img src="assets/img/eibm-main.svg" alt="EIBM - Especialidades Integradas e Bem-estar Multidisciplinar">
+                <h3>EIBM</h3>
+                <p>Especialidades Integradas e Bem-estar Multidisciplinar. Uma abordagem completa para o desenvolvimento infantil através de diversas especialidades clínicas.</p>
+                <a href="eibm.html" class="portal-btn">Explorar EIBM</a>
             </div>
             
-            <div class="portal-info animate-on-scroll fade-in" data-delay="900">
-                <h3>Navegação Intuitiva</h3>
-                <p>Clique nos blocos acima para navegar entre as diferentes áreas da nossa clínica. Cada seção oferece informações específicas sobre nossos serviços e abordagens terapêuticas.</p>
-                <a href="#contact" class="btn-primary">Entre em Contato</a>
+            <div class="portal-main-item animate-on-scroll fade-in" data-delay="400">
+                <img src="assets/img/transtornos-main.svg" alt="Transtornos Alimentares">
+                <h3>Transtornos Alimentares</h3>
+                <p>Entenda os diferentes tipos de transtornos alimentares infantis, seus sinais e as abordagens terapêuticas para tratamento e acompanhamento.</p>
+                <a href="transtornos.html" class="portal-btn">Explorar Transtornos</a>
             </div>
         </div>
-    </section>
+        
+        <div class="portal-info animate-on-scroll fade-in" data-delay="600">
+            <h3>Navegação Intuitiva</h3>
+            <p>Clique nos blocos acima para navegar entre as diferentes áreas da nossa clínica. Cada seção oferece informações específicas sobre nossos serviços e abordagens terapêuticas.</p>
+            <a href="landing.html" class="btn-primary">Conheça Nossa Clínica</a>
+        </div>
+    </main>
 
     <!-- Footer -->
     <footer>

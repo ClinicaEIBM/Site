@@ -2,7 +2,8 @@
  * Clínica Infantil - Main JavaScript file
  * Handles animations, form validation, and interactive elements
  * Author: Developer
- * Version: 1.0
+ * Version: 2.0
+ * Updated: Portal structure with tree-like navigation
  */
 
 // Wait for the DOM to be fully loaded
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupNewsletterForm();
     setupBackToTopButton();
     setupStickyHeader();
+    setupPortalNavigation();
 });
 
 /**
@@ -366,4 +368,82 @@ function setupStickyHeader() {
             header.classList.remove('scrolled');
         }
     });
+}
+
+/**
+ * Setup Portal Navigation interactions
+ */
+function setupPortalNavigation() {
+    // Handle portal-main-item hover effects
+    const portalItems = document.querySelectorAll('.portal-main-item');
+    if (portalItems.length) {
+        portalItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                // Add extra highlight effect on hover
+                item.style.transform = 'translateY(-10px) scale(1.02)';
+                item.style.boxShadow = '0 20px 30px rgba(0, 0, 0, 0.15)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                // Reset to CSS-defined values
+                item.style.transform = '';
+                item.style.boxShadow = '';
+            });
+        });
+    }
+    
+    // Handle tree-item connecting lines
+    const treeItems = document.querySelectorAll('.tree-item');
+    if (treeItems.length) {
+        // Add connecting lines between tree items dynamically
+        treeItems.forEach((item, index) => {
+            if (index > 0) {
+                const prevItem = treeItems[index - 1];
+                const connector = document.createElement('div');
+                connector.classList.add('tree-connector');
+                
+                // Position the connector between items
+                const prevRect = prevItem.getBoundingClientRect();
+                const currentRect = item.getBoundingClientRect();
+                
+                if (window.innerWidth > 768) {
+                    // On desktop, draw horizontal lines between items
+                    connector.style.width = `${currentRect.left - (prevRect.right)}px`;
+                    connector.style.height = '2px';
+                    connector.style.top = `${prevRect.top + prevRect.height / 2}px`;
+                    connector.style.left = `${prevRect.right}px`;
+                } else {
+                    // On mobile, draw vertical lines between items
+                    connector.style.width = '2px';
+                    connector.style.height = `${currentRect.top - prevRect.bottom}px`;
+                    connector.style.top = `${prevRect.bottom}px`;
+                    connector.style.left = `${prevRect.left + prevRect.width / 2}px`;
+                }
+                
+                document.querySelector('.tree-navigation').appendChild(connector);
+            }
+        });
+    }
+    
+    // Handle portal return button effects
+    const returnButtons = document.querySelectorAll('.portal-return-btn');
+    if (returnButtons.length) {
+        returnButtons.forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                // Animate the arrow icon
+                const arrow = btn.querySelector('svg');
+                if (arrow) {
+                    arrow.style.transform = 'translateX(-5px)';
+                    arrow.style.transition = 'transform 0.3s ease';
+                }
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                const arrow = btn.querySelector('svg');
+                if (arrow) {
+                    arrow.style.transform = '';
+                }
+            });
+        });
+    }
 }
