@@ -2,7 +2,8 @@
 * Clínica Infantil - Main Stylesheet
 * Modern and welcoming design for children's therapy clinic
 * Author: Developer
-* Version: 1.0
+* Version: 2.0
+* Updated: Portal structure with tree-like navigation
 */
 
 /* -----------------
@@ -1024,4 +1025,261 @@ footer {
         width: 40px;
         height: 40px;
     }
+    
+    .portal-main-item {
+        min-width: 100%;
+    }
+    
+    .tree-item {
+        min-width: 100%;
+    }
+}
+
+/* -----------------
+   Portal Navigation
+------------------ */
+.portal-container {
+    padding-top: 100px;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.portal-title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.portal-title h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.portal-title p {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.portal-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.portal-main-item {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    text-align: center;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    background-color: var(--light-accent);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.portal-main-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.portal-main-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.portal-main-item:hover img {
+    transform: scale(1.03);
+}
+
+.portal-main-item h3 {
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.portal-main-item p {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.portal-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: var(--button-radius);
+    font-family: var(--heading-font);
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-speed) var(--transition-function);
+    border: none;
+    font-size: 1rem;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    box-shadow: 0 4px 8px rgba(106, 152, 208, 0.2);
+}
+
+.portal-btn:hover {
+    background-color: var(--primary-dark);
+    color: var(--light-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(106, 152, 208, 0.3);
+}
+
+.portal-internal-header {
+    padding: 1.5rem 0;
+    background-color: var(--light-accent);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.portal-internal-header h1 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.portal-internal-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.portal-internal-image {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+.portal-internal-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.portal-return {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.portal-return-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 2rem;
+    border-radius: var(--button-radius);
+    font-family: var(--heading-font);
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-speed) var(--transition-function);
+    border: none;
+    font-size: 1rem;
+    background-color: var(--secondary-color);
+    color: var(--light-color);
+    box-shadow: 0 4px 8px rgba(247, 160, 114, 0.2);
+}
+
+.portal-return-btn:hover {
+    background-color: #e59263;
+    color: var(--light-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(247, 160, 114, 0.3);
+}
+
+.portal-return-btn svg {
+    margin-right: 0.5rem;
+}
+
+.tree-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.tree-item {
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    background-color: var(--light-accent);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.tree-item::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background-color: var(--primary-color);
+    transform: translateX(-50%);
+}
+
+.tree-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.tree-item img {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+}
+
+.tree-item h3 {
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+    font-size: 1.2rem;
+}
+
+.tree-item p {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.tree-btn {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--button-radius);
+    font-family: var(--heading-font);
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-speed) var(--transition-function);
+    border: none;
+    font-size: 0.9rem;
+    background-color: var(--accent-color);
+    color: var(--dark-color);
+    box-shadow: 0 3px 6px rgba(142, 202, 230, 0.2);
+}
+
+.tree-btn:hover {
+    background-color: #7ab9d7;
+    color: var(--light-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(142, 202, 230, 0.3);
 }
