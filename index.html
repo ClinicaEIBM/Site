@@ -41,29 +41,61 @@
     <main class="portal-container">
         <div class="portal-title animate-on-scroll fade-in">
             <h1>Portal de Navegação</h1>
-            <p>Escolha uma área para conhecer nossos serviços especializados</p>
+            <p>Explore nossa estrutura de serviços especializados</p>
+        </div>
+
+        <!-- Visualização em árvore das conexões -->
+        <div class="tree-visualization">
+            <div class="tree-root">
+                <div class="tree-node-main">
+                    <span>Portal Principal</span>
+                </div>
+                <div class="tree-branches">
+                    <div class="tree-branch"></div>
+                    <div class="tree-branch"></div>
+                </div>
+            </div>
         </div>
 
         <div class="portal-navigation">
-            <div class="portal-main-item animate-on-scroll fade-in" data-delay="200">
-                <img src="assets/img/eibm-main.svg" alt="EIBM - Especialidades Integradas e Bem-estar Multidisciplinar">
-                <h3>EIBM</h3>
-                <p>Especialidades Integradas e Bem-estar Multidisciplinar. Uma abordagem completa para o desenvolvimento infantil através de diversas especialidades clínicas.</p>
-                <a href="eibm.html" class="portal-btn">Explorar EIBM</a>
+            <div class="portal-main-item portal-main-eibm animate-on-scroll fade-in" data-delay="200">
+                <div class="portal-item-inner">
+                    <img src="assets/img/eibm-main.svg" alt="EIBM - Especialidades Integradas e Bem-estar Multidisciplinar">
+                    <h3>EIBM</h3>
+                    <p>Especialidades Integradas e Bem-estar Multidisciplinar. Abordagem completa para o desenvolvimento infantil através de diversas especialidades.</p>
+                    <div class="portal-secondary-items">
+                        <span class="secondary-item-label">Inclui:</span>
+                        <div class="secondary-items-list">
+                            <span class="secondary-item">Especialidades</span>
+                            <span class="secondary-item">IDEIA</span>
+                            <span class="secondary-item">Terapias</span>
+                        </div>
+                    </div>
+                    <a href="eibm.html" class="portal-btn">Explorar EIBM</a>
+                </div>
             </div>
             
-            <div class="portal-main-item animate-on-scroll fade-in" data-delay="400">
-                <img src="assets/img/transtornos-main.svg" alt="Transtornos Alimentares">
-                <h3>Transtornos Alimentares</h3>
-                <p>Entenda os diferentes tipos de transtornos alimentares infantis, seus sinais e as abordagens terapêuticas para tratamento e acompanhamento.</p>
-                <a href="transtornos.html" class="portal-btn">Explorar Transtornos</a>
+            <div class="portal-main-item portal-main-transtornos animate-on-scroll fade-in" data-delay="400">
+                <div class="portal-item-inner">
+                    <img src="assets/img/transtornos-main.svg" alt="Transtornos Alimentares">
+                    <h3>Transtornos Alimentares</h3>
+                    <p>Entenda os diferentes tipos de transtornos alimentares infantis, seus sinais e as abordagens terapêuticas para tratamento.</p>
+                    <a href="transtornos.html" class="portal-btn">Explorar Transtornos</a>
+                </div>
             </div>
         </div>
         
         <div class="portal-info animate-on-scroll fade-in" data-delay="600">
-            <h3>Navegação Intuitiva</h3>
-            <p>Clique nos blocos acima para navegar entre as diferentes áreas da nossa clínica. Cada seção oferece informações específicas sobre nossos serviços e abordagens terapêuticas.</p>
-            <a href="landing.html" class="btn-primary">Conheça Nossa Clínica</a>
+            <svg class="portal-info-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <div class="portal-info-content">
+                <h3>Navegação Intuitiva</h3>
+                <p>Clique nos blocos acima para navegar entre as diferentes áreas da nossa clínica. Cada seção oferece informações específicas sobre nossos serviços e abordagens terapêuticas.</p>
+                <a href="landing.html" class="btn-primary">Conheça Nossa Clínica</a>
+            </div>
         </div>
     </main>
 
