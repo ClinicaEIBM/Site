@@ -1206,6 +1206,24 @@ footer {
     margin-right: 0.5rem;
 }
 
+.portal-return-section {
+    background-color: var(--light-accent);
+    padding: 2rem 0;
+}
+
+.portal-full-return {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.portal-home-btn {
+    background-color: var(--accent-color);
+}
+
+.portal-home-btn:hover {
+    background-color: #7ab9d7;
+}
+
 .tree-navigation {
     display: flex;
     flex-wrap: wrap;
