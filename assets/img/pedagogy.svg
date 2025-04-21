@@ -1,0 +1,29 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="60" fill="#e9f5f9" />
+  
+  <!-- Open book -->
+  <path d="M30 70 L30 40 L60 35 L60 65 L30 70" fill="#f8f9fa" stroke="#3d5a80" stroke-width="1.5" />
+  <path d="M60 35 L60 65 L90 70 L90 40 L60 35" fill="#f8f9fa" stroke="#3d5a80" stroke-width="1.5" />
+  <path d="M60 35 L60 65" stroke="#3d5a80" stroke-width="1.5" />
+  
+  <!-- Book content lines -->
+  <line x1="35" y1="45" x2="55" y2="45" stroke="#6a98d0" stroke-width="1" />
+  <line x1="35" y1="50" x2="55" y2="50" stroke="#6a98d0" stroke-width="1" />
+  <line x1="35" y1="55" x2="55" y2="55" stroke="#6a98d0" stroke-width="1" />
+  <line x1="35" y1="60" x2="55" y2="60" stroke="#6a98d0" stroke-width="1" />
+  
+  <line x1="65" y1="45" x2="85" y2="45" stroke="#6a98d0" stroke-width="1" />
+  <line x1="65" y1="50" x2="85" y2="50" stroke="#6a98d0" stroke-width="1" />
+  <line x1="65" y1="55" x2="85" y2="55" stroke="#6a98d0" stroke-width="1" />
+  <line x1="65" y1="60" x2="85" y2="60" stroke="#6a98d0" stroke-width="1" />
+  
+  <!-- Learning aid items -->
+  <path d="M30 80 L35 75 L40 80 L45 75 L50 80" stroke="#f7a072" stroke-width="2" stroke-linecap="round" />
+  <circle cx="70" cy="80" r="5" fill="#8ecae6" />
+  <rect x="80" y="75" width="10" height="10" rx="2" fill="#73d13d" opacity="0.7" />
+  
+  <!-- Child silhouette -->
+  <circle cx="60" cy="95" r="10" fill="#f7a072" />
+  <path d="M55 100 L65 100" stroke="#3d5a80" stroke-width="1" />
+</svg>
