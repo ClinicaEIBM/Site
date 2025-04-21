@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
     setupBackToTopButton();
     setupStickyHeader();
     setupPortalNavigation();
+    setupFAQAccordion();
+    setupTestimonialsCarousel();
 });
 
 /**
