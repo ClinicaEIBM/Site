@@ -2,26 +2,31 @@
 * Clínica Infantil - Main Stylesheet
 * Modern and welcoming design for children's therapy clinic
 * Author: Developer
-* Version: 2.0
-* Updated: Portal structure with tree-like navigation
+* Version: 2.1
+* Updated: Enhanced design with improved accessibility and animations
 */
 
 /* -----------------
    Base Styles
 ------------------ */
 :root {
-    /* Color Palette - Soft pastels */
-    --primary-color: #6a98d0;      /* Soft blue */
-    --primary-dark: #5b86b8;        /* Darker blue for hover states */
+    /* Color Palette - Enhanced soft pastels */
+    --primary-color: #5a8aca;      /* Soft blue - improved contrast */
+    --primary-dark: #4676b8;        /* Darker blue for hover states */
     --secondary-color: #f7a072;    /* Soft orange */
+    --secondary-dark: #e58d63;     /* Darker orange for hover states */
     --accent-color: #8ecae6;       /* Light blue accent */
     --background-color: #f8f9fa;   /* Light gray background */
     --light-color: #ffffff;        /* White */
     --dark-color: #3d5a80;         /* Dark blue for text */
-    --text-color: #495057;         /* Slightly softer than black for general text */
+    --text-color: #333840;         /* Darker text for better readability */
     --light-accent: #e9f5f9;       /* Very light blue for sections */
     --success-color: #73d13d;      /* Green for success messages */
     --error-color: #ff7875;        /* Soft red for error messages */
+    --terapia-ocupacional: #75b798; /* Green for Terapia Ocupacional */
+    --terapia-ocupacional-dark: #5a9b7d; /* Dark green for hover states */
+    --psicologia: #b477b4;         /* Purple for Psicologia */
+    --psicologia-dark: #9c5e9c;    /* Dark purple for hover states */
     
     /* Typography */
     --heading-font: 'Poppins', sans-serif;
@@ -32,12 +37,16 @@
     --element-spacing: 1.5rem;
     
     /* Border Radius */
-    --border-radius: 10px;
+    --border-radius: 12px;         /* Slightly increased radius */
     --button-radius: 30px;
+    
+    /* Shadows */
+    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    --hover-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
     
     /* Transitions */
     --transition-speed: 0.3s;
-    --transition-function: ease;
+    --transition-function: ease-out; /* Improved transition feel */
 }
 
 * {
@@ -472,6 +481,37 @@ header.scrolled .logo h1 {
     color: var(--primary-color);
 }
 
+.service-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    transition: all var(--transition-speed) var(--transition-function);
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.service-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width var(--transition-speed) var(--transition-function);
+}
+
+.service-link:hover {
+    color: var(--primary-dark);
+    transform: translateX(5px);
+}
+
+.service-link:hover::after {
+    width: 100%;
+}
+
 /* -----------------
    Mission Section
 ------------------ */
@@ -791,6 +831,15 @@ footer {
     color: rgba(255, 255, 255, 0.8);
 }
 
+.footer-services a {
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.3s ease;
+}
+
+.footer-services a:hover {
+    color: var(--light-color);
+}
+
 .footer-newsletter form {
     display: flex;
 }
@@ -896,6 +945,237 @@ footer {
 .slide-up.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* -----------------
+   Theme Pages Styles
+------------------ */
+/* Psicologia Page */
+.psico-page .subpage-hero {
+    background-color: rgba(180, 119, 180, 0.1);
+}
+
+.psico-page .service-link,
+.psico-page .key-point svg,
+.psico-page .subpage-hero h2,
+.psico-page .subpage-intro h2,
+.psico-page .psico-areas h2,
+.psico-page .psico-abordagens h2,
+.psico-page .psico-beneficios h2,
+.psico-page .psico-equipe h2 {
+    color: var(--psicologia);
+}
+
+.psico-page .section-header h2::after {
+    background-color: var(--psicologia);
+}
+
+.psico-page .service-link::after {
+    background-color: var(--psicologia);
+}
+
+.psico-page .btn-primary {
+    background-color: var(--psicologia);
+    box-shadow: 0 4px 8px rgba(180, 119, 180, 0.3);
+}
+
+.psico-page .btn-primary:hover {
+    background-color: var(--psicologia-dark);
+    box-shadow: 0 6px 12px rgba(180, 119, 180, 0.4);
+}
+
+.psico-page .btn-secondary {
+    color: var(--psicologia);
+    border-color: var(--psicologia);
+}
+
+.psico-page .btn-secondary:hover {
+    background-color: var(--psicologia);
+    color: var(--light-color);
+}
+
+.psico-page .beneficio-icon,
+.psico-page .abordagem-item h3,
+.psico-page .beneficio-item h3 {
+    color: var(--psicologia);
+}
+
+/* Terapia Ocupacional Page */
+.terapia-ocupacional-page .subpage-hero {
+    background-color: rgba(117, 183, 152, 0.1);
+}
+
+.terapia-ocupacional-page .service-link,
+.terapia-ocupacional-page .key-point svg,
+.terapia-ocupacional-page .subpage-hero h2,
+.terapia-ocupacional-page .subpage-intro h2,
+.terapia-ocupacional-page .to-areas h2,
+.terapia-ocupacional-page .to-abordagens h2,
+.terapia-ocupacional-page .to-beneficios h2,
+.terapia-ocupacional-page .to-equipe h2 {
+    color: var(--terapia-ocupacional);
+}
+
+.terapia-ocupacional-page .section-header h2::after {
+    background-color: var(--terapia-ocupacional);
+}
+
+.terapia-ocupacional-page .service-link::after {
+    background-color: var(--terapia-ocupacional);
+}
+
+.terapia-ocupacional-page .btn-primary {
+    background-color: var(--terapia-ocupacional);
+    box-shadow: 0 4px 8px rgba(117, 183, 152, 0.3);
+}
+
+.terapia-ocupacional-page .btn-primary:hover {
+    background-color: var(--terapia-ocupacional-dark);
+    box-shadow: 0 6px 12px rgba(117, 183, 152, 0.4);
+}
+
+.terapia-ocupacional-page .btn-secondary {
+    color: var(--terapia-ocupacional);
+    border-color: var(--terapia-ocupacional);
+}
+
+.terapia-ocupacional-page .btn-secondary:hover {
+    background-color: var(--terapia-ocupacional);
+    color: var(--light-color);
+}
+
+.terapia-ocupacional-page .beneficio-icon,
+.terapia-ocupacional-page .abordagem-item h3,
+.terapia-ocupacional-page .beneficio-item h3 {
+    color: var(--terapia-ocupacional);
+}
+
+/* Shared Styles for Theme Pages */
+.beneficio-item {
+    background-color: var(--light-color);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+    transition: all var(--transition-speed) var(--transition-function);
+}
+
+.beneficio-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--hover-shadow);
+}
+
+.beneficio-icon {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.beneficios-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.abordagens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.abordagem-item {
+    background-color: var(--light-color);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    transition: all var(--transition-speed) var(--transition-function);
+}
+
+.abordagem-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--hover-shadow);
+}
+
+.equipe-descricao {
+    background-color: var(--light-color);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    box-shadow: var(--card-shadow);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.subpage-hero {
+    padding-top: calc(90px + 3rem);
+    padding-bottom: 5rem;
+    text-align: center;
+}
+
+.subpage-hero-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.subpage-hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.content-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    align-items: center;
+}
+
+.content-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.content-image {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.content-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+}
+
+.intro-key-points {
+    margin-top: 2rem;
+}
+
+.key-point {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.key-point svg {
+    min-width: 24px;
+}
+
+.key-point span {
+    font-weight: 600;
+}
+
+.alt-bg {
+    background-color: var(--light-accent);
 }
 
 /* -----------------
