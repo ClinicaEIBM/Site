@@ -17,8 +17,15 @@ document.addEventListener('DOMContentLoaded', function() {
     setupBackToTopButton();
     setupStickyHeader();
     setupPortalNavigation();
-    setupFAQAccordion();
-    setupTestimonialsCarousel();
+    
+    // Initialize optional components if function exists
+    if (typeof setupFAQAccordion === 'function') {
+        setupFAQAccordion();
+    }
+    
+    if (typeof setupTestimonialsCarousel === 'function') {
+        setupTestimonialsCarousel();
+    }
 });
 
 /**
@@ -448,4 +455,55 @@ function setupPortalNavigation() {
             });
         });
     }
+}
+
+/**
+ * Setup FAQ Accordion functionality
+ */
+function setupFAQAccordion() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    if (!faqItems.length) return;
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.faq-icon');
+        
+        if (!question || !answer || !icon) return;
+        
+        // Set initial state
+        answer.style.maxHeight = '0';
+        answer.style.overflow = 'hidden';
+        answer.style.transition = 'max-height 0.3s ease';
+        answer.style.paddingTop = '0';
+        
+        // Add click event
+        question.addEventListener('click', () => {
+            // Toggle active class
+            item.classList.toggle('active');
+            
+            // Update icon
+            if (item.classList.contains('active')) {
+                icon.textContent = '-';
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                answer.style.paddingTop = '1rem';
+            } else {
+                icon.textContent = '+';
+                answer.style.maxHeight = '0';
+                answer.style.paddingTop = '0';
+            }
+            
+            // Close other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-icon').textContent = '+';
+                    const otherAnswer = otherItem.querySelector('.faq-answer');
+                    otherAnswer.style.maxHeight = '0';
+                    otherAnswer.style.paddingTop = '0';
+                }
+            });
+        });
+    });
 }

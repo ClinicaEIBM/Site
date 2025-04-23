@@ -23,10 +23,18 @@
     --light-accent: #e9f5f9;       /* Very light blue for sections */
     --success-color: #73d13d;      /* Green for success messages */
     --error-color: #ff7875;        /* Soft red for error messages */
+    
+    /* Therapy-specific colors */
     --terapia-ocupacional: #75b798; /* Green for Terapia Ocupacional */
     --terapia-ocupacional-dark: #5a9b7d; /* Dark green for hover states */
     --psicologia: #b477b4;         /* Purple for Psicologia */
     --psicologia-dark: #9c5e9c;    /* Dark purple for hover states */
+    --fonoaudiologia: #5092b3;     /* Blue for Fonoaudiologia */
+    --fonoaudiologia-dark: #407a96; /* Dark blue for hover states */
+    --psicopedagogia: #f5c05d;     /* Yellow for Psicopedagogia */
+    --psicopedagogia-dark: #dba94a; /* Dark yellow for hover states */
+    --musicoterapia: #e57b7b;      /* Red for Musicoterapia */
+    --musicoterapia-dark: #cc6666; /* Dark red for hover states */
     
     /* Typography */
     --heading-font: 'Poppins', sans-serif;
@@ -1176,6 +1184,80 @@ footer {
 
 .alt-bg {
     background-color: var(--light-accent);
+}
+
+/* FAQ Styles */
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: var(--light-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: all var(--transition-speed) var(--transition-function);
+}
+
+.faq-item:hover {
+    box-shadow: var(--hover-shadow);
+}
+
+.faq-question {
+    padding: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    flex: 1;
+}
+
+.faq-icon {
+    font-size: 1.5rem;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.psico-page .faq-icon {
+    color: var(--psicologia);
+}
+
+.terapia-ocupacional-page .faq-icon {
+    color: var(--terapia-ocupacional);
+}
+
+.fonoaudiologia-page .faq-icon {
+    color: var(--fonoaudiologia, #5092b3);
+}
+
+.psicopedagogia-page .faq-icon {
+    color: var(--psicopedagogia, #f5c05d);
+}
+
+.musicoterapia-page .faq-icon {
+    color: var(--musicoterapia, #e57b7b);
 }
 
 /* -----------------
