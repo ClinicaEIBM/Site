@@ -1,0 +1,28 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="60" fill="#e9f5f9" />
+  
+  <!-- Child figure -->
+  <circle cx="80" cy="70" r="15" fill="#f7a072" />
+  <circle cx="80" cy="55" r="8" fill="#f8f9fa" />
+  
+  <!-- Therapist figure -->
+  <circle cx="40" cy="70" r="15" fill="#6a98d0" />
+  <circle cx="40" cy="55" r="8" fill="#f8f9fa" />
+  
+  <!-- Activity materials -->
+  <rect x="50" y="30" width="20" height="20" rx="3" fill="#8ecae6" />
+  <circle cx="60" cy="40" r="5" fill="#f8f9fa" />
+  
+  <!-- Building blocks -->
+  <rect x="35" y="90" width="15" height="15" rx="2" fill="#f7a072" opacity="0.7" />
+  <rect x="55" y="90" width="15" height="15" rx="2" fill="#8ecae6" opacity="0.7" />
+  <rect x="75" y="90" width="15" height="15" rx="2" fill="#6a98d0" opacity="0.7" />
+  
+  <!-- Hands reaching -->
+  <path d="M50 65 C55 60 65 60 70 65" stroke="#3d5a80" stroke-width="2" stroke-linecap="round" />
+  
+  <!-- Happy faces -->
+  <path d="M35 58 C36 60 44 60 45 58" stroke="#3d5a80" stroke-width="1.5" stroke-linecap="round" />
+  <path d="M75 58 C76 60 84 60 85 58" stroke="#3d5a80" stroke-width="1.5" stroke-linecap="round" />
+</svg>

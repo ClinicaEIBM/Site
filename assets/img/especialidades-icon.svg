@@ -1,0 +1,19 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="40" cy="40" r="40" fill="#e9f5f9" />
+  <circle cx="40" cy="40" r="35" fill="#f8f9fa" />
+  
+  <!-- Four small connected circles representing different specialties -->
+  <circle cx="30" cy="25" r="10" fill="#6a98d0" opacity="0.8" />
+  <circle cx="55" cy="30" r="10" fill="#f7a072" opacity="0.8" />
+  <circle cx="50" cy="55" r="10" fill="#8ecae6" opacity="0.8" />
+  <circle cx="25" cy="50" r="10" fill="#73d13d" opacity="0.8" />
+  
+  <!-- Connecting lines -->
+  <line x1="35" y1="32" x2="47" y2="40" stroke="#3d5a80" stroke-width="2" />
+  <line x1="47" y1="47" x2="35" y2="42" stroke="#3d5a80" stroke-width="2" />
+  <line x1="30" y1="40" x2="30" y2="35" stroke="#3d5a80" stroke-width="2" />
+  <line x1="36" y1="50" x2="40" y2="40" stroke="#3d5a80" stroke-width="2" />
+  
+  <!-- Text: "E" in the middle -->
+  <text x="40" y="43" font-family="Arial" font-size="14" fill="#3d5a80" text-anchor="middle" font-weight="bold">E</text>
+</svg>
