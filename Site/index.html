@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Principal | Clínica Infantil</title>
+    <meta name="description" content="Portal de acesso às áreas de Especialidades Integradas, IDEIA, Terapias e Transtornos Alimentares da Clínica Infantil.">
+    <meta name="keywords" content="Clínica Infantil, Terapia ABA, Autismo, TDAH, Psicologia Infantil, Transtornos Alimentares">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="portal-page">
+    <!-- Header/Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
+                <h1>Clínica Especial</h1>
+            </div>
+            <nav>
+                <div class="mobile-menu-icon">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Portal Principal</a></li>
+                    <li><a href="landing.html">Sobre a Clínica</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Portal Section -->
+    <main class="portal-container">
+        <div class="portal-title animate-on-scroll fade-in">
+            <h1>Portal de Navegação</h1>
+            <p>Explore nossa estrutura de serviços especializados</p>
+        </div>
+
+        <!-- Visualização em árvore das conexões -->
+        <div class="tree-visualization">
+            <div class="tree-root">
+                <div class="tree-node-main">
+                    <span>Portal Principal</span>
+                </div>
+                <div class="tree-branches">
+                    <div class="tree-branch"></div>
+                    <div class="tree-branch"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portal-navigation">
+            <div class="portal-main-item portal-main-eibm animate-on-scroll fade-in" data-delay="200">
+                <div class="portal-item-inner">
+                    <img src="assets/img/eibm-main.svg" alt="EIBM - Especialidades Integradas e Bem-estar Multidisciplinar">
+                    <h3>EIBM</h3>
+                    <p>Especialidades Integradas e Bem-estar Multidisciplinar. Abordagem completa para o desenvolvimento infantil através de diversas especialidades.</p>
+                    <div class="portal-secondary-items">
+                        <span class="secondary-item-label">Inclui:</span>
+                        <div class="secondary-items-list">
+                            <span class="secondary-item">Especialidades</span>
+                            <span class="secondary-item">IDEIA</span>
+                            <span class="secondary-item">Terapias</span>
+                        </div>
+                    </div>
+                    <a href="eibm.html" class="portal-btn">Explorar EIBM</a>
+                </div>
+            </div>
+            
+            <div class="portal-main-item portal-main-transtornos animate-on-scroll fade-in" data-delay="400">
+                <div class="portal-item-inner">
+                    <img src="assets/img/transtornos-main.svg" alt="Transtornos Alimentares">
+                    <h3>Transtornos Alimentares</h3>
+                    <p>Entenda os diferentes tipos de transtornos alimentares infantis, seus sinais e as abordagens terapêuticas para tratamento.</p>
+                    <a href="transtornos.html" class="portal-btn">Explorar Transtornos</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="portal-info animate-on-scroll fade-in" data-delay="600">
+            <svg class="portal-info-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <div class="portal-info-content">
+                <h3>Navegação Intuitiva</h3>
+                <p>Clique nos blocos acima para navegar entre as diferentes áreas da nossa clínica. Cada seção oferece informações específicas sobre nossos serviços e abordagens terapêuticas.</p>
+                <a href="landing.html" class="btn-primary">Conheça Nossa Clínica</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
+                    <h3>Clínica Especial</h3>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Portal Principal</a></li>
+                        <li><a href="eibm.html">EIBM</a></li>
+                        <li><a href="transtornos.html">Transtornos Alimentares</a></li>
+                        <li><a href="landing.html">Sobre a Clínica</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h4>Áreas Especializadas</h4>
+                    <ul>
+                        <li>Especialidades Integradas</li>
+                        <li>IDEIA</li>
+                        <li>Terapias</li>
+                        <li>Abordagem Multidisciplinar</li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Receba nossas novidades</h4>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Seu e-mail" required>
+                        <button type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Clínica Especial. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

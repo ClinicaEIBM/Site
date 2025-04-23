@@ -1,0 +1,44 @@
+<svg width="500" height="400" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="500" height="400" rx="20" fill="#f8f9fa" opacity="0.3" />
+  
+  <!-- Team of professionals in a circle -->
+  <!-- Center child -->
+  <circle cx="250" cy="200" r="40" fill="#f7a072" opacity="0.8" />
+  <circle cx="250" cy="160" r="25" fill="#f8f9fa" />
+  <path d="M235 190C239 194 261 194 265 190" stroke="#3d5a80" stroke-width="2" stroke-linecap="round" />
+  
+  <!-- Professional 1 (Psychologist) -->
+  <circle cx="150" cy="150" r="30" fill="#6a98d0" opacity="0.8" />
+  <circle cx="150" cy="120" r="20" fill="#f8f9fa" />
+  <rect x="130" cy="155" width="40" height="15" rx="5" fill="#3d5a80" opacity="0.8" />
+  <circle cx="140" cy="115" r="3" fill="#3d5a80" />
+  <circle cx="160" cy="115" r="3" fill="#3d5a80" />
+  
+  <!-- Professional 2 (Speech Therapist) -->
+  <circle cx="350" cy="150" r="30" fill="#8ecae6" opacity="0.8" />
+  <circle cx="350" cy="120" r="20" fill="#f8f9fa" />
+  <path d="M335 145C339 149 361 149 365 145" stroke="#3d5a80" stroke-width="2" stroke-linecap="round" />
+  
+  <!-- Professional 3 (Occupational Therapist) -->
+  <circle cx="150" cy="250" r="30" fill="#73d13d" opacity="0.8" />
+  <circle cx="150" cy="220" r="20" fill="#f8f9fa" />
+  <rect x="130" cy="255" width="40" height="15" rx="5" fill="#3d5a80" opacity="0.8" />
+  
+  <!-- Professional 4 (Music Therapist) -->
+  <circle cx="350" cy="250" r="30" fill="#f7a072" opacity="0.8" />
+  <circle cx="350" cy="220" r="20" fill="#f8f9fa" />
+  <path d="M335 245C339 249 361 249 365 245" stroke="#3d5a80" stroke-width="2" stroke-linecap="round" />
+  
+  <!-- Connection lines -->
+  <line x1="190" y1="150" x2="210" y2="170" stroke="#3d5a80" stroke-width="2" stroke-dasharray="4 4" />
+  <line x1="180" y1="250" x2="210" y2="230" stroke="#3d5a80" stroke-width="2" stroke-dasharray="4 4" />
+  <line x1="310" y1="170" x2="320" y2="160" stroke="#3d5a80" stroke-width="2" stroke-dasharray="4 4" />
+  <line x1="310" y1="230" x2="320" y2="240" stroke="#3d5a80" stroke-width="2" stroke-dasharray="4 4" />
+  
+  <!-- Icons representing different therapy approaches -->
+  <circle cx="90" cy="90" r="15" fill="#6a98d0" opacity="0.5" />
+  <circle cx="410" cy="90" r="15" fill="#8ecae6" opacity="0.5" />
+  <circle cx="90" cy="310" r="15" fill="#73d13d" opacity="0.5" />
+  <circle cx="410" cy="310" r="15" fill="#f7a072" opacity="0.5" />
+</svg>
