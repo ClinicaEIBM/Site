@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="500" viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fundo com formas geométricas suaves -->
+    <rect width="600" height="500" fill="none" />
+    
+    <!-- Círculos decorativos de fundo -->
+    <circle cx="100" cy="400" r="80" fill="#f0f9ff" />
+    <circle cx="500" cy="100" r="60" fill="#f0fdf4" />
+    <circle cx="300" cy="450" r="40" fill="#fef2f2" opacity="0.5" />
+    
+    <!-- Ilustração principal: Terapeuta com criança -->
+    <g transform="translate(120, 50)">
+        <!-- Terapeuta (figura adulta) -->
+        <g>
+            <!-- Corpo -->
+            <path d="M200,100 Q200,150 200,200 Q220,230 240,240 Q260,250 280,240 Q300,230 310,200 Q310,150 300,100 Z" fill="#439CD5" />
+            
+            <!-- Cabeça -->
+            <circle cx="250" cy="80" r="50" fill="#fcd34d" />
+            <circle cx="230" cy="70" r="5" fill="#1e293b" /> <!-- Olho esquerdo -->
+            <circle cx="270" cy="70" r="5" fill="#1e293b" /> <!-- Olho direito -->
+            <path d="M230,95 Q250,105 270,95" fill="none" stroke="#1e293b" stroke-width="3" /> <!-- Sorriso -->
+            
+            <!-- Cabelo -->
+            <path d="M200,60 Q220,30 250,30 Q280,30 300,60 Q310,70 300,80 Q290,60 250,60 Q210,60 200,80 Q190,70 200,60 Z" fill="#713f12" />
+            
+            <!-- Braço esquerdo (estendido para a criança) -->
+            <path d="M200,130 Q170,160 140,140 Q130,130 140,120 Q150,110 180,130 Z" fill="#fcd34d" />
+        </g>
+        
+        <!-- Criança -->
+        <g transform="translate(-30, 40)">
+            <!-- Corpo -->
+            <path d="M100,150 Q100,190 110,210 Q120,230 130,235 Q140,240 150,235 Q160,230 170,210 Q180,190 180,150 Z" fill="#6CBB45" />
+            
+            <!-- Cabeça -->
+            <circle cx="140" cy="130" r="40" fill="#fcd34d" />
+            <circle cx="125" cy="125" r="4" fill="#1e293b" /> <!-- Olho esquerdo -->
+            <circle cx="155" cy="125" r="4" fill="#1e293b" /> <!-- Olho direito -->
+            <path d="M125,145 Q140,155 155,145" fill="none" stroke="#1e293b" stroke-width="2" /> <!-- Sorriso -->
+            
+            <!-- Cabelo -->
+            <path d="M100,110 Q115,90 140,90 Q165,90 180,110 Q185,120 180,130 Q170,110 140,110 Q110,110 100,130 Q95,120 100,110 Z" fill="#b91c1c" />
+            
+            <!-- Braço direito (estendido para a terapeuta) -->
+            <path d="M180,170 Q200,180 210,150 Q215,140 200,135 Q190,130 180,160 Z" fill="#fcd34d" />
+        </g>
+        
+        <!-- Mesa com materiais terapêuticos -->
+        <g transform="translate(0, 250)">
+            <!-- Mesa -->
+            <rect x="50" y="0" width="300" height="20" rx="5" fill="#a16207" />
+            <rect x="60" y="20" width="10" height="100" fill="#a16207" /> <!-- Perna esquerda -->
+            <rect x="330" y="20" width="10" height="100" fill="#a16207" /> <!-- Perna direita -->
+            
+            <!-- Materiais na mesa -->
+            <rect x="80" y="-30" width="60" height="30" rx="5" fill="#ef4444" /> <!-- Bloco vermelho -->
+            <rect x="170" y="-20" width="40" height="20" rx="5" fill="#3b82f6" /> <!-- Bloco azul -->
+            <circle cx="250" cy="-15" r="15" fill="#6CBB45" /> <!-- Bola verde -->
+            <path d="M300,-30 L330,-10 L300,10 L270,-10 Z" fill="#A358E1" /> <!-- Forma geométrica roxa -->
+        </g>
+        
+        <!-- Balão de pensamento com símbolos de terapia -->
+        <g>
+            <path d="M320,60 Q350,40 380,60 Q400,80 390,110 Q380,130 350,130 Q330,130 310,110 Q290,80 320,60 Z" fill="white" stroke="#6CBB45" stroke-width="2" /> <!-- Balão -->
+            <circle cx="320" cy="140" r="5" fill="white" stroke="#6CBB45" stroke-width="2" />
+            <circle cx="310" cy="150" r="3" fill="white" stroke="#6CBB45" stroke-width="2" />
+            
+            <!-- Símbolos dentro do balão -->
+            <path d="M350,80 L370,100 L350,120 L330,100 Z" fill="#fef3c7" stroke="#ED3924" stroke-width="2" /> <!-- Diamante -->
+            <circle cx="350" cy="100" r="5" fill="#ED3924" /> <!-- Ponto central -->
+        </g>
+    </g>
+    
+    <!-- Decorações adicionais -->
+    <g>
+        <circle cx="50" cy="50" r="10" fill="#ef4444" opacity="0.6" />
+        <circle cx="80" cy="70" r="8" fill="#6CBB45" opacity="0.6" />
+        <circle cx="30" cy="90" r="6" fill="#3b82f6" opacity="0.6" />
+        
+        <circle cx="550" cy="400" r="10" fill="#ef4444" opacity="0.6" />
+        <circle cx="520" cy="430" r="8" fill="#6CBB45" opacity="0.6" />
+        <circle cx="570" cy="380" r="6" fill="#3b82f6" opacity="0.6" />
+    </g>
+</svg>

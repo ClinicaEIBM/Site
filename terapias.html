@@ -3,309 +3,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica Infantil com Terapias ABA e Multidisciplinares</title>
-    <meta name="description" content="Acolhimento e desenvolvimento infantil com terapias integradas: ABA, Psicologia, Fonoaudiologia, TO, Psicopedagogia e Musicoterapia.">
-    <meta name="keywords" content="Clínica Infantil, Terapia ABA, Autismo, TDAH, Psicologia Infantil, Fonoaudiologia, Musicoterapia">
-    
+    <title>Terapias | EIBM</title>
+    <meta name="description" content="Conheça as terapias oferecidas pela EIBM: Terapia Ocupacional, Psicologia, Fonoaudiologia e Psicopedagogia.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#195184',      // Azul principal
+                        secondary: '#6CBB45',    // Verde
+                        accent: '#ED3924',       // Vermelho
+                        blue: {
+                            light: '#439CD5',
+                            royal: '#136CB2',
+                        },
+                        green: {
+                            light: '#9DCB5B',
+                            dark: '#648543',
+                        },
+                        red: {
+                            light: '#E8694B',
+                            dark: '#A53434',
+                        },
+                        yellow: {
+                            light: '#F2E5B0',
+                            DEFAULT: '#EFCD18',
+                        },
+                        orange: '#EA8C2C',
+                        purple: {
+                            light: '#D29BFF',
+                            DEFAULT: '#A358E1',
+                            dark: '#9930C2',
+                        },
+                        gold: '#D4AF37',
+                        brown: '#8B4513',
+                        beige: '#F5F5DC',
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .therapy-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .therapy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
-<body>
+<body class="font-sans text-gray-800 bg-gray-50 min-h-screen">
     <!-- Header/Navigation -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
-                <h1>Clínica Especial</h1>
-            </div>
-            <nav>
-                <div class="mobile-menu-icon">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12 md:h-16">
+                        <div class="ml-3">
+                            <h1 class="text-xl md:text-2xl font-bold text-primary font-heading">EIBM</h1>
+                            <p class="text-xs text-gray-600 hidden md:block">Especialidades Integradas e Bem-estar Multidisciplinar</p>
+                        </div>
+                    </a>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Portal Principal</a></li>
-                    <li><a href="landing.html" class="active">Sobre a Clínica</a></li>
-                    <li><a href="#about">Sobre</a></li>
-                    <li><a href="#differentials">Diferenciais</a></li>
-                    <li><a href="#services">Serviços</a></li>
-                    <li><a href="#mission">Missão</a></li>
-                    <li><a href="#contact" class="btn-primary">Contato</a></li>
-                </ul>
-            </nav>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="index.html" class="text-primary hover:text-blue-royal font-medium">Início</a></li>
+                        <li><a href="terapias.html" class="text-primary hover:text-blue-royal font-medium border-b-2 border-primary">Terapias</a></li>
+                        <li><a href="especialidades.html" class="text-primary hover:text-blue-royal font-medium">Especialidades</a></li>
+                        <li><a href="ideia.html" class="text-primary hover:text-blue-royal font-medium">IDEA</a></li>
+                        <li><a href="transtornos.html" class="text-primary hover:text-blue-royal font-medium">Transtornos Alimentares</a></li>
+                        <li><a href="contato.html" class="text-primary hover:text-blue-royal font-medium">Contato</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="block md:hidden text-primary" id="menu-toggle">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (hidden by default) -->
+        <div class="menu-mobile fixed top-0 left-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 p-5 transform -translate-x-full transition-transform duration-300" id="mobile-menu">
+            <div class="flex justify-between items-center mb-6">
+                <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12">
+                <button id="close-menu">
+                    <i class="fas fa-times text-2xl text-primary"></i>
+                </button>
+            </div>
+            <ul class="space-y-4">
+                <li><a href="index.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Início</a></li>
+                <li><a href="terapias.html" class="block py-2 text-primary hover:text-blue-royal font-medium font-bold">Terapias</a></li>
+                <li><a href="especialidades.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Especialidades</a></li>
+                <li><a href="ideia.html" class="block py-2 text-primary hover:text-blue-royal font-medium">IDEA</a></li>
+                <li><a href="transtornos.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Transtornos Alimentares</a></li>
+                <li><a href="contato.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Contato</a></li>
+            </ul>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="container">
-            <div class="hero-content animate-on-scroll fade-in">
-                <h2>Cada passo importa. Estamos com você e seu filho em toda a jornada de desenvolvimento.</h2>
-                <p>Terapias especializadas para crianças com autismo, TDAH, TOD e Síndrome de Down.</p>
-                <a href="#contact" class="btn-primary">Agende uma Visita</a>
-            </div>
-            <div class="hero-image animate-on-scroll slide-up">
-                <img src="assets/img/hero.svg" alt="Crianças brincando e aprendendo com terapeutas">
-            </div>
-        </div>
-    </section>
+    <!-- Hero Section - Versão mais marcante e direta -->
+    <section class="bg-gradient-to-r from-blue-royal to-primary text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-8">
+                    <span class="inline-block text-sm font-bold px-3 py-1 bg-white/20 rounded-full mb-4">EIBM TERAPIAS</span>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Transformando o Desenvolvimento Infantil</h1>
+                    <div class="h-1 w-32 bg-white mx-auto mb-6"></div>
+                    <p class="text-xl text-white/90 mb-6">Serviços terapêuticos especializados prontos para atendimento imediato.</p>
+                </div>
+                
+                <!-- Botões rápidos para as terapias -->
+                <div class="flex flex-wrap justify-center gap-3 mb-6">
+                    <a href="#psicologia" class="bg-white text-primary hover:bg-blue-50 font-medium px-5 py-2 rounded-full transition-all duration-200 flex items-center">
+                        <i class="fas fa-brain mr-2"></i> Psicologia
+                    </a>
+                    <a href="#fonoaudiologia" class="bg-white text-primary hover:bg-blue-50 font-medium px-5 py-2 rounded-full transition-all duration-200 flex items-center">
+                        <i class="fas fa-comment-medical mr-2"></i> Fonoaudiologia
+                    </a>
+                    <a href="#terapia-ocupacional" class="bg-white text-primary hover:bg-blue-50 font-medium px-5 py-2 rounded-full transition-all duration-200 flex items-center">
+                        <i class="fas fa-hands mr-2"></i> T. Ocupacional
+                    </a>
+                    <a href="#psicopedagogia" class="bg-white text-primary hover:bg-blue-50 font-medium px-5 py-2 rounded-full transition-all duration-200 flex items-center">
+                        <i class="fas fa-book-reader mr-2"></i> Psicopedagogia
+                    </a>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Sobre Nossa Clínica</h2>
-                <p>Abordagem multidisciplinar personalizada para cada criança</p>
-            </div>
-            <div class="about-content">
-                <div class="about-image animate-on-scroll slide-up">
-                    <img src="assets/img/about.svg" alt="Equipe multidisciplinar atendendo crianças">
                 </div>
-                <div class="about-text animate-on-scroll fade-in">
-                    <p>Nossa clínica oferece um atendimento integrado, unindo diferentes especialidades para potencializar o desenvolvimento de cada criança. Trabalhamos com metodologias comprovadas cientificamente, como a Análise do Comportamento Aplicada (ABA), combinada com intervenções de Psicologia, Fonoaudiologia, Terapia Ocupacional e muito mais.</p>
-                    <p>Nossa equipe, formada por profissionais experientes e apaixonados, trabalha de forma colaborativa para criar planos terapêuticos personalizados que respeitam a individualidade, o ritmo e as necessidades específicas de cada criança.</p>
-                    <a href="#services" class="btn-secondary">Conheça Nossos Serviços</a>
-                    <a href="index.html" class="btn-back">Voltar ao Portal</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Differentials Section -->
-    <section id="differentials" class="differentials">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Nossos Diferenciais</h2>
-                <p>O que nos torna especiais</p>
-            </div>
-            <div class="cards-container">
-                <div class="card animate-on-scroll slide-up">
-                    <div class="card-icon">
-                        <img src="assets/img/tech.svg" alt="Ícone de tecnologia">
-                    </div>
-                    <h3>Acompanhamento com Tecnologia</h3>
-                    <p>Utilizamos ferramentas digitais para monitorar o progresso de cada criança e compartilhar avanços com os pais em tempo real.</p>
-                </div>
-                <div class="card animate-on-scroll slide-up" data-delay="200">
-                    <div class="card-icon">
-                        <img src="assets/img/plan.svg" alt="Ícone de plano terapêutico">
-                    </div>
-                    <h3>Plano Terapêutico Integrado</h3>
-                    <p>Desenvolvemos estratégias que integram diferentes áreas do conhecimento, criando um plano terapêutico completo e personalizado.</p>
-                </div>
-                <div class="card animate-on-scroll slide-up" data-delay="400">
-                    <div class="card-icon">
-                        <img src="assets/img/family.svg" alt="Ícone de família">
-                    </div>
-                    <h3>Apoio às Famílias</h3>
-                    <p>Oferecemos orientação continuada aos pais e familiares, com grupos de apoio e treinamentos para aplicação de técnicas em casa.</p>
+                
+                <div class="flex justify-center">
+                    <a href="contato.html" class="bg-blue-royal hover:bg-blue-800 text-white font-bold px-8 py-3 rounded-lg transition-all duration-300 inline-flex items-center">
+                        <i class="fas fa-calendar-check mr-2"></i> Agendar Consulta
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Nossos Serviços</h2>
-                <p>Terapias especializadas para o desenvolvimento infantil</p>
-            </div>
-            <div class="services-container">
-                <div class="service-item animate-on-scroll slide-up">
-                    <div class="service-icon">
-                        <img src="assets/img/speech.svg" alt="Ícone de fonoaudiologia">
-                    </div>
-                    <h3>Fonoaudiologia</h3>
-                    <p>Desenvolvimento da comunicação, linguagem e habilidades de alimentação, essenciais para a interação social e independência.</p>
-                </div>
-                <div class="service-item animate-on-scroll slide-up" data-delay="150">
-                    <div class="service-icon">
-                        <img src="assets/img/occupational.svg" alt="Ícone de terapia ocupacional">
-                    </div>
-                    <h3>Terapia Ocupacional</h3>
-                    <p>Trabalho com habilidades motoras, sensoriais e de vida diária para promover autonomia e melhorar a qualidade de vida.</p>
-                </div>
-                <div class="service-item animate-on-scroll slide-up" data-delay="300">
-                    <div class="service-icon">
-                        <img src="assets/img/psychology.svg" alt="Ícone de psicologia">
-                    </div>
-                    <h3>Psicologia</h3>
-                    <p>Suporte emocional e comportamental, com abordagens baseadas em ABA e outras terapias cognitivo-comportamentais.</p>
-                </div>
-                <div class="service-item animate-on-scroll slide-up" data-delay="450">
-                    <div class="service-icon">
-                        <img src="assets/img/pedagogy.svg" alt="Ícone de psicopedagogia">
-                    </div>
-                    <h3>Psicopedagogia</h3>
-                    <p>Foco nos processos de aprendizagem, identificando dificuldades e desenvolvendo estratégias para superá-las.</p>
-                </div>
-                <div class="service-item animate-on-scroll slide-up" data-delay="600">
-                    <div class="service-icon">
-                        <img src="assets/img/music.svg" alt="Ícone de musicoterapia">
-                    </div>
-                    <h3>Musicoterapia</h3>
-                    <p>Utilização da música como recurso terapêutico para estimular habilidades sociais, comunicativas e emocionais.</p>
-                </div>
-            </div>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-10">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary font-heading mb-4">
+                Nossas Terapias
+            </h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                A EIBM oferece uma abordagem multidisciplinar para o desenvolvimento infantil, com terapias integradas e personalizadas para cada necessidade.
+            </p>
         </div>
-    </section>
-
-    <!-- Mission Section -->
-    <section id="mission" class="mission">
-        <div class="container">
-            <div class="mission-content animate-on-scroll fade-in">
-                <h2>Nossa Missão e Valores</h2>
-                <p>Acreditamos que cada criança tem um potencial único a ser descoberto e desenvolvido. Nossa missão é proporcionar um ambiente acolhedor, seguro e estimulante onde cada pequeno passo é celebrado como uma grande conquista.</p>
-                <p>Valorizamos o respeito à individualidade, a ética profissional, o compromisso com evidências científicas e, acima de tudo, o amor e dedicação em cada atendimento.</p>
-                <p>Nosso objetivo é não apenas promover o desenvolvimento das crianças, mas também fortalecer as famílias, oferecendo acolhimento, orientação e esperança em cada etapa da jornada.</p>
-                <a href="index.html" class="btn-back white">Voltar ao Portal</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Questions -->
-    <section id="questions" class="questions">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Perguntas para Reflexão</h2>
-                <p>Vamos pensar juntos no melhor para o desenvolvimento do seu filho</p>
-            </div>
-            <div class="questions-carousel">
-                <div class="carousel-container">
-                    <div class="carousel-track">
-                        <div class="carousel-item animate-on-scroll fade-in">
-                            <div class="question-card">
-                                <h3>Você conhece como funciona a terapia ABA e por que ela é tão eficaz?</h3>
-                                <p>A Análise do Comportamento Aplicada (ABA) é uma abordagem baseada em evidências que utiliza princípios comportamentais para ensinar habilidades e reduzir comportamentos desafiadores. Sua eficácia está na individualização, medição constante de resultados e intervenção precoce.</p>
-                                <a href="#contact" class="btn-secondary">Saiba mais</a>
+        
+        <!-- Abordagem Multidisciplinar Section -->
+        <section class="mb-16">
+            <div class="flex flex-col md:flex-row items-center bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="md:w-1/2 p-8">
+                    <h3 class="text-2xl font-bold text-primary mb-4">Abordagem Multidisciplinar</h3>
+                    <p class="text-gray-700 mb-4">
+                        Nossa abordagem multidisciplinar garante que cada criança receba um tratamento completo e personalizado, abordando todos os aspectos do seu desenvolvimento.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        As diferentes terapias trabalham de forma integrada, compartilhando informações e estratégias para potencializar os resultados e proporcionar um desenvolvimento harmônico.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <div class="bg-primary rounded-full p-2 text-white mr-2">
+                                <i class="fas fa-users"></i>
                             </div>
+                            <span class="font-medium">Equipe Integrada</span>
                         </div>
-                        <div class="carousel-item animate-on-scroll fade-in" data-delay="200">
-                            <div class="question-card">
-                                <h3>Como você imagina o suporte ideal para o desenvolvimento do seu filho?</h3>
-                                <p>O suporte ideal combina profissionais qualificados, terapias integradas, parceria com a família e um ambiente acolhedor. Em nossa clínica, trabalhamos para que esse suporte seja uma realidade, adaptando-se às necessidades específicas de cada criança.</p>
-                                <a href="#contact" class="btn-secondary">Converse conosco</a>
+                        <div class="flex items-center">
+                            <div class="bg-secondary rounded-full p-2 text-white mr-2">
+                                <i class="fas fa-clipboard-check"></i>
                             </div>
+                            <span class="font-medium">Plano Personalizado</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-accent rounded-full p-2 text-white mr-2">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <span class="font-medium">Evolução Mensurável</span>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-nav">
-                    <button class="carousel-btn prev-btn" aria-label="Pergunta anterior"><span>&lt;</span></button>
-                    <div class="carousel-dots"></div>
-                    <button class="carousel-btn next-btn" aria-label="Próxima pergunta"><span>&gt;</span></button>
+                <div class="md:w-1/2 bg-blue-50 p-8 flex items-center justify-center">
+                    <img src="assets/about-image.svg" alt="Abordagem multidisciplinar" class="max-w-full h-auto">
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        
+        <!-- Terapias -->
+        <section>
+            <h3 class="text-2xl font-bold text-primary mb-6 text-center">
+                Conheça nossas terapias especializadas
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Terapia Ocupacional -->
+                <div class="therapy-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-3 bg-primary"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-hands text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3 text-center">Terapia Ocupacional</h3>
+                        <p class="text-gray-700 mb-4">
+                            Auxilia no desenvolvimento de habilidades necessárias para atividades diárias, trabalhando coordenação motora, integração sensorial e autonomia.
+                        </p>
+                        <ul class="space-y-2 mb-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span>Coordenação motora fina e grossa</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span>Processamento sensorial</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span>Atividades de vida diária</span>
+                            </li>
+                        </ul>
+                        <a href="terapia-ocupacional.html" class="block w-full bg-primary hover:bg-blue-royal text-white font-medium py-2 rounded-lg transition-colors text-center">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Psicologia -->
+                <div class="therapy-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-3 bg-primary"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-brain text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3 text-center">Psicologia</h3>
+                        <p class="text-gray-700 mb-4">
+                            Foca no desenvolvimento emocional, comportamental e social, utilizando técnicas baseadas em evidências como ABA e terapia cognitivo-comportamental.
+                        </p>
+                        <ul class="space-y-2 mb-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span>Análise do Comportamento Aplicada (ABA)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span>Terapia cognitivo-comportamental</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span>Habilidades sociais e emocionais</span>
+                            </li>
+                        </ul>
+                        <a href="psicologia.html" class="block w-full bg-primary hover:bg-blue-royal text-white font-medium py-2 rounded-lg transition-colors text-center">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Fonoaudiologia -->
+                <div class="therapy-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-3 bg-primary"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-comment-dots text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3 text-center">Fonoaudiologia</h3>
+                        <p class="text-gray-700 mb-4">
+                            Trabalha com o desenvolvimento da comunicação, linguagem, fala e funções orais, essenciais para a interação social e aprendizado.
+                        </p>
+                        <ul class="space-y-2 mb-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span>Desenvolvimento da linguagem</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span>Comunicação alternativa</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span>Funções orais e alimentação</span>
+                            </li>
+                        </ul>
+                        <a href="fonoaudiologia.html" class="block w-full bg-primary hover:bg-blue-royal text-white font-medium py-2 rounded-lg transition-colors text-center">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Psicopedagogia -->
+                <div class="therapy-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-3 bg-primary"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-book-open text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3 text-center">Psicopedagogia</h3>
+                        <p class="text-gray-700 mb-4">
+                            Foca nos processos de aprendizagem, ajudando a identificar dificuldades e desenvolver estratégias para superar desafios educacionais.
+                        </p>
+                        <ul class="space-y-2 mb-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span>Avaliação psicopedagógica</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span>Adaptação de conteúdos escolares</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span>Desenvolvimento cognitivo</span>
+                            </li>
+                        </ul>
+                        <a href="psicopedagogia.html" class="block w-full bg-primary hover:bg-blue-royal text-white font-medium py-2 rounded-lg transition-colors text-center">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Entre em Contato</h2>
-                <p>Estamos prontos para conversar e conhecer melhor você e seu filho</p>
             </div>
-            <div class="contact-container">
-                <div class="contact-info animate-on-scroll slide-up">
-                    <h3>Informações de Contato</h3>
-                    <p><strong>Endereço:</strong> Rua das Terapias, 123 - Bairro Especial</p>
-                    <p><strong>Telefone:</strong> (11) 1234-5678</p>
-                    <p><strong>Email:</strong> contato@clinicaespecial.com.br</p>
-                    <p><strong>Horário:</strong> Segunda a Sexta, das 8h às 19h</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                        </a>
-                        <a href="#" aria-label="Instagram">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                        <a href="#" aria-label="WhatsApp">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                        </a>
+        </section>
+        
+        <!-- Processo de Terapias -->
+        <section class="mb-16 bg-white p-8 rounded-xl shadow-md">
+            <h3 class="text-2xl font-bold text-primary mb-8 text-center">Como Funcionam Nossas Terapias</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 relative">
+                        <span class="absolute -top-2 -right-2 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                        <i class="fas fa-clipboard-list text-2xl text-primary"></i>
                     </div>
+                    <h4 class="text-lg font-bold text-primary mb-2">Avaliação Inicial</h4>
+                    <p class="text-sm text-gray-700">Identificamos necessidades específicas através de uma avaliação detalhada com nossa equipe multidisciplinar.</p>
                 </div>
-                <div class="contact-form animate-on-scroll slide-up" data-delay="200">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nome completo</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Telefone</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mensagem</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary">Vamos conversar?</button>
-                    </form>
-                    <div id="formMessage" class="form-message"></div>
+                
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 relative">
+                        <span class="absolute -top-2 -right-2 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                        <i class="fas fa-sitemap text-2xl text-primary"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-primary mb-2">Plano Personalizado</h4>
+                    <p class="text-sm text-gray-700">Desenvolvemos um plano terapêutico personalizado com objetivos claros e mensuráveis para cada criança.</p>
+                </div>
+                
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 relative">
+                        <span class="absolute -top-2 -right-2 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                        <i class="fas fa-hands-helping text-2xl text-primary"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-primary mb-2">Intervenção Integrada</h4>
+                    <p class="text-sm text-gray-700">Implementamos terapias coordenadas com nossa equipe multidisciplinar para resultados mais eficazes.</p>
+                </div>
+                
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 relative">
+                        <span class="absolute -top-2 -right-2 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
+                        <i class="fas fa-chart-line text-2xl text-primary"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-primary mb-2">Acompanhamento Contínuo</h4>
+                    <p class="text-sm text-gray-700">Monitoramos o progresso com avaliações regulares, ajustando o plano conforme necessário para melhor desenvolvimento.</p>
                 </div>
             </div>
+        </section>
+        
+        <!-- Entre em Contato -->
+        <section class="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl shadow-md">
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-primary mb-2">Precisa de Ajuda Especializada?</h3>
+                <p class="text-gray-700">Entre em contato conosco para agendar uma avaliação ou obter mais informações sobre nossas terapias.</p>
+            </div>
+            
+            <div class="flex justify-center">
+                <a href="contato.html" class="bg-primary hover:bg-blue-royal text-white font-medium px-6 py-3 rounded-lg transition-colors inline-flex items-center">
+                    <i class="fas fa-calendar-alt mr-2"></i> Agende uma Consulta
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="bg-primary py-14">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
+                Agende uma Avaliação Inicial
+            </h2>
+            <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                Converse com nossa equipe e descubra qual a melhor combinação de terapias para atender às necessidades específicas da sua criança.
+            </p>
+            <a href="contato.html" class="bg-white text-primary hover:bg-blue-50 font-medium px-6 py-3 rounded-full inline-block transition-colors">
+                Entrar em Contato
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
-                    <h3>Clínica Especial</h3>
+    <footer class="bg-gray-900 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="assets/logo-eibm-white.svg" alt="Logo EIBM" class="h-10 mr-3">
+                    <div>
+                        <h3 class="text-xl font-bold">EIBM</h3>
+                        <p class="text-xs text-gray-400">Especialidades Integradas e Bem-estar Multidisciplinar</p>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><a href="index.html">Portal Principal</a></li>
-                        <li><a href="eibm.html">EIBM</a></li>
-                        <li><a href="transtornos.html">Transtornos Alimentares</a></li>
-                        <li><a href="#contact">Contato</a></li>
-                    </ul>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">&copy; 2025 EIBM - Todos os direitos reservados.</p>
+                    <div class="flex justify-center md:justify-end space-x-4 mt-2">
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-services">
-                    <h4>Nossos Serviços</h4>
-                    <ul>
-                        <li>Fonoaudiologia</li>
-                        <li>Terapia Ocupacional</li>
-                        <li>Psicologia</li>
-                        <li>Psicopedagogia</li>
-                        <li>Musicoterapia</li>
-                    </ul>
-                </div>
-                <div class="footer-newsletter">
-                    <h4>Receba nossas novidades</h4>
-                    <form id="newsletterForm">
-                        <input type="email" placeholder="Seu e-mail" required>
-                        <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Clínica Especial. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-    </button>
-
-    <!-- Custom JavaScript -->
-    <script src="script.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Menu Mobile
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            // Abre o menu
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.remove('-translate-x-full');
+                document.body.style.overflow = 'hidden'; // Impede rolagem da página
+            });
+            
+            // Fecha o menu
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('-translate-x-full');
+                document.body.style.overflow = ''; // Restaura rolagem
+            });
+            
+            // Fecha o menu ao clicar em um link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('-translate-x-full');
+                    document.body.style.overflow = '';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

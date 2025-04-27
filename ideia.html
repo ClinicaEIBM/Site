@@ -3,406 +3,495 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IDEIA | Intervenção e Desenvolvimento Individual | Clínica Infantil</title>
-    <meta name="description" content="IDEIA - Intervenção e Desenvolvimento Individual com Estratégias Adaptadas: programa personalizado para crianças com necessidades específicas.">
-    <meta name="keywords" content="IDEIA, Intervenção Individual, Desenvolvimento Infantil, Terapia Personalizada, ABA, Intervenção Precoce">
-    
+    <title>IDEA | EIBM</title>
+    <meta name="description" content="Instituto de Desenvolvimento e Estruturação de Ambientes Inclusivos (IDEA): Adaptação de ambientes para crianças com necessidades especiais.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#195184',      // Azul principal
+                        secondary: '#6CBB45',    // Verde
+                        accent: '#ED3924',       // Vermelho
+                        blue: {
+                            light: '#439CD5',
+                            royal: '#136CB2',
+                        },
+                        green: {
+                            light: '#9DCB5B',
+                            dark: '#648543',
+                        },
+                        red: {
+                            light: '#E8694B',
+                            dark: '#A53434',
+                        },
+                        yellow: {
+                            light: '#F2E5B0',
+                            DEFAULT: '#EFCD18',
+                        },
+                        orange: '#EA8C2C',
+                        purple: {
+                            light: '#D29BFF',
+                            DEFAULT: '#A358E1',
+                            dark: '#9930C2',
+                        },
+                        gold: '#D4AF37',
+                        brown: '#8B4513',
+                        beige: '#F5F5DC',
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="subpage ideia-page">
+<body class="font-sans text-gray-800 bg-purple-50 min-h-screen">
     <!-- Header/Navigation -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
-                <h1>Clínica Especial</h1>
-            </div>
-            <nav>
-                <div class="mobile-menu-icon">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12 md:h-16">
+                        <div class="ml-3">
+                            <h1 class="text-xl md:text-2xl font-bold text-primary font-heading">EIBM</h1>
+                            <p class="text-xs text-gray-600 hidden md:block">Especialidades Integradas e Bem-estar Multidisciplinar</p>
+                        </div>
+                    </a>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Portal Principal</a></li>
-                    <li><a href="landing.html">Sobre a Clínica</a></li>
-                    <li><a href="eibm.html">EIBM</a></li>
-                    <li><a href="ideia.html" class="active">IDEIA</a></li>
-                </ul>
-            </nav>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="index.html" class="text-primary hover:text-blue-royal font-medium">Início</a></li>
+                        <li><a href="terapias.html" class="text-primary hover:text-blue-royal font-medium">Terapias</a></li>
+                        <li><a href="especialidades.html" class="text-primary hover:text-blue-royal font-medium">Especialidades</a></li>
+                        <li><a href="ideia.html" class="text-primary hover:text-blue-royal font-medium border-b-2 border-purple">IDEA</a></li>
+                        <li><a href="transtornos.html" class="text-primary hover:text-blue-royal font-medium">Transtornos Alimentares</a></li>
+                        <li><a href="contato.html" class="text-primary hover:text-blue-royal font-medium">Contato</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="block md:hidden text-primary" id="menu-toggle">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (hidden by default) -->
+        <div class="menu-mobile fixed top-0 left-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 p-5 transform -translate-x-full transition-transform duration-300" id="mobile-menu">
+            <div class="flex justify-between items-center mb-6">
+                <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12">
+                <button id="close-menu">
+                    <i class="fas fa-times text-2xl text-primary"></i>
+                </button>
+            </div>
+            <ul class="space-y-4">
+                <li><a href="index.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Início</a></li>
+                <li><a href="terapias.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Terapias</a></li>
+                <li><a href="especialidades.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Especialidades</a></li>
+                <li><a href="ideia.html" class="block py-2 text-primary hover:text-blue-royal font-medium font-bold">IDEA</a></li>
+                <li><a href="transtornos.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Transtornos Alimentares</a></li>
+                <li><a href="contato.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Contato</a></li>
+            </ul>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="subpage-hero">
-        <div class="container">
-            <div class="subpage-hero-content animate-on-scroll fade-in">
-                <h2>IDEIA - Intervenção e Desenvolvimento Individual</h2>
-                <p>Estratégias personalizadas para o desenvolvimento do potencial único de cada criança</p>
-                <a href="eibm.html" class="btn-back">Voltar para EIBM</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- IDEIA Introduction -->
-    <section class="subpage-intro">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>O que é o Programa IDEIA?</h2>
-                <p>Uma abordagem única focada nas necessidades específicas de cada criança</p>
-            </div>
-            <div class="content-columns">
-                <div class="content-text animate-on-scroll fade-in">
-                    <p>O programa IDEIA (Intervenção e Desenvolvimento Individual com Estratégias Adaptadas) é nossa abordagem personalizada que reconhece a singularidade de cada criança e suas necessidades específicas de desenvolvimento.</p>
-                    <p>Diferente de programas padronizados, o IDEIA parte de uma avaliação abrangente para criar um plano terapêutico totalmente individualizado, considerando não apenas os desafios, mas também as potencialidades, interesses e o contexto familiar de cada criança.</p>
-                    <p>Baseado em evidências científicas e utilizando técnicas de intervenção comportamental, desenvolvimento neuropsicomotor e estimulação cognitiva, o IDEIA proporciona intervenção intensiva e personalizada para maximizar o potencial de cada criança.</p>
-                </div>
-                <div class="content-image animate-on-scroll slide-up">
-                    <img src="assets/img/ideia-main.svg" alt="Ilustração representando o programa IDEIA">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pilares IDEIA -->
-    <section class="ideia-pillars">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Os Pilares do Programa IDEIA</h2>
-                <p>Fundamentos que guiam nossa intervenção personalizada</p>
-            </div>
-            <div class="pillars-container">
-                <div class="pillar-item animate-on-scroll slide-up">
-                    <div class="pillar-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="22" y1="12" x2="18" y2="12"></line>
-                            <line x1="6" y1="12" x2="2" y2="12"></line>
-                            <line x1="12" y1="6" x2="12" y2="2"></line>
-                            <line x1="12" y1="22" x2="12" y2="18"></line>
-                        </svg>
-                    </div>
-                    <h3>Individualização</h3>
-                    <p>Cada programa é criado exclusivamente para uma criança específica, considerando seu perfil único de habilidades, desafios e potencialidades.</p>
-                </div>
-                
-                <div class="pillar-item animate-on-scroll slide-up" data-delay="150">
-                    <div class="pillar-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
-                            <line x1="6" y1="1" x2="6" y2="4"></line>
-                            <line x1="10" y1="1" x2="10" y2="4"></line>
-                            <line x1="14" y1="1" x2="14" y2="4"></line>
-                        </svg>
-                    </div>
-                    <h3>Intensidade</h3>
-                    <p>Oferta de intervenção com carga horária adequada para maximizar o aprendizado, respeitando as necessidades e a energia da criança.</p>
-                </div>
-                
-                <div class="pillar-item animate-on-scroll slide-up" data-delay="300">
-                    <div class="pillar-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                    </div>
-                    <h3>Dados e Evidências</h3>
-                    <p>Monitoramento constante do progresso através de coleta de dados, permitindo ajustes imediatos na intervenção com base em resultados observáveis.</p>
-                </div>
-                
-                <div class="pillar-item animate-on-scroll slide-up" data-delay="450">
-                    <div class="pillar-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="4" y1="21" x2="4" y2="14"></line>
-                            <line x1="4" y1="10" x2="4" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="12"></line>
-                            <line x1="12" y1="8" x2="12" y2="3"></line>
-                            <line x1="20" y1="21" x2="20" y2="16"></line>
-                            <line x1="20" y1="12" x2="20" y2="3"></line>
-                            <line x1="1" y1="14" x2="7" y2="14"></line>
-                            <line x1="9" y1="8" x2="15" y2="8"></line>
-                            <line x1="17" y1="16" x2="23" y2="16"></line>
-                        </svg>
-                    </div>
-                    <h3>Adaptação</h3>
-                    <p>Estratégias flexíveis que se adaptam ao ritmo de aprendizado da criança, com ajustes constantes conforme seu desenvolvimento.</p>
-                </div>
-                
-                <div class="pillar-item animate-on-scroll slide-up" data-delay="600">
-                    <div class="pillar-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                    </div>
-                    <h3>Inclusão Familiar</h3>
-                    <p>Capacitação e envolvimento ativo da família no processo terapêutico, criando um ambiente de aprendizado contínuo em casa.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Processo IDEIA -->
-    <section class="ideia-process">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Como Funciona o Processo IDEIA</h2>
-                <p>Da avaliação inicial ao desenvolvimento contínuo</p>
-            </div>
-            <div class="process-timeline">
-                <div class="timeline-item animate-on-scroll slide-up">
-                    <div class="timeline-number">1</div>
-                    <div class="timeline-content">
-                        <h3>Avaliação Interdisciplinar</h3>
-                        <p>Uma avaliação completa conduzida por diferentes especialistas para identificar habilidades, desafios, interesses e particularidades da criança.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item animate-on-scroll slide-up" data-delay="150">
-                    <div class="timeline-number">2</div>
-                    <div class="timeline-content">
-                        <h3>Elaboração do Plano IDEIA</h3>
-                        <p>Desenvolvimento de um plano de intervenção personalizado com objetivos específicos, estabelecimento de linha de base e definição de estratégias de ensino.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item animate-on-scroll slide-up" data-delay="300">
-                    <div class="timeline-number">3</div>
-                    <div class="timeline-content">
-                        <h3>Implementação Intensiva</h3>
-                        <p>Início do programa com sessões estruturadas e intensivas, utilizando estratégias baseadas em ABA, desenvolvimento infantil e outras abordagens baseadas em evidências.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item animate-on-scroll slide-up" data-delay="450">
-                    <div class="timeline-number">4</div>
-                    <div class="timeline-content">
-                        <h3>Capacitação Familiar</h3>
-                        <p>Treinamento para pais e cuidadores para aplicação das estratégias em casa, garantindo consistência e generalização das habilidades.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item animate-on-scroll slide-up" data-delay="600">
-                    <div class="timeline-number">5</div>
-                    <div class="timeline-content">
-                        <h3>Monitoramento e Ajustes</h3>
-                        <p>Coleta constante de dados, análise de progresso e reuniões de equipe para ajustes nas estratégias de intervenção.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item animate-on-scroll slide-up" data-delay="750">
-                    <div class="timeline-number">6</div>
-                    <div class="timeline-content">
-                        <h3>Transição e Inclusão</h3>
-                        <p>Planejamento e implementação de estratégias para inclusão em ambientes naturais, como escola, atividades sociais e comunidade.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Áreas de Aplicação -->
-    <section class="application-areas">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Áreas de Aplicação do IDEIA</h2>
-                <p>Como o programa pode beneficiar diferentes perfis de crianças</p>
-            </div>
-            <div class="areas-grid">
-                <div class="area-card animate-on-scroll slide-up">
-                    <div class="area-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <circle cx="12" cy="12" r="4"></circle>
-                            <line x1="21.17" y1="8" x2="12" y2="8"></line>
-                            <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
-                            <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
-                        </svg>
-                    </div>
-                    <h3>Transtorno do Espectro Autista</h3>
-                    <p>Intervenção precoce e intensiva para desenvolvimento de habilidades sociais, comunicativas, adaptativas e redução de comportamentos desafiadores.</p>
-                </div>
-                
-                <div class="area-card animate-on-scroll slide-up" data-delay="150">
-                    <div class="area-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path>
-                            <circle cx="12" cy="13" r="3"></circle>
-                        </svg>
-                    </div>
-                    <h3>TDAH</h3>
-                    <p>Estratégias para desenvolvimento de atenção sustentada, controle de impulsos, organização e adequação comportamental em diferentes contextos.</p>
-                </div>
-                
-                <div class="area-card animate-on-scroll slide-up" data-delay="300">
-                    <div class="area-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </div>
-                    <h3>Atrasos de Desenvolvimento</h3>
-                    <p>Estimulação adequada para crianças com atrasos globais ou específicos, potencializando o desenvolvimento em áreas deficitárias.</p>
-                </div>
-                
-                <div class="area-card animate-on-scroll slide-up" data-delay="450">
-                    <div class="area-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
-                        </svg>
-                    </div>
-                    <h3>Síndrome de Down</h3>
-                    <p>Abordagem adaptada para potencializar o desenvolvimento cognitivo, motor, social e de autonomia em crianças com Síndrome de Down.</p>
-                </div>
-                
-                <div class="area-card animate-on-scroll slide-up" data-delay="600">
-                    <div class="area-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06z"></path>
-                            <path d="M10 2c1 .5 2 2 2 5"></path>
-                        </svg>
-                    </div>
-                    <h3>Transtorno de Oposição Desafiante</h3>
-                    <p>Estratégias para desenvolvimento de habilidades socioemocionais, regulação emocional e comportamentos adaptativos em crianças com TOD.</p>
-                </div>
-                
-                <div class="area-card animate-on-scroll slide-up" data-delay="750">
-                    <div class="area-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Dificuldades de Aprendizagem</h3>
-                    <p>Intervenção específica para crianças com dislexia, discalculia e outros transtornos específicos de aprendizagem.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content animate-on-scroll fade-in">
-                <h2>Descubra como o programa IDEIA pode beneficiar seu filho</h2>
-                <p>Entre em contato para agendar uma avaliação inicial e conhecer nossa abordagem</p>
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn-primary">Agende uma Avaliação</a>
-                    <a href="eibm.html" class="btn-secondary">Voltar para EIBM</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Entre em Contato</h2>
-                <p>Estamos prontos para conversar e conhecer melhor você e seu filho</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info animate-on-scroll slide-up">
-                    <h3>Informações de Contato</h3>
-                    <p><strong>Endereço:</strong> Rua das Terapias, 123 - Bairro Especial</p>
-                    <p><strong>Telefone:</strong> (11) 1234-5678</p>
-                    <p><strong>Email:</strong> contato@clinicaespecial.com.br</p>
-                    <p><strong>Horário:</strong> Segunda a Sexta, das 8h às 19h</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                        </a>
-                        <a href="#" aria-label="Instagram">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                        <a href="#" aria-label="WhatsApp">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="contact-form animate-on-scroll slide-up" data-delay="200">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nome completo</label>
-                            <input type="text" id="name" name="name" required>
+    <!-- Hero Section - Amarelo (cor da bolinha IDEA) -->
+    <section class="py-12 bg-gradient-to-r from-yellow to-yellow-light text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-white/20 rounded-full p-3 text-white mr-4">
+                            <i class="fas fa-lightbulb text-2xl"></i>
                         </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" required>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white font-heading">
+                            IDEA
+                        </h2>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-white/90 mb-6">
+                        Instituto de Desenvolvimento e Estruturação de Ambientes Inclusivos
+                    </h3>
+                    <p class="text-lg text-white/80 mb-6">
+                        O IDEA é um programa da EIBM dedicado à criação e adaptação de ambientes físicos e sociais para promover a inclusão e o desenvolvimento de crianças com necessidades especiais.
+                    </p>
+                    <p class="text-lg text-white/80 mb-6">
+                        Trabalhamos em parceria com escolas, famílias e comunidades para construir espaços e interações que respeitem as diferenças e potencializem as habilidades de cada criança.
+                    </p>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative bg-white p-8 rounded-xl shadow-xl max-w-md">
+                        <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-yellow rounded-full p-5 shadow-lg text-white">
+                            <i class="fas fa-puzzle-piece text-3xl"></i>
                         </div>
-                        <div class="form-group">
-                            <label for="phone">Telefone</label>
-                            <input type="tel" id="phone" name="phone" required>
+                        <h3 class="text-center text-2xl font-bold text-yellow mt-6 mb-6">Nossa Missão</h3>
+                        <p class="text-gray-700 text-center mb-4">
+                            Criar ambientes inclusivos que possibilitem o desenvolvimento pleno de todas as crianças, respeitando suas individualidades e promovendo experiências significativas.
+                        </p>
+                        <div class="pt-4 border-t border-gray-200">
+                            <div class="flex justify-around">
+                                <div class="text-center">
+                                    <div class="bg-yellow-light rounded-full p-2 inline-block mb-2">
+                                        <i class="fas fa-universal-access text-yellow"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">Acessibilidade</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="bg-purple-100 rounded-full p-2 inline-block mb-2">
+                                        <i class="fas fa-users text-purple"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">Inclusão</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="bg-purple-100 rounded-full p-2 inline-block mb-2">
+                                        <i class="fas fa-seedling text-purple"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">Desenvolvimento</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="message">Mensagem</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary">Vamos conversar?</button>
-                    </form>
-                    <div id="formMessage" class="form-message"></div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-10">
+        <!-- Áreas de Atuação -->
+        <section class="mb-16">
+            <h3 class="text-2xl font-bold text-yellow mb-8 text-center">
+                Áreas de Atuação
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Ambiente Escolar -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-purple-light rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-school text-2xl text-purple"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-purple mb-3 text-center">Ambiente Escolar</h4>
+                    <p class="text-gray-700 mb-4">
+                        Desenvolvemos projetos de adaptação de salas de aula e espaços escolares para atender às necessidades de todas as crianças.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple mr-2"></i>
+                            <span>Adaptação de mobiliário</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple mr-2"></i>
+                            <span>Sinalização visual e tátil</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple mr-2"></i>
+                            <span>Organização de ambiente sensorial</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple mr-2"></i>
+                            <span>Áreas de descanso sensorial</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Ambiente Familiar -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-purple-light rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-home text-2xl text-purple"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-purple mb-3 text-center">Ambiente Familiar</h4>
+                    <p class="text-gray-700 mb-4">
+                        Orientamos famílias na adaptação de suas casas para promover independência, segurança e estímulos adequados.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple mr-2"></i>
+                            <span>Organização de espaços</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple mr-2"></i>
+                            <span>Rotinas visuais</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple mr-2"></i>
+                            <span>Adaptações para autonomia</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple mr-2"></i>
+                            <span>Espaços de integração sensorial</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Espaços Públicos -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-purple-light rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-city text-2xl text-purple"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-purple mb-3 text-center">Espaços Públicos</h4>
+                    <p class="text-gray-700 mb-4">
+                        Trabalhamos com comunidades e instituições para criar espaços públicos inclusivos que permitam a participação de todas as crianças.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple mr-2"></i>
+                            <span>Playgrounds adaptados</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple mr-2"></i>
+                            <span>Acessibilidade em eventos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple mr-2"></i>
+                            <span>Sinalização inclusiva</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple mr-2"></i>
+                            <span>Capacitação de equipes</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Metodologia -->
+        <section class="mb-16 bg-white p-8 rounded-xl shadow-md">
+            <h3 class="text-2xl font-bold text-purple mb-6 text-center">
+                Nossa Metodologia
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-bold text-purple-dark mb-4">
+                        <i class="fas fa-search text-purple-dark mr-2"></i>
+                        Avaliação e Planejamento
+                    </h4>
+                    <ol class="space-y-3 list-decimal list-inside pl-4">
+                        <li class="text-gray-700">
+                            <span class="font-medium">Levantamento de Necessidades:</span> Realizamos uma análise detalhada das necessidades específicas do ambiente e das crianças que o utilizam.
+                        </li>
+                        <li class="text-gray-700">
+                            <span class="font-medium">Avaliação das Barreiras:</span> Identificamos os obstáculos físicos, sensoriais e sociais que dificultam a participação plena.
+                        </li>
+                        <li class="text-gray-700">
+                            <span class="font-medium">Definição de Objetivos:</span> Estabelecemos metas claras para o projeto, alinhadas às necessidades identificadas.
+                        </li>
+                        <li class="text-gray-700">
+                            <span class="font-medium">Planejamento Colaborativo:</span> Desenvolvemos o projeto em parceria com os stakeholders, garantindo que todas as perspectivas sejam consideradas.
+                        </li>
+                    </ol>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold text-purple-dark mb-4">
+                        <i class="fas fa-tools text-purple-dark mr-2"></i>
+                        Implementação e Acompanhamento
+                    </h4>
+                    <ol class="space-y-3 list-decimal list-inside pl-4">
+                        <li class="text-gray-700">
+                            <span class="font-medium">Adaptação do Ambiente:</span> Realizamos as modificações físicas e organizacionais necessárias, seguindo princípios de design universal.
+                        </li>
+                        <li class="text-gray-700">
+                            <span class="font-medium">Capacitação:</span> Treinamos educadores, familiares ou profissionais para utilizarem adequadamente os recursos implementados.
+                        </li>
+                        <li class="text-gray-700">
+                            <span class="font-medium">Monitoramento:</span> Acompanhamos a utilização do ambiente adaptado, coletando feedback e observando o impacto das modificações.
+                        </li>
+                        <li class="text-gray-700">
+                            <span class="font-medium">Ajustes Contínuos:</span> Realizamos modificações e adaptações conforme as necessidades evoluem ao longo do tempo.
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-200">
+                <h4 class="text-xl font-bold text-purple-dark mb-4 text-center">
+                    <i class="fas fa-star text-purple-dark mr-2"></i>
+                    Princípios que Norteiam Nosso Trabalho
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-purple text-center mb-2">Desenho Universal</h5>
+                        <p class="text-gray-700 text-sm text-center">
+                            Criação de ambientes utilizáveis por todos, sem necessidade de adaptação específica.
+                        </p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-purple text-center mb-2">Participação Ativa</h5>
+                        <p class="text-gray-700 text-sm text-center">
+                            Envolvimento de todas as partes interessadas no processo de design e implementação.
+                        </p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-purple text-center mb-2">Flexibilidade</h5>
+                        <p class="text-gray-700 text-sm text-center">
+                            Ambientes que podem ser modificados e ajustados conforme as necessidades evoluem.
+                        </p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-purple text-center mb-2">Autonomia</h5>
+                        <p class="text-gray-700 text-sm text-center">
+                            Promoção da independência e desenvolvimento de habilidades para a vida.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projetos -->
+        <section>
+            <h3 class="text-2xl font-bold text-purple mb-8 text-center">
+                Projetos em Destaque
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-3 bg-purple"></div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-purple mb-3">Salas Multissensoriais</h4>
+                        <p class="text-gray-700 mb-4">
+                            Desenvolvimento de espaços seguros para estimulação sensorial controlada em escolas e clínicas, permitindo experiências sensoriais diversificadas.
+                        </p>
+                        <div class="flex items-center text-gray-600 mb-3">
+                            <i class="fas fa-map-marker-alt text-purple mr-2"></i>
+                            <span>Escolas parceiras em São Paulo</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <i class="fas fa-users text-purple mr-2"></i>
+                            <span>Atendeu mais de 300 crianças em 2024</span>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded-lg">
+                            <h5 class="font-bold text-purple mb-2">Resultados:</h5>
+                            <ul class="text-gray-700 space-y-1">
+                                <li>• Redução de comportamentos disruptivos</li>
+                                <li>• Melhora na concentração e participação</li>
+                                <li>• Maior regulação emocional</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-3 bg-purple"></div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-purple mb-3">Playground Inclusivo</h4>
+                        <p class="text-gray-700 mb-4">
+                            Projeto de playground em parque público com equipamentos acessíveis para crianças com diferentes habilidades, promovendo a interação social inclusiva.
+                        </p>
+                        <div class="flex items-center text-gray-600 mb-3">
+                            <i class="fas fa-map-marker-alt text-purple mr-2"></i>
+                            <span>Parque Municipal Vila Nova</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <i class="fas fa-calendar-alt text-purple mr-2"></i>
+                            <span>Inaugurado em março de 2024</span>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded-lg">
+                            <h5 class="font-bold text-purple mb-2">Destaques:</h5>
+                            <ul class="text-gray-700 space-y-1">
+                                <li>• Balanços adaptados para cadeiras de rodas</li>
+                                <li>• Superfícies táteis para exploração sensorial</li>
+                                <li>• Sinalização visual e em braile</li>
+                                <li>• Áreas de descanso sensorial</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="bg-purple py-14">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
+                Transforme Ambientes em Espaços Inclusivos
+            </h2>
+            <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                Quer adaptar um espaço para atender às necessidades de crianças com desenvolvimento atípico? Nossa equipe pode ajudar.
+            </p>
+            <a href="contato.html" class="bg-white text-purple hover:bg-gray-100 font-medium px-6 py-3 rounded-full inline-block transition-colors">
+                Solicitar uma Consultoria
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
-                    <h3>Clínica Especial</h3>
+    <footer class="bg-gray-900 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="assets/logo-eibm-white.svg" alt="Logo EIBM" class="h-10 mr-3">
+                    <div>
+                        <h3 class="text-xl font-bold">EIBM</h3>
+                        <p class="text-xs text-gray-400">Especialidades Integradas e Bem-estar Multidisciplinar</p>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><a href="index.html">Portal Principal</a></li>
-                        <li><a href="eibm.html">EIBM</a></li>
-                        <li><a href="especialidades.html">Especialidades</a></li>
-                        <li><a href="terapias.html">Terapias</a></li>
-                    </ul>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">&copy; 2025 EIBM - Todos os direitos reservados.</p>
+                    <div class="flex justify-center md:justify-end space-x-4 mt-2">
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-services">
-                    <h4>Áreas de Aplicação</h4>
-                    <ul>
-                        <li>Autismo</li>
-                        <li>TDAH</li>
-                        <li>Atrasos de Desenvolvimento</li>
-                        <li>Síndrome de Down</li>
-                        <li>Dificuldades de Aprendizagem</li>
-                    </ul>
-                </div>
-                <div class="footer-newsletter">
-                    <h4>Receba nossas novidades</h4>
-                    <form id="newsletterForm">
-                        <input type="email" placeholder="Seu e-mail" required>
-                        <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Clínica Especial. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-    </button>
-
-    <!-- Custom JavaScript -->
-    <script src="script.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Menu Mobile
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            // Abre o menu
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.remove('-translate-x-full');
+                document.body.style.overflow = 'hidden'; // Impede rolagem da página
+            });
+            
+            // Fecha o menu
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('-translate-x-full');
+                document.body.style.overflow = ''; // Restaura rolagem
+            });
+            
+            // Fecha o menu ao clicar em um link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('-translate-x-full');
+                    document.body.style.overflow = '';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

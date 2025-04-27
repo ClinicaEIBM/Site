@@ -1,0 +1,40 @@
+Crie um site completo e responsivo utilizando HTML, Tailwind CSS e JavaScript puro com base nas seguintes diretrizes:
+
+1. **Identidade Visual:**
+   - Estilo visual moderno, acolhedor e profissional.
+   - Imagens que transmitam confiança, cuidado e inovação.
+   - Paleta de cores:
+     - Terapias, IDEA e Especialidades: Azul, Amarelo, Vermelho, Azul Royal, Branco, Cinza claro, Preto.
+     - Transtornos Alimentares: Dourado, Marrom, Bege, Preto, Branco.
+     - Paleta RGB adicional:
+       - #6CBB45, #195184, #439CD5, #9DCB5B, #ED3924, #A53434, #136CB2, #E8694B,
+       - #EFCD18, #648543, #EA8C2C, #F2E5B0, #A358E1, #9930C2, #D29BFF
+
+2. **Objetivo do Site:**
+   - Apresentar a EIBM, especializada em saúde infantil com foco em terapias para autismo e transtornos alimentares.
+   - Comunicar os diferenciais: abordagem integrada e humanizada, equipe multidisciplinar, conteúdo inovador e resultados mensuráveis.
+
+3. **Público-alvo:**
+   - Mulheres de 20 a 54 anos, classe média/alta, nível acadêmico elevado, moradoras de grandes cidades.
+   - Foco em saúde e bem-estar dos filhos, valorizando inclusão, autonomia e atendimento diferenciado.
+
+4. **Estrutura de Conteúdo:**
+   - Página inicial com hero section impactante e chamada à ação.
+   - Seção sobre a empresa e seus diferenciais.
+   - Seção com serviços: Terapia Ocupacional, Psicologia, Fonoaudiologia, Psicopedagogia.
+   - Seção sobre Transtornos Alimentares.
+   - Seção de especialidades médicas e treinamento escolar.
+   - Seção de depoimentos e resultados.
+   - Rodapé com informações de contato e redes sociais.
+
+5. **Funcionalidades em JavaScript:**
+   - Menu responsivo com toggle mobile.
+   - Rolagem suave para seções.
+   - Modal para agendamento ou contato rápido.
+
+6. **Outros Requisitos:**
+   - Site leve, inovador e otimizado para mobile.
+   - Conteúdo educativo, relevante e confiável.
+   - Destaque visual para os diferenciais e missão da empresa.
+
+Gere o código completo da estrutura HTML com Tailwind CSS e scripts JS quando necessário. Evite frameworks adicionais. 

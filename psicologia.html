@@ -3,378 +3,664 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psicologia Infantil | Clínica Especial</title>
-    <meta name="description" content="Psicologia Infantil especializada para crianças com autismo, TDAH e outros desafios de desenvolvimento, oferecendo suporte emocional e comportamental.">
-    <meta name="keywords" content="Psicologia Infantil, Autismo, TDAH, Terapia Cognitivo-Comportamental, Psicologia ABA, Suporte Emocional">
-    
+    <title>Psicologia | EIBM</title>
+    <meta name="description" content="Serviços de Psicologia da EIBM: Desenvolvimento emocional, comportamental e social para crianças, com abordagens personalizadas e baseadas em evidências.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#195184',      // Azul principal (cor da Psicologia)
+                        secondary: '#6CBB45',    // Verde
+                        accent: '#ED3924',       // Vermelho
+                        blue: {
+                            light: '#439CD5',
+                            royal: '#136CB2',
+                        },
+                        green: {
+                            light: '#9DCB5B',
+                            dark: '#648543',
+                        },
+                        red: {
+                            light: '#E8694B',
+                            dark: '#A53434',
+                        },
+                        yellow: {
+                            light: '#F2E5B0',
+                            DEFAULT: '#EFCD18',
+                        },
+                        orange: '#EA8C2C',
+                        purple: {
+                            light: '#D29BFF',
+                            DEFAULT: '#A358E1',
+                            dark: '#9930C2',
+                        },
+                        gold: '#D4AF37',
+                        brown: '#8B4513',
+                        beige: '#F5F5DC',
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="subpage psico-page">
+<body class="font-sans text-gray-800 bg-blue-50 bg-opacity-30 min-h-screen">
     <!-- Header/Navigation -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
-                <h1>Clínica Especial</h1>
-            </div>
-            <nav>
-                <div class="mobile-menu-icon">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12 md:h-16">
+                        <div class="ml-3">
+                            <h1 class="text-xl md:text-2xl font-bold text-primary font-heading">EIBM</h1>
+                            <p class="text-xs text-gray-600 hidden md:block">Especialidades Integradas e Bem-estar Multidisciplinar</p>
+                        </div>
+                    </a>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Portal Principal</a></li>
-                    <li><a href="landing.html">Sobre a Clínica</a></li>
-                    <li><a href="terapias.html">Terapias</a></li>
-                    <li><a href="psicologia.html" class="active">Psicologia</a></li>
-                </ul>
-            </nav>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="index.html" class="text-primary hover:text-blue-royal font-medium">Portal</a></li>
+                        <li><a href="terapias.html" class="text-primary hover:text-blue-royal font-medium">Terapias</a></li>
+                        <li><a href="especialidades.html" class="text-primary hover:text-blue-royal font-medium">Especialidades</a></li>
+                        <li><a href="ideia.html" class="text-primary hover:text-blue-royal font-medium">IDEA</a></li>
+                        <li><a href="transtornos.html" class="text-primary hover:text-blue-royal font-medium">Transtornos Alimentares</a></li>
+                        <li><a href="contato.html" class="text-primary hover:text-blue-royal font-medium">Contato</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="block md:hidden text-primary" id="menu-toggle">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (hidden by default) -->
+        <div class="menu-mobile fixed top-0 left-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 p-5 transform -translate-x-full transition-transform duration-300" id="mobile-menu">
+            <div class="flex justify-between items-center mb-6">
+                <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12">
+                <button id="close-menu">
+                    <i class="fas fa-times text-2xl text-primary"></i>
+                </button>
+            </div>
+            <ul class="space-y-4">
+                <li><a href="index.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Portal</a></li>
+                <li><a href="terapias.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Terapias</a></li>
+                <li><a href="especialidades.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Especialidades</a></li>
+                <li><a href="ideia.html" class="block py-2 text-primary hover:text-blue-royal font-medium">IDEA</a></li>
+                <li><a href="transtornos.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Transtornos Alimentares</a></li>
+                <li><a href="psicologia.html" class="block py-2 text-primary hover:text-blue-royal font-medium font-bold">Psicologia</a></li>
+                <li><a href="fonoaudiologia.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Fonoaudiologia</a></li>
+                <li><a href="terapia-ocupacional.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Terapia Ocupacional</a></li>
+                <li><a href="psicopedagogia.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Psicopedagogia</a></li>
+                <li><a href="fonoaudiologia.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Fonoaudiologia e Musicoterapia</a></li>
+                <li><a href="contato.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Contato</a></li>
+            </ul>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="subpage-hero psico-hero">
-        <div class="container">
-            <div class="subpage-hero-content animate-on-scroll fade-in">
-                <h2>Psicologia Infantil Especializada</h2>
-                <p>Suporte emocional e comportamental para crianças com necessidades específicas</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary">Agende uma Consulta</a>
-                    <a href="terapias.html" class="btn-back">Voltar para Terapias</a>
-                </div>
-            </div>
+    <section class="py-12 bg-gradient-to-r from-blue-50 to-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-full h-full">
+            <div class="absolute top-20 right-20 w-64 h-64 rounded-full bg-primary opacity-5"></div>
+            <div class="absolute bottom-10 left-20 w-40 h-40 rounded-full bg-primary opacity-5"></div>
         </div>
-    </section>
-
-    <!-- Psicologia Introduction -->
-    <section class="subpage-intro">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Nossa Abordagem em Psicologia Infantil</h2>
-                <p>Entendendo e apoiando o desenvolvimento emocional da criança</p>
-            </div>
-            <div class="content-columns">
-                <div class="content-text animate-on-scroll fade-in">
-                    <p>A Psicologia Infantil em nossa clínica é fundamentada em evidências científicas e adaptada às necessidades específicas de cada criança. Nossa equipe de psicólogos especializados trabalha com transtornos do neurodesenvolvimento, dificuldades emocionais e desafios comportamentais.</p>
-                    <p>Utilizamos diferentes abordagens terapêuticas, com ênfase na Terapia Cognitivo-Comportamental (TCC) e princípios da Análise do Comportamento Aplicada (ABA), sempre de forma humanizada e acolhedora.</p>
-                    <div class="intro-key-points">
-                        <div class="key-point">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span>Avaliação psicológica completa</span>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="inline-block bg-primary/10 px-4 py-1 rounded-full text-primary font-medium mb-4">
+                        Terapia Especializada
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary font-heading mb-6">
+                        Psicologia
+                    </h2>
+                    <p class="text-lg text-gray-700 mb-6">
+                        A Psicologia na EIBM foca no desenvolvimento emocional, comportamental e social, utilizando técnicas baseadas em evidências como ABA e terapia cognitivo-comportamental.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6">
+                        Nossa equipe trabalha com uma abordagem personalizada para atender às necessidades específicas de cada criança, ajudando-a a desenvolver habilidades essenciais para uma vida plena e saudável.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">Análise do Comportamento Aplicada (ABA)</span>
+                        <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">Terapia Cognitivo-Comportamental</span>
+                        <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">Habilidades Sociais</span>
+                        <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">Regulação Emocional</span>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="bg-white p-7 rounded-xl shadow-lg max-w-lg relative">
+                        <div class="absolute -top-5 -left-5 w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center border-4 border-white">
+                            <i class="fas fa-brain text-3xl text-primary"></i>
                         </div>
-                        <div class="key-point">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span>Intervenção personalizada e baseada em evidências</span>
+                        <div class="ml-14 mb-6">
+                            <h3 class="text-xl font-bold text-primary">Transformando Comportamentos</h3>
+                            <p class="text-gray-600">Para um desenvolvimento emocional saudável</p>
                         </div>
-                        <div class="key-point">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span>Suporte contínuo à família</span>
+                        <p class="text-gray-700 mb-6 border-l-4 border-primary/20 pl-4 italic">
+                            "A Psicologia é a base para compreender e transformar comportamentos. Na EIBM, construímos pontes entre desafios e potenciais, criando caminhos para o desenvolvimento pleno de cada criança."
+                        </p>
+                        <div class="flex items-center">
+                            <img src="assets/about-image.svg" alt="Equipe EIBM" class="w-12 h-12 rounded-full object-cover mr-3">
+                            <div>
+                                <p class="font-medium">Equipe de Psicologia</p>
+                                <p class="text-sm text-gray-600">EIBM</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="content-image animate-on-scroll slide-up">
-                    <img src="assets/img/psychology.svg" alt="Ilustração sobre Psicologia Infantil">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Áreas de Atuação -->
-    <section class="psico-areas alt-bg">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Áreas de Atuação</h2>
-                <p>Como podemos ajudar seu filho</p>
-            </div>
-            <div class="cards-container">
-                <div class="card animate-on-scroll slide-up">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                        </svg>
-                    </div>
-                    <h3>Transtornos do Neurodesenvolvimento</h3>
-                    <p>Atendimento especializado para crianças com TEA (Transtorno do Espectro Autista), TDAH, TOD e outros transtornos que afetam o desenvolvimento neurológico.</p>
-                </div>
-                <div class="card animate-on-scroll slide-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                        </svg>
-                    </div>
-                    <h3>Saúde Emocional</h3>
-                    <p>Suporte para crianças lidando com ansiedade, depressão infantil, medo, fobias e outras questões emocionais que impactam seu bem-estar e desenvolvimento.</p>
-                </div>
-                <div class="card animate-on-scroll slide-up" data-delay="400">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                    </div>
-                    <h3>Habilidades Sociais</h3>
-                    <p>Desenvolvimento de habilidades sociais, comunicação, regulação emocional e comportamentos adaptativos para melhorar a interação com os outros.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Abordagens Terapêuticas -->
-    <section id="abordagens" class="psico-abordagens">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Abordagens Terapêuticas</h2>
-                <p>Métodos cientificamente validados</p>
-            </div>
-            <div class="abordagens-grid">
-                <div class="abordagem-item animate-on-scroll fade-in">
-                    <h3>Terapia Cognitivo-Comportamental (TCC)</h3>
-                    <p>Trabalha a relação entre pensamentos, sentimentos e comportamentos, ajudando a criança a identificar padrões negativos e desenvolver estratégias de enfrentamento mais adaptativas.</p>
-                </div>
-                <div class="abordagem-item animate-on-scroll fade-in" data-delay="200">
-                    <h3>Análise do Comportamento Aplicada (ABA)</h3>
-                    <p>Metodologia baseada em evidências que utiliza princípios comportamentais para ensinar habilidades e reduzir comportamentos desafiadores através de reforço positivo e estratégias estruturadas.</p>
-                </div>
-                <div class="abordagem-item animate-on-scroll fade-in" data-delay="400">
-                    <h3>Terapia Baseada em Jogos</h3>
-                    <p>Utiliza jogos e atividades lúdicas como ferramentas terapêuticas para facilitar a expressão emocional, desenvolvimento de habilidades e processamento de experiências.</p>
-                </div>
-                <div class="abordagem-item animate-on-scroll fade-in" data-delay="600">
-                    <h3>Terapia Familiar</h3>
-                    <p>Envolve os pais e familiares no processo terapêutico, criando estratégias conjuntas e melhorando a comunicação e dinâmica familiar para apoiar o desenvolvimento da criança.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefícios Section -->
-    <section id="beneficios" class="psico-beneficios alt-bg">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Benefícios da Psicologia Infantil</h2>
-                <p>Como seu filho pode se desenvolver com nosso acompanhamento</p>
-            </div>
-            <div class="beneficios-container">
-                <div class="beneficio-item animate-on-scroll fade-in">
-                    <div class="beneficio-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"></path>
-                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                        </svg>
-                    </div>
-                    <h3>Regulação Emocional</h3>
-                    <p>Desenvolvimento da capacidade de identificar, expressar e gerenciar emoções de forma saudável e adaptativa.</p>
-                </div>
-                <div class="beneficio-item animate-on-scroll fade-in" data-delay="200">
-                    <div class="beneficio-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                    </div>
-                    <h3>Habilidades Sociais</h3>
-                    <p>Melhora na comunicação, empatia e capacidade de construir e manter relacionamentos positivos com colegas e familiares.</p>
-                </div>
-                <div class="beneficio-item animate-on-scroll fade-in" data-delay="400">
-                    <div class="beneficio-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Desempenho Acadêmico</h3>
-                    <p>Apoio para superar dificuldades de aprendizagem, melhorar a concentração e desenvolver estratégias para o sucesso escolar.</p>
-                </div>
-                <div class="beneficio-item animate-on-scroll fade-in" data-delay="600">
-                    <div class="beneficio-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Autoconfiança</h3>
-                    <p>Desenvolvimento de uma autoimagem positiva, autoestima saudável e confiança nas próprias capacidades.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Equipe Section -->
-    <section id="equipe" class="psico-equipe">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Nossa Equipe</h2>
-                <p>Psicólogos especializados em desenvolvimento infantil</p>
-            </div>
-            <div class="equipe-descricao animate-on-scroll fade-in">
-                <p>Nossa equipe de psicólogos é formada por profissionais com vasta experiência e especialização em desenvolvimento infantil e transtornos do neurodesenvolvimento. Todos são registrados no Conselho Regional de Psicologia e possuem formação continuada nas abordagens mais modernas e baseadas em evidências científicas.</p>
-                <p>Trabalhamos de forma integrada com as demais especialidades da clínica, garantindo um atendimento verdadeiramente multidisciplinar que considera todos os aspectos do desenvolvimento da criança.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="faq alt-bg">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Perguntas Frequentes</h2>
-                <p>Respostas para suas dúvidas sobre a Psicologia Infantil</p>
-            </div>
-            <div class="faq-container">
-                <div class="faq-item animate-on-scroll fade-in">
-                    <div class="faq-question">
-                        <h3>Com que idade a criança pode iniciar a terapia psicológica?</h3>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>A terapia psicológica pode ser iniciada em qualquer idade. Para crianças muito pequenas, utilizamos abordagens apropriadas para o desenvolvimento, como terapia baseada em jogos e interações lúdicas. Quanto mais cedo a intervenção começar, especialmente em casos de atrasos de desenvolvimento ou transtornos, melhores serão os resultados.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate-on-scroll fade-in" data-delay="200">
-                    <div class="faq-question">
-                        <h3>Qual a duração e frequência das sessões de terapia?</h3>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>As sessões geralmente duram entre 30 e 50 minutos, dependendo da idade da criança e suas necessidades específicas. A frequência pode variar de uma a três vezes por semana, sendo mais comum uma sessão semanal para a maioria dos casos e sessões mais frequentes para intervenções intensivas, como em casos de TEA.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate-on-scroll fade-in" data-delay="400">
-                    <div class="faq-question">
-                        <h3>Os pais participam das sessões de terapia?</h3>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sim, o envolvimento dos pais é fundamental no processo terapêutico. Dependendo da abordagem e das necessidades da criança, os pais podem participar diretamente de algumas sessões, ter sessões de orientação separadas ou receber treinamento para aplicar técnicas em casa. A parceria com a família é essencial para o sucesso da terapia.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate-on-scroll fade-in" data-delay="600">
-                    <div class="faq-question">
-                        <h3>Como saberei se a terapia está funcionando?</h3>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>O progresso é monitorado constantemente através de avaliações periódicas, coleta de dados e feedback dos pais e da escola. Estabelecemos metas claras no início do tratamento e revisamos regularmente esses objetivos. Mudanças positivas no comportamento, habilidades sociais, desempenho escolar e bem-estar emocional são indicadores do sucesso da terapia.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Agende uma Consulta</h2>
-                <p>Estamos prontos para ajudar seu filho em sua jornada de desenvolvimento</p>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-10">
+        <!-- Áreas de Atuação -->
+        <section class="mb-16">
+            <h3 class="text-2xl font-bold text-primary mb-8 text-center">
+                Áreas de Atuação
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Transtorno do Espectro Autista -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-puzzle-piece text-2xl text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-primary mb-3 text-center">Transtorno do Espectro Autista</h4>
+                    <p class="text-gray-700 mb-4">
+                        Intervenções específicas para crianças com TEA, focando no desenvolvimento de habilidades sociais, comunicativas e no manejo de comportamentos desafiadores.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Análise do Comportamento Aplicada (ABA)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Treinamento de Habilidades Sociais</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Manejo de Comportamentos Desafiadores</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Suporte à Generalização de Habilidades</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- TDAH e Dificuldades Atencionais -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-bullseye text-2xl text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-primary mb-3 text-center">TDAH e Dificuldades Atencionais</h4>
+                    <p class="text-gray-700 mb-4">
+                        Estratégias para manejo da atenção, impulsividade e hiperatividade, desenvolvendo habilidades de autorregulação e organização.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Técnicas de Autorregulação</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Estratégias de Organização</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Manejo da Impulsividade</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Treinamento de Funções Executivas</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Ansiedade e Regulação Emocional -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-heart text-2xl text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-primary mb-3 text-center">Ansiedade e Regulação Emocional</h4>
+                    <p class="text-gray-700 mb-4">
+                        Abordagem das dificuldades emocionais na infância, ajudando as crianças a identificar, expressar e regular suas emoções de forma saudável.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Identificação e Expressão Emocional</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Técnicas de Relaxamento</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Terapia Cognitivo-Comportamental</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Estratégias de Enfrentamento</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Habilidades Sociais -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-users text-2xl text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-primary mb-3 text-center">Habilidades Sociais</h4>
+                    <p class="text-gray-700 mb-4">
+                        Desenvolvimento das competências necessárias para interações sociais efetivas e construção de relacionamentos saudáveis com colegas e família.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Reconhecimento de Pistas Sociais</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Desenvolvimento de Empatia</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Resolução de Conflitos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Habilidades Conversacionais</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Comportamentos Desafiadores -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-balance-scale text-2xl text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-primary mb-3 text-center">Comportamentos Desafiadores</h4>
+                    <p class="text-gray-700 mb-4">
+                        Abordagem comportamental para compreender e modificar comportamentos inadequados, estabelecendo limites saudáveis e reforçando condutas positivas.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Análise Funcional do Comportamento</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Planos de Modificação Comportamental</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Treinamento Parental</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Estabelecimento de Limites</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Suporte ao Desenvolvimento Infantil -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-child text-2xl text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-primary mb-3 text-center">Suporte ao Desenvolvimento Infantil</h4>
+                    <p class="text-gray-700 mb-4">
+                        Acompanhamento do desenvolvimento global da criança, atuando preventivamente e identificando necessidades específicas em cada fase do crescimento.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Avaliação do Desenvolvimento</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Estimulação Precoce</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Suporte em Transições (escola, etc)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Orientação Familiar</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="contact-container">
-                <div class="contact-info animate-on-scroll slide-up">
-                    <h3>Informações de Contato</h3>
-                    <p><strong>Endereço:</strong> Rua das Terapias, 123 - Bairro Especial</p>
-                    <p><strong>Telefone:</strong> (11) 1234-5678</p>
-                    <p><strong>Email:</strong> contato@clinicaespecial.com.br</p>
-                    <p><strong>Horário:</strong> Segunda a Sexta, das 8h às 19h</p>
-                    <div class="contact-hours">
-                        <h4>Como funciona a primeira consulta:</h4>
-                        <p>A primeira consulta é uma avaliação inicial onde conheceremos você e seu filho e entenderemos suas necessidades específicas. Traga laudos anteriores, se houver, e esteja preparado para compartilhar o histórico de desenvolvimento da criança.</p>
+        </section>
+        
+        <!-- Metodologia -->
+        <section class="mb-16 bg-white p-8 rounded-xl shadow-md">
+            <h3 class="text-2xl font-bold text-primary mb-6 text-center">
+                Nossa Metodologia
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div class="text-center flex flex-col items-center">
+                    <div class="relative mb-6">
+                        <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-clipboard-check text-3xl text-primary"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                            1
+                        </div>
+                    </div>
+                    <h4 class="text-lg font-bold text-primary mb-2">Avaliação Completa</h4>
+                    <p class="text-gray-700">
+                        Avaliamos o perfil comportamental, emocional e cognitivo da criança, identificando pontos fortes e desafios específicos.
+                    </p>
+                </div>
+                
+                <div class="text-center flex flex-col items-center">
+                    <div class="relative mb-6">
+                        <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-sitemap text-3xl text-primary"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                            2
+                        </div>
+                    </div>
+                    <h4 class="text-lg font-bold text-primary mb-2">Plano Individualizado</h4>
+                    <p class="text-gray-700">
+                        Desenvolvimento de estratégias personalizadas com metas específicas e mensuráveis, adaptadas às necessidades únicas de cada criança.
+                    </p>
+                </div>
+                
+                <div class="text-center flex flex-col items-center">
+                    <div class="relative mb-6">
+                        <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-hands-helping text-3xl text-primary"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                            3
+                        </div>
+                    </div>
+                    <h4 class="text-lg font-bold text-primary mb-2">Intervenção e Acompanhamento</h4>
+                    <p class="text-gray-700">
+                        Implementação de técnicas baseadas em evidências, com monitoramento contínuo do progresso e ajustes conforme necessário.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="p-6 bg-primary/5 rounded-lg mb-10">
+                <h4 class="text-xl font-bold text-primary mb-4">Análise do Comportamento Aplicada (ABA)</h4>
+                <p class="text-gray-700 mb-4">
+                    A ABA é uma das principais abordagens utilizadas por nossa equipe de Psicologia, especialmente para crianças com TEA e outros desafios comportamentais. Esta metodologia científica se baseia no entendimento de como o comportamento funciona e é influenciado pelo ambiente.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded-lg">
+                        <h5 class="font-bold text-primary mb-2">Princípios Fundamentais</h5>
+                        <ul class="space-y-1 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span>Reforço positivo para incentivar comportamentos desejados</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span>Ensino estruturado de habilidades específicas</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span>Coleta sistemática de dados para medir progresso</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span>Generalização das habilidades para diferentes contextos</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg">
+                        <h5 class="font-bold text-primary mb-2">Benefícios</h5>
+                        <ul class="space-y-1 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span>Desenvolvimento de habilidades de comunicação</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span>Redução de comportamentos desafiadores</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span>Maior independência em atividades diárias</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span>Aprimoramento das interações sociais</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="contact-form animate-on-scroll slide-up" data-delay="200">
-                    <h3>Formulário de Contato</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nome completo</label>
-                            <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="border-t border-gray-200 pt-10">
+                <h4 class="text-xl font-bold text-primary mb-4">Abordagens Complementares</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-5 rounded-lg">
+                        <div class="flex items-start">
+                            <div class="bg-white p-2 rounded-full mr-3">
+                                <i class="fas fa-brain text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-primary">Terapia Cognitivo-Comportamental (TCC)</h5>
+                                <p class="text-gray-700 text-sm mt-1">
+                                    Trabalha a relação entre pensamentos, sentimentos e comportamentos, ajudando a criança a identificar e modificar padrões disfuncionais de pensamento, especialmente eficaz para ansiedade e depressão.
+                                </p>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-5 rounded-lg">
+                        <div class="flex items-start">
+                            <div class="bg-white p-2 rounded-full mr-3">
+                                <i class="fas fa-gamepad text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-primary">Ludoterapia</h5>
+                                <p class="text-gray-700 text-sm mt-1">
+                                    Utiliza o brincar como forma de comunicação e expressão, permitindo que a criança processe emoções e experiências difíceis em um ambiente seguro e controlado.
+                                </p>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="phone">Telefone</label>
-                            <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-5 rounded-lg">
+                        <div class="flex items-start">
+                            <div class="bg-white p-2 rounded-full mr-3">
+                                <i class="fas fa-home text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-primary">Treinamento de Pais</h5>
+                                <p class="text-gray-700 text-sm mt-1">
+                                    Capacitação dos pais para aplicarem técnicas comportamentais em casa, criando um ambiente de suporte consistente e potencializando os resultados da terapia.
+                                </p>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="message">Mensagem</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-5 rounded-lg">
+                        <div class="flex items-start">
+                            <div class="bg-white p-2 rounded-full mr-3">
+                                <i class="fas fa-user-friends text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-primary">Terapia em Grupo</h5>
+                                <p class="text-gray-700 text-sm mt-1">
+                                    Sessões estruturadas em pequenos grupos que proporcionam um ambiente natural para praticar habilidades sociais, especialmente benéfico para desenvolver a empatia e as interações entre pares.
+                                </p>
+                            </div>
                         </div>
-                        <button type="submit" class="btn-primary">Solicitar Contato</button>
-                    </form>
-                    <div id="formMessage" class="form-message"></div>
+                    </div>
                 </div>
             </div>
+        </section>
+        
+        <!-- Equipe Integrada -->
+        <section>
+            <h3 class="text-2xl font-bold text-primary mb-6 text-center">
+                Trabalho em Equipe
+            </h3>
+            
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <p class="text-gray-700 mb-6">
+                    Na EIBM, nossa equipe de Psicologia trabalha de forma integrada com outras especialidades, garantindo que todos os aspectos do desenvolvimento da criança sejam considerados e apoiados.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="text-lg font-bold text-primary mb-2 flex items-center">
+                            <i class="fas fa-comment-dots text-blue-light mr-2"></i>
+                            <span>Fonoaudiologia</span>
+                        </h4>
+                        <p class="text-gray-700 text-sm">
+                            Colaboração para desenvolver habilidades de comunicação social e pragmática, essenciais para interações efetivas.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="text-lg font-bold text-primary mb-2 flex items-center">
+                            <i class="fas fa-hands text-secondary mr-2"></i>
+                            <span>Terapia Ocupacional</span>
+                        </h4>
+                        <p class="text-gray-700 text-sm">
+                            Integração de estratégias sensoriais e motoras que suportam o desenvolvimento comportamental e emocional da criança.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="text-lg font-bold text-primary mb-2 flex items-center">
+                            <i class="fas fa-book-open text-purple mr-2"></i>
+                            <span>Psicopedagogia</span>
+                        </h4>
+                        <p class="text-gray-700 text-sm">
+                            Abordagem conjunta para desafios de aprendizagem, trabalhando aspectos emocionais e cognitivos que afetam o desempenho escolar.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-primary to-blue-royal text-white p-8 rounded-xl">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-3/4 mb-6 md:mb-0 md:pr-8">
+                            <h4 class="text-xl font-bold mb-4">Psicologia na EIBM: Transformando Comportamentos em Possibilidades</h4>
+                            <p class="mb-4">
+                                Acreditamos que cada criança tem um potencial único que pode ser desenvolvido com o suporte adequado. Nossa equipe de psicólogos trabalha para compreender profundamente cada criança e criar intervenções personalizadas que promovam seu desenvolvimento integral.
+                            </p>
+                            <p>
+                                Com compaixão, conhecimento científico e abordagens inovadoras, ajudamos as crianças a superarem desafios comportamentais e emocionais, construindo as bases para uma vida plena, independente e feliz.
+                            </p>
+                        </div>
+                        <div class="md:w-1/4 flex justify-center">
+                            <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center border-4 border-white/30">
+                                <i class="fas fa-brain text-4xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="bg-primary py-14">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
+                Transforme o Desenvolvimento Emocional do Seu Filho
+            </h2>
+            <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                Agende uma avaliação psicológica e descubra como podemos ajudar no desenvolvimento comportamental e emocional da sua criança.
+            </p>
+            <a href="contato.html" class="bg-white text-primary hover:bg-blue-50 font-medium px-6 py-3 rounded-full inline-block transition-colors">
+                Agendar Avaliação
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
-                    <h3>Clínica Especial</h3>
+    <footer class="bg-gray-900 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="assets/logo-eibm-white.svg" alt="Logo EIBM" class="h-10 mr-3">
+                    <div>
+                        <h3 class="text-xl font-bold">EIBM</h3>
+                        <p class="text-xs text-gray-400">Especialidades Integradas e Bem-estar Multidisciplinar</p>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><a href="index.html">Portal Principal</a></li>
-                        <li><a href="landing.html">Sobre a Clínica</a></li>
-                        <li><a href="terapias.html">Terapias</a></li>
-                        <li><a href="psicologia.html">Psicologia</a></li>
-                    </ul>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">&copy; 2025 EIBM - Todos os direitos reservados.</p>
+                    <div class="flex justify-center md:justify-end space-x-4 mt-2">
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-services">
-                    <h4>Nossas Especializações</h4>
-                    <ul>
-                        <li>Transtornos do Neurodesenvolvimento</li>
-                        <li>Terapia Cognitivo-Comportamental</li>
-                        <li>Psicologia baseada em ABA</li>
-                        <li>Suporte para Famílias</li>
-                    </ul>
-                </div>
-                <div class="footer-newsletter">
-                    <h4>Receba nossas novidades</h4>
-                    <form id="newsletterForm">
-                        <input type="email" placeholder="Seu e-mail" required>
-                        <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Clínica Especial. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-    </button>
-
-    <!-- Custom JavaScript -->
-    <script src="script.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Menu Mobile
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            // Abre o menu
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.remove('-translate-x-full');
+                document.body.style.overflow = 'hidden'; // Impede rolagem da página
+            });
+            
+            // Fecha o menu
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('-translate-x-full');
+                document.body.style.overflow = ''; // Restaura rolagem
+            });
+            
+            // Fecha o menu ao clicar em um link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('-translate-x-full');
+                    document.body.style.overflow = '';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

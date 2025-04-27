@@ -1,0 +1,46 @@
+Crie wireframes simples em HTML e Tailwind CSS para o site da EIBM, focando em navegação clara, intuitiva e responsiva. A estrutura deve seguir os princípios de UX, com hierarquia visual adequada e facilidade de acesso às seções principais. Não é necessário conteúdo final, apenas placeholders.
+
+1. *Objetivo desta etapa:*
+   - Definir a estrutura visual básica do site antes do conteúdo definitivo.
+   - Criar um layout claro para testar a navegação e disposição dos elementos.
+
+2. *Wireframes esperados:*
+
+   - *Header fixo:*
+     - Logo à esquerda, menu com links à direita.
+     - Menu colapsável em telas menores (hambúrguer).
+   
+   - *Hero section (destaque inicial):*
+     - Espaço para headline, subheadline e botão de chamada à ação.
+     - Imagem ilustrativa ou placeholder ao lado (lado a lado em desktop, empilhado no mobile).
+
+   - *Sobre a EIBM:*
+     - Título, parágrafo placeholder e ícones representando diferenciais.
+
+   - *Serviços e Terapias:*
+     - Cards para cada serviço (TO, Psicologia, Fonoaudiologia, Psicopedagogia).
+     - Cada card com título, breve descrição e botão de ação.
+
+   - *Especialidades e IDEA:*
+     - Bloco separado com layout distinto, mantendo a identidade visual já definida.
+   
+   - *Transtornos Alimentares:*
+     - Layout de destaque com visual mais sensorial, fundo diferenciado.
+     - Cards verticais ou horizontal scroll com tópicos.
+
+   - *Depoimentos:*
+     - Área com 2 ou 3 blocos de depoimentos simulados.
+   
+   - *Rodapé (footer):*
+     - Menu rápido, informações de contato, redes sociais.
+
+3. *Regras visuais:*
+   - Use Tailwind CSS para espaçamento, responsividade e tipografia.
+   - Use caixas cinza claro ou bordas finas para marcar áreas dos wireframes.
+   - Indique com texto simples o tipo de conteúdo que será inserido (ex: "Imagem", "Título", "Botão").
+
+4. *Importante:*
+   - Não use imagens reais nem textos finais.
+   - O foco é validar a navegação e disposição dos elementos visuais.
+
+Gere o código completo em HTML e Tailwind CSS para estruturar esse wireframe funcional do site EIBM.
