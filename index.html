@@ -1,152 +1,978 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Principal | Clínica Infantil</title>
-    <meta name="description" content="Portal de acesso às áreas de Especialidades Integradas, IDEIA, Terapias e Transtornos Alimentares da Clínica Infantil.">
-    <meta name="keywords" content="Clínica Infantil, Terapia ABA, Autismo, TDAH, Psicologia Infantil, Transtornos Alimentares">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="portal-page">
-    <!-- Header/Navigation -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
-                <h1>Clínica Especial</h1>
-            </div>
-            <nav>
-                <div class="mobile-menu-icon">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Portal Principal</a></li>
-                    <li><a href="landing.html">Sobre a Clínica</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            EIBM - Especialidades Integradas e Bem-estar Multidisciplinar
+        </title>
+        <meta
+            name="description"
+            content="EIBM: Saúde infantil integrada com foco em terapias para autismo e transtornos alimentares. Abordagem humanizada e personalizada."
+        />
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#195184", // Azul principal
+                            secondary: "#6CBB45", // Verde
+                            accent: "#ED3924", // Vermelho
+                            blue: {
+                                light: "#439CD5",
+                                royal: "#136CB2",
+                            },
+                            green: {
+                                light: "#9DCB5B",
+                                dark: "#648543",
+                            },
+                            red: {
+                                light: "#E8694B",
+                                dark: "#A53434",
+                            },
+                            yellow: {
+                                light: "#F2E5B0",
+                                DEFAULT: "#EFCD18",
+                            },
+                            orange: "#EA8C2C",
+                            purple: {
+                                light: "#D29BFF",
+                                DEFAULT: "#A358E1",
+                                dark: "#9930C2",
+                            },
+                            // Paleta de transtornos alimentares
+                            gold: "#D4AF37",
+                            brown: "#8B4513",
+                            beige: "#F5F5DC",
+                        },
+                        fontFamily: {
+                            sans: ["Nunito", "sans-serif"],
+                            heading: ["Poppins", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <style>
+            .card {
+                transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+                position: relative;
+            }
 
-    <!-- Main Portal Section -->
-    <main class="portal-container">
-        <div class="portal-title animate-on-scroll fade-in">
-            <h1>Portal de Navegação</h1>
-            <p>Explore nossa estrutura de serviços especializados</p>
-        </div>
+            .card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            }
 
-        <!-- Visualização em árvore das conexões -->
-        <div class="tree-visualization">
-            <div class="tree-root">
-                <div class="tree-node-main">
-                    <span>Portal Principal</span>
-                </div>
-                <div class="tree-branches">
-                    <div class="tree-branch"></div>
-                    <div class="tree-branch"></div>
-                </div>
-            </div>
-        </div>
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
 
-        <div class="portal-navigation">
-            <div class="portal-main-item portal-main-eibm animate-on-scroll fade-in" data-delay="200">
-                <div class="portal-item-inner">
-                    <img src="assets/img/eibm-main.svg" alt="EIBM - Especialidades Integradas e Bem-estar Multidisciplinar">
-                    <h3>EIBM</h3>
-                    <p>Especialidades Integradas e Bem-estar Multidisciplinar. Abordagem completa para o desenvolvimento infantil através de diversas especialidades.</p>
-                    <div class="portal-secondary-items">
-                        <span class="secondary-item-label">Inclui:</span>
-                        <div class="secondary-items-list">
-                            <span class="secondary-item">Especialidades</span>
-                            <span class="secondary-item">IDEIA</span>
-                            <span class="secondary-item">Terapias</span>
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                    opacity: 0.8;
+                }
+                50% {
+                    transform: scale(1.05);
+                    opacity: 0.4;
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 0.8;
+                }
+            }
+
+            .animate-fadeIn {
+                animation: fadeIn 1s ease forwards;
+                opacity: 0;
+            }
+
+            .animate-pulse {
+                animation: pulse 3s ease-in-out infinite;
+            }
+
+            /* Staggered animations for cards */
+            .card:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+            .card:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+            .card:nth-child(3) {
+                animation-delay: 0.3s;
+            }
+            .card:nth-child(4) {
+                animation-delay: 0.4s;
+            }
+
+            /* Prisma Effect - Clean & Elegant */
+            #prisma-container {
+                position: relative;
+                perspective: 800px;
+                transform-style: preserve-3d;
+            }
+
+            /* Animações orbitais para cada esfera, cada uma em sua própria órbita */
+            @keyframes orbit-north {
+                0% {
+                    transform: translate(-50%, -50%) rotate(0deg)
+                        translateY(-200px) rotate(0deg);
+                }
+                100% {
+                    transform: translate(-50%, -50%) rotate(360deg)
+                        translateY(-200px) rotate(-360deg);
+                }
+            }
+
+            @keyframes orbit-south {
+                0% {
+                    transform: translate(-50%, -50%) rotate(0deg)
+                        translateY(200px) rotate(0deg);
+                }
+                100% {
+                    transform: translate(-50%, -50%) rotate(360deg)
+                        translateY(200px) rotate(-360deg);
+                }
+            }
+
+            @keyframes orbit-east {
+                0% {
+                    transform: translate(-50%, -50%) rotate(0deg)
+                        translateX(200px) rotate(0deg);
+                }
+                100% {
+                    transform: translate(-50%, -50%) rotate(360deg)
+                        translateX(200px) rotate(-360deg);
+                }
+            }
+
+            @keyframes orbit-west {
+                0% {
+                    transform: translate(-50%, -50%) rotate(0deg)
+                        translateX(-200px) rotate(0deg);
+                }
+                100% {
+                    transform: translate(-50%, -50%) rotate(360deg)
+                        translateX(-200px) rotate(-360deg);
+                }
+            }
+
+            /* Configuração do container como centro das órbitas */
+            #prisma-container {
+                position: relative;
+                transform-style: preserve-3d;
+                perspective: 1000px;
+                overflow: visible;
+            }
+
+            .circle-item {
+                position: absolute;
+                top: 50% !important;
+                left: 50% !important;
+                transform-origin: center center;
+                z-index: 20;
+                /* Remover transformações inline definidas no HTML */
+                bottom: auto !important;
+                right: auto !important;
+            }
+
+            /* Classe que controla se as animações estão pausadas */
+            .animation-paused .circle-item {
+                animation-play-state: paused !important;
+            }
+
+            /* Configurar animações específicas para cada esfera */
+            #circle-terapias {
+                /* Norte */
+                animation: orbit-north 40s linear infinite;
+                transform: translate(-50%, -50%) translateY(-200px);
+            }
+
+            #circle-especialidades {
+                /* Sul */
+                animation: orbit-south 40s linear infinite;
+                transform: translate(-50%, -50%) translateY(200px);
+            }
+
+            #circle-idea {
+                /* Oeste */
+                animation: orbit-west 40s linear infinite;
+                transform: translate(-50%, -50%) translateX(-200px);
+            }
+
+            #circle-transtornos {
+                /* Leste */
+                animation: orbit-east 40s linear infinite;
+                transform: translate(-50%, -50%) translateX(200px);
+            }
+
+            /* Pausar animação ao passar o mouse */
+            .circle-item:hover,
+            .circle-item.active {
+                animation-play-state: paused;
+            }
+
+            .circle-item:hover .circle-button,
+            .circle-item:hover .circle-label,
+            .circle-item.active .circle-button,
+            .circle-item.active .circle-label {
+                animation-play-state: paused;
+            }
+
+            .circle-button {
+                cursor: pointer;
+                transition: all 0.4s ease;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                z-index: 25; /* Um pouco maior que o item pai */
+            }
+
+            .circle-label {
+                position: absolute;
+                top: 105%;
+                left: 50%;
+                transform: translateX(-50%);
+                white-space: nowrap;
+                transition: all 0.3s ease;
+                background-color: white;
+                padding: 5px 12px;
+                border-radius: 20px;
+                font-weight: bold;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                font-size: 14px;
+                z-index: 30; /* Para garantir que os rótulos também fiquem visíveis */
+            }
+
+            /* Efeito de destaque para o item ativo */
+            .circle-item.active .circle-button {
+                transform: scale(1.2);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+                z-index: 50; /* Valor mais alto para a bolinha ativa */
+            }
+
+            /* Efeito para os itens não ativos */
+            .circle-item.inactive .circle-button {
+                transform: scale(0.85);
+                filter: brightness(0.7);
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Sinopse */
+            .circle-synopsis {
+                position: absolute;
+                background-color: white;
+                border-radius: 12px;
+                padding: 16px;
+                width: 250px;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 120%; /* Maior distância para evitar sobreposições */
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+                z-index: 100; /* Valor maior para garantir que fique acima de qualquer esfera */
+            }
+
+            /* Posições personalizadas para cada sinopse */
+            #circle-terapias .circle-synopsis {
+                top: 130%;
+                left: 50%;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            #circle-especialidades .circle-synopsis {
+                top: auto;
+                bottom: 130%;
+                left: 50%;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            #circle-idea .circle-synopsis {
+                width: 230px;
+                left: 130%;
+                top: 50%;
+                transform: translateX(0) translateY(-50%);
+            }
+
+            #circle-transtornos .circle-synopsis {
+                width: 230px;
+                right: 130%;
+                left: auto;
+                top: 50%;
+                transform: translateX(0) translateY(-50%);
+            }
+
+            .circle-item.active .circle-synopsis {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .synopsis-title {
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 8px;
+            }
+
+            .synopsis-text {
+                font-size: 14px;
+                color: #555;
+                margin-bottom: 12px;
+                line-height: 1.4;
+            }
+
+            .synopsis-button {
+                display: inline-block;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-weight: bold;
+                font-size: 14px;
+                color: white;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                text-align: center;
+            }
+
+            /* Responsividade para tamanhos médios */
+            @media (max-width: 767px) {
+                /* Reduzir tamanho das esferas em telas menores */
+                .circle-button {
+                    width: 100px !important;
+                    height: 100px !important;
+                }
+
+                .circle-button i {
+                    font-size: 36px !important;
+                }
+
+                /* Ajustar posicionamento orbital */
+                @keyframes orbit-north {
+                    0% {
+                        transform: translate(-50%, -50%) rotate(0deg)
+                            translateY(-150px) rotate(0deg);
+                    }
+                    100% {
+                        transform: translate(-50%, -50%) rotate(360deg)
+                            translateY(-150px) rotate(-360deg);
+                    }
+                }
+
+                @keyframes orbit-south {
+                    0% {
+                        transform: translate(-50%, -50%) rotate(0deg)
+                            translateY(150px) rotate(0deg);
+                    }
+                    100% {
+                        transform: translate(-50%, -50%) rotate(360deg)
+                            translateY(150px) rotate(-360deg);
+                    }
+                }
+
+                @keyframes orbit-east {
+                    0% {
+                        transform: translate(-50%, -50%) rotate(0deg)
+                            translateX(150px) rotate(0deg);
+                    }
+                    100% {
+                        transform: translate(-50%, -50%) rotate(360deg)
+                            translateX(150px) rotate(-360deg);
+                    }
+                }
+
+                @keyframes orbit-west {
+                    0% {
+                        transform: translate(-50%, -50%) rotate(0deg)
+                            translateX(-150px) rotate(0deg);
+                    }
+                    100% {
+                        transform: translate(-50%, -50%) rotate(360deg)
+                            translateX(-150px) rotate(-360deg);
+                    }
+                }
+
+                /* Ajustar posição inicial */
+                #circle-terapias {
+                    transform: translate(-50%, -50%) translateY(-150px);
+                }
+
+                #circle-especialidades {
+                    transform: translate(-50%, -50%) translateY(150px);
+                }
+
+                #circle-idea {
+                    transform: translate(-50%, -50%) translateX(-150px);
+                }
+
+                #circle-transtornos {
+                    transform: translate(-50%, -50%) translateX(150px);
+                }
+            }
+
+            /* Responsividade para mobile */
+            @media (max-width: 640px) {
+                /* Reduzir ainda mais o tamanho das esferas */
+                .circle-button {
+                    width: 80px !important;
+                    height: 80px !important;
+                }
+
+                .circle-button i {
+                    font-size: 28px !important;
+                }
+
+                .circle-label {
+                    font-size: 12px;
+                    padding: 3px 8px;
+                }
+
+                /* Ajustes das sinopses no mobile */
+                .circle-synopsis {
+                    width: 260px;
+                    padding: 16px;
+                    position: fixed;
+                    left: 50% !important;
+                    transform: translate(-50%, -50%);
+                    top: 50% !important;
+                    bottom: auto !important;
+                    right: auto !important; /* Garantir que right não seja usado no mobile */
+                    z-index: 1000; /* Valor extremamente alto para garantir visibilidade no mobile */
+                    background-color: white;
+                    border-radius: 16px;
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+                }
+
+                .synopsis-text {
+                    font-size: 14px;
+                    margin-bottom: 16px;
+                    line-height: 1.4;
+                }
+
+                .synopsis-button {
+                    padding: 8px 16px;
+                    font-size: 14px;
+                    display: block;
+                    text-align: center;
+                    width: 100%;
+                }
+
+                /* Ajustes para que as bolinhas fiquem em posições melhores no mobile */
+                /* Usando outro tipo de animação em mobile: posições fixas sem animação */
+                #circle-terapias,
+                #circle-especialidades,
+                #circle-idea,
+                #circle-transtornos {
+                    animation: none;
+                }
+
+                #prisma-container {
+                    height: 360px !important;
+                }
+
+                .circle-item[data-position="top"] {
+                    top: 2% !important;
+                    left: 50% !important;
+                    transform: translateX(-50%) !important;
+                }
+
+                .circle-item[data-position="bottom"] {
+                    bottom: 2% !important;
+                    top: auto !important;
+                    left: 50% !important;
+                    transform: translateX(-50%) !important;
+                }
+
+                .circle-item[data-position="left"] {
+                    left: 2% !important;
+                    top: 50% !important;
+                    transform: translateY(-50%) !important;
+                }
+
+                .circle-item[data-position="right"] {
+                    right: 2% !important;
+                    left: auto !important;
+                    top: 50% !important;
+                    transform: translateY(-50%) !important;
+                }
+
+                /* Overlay para o mobile quando um card está ativo */
+                body::after {
+                    content: "";
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0);
+                    z-index: -1;
+                    pointer-events: none;
+                    transition: background 0.3s ease;
+                }
+
+                body.synopsis-active::after {
+                    background: rgba(0, 0, 0, 0.5);
+                    z-index: 500;
+                    pointer-events: auto;
+                }
+
+                /* Garantir que a sinopse apareça acima do overlay */
+                .circle-item.active .circle-synopsis {
+                    z-index: 1001;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                }
+
+                /* Botão de fechar na sinopse mobile */
+                .circle-synopsis::after {
+                    content: "×";
+                    position: absolute;
+                    top: 8px;
+                    right: 12px;
+                    font-size: 24px;
+                    color: #aaa;
+                    cursor: pointer;
+                }
+            }
+
+            /* Custom scrollbar */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #195184;
+                border-radius: 10px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #136cb2;
+            }
+
+            /* Smooth scroll */
+            html {
+                scroll-behavior: smooth;
+            }
+        </style>
+    </head>
+    <body class="font-sans text-gray-800 bg-gray-50 min-h-screen">
+        <!-- Header/Navigation -->
+        <header class="bg-white shadow-md">
+            <div class="container mx-auto px-4 py-3">
+                <div class="flex justify-between items-center">
+                    <!-- Logo -->
+                    <div class="flex items-center">
+                        <img
+                            src="assets/logo-eibm.svg"
+                            alt="Logo EIBM"
+                            class="h-12 md:h-16"
+                        />
+                        <div class="ml-3">
+                            <h1
+                                class="text-xl md:text-2xl font-bold text-primary font-heading"
+                            >
+                                EIBM
+                            </h1>
+                            <p class="text-xs text-gray-600 hidden md:block">
+                                Especialidades Integradas e Bem-estar
+                                Multidisciplinar
+                            </p>
                         </div>
                     </div>
-                    <a href="eibm.html" class="portal-btn">Explorar EIBM</a>
-                </div>
-            </div>
-            
-            <div class="portal-main-item portal-main-transtornos animate-on-scroll fade-in" data-delay="400">
-                <div class="portal-item-inner">
-                    <img src="assets/img/transtornos-main.svg" alt="Transtornos Alimentares">
-                    <h3>Transtornos Alimentares</h3>
-                    <p>Entenda os diferentes tipos de transtornos alimentares infantis, seus sinais e as abordagens terapêuticas para tratamento.</p>
-                    <a href="transtornos.html" class="portal-btn">Explorar Transtornos</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="portal-info animate-on-scroll fade-in" data-delay="600">
-            <svg class="portal-info-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="16" x2="12" y2="12"></line>
-                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-            </svg>
-            <div class="portal-info-content">
-                <h3>Navegação Intuitiva</h3>
-                <p>Clique nos blocos acima para navegar entre as diferentes áreas da nossa clínica. Cada seção oferece informações específicas sobre nossos serviços e abordagens terapêuticas.</p>
-                <a href="landing.html" class="btn-primary">Conheça Nossa Clínica</a>
-            </div>
-        </div>
-    </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
-                    <h3>Clínica Especial</h3>
-                </div>
-                <div class="footer-links">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><a href="index.html">Portal Principal</a></li>
-                        <li><a href="eibm.html">EIBM</a></li>
-                        <li><a href="transtornos.html">Transtornos Alimentares</a></li>
-                        <li><a href="landing.html">Sobre a Clínica</a></li>
-                    </ul>
-                </div>
-                <div class="footer-services">
-                    <h4>Áreas Especializadas</h4>
-                    <ul>
-                        <li>Especialidades Integradas</li>
-                        <li>IDEIA</li>
-                        <li>Terapias</li>
-                        <li>Abordagem Multidisciplinar</li>
-                    </ul>
-                </div>
-                <div class="footer-newsletter">
-                    <h4>Receba nossas novidades</h4>
-                    <form id="newsletterForm">
-                        <input type="email" placeholder="Seu e-mail" required>
-                        <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                        </button>
-                    </form>
+                    <!-- Menu de navegação -->
+                    <div class="hidden md:block">
+                        <ul class="flex space-x-6">
+                            <li>
+                                <a
+                                    href="index.html"
+                                    class="text-primary hover:text-blue-royal font-medium border-b-2 border-primary"
+                                    >Início</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="terapias.html"
+                                    class="text-primary hover:text-blue-royal font-medium"
+                                    >Terapias</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="especialidades.html"
+                                    class="text-primary hover:text-blue-royal font-medium"
+                                    >Especialidades</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="ideia.html"
+                                    class="text-primary hover:text-blue-royal font-medium"
+                                    >IDEA</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="transtornos.html"
+                                    class="text-primary hover:text-blue-royal font-medium"
+                                    >Transtornos Alimentares</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="contato.html"
+                                    class="text-primary hover:text-blue-royal font-medium"
+                                    >Contato</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Clínica Especial. Todos os direitos reservados.</p>
+        </header>
+
+        <!-- Main Content - Prisma de bolinhas -->
+        <main
+            class="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[80vh]"
+        >
+            <div class="text-center mb-16">
+                <h2
+                    class="text-3xl md:text-4xl font-bold text-primary font-heading mb-6"
+                >
+                    Bem-vindo à EIBM
+                </h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-4">
+                    Especialidades Integradas e Bem-estar Multidisciplinar
+                </p>
             </div>
-        </div>
-    </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-    </button>
+            <!-- Bolinhas com efeito 3D e sinopse -->
+            <div
+                class="relative w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl mx-auto h-[320px] xs:h-[380px] sm:h-[440px] md:h-[520px] lg:h-[580px]"
+                id="prisma-container"
+            >
+                <!-- Terapias (Azul) - Topo -->
+                <div
+                    class="circle-item"
+                    id="circle-terapias"
+                    data-position="top"
+                    style="top: 0; left: 50%; transform: translateX(-50%)"
+                >
+                    <div
+                        class="circle-button w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] bg-primary rounded-full shadow-xl"
+                    >
+                        <i
+                            class="fas fa-hands-helping text-4xl sm:text-5xl md:text-6xl text-white"
+                        ></i>
+                    </div>
+                    <span class="circle-label text-primary">Terapias</span>
 
-    <!-- Custom JavaScript -->
-    <script src="script.js"></script>
-</body>
+                    <!-- Sinopse -->
+                    <div class="circle-synopsis">
+                        <div class="synopsis-title text-primary">Terapias</div>
+                        <div class="synopsis-text">
+                            Abordagens terapêuticas personalizadas e integradas
+                            para diferentes necessidades, com foco no
+                            desenvolvimento infantil completo.
+                        </div>
+                        <a
+                            href="terapias.html"
+                            class="synopsis-button bg-primary"
+                            >Visitar</a
+                        >
+                    </div>
+                </div>
+
+                <!-- Transtornos (Vermelho) - Direita -->
+                <div
+                    class="circle-item"
+                    id="circle-transtornos"
+                    data-position="right"
+                    style="top: 50%; right: 2%; transform: translateY(-50%)"
+                >
+                    <div
+                        class="circle-button w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] bg-accent rounded-full shadow-xl"
+                    >
+                        <i
+                            class="fas fa-utensils text-4xl sm:text-5xl md:text-6xl text-white"
+                        ></i>
+                    </div>
+                    <span class="circle-label text-accent">Transtornos</span>
+
+                    <!-- Sinopse -->
+                    <div class="circle-synopsis">
+                        <div class="synopsis-title text-accent">
+                            Transtornos Alimentares
+                        </div>
+                        <div class="synopsis-text">
+                            Tratamento especializado para transtornos
+                            alimentares infantis com abordagem multidisciplinar
+                            e individualizada.
+                        </div>
+                        <a
+                            href="transtornos.html"
+                            class="synopsis-button bg-accent"
+                            >Visitar</a
+                        >
+                    </div>
+                </div>
+
+                <!-- IDEA (Amarelo) - Esquerda -->
+                <div
+                    class="circle-item"
+                    id="circle-idea"
+                    data-position="left"
+                    style="top: 50%; left: 2%; transform: translateY(-50%)"
+                >
+                    <div
+                        class="circle-button w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] bg-yellow rounded-full shadow-xl"
+                    >
+                        <i
+                            class="fas fa-lightbulb text-4xl sm:text-5xl md:text-6xl text-white"
+                        ></i>
+                    </div>
+                    <span class="circle-label text-yellow">IDEA</span>
+
+                    <!-- Sinopse -->
+                    <div class="circle-synopsis">
+                        <div class="synopsis-title text-yellow">IDEA</div>
+                        <div class="synopsis-text">
+                            Instituto de Desenvolvimento e Estruturação de
+                            Ambientes Inclusivos para crianças com necessidades
+                            especiais.
+                        </div>
+                        <a href="ideia.html" class="synopsis-button bg-yellow"
+                            >Visitar</a
+                        >
+                    </div>
+                </div>
+
+                <!-- Especialidades (Verde) - Fundo -->
+                <div
+                    class="circle-item"
+                    id="circle-especialidades"
+                    data-position="bottom"
+                    style="bottom: 0; left: 50%; transform: translateX(-50%)"
+                >
+                    <div
+                        class="circle-button w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] bg-secondary rounded-full shadow-xl"
+                    >
+                        <i
+                            class="fas fa-user-md text-4xl sm:text-5xl md:text-6xl text-white"
+                        ></i>
+                    </div>
+                    <span class="circle-label text-secondary"
+                        >Especialidades</span
+                    >
+
+                    <!-- Sinopse -->
+                    <div class="circle-synopsis">
+                        <div class="synopsis-title text-secondary">
+                            Especialidades
+                        </div>
+                        <div class="synopsis-text">
+                            Especialidades médicas e terapêuticas integradas
+                            para um atendimento completo e multidisciplinar
+                            eficaz.
+                        </div>
+                        <a
+                            href="especialidades.html"
+                            class="synopsis-button bg-secondary"
+                            >Visitar</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-6">
+            <div class="container mx-auto px-4">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-center"
+                >
+                    <div class="flex items-center mb-4 md:mb-0">
+                        <img
+                            src="assets/logo-eibm-white.svg"
+                            alt="Logo EIBM"
+                            class="h-10 mr-3"
+                        />
+                        <div>
+                            <h3 class="text-xl font-bold">EIBM</h3>
+                            <p class="text-xs text-gray-400">
+                                Especialidades Integradas e Bem-estar
+                                Multidisciplinar
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="text-center md:text-right">
+                        <p class="text-gray-400">
+                            &copy; 2025 EIBM - Todos os direitos reservados.
+                        </p>
+                        <div
+                            class="flex justify-center md:justify-end space-x-4 mt-2"
+                        >
+                            <a
+                                href="#"
+                                class="text-white hover:text-accent transition-colors"
+                                aria-label="Facebook"
+                            >
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a
+                                href="#"
+                                class="text-white hover:text-accent transition-colors"
+                                aria-label="Instagram"
+                            >
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a
+                                href="#"
+                                class="text-white hover:text-accent transition-colors"
+                                aria-label="YouTube"
+                            >
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a
+                                href="#"
+                                class="text-white hover:text-accent transition-colors"
+                                aria-label="LinkedIn"
+                            >
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="script.js"></script>
+
+        <!-- Efeito Elegante das Bolinhas do Prisma -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const container = document.getElementById("prisma-container");
+                if (!container) return;
+
+                const circles = document.querySelectorAll(".circle-item");
+                let activeCircle = null;
+
+                // Função para fechar qualquer sinopse aberta
+                function resetAll() {
+                    // Remover classe que pausa todas as animações
+                    container.classList.remove("animation-paused");
+
+                    circles.forEach((circle) => {
+                        // Remove classes ativas
+                        circle.classList.remove("active", "inactive");
+
+                        // Reset qualquer transformação aplicada ao botão
+                        const button = circle.querySelector(".circle-button");
+                        if (button) button.style.transform = "";
+                    });
+
+                    // Remover classe do body
+                    document.body.classList.remove("synopsis-active");
+                    activeCircle = null;
+                }
+
+                // Como já configuramos as animações via CSS, apenas
+                // armazenamos o estado das animações para controle posterior
+                circles.forEach((circle) => {
+                    const computedStyle = window.getComputedStyle(circle);
+                    const animationValue =
+                        computedStyle.getPropertyValue("animation");
+                    if (animationValue && animationValue !== "none") {
+                        circle.setAttribute(
+                            "data-original-animation",
+                            animationValue,
+                        );
+                    }
+                });
+
+                // Lidar com interações do mouse de forma mais simples -
+                // as pausas são controladas pelo CSS :hover
+                circles.forEach((circle) => {
+                    const button = circle.querySelector(".circle-button");
+
+                    button.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Se esta bolinha já está ativa, redirecionar para a página
+                        if (activeCircle === circle) {
+                            const link = circle
+                                .querySelector(".synopsis-button")
+                                .getAttribute("href");
+                            window.location.href = link;
+                            return;
+                        }
+
+                        // Fechar qualquer sinopse aberta anteriormente
+                        resetAll();
+
+                        // Ativar a bolinha atual
+                        circle.classList.add("active");
+                        activeCircle = circle;
+
+                        // Pausar a animação de TODAS as bolinhas adicionando a classe ao container
+                        container.classList.add("animation-paused");
+
+                        // Adicionar classe ao body para overlay em mobile
+                        document.body.classList.add("synopsis-active");
+
+                        // Desativar visualmente as outras bolinhas
+                        circles.forEach((c) => {
+                            if (c !== circle) {
+                                c.classList.add("inactive");
+                            }
+                        });
+                    });
+                });
+
+                // Fechar ao clicar fora
+                document.addEventListener("click", function (e) {
+                    if (container && !container.contains(e.target)) {
+                        resetAll();
+                    }
+                });
+
+                // Fechar com a tecla Esc
+                document.addEventListener("keydown", function (e) {
+                    if (e.key === "Escape" && activeCircle) {
+                        resetAll();
+                    }
+                });
+            });
+        </script>
+    </body>
 </html>

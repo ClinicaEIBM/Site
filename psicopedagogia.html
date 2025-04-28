@@ -3,402 +3,558 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psicopedagogia Infantil | Clínica Especial</title>
-    <meta name="description" content="Psicopedagogia infantil especializada para avaliação e intervenção em dificuldades de aprendizagem, transtornos específicos e desenvolvimento de potencialidades educacionais.">
-    <meta name="keywords" content="Psicopedagogia Infantil, Dificuldades de Aprendizagem, Dislexia, Discalculia, TDAH, Avaliação Psicopedagógica, Métodos de Estudo">
-    
+    <title>Psicopedagogia | EIBM</title>
+    <meta name="description" content="Psicopedagogia infantil especializada na EIBM: Avaliação e intervenção em dificuldades de aprendizagem, transtornos específicos e desenvolvimento de potencialidades educacionais.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#195184',      // Azul principal
+                        secondary: '#6CBB45',    // Verde
+                        accent: '#ED3924',       // Vermelho
+                        blue: {
+                            light: '#439CD5',
+                            royal: '#136CB2',
+                        },
+                        green: {
+                            light: '#9DCB5B',
+                            dark: '#648543',
+                        },
+                        red: {
+                            light: '#E8694B',
+                            dark: '#A53434',
+                        },
+                        yellow: {
+                            light: '#F2E5B0',
+                            DEFAULT: '#EFCD18',   // Cor principal da Psicopedagogia
+                            dark: '#D4AF37',
+                        },
+                        orange: '#EA8C2C',
+                        purple: {
+                            light: '#D29BFF',
+                            DEFAULT: '#A358E1',
+                            dark: '#9930C2',
+                        },
+                        gold: '#D4AF37',
+                        brown: '#8B4513',
+                        beige: '#F5F5DC',
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilos personalizados para a página -->
+    <style>
+        .bg-gradient-yellow {
+            background: linear-gradient(135deg, rgba(239, 205, 24, 0.08) 0%, rgba(212, 175, 55, 0.15) 100%);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.03);
+        }
+        .card-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+    </style>
 </head>
-<body class="subpage psicopedagogia-page">
+<body class="font-sans text-gray-800">
     <!-- Header/Navigation -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
-                <h1>Clínica Especial</h1>
-            </div>
-            <nav>
-                <div class="mobile-menu-icon">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12 md:h-16">
+                        <div class="ml-3">
+                            <h1 class="text-xl md:text-2xl font-bold text-primary font-heading">EIBM</h1>
+                            <p class="text-xs text-gray-600 hidden md:block">Especialidades Integradas e Bem-estar Multidisciplinar</p>
+                        </div>
+                    </a>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Portal Principal</a></li>
-                    <li><a href="landing.html">Sobre a Clínica</a></li>
-                    <li><a href="terapias.html">Terapias</a></li>
-                    <li><a href="psicopedagogia.html" class="active">Psicopedagogia</a></li>
-                </ul>
-            </nav>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="index.html" class="text-primary hover:text-yellow-dark font-medium">Portal</a></li>
+                        <li><a href="terapias.html" class="text-primary hover:text-yellow-dark font-medium">Terapias</a></li>
+                        <li><a href="especialidades.html" class="text-primary hover:text-yellow-dark font-medium">Especialidades</a></li>
+                        <li><a href="ideia.html" class="text-primary hover:text-yellow-dark font-medium">IDEA</a></li>
+                        <li><a href="transtornos.html" class="text-primary hover:text-yellow-dark font-medium">Transtornos Alimentares</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="block md:hidden text-primary" id="menu-toggle">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (hidden by default) -->
+        <div class="fixed top-0 left-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 p-5 transform -translate-x-full transition-transform duration-300" id="mobile-menu">
+            <div class="flex justify-between items-center mb-6">
+                <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12">
+                <button id="close-menu">
+                    <i class="fas fa-times text-2xl text-primary"></i>
+                </button>
+            </div>
+            <ul class="space-y-4">
+                <li><a href="index.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Portal</a></li>
+                <li><a href="terapias.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Terapias</a></li>
+                <li><a href="especialidades.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Especialidades</a></li>
+                <li><a href="ideia.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">IDEA</a></li>
+                <li><a href="transtornos.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Transtornos Alimentares</a></li>
+                <li><a href="psicologia.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Psicologia</a></li>
+                <li><a href="fonoaudiologia.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Fonoaudiologia e Musicoterapia</a></li>
+                <li><a href="terapia-ocupacional.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Terapia Ocupacional</a></li>
+                <li><a href="psicopedagogia.html" class="block py-2 text-yellow-dark font-bold">Psicopedagogia</a></li>
+            </ul>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="subpage-hero psicoped-hero">
-        <div class="container">
-            <div class="subpage-hero-content animate-on-scroll fade-in">
-                <h2>Psicopedagogia Infantil</h2>
-                <p>Desenvolvendo potencialidades e superando desafios na aprendizagem</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary">Agende uma Avaliação</a>
-                    <a href="terapias.html" class="btn-back">Voltar para Terapias</a>
+    <section class="py-16 bg-gradient-yellow relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 z-10">
+                    <div class="inline-block bg-yellow/20 px-4 py-1 rounded-full text-yellow-700 font-medium mb-4">
+                        Especialidade Educacional
+                    </div>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-700 font-heading mb-6">
+                        Psicopedagogia Infantil
+                    </h2>
+                    <p class="text-lg text-gray-700 mb-6">
+                        A Psicopedagogia na EIBM é dedicada a identificar e intervir em dificuldades e transtornos de aprendizagem, considerando todos os aspectos envolvidos nesse processo.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-8">
+                        Por meio de uma abordagem personalizada, buscamos compreender como cada criança aprende, desenvolvendo estratégias que promovam uma aprendizagem significativa e prazerosa.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-yellow/20 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium">Dificuldades de aprendizagem</span>
+                        <span class="bg-yellow/20 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium">Métodos de estudo</span>
+                        <span class="bg-yellow/20 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium">Adaptação curricular</span>
+                        <span class="bg-yellow/20 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium">Estimulação cognitiva</span>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center z-10">
+                    <div class="bg-white p-8 rounded-xl shadow-xl max-w-md card-shadow">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-yellow/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-book-reader text-3xl text-yellow-700"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-xl font-bold text-yellow-700">Aprender é descobrir potenciais</h3>
+                                <p class="text-gray-600">Superando desafios na aprendizagem</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-6">
+                            "A Psicopedagogia constrói pontes entre o potencial da criança e sua realização acadêmica. Na EIBM, trabalhamos para transformar dificuldades em oportunidades de crescimento e desenvolvimento cognitivo."
+                        </p>
+                        <div class="flex items-center">
+                            <img src="assets/about-image.svg" alt="Equipe EIBM" class="w-12 h-12 rounded-full object-cover mr-3">
+                            <div>
+                                <p class="font-medium">Equipe de Psicopedagogia</p>
+                                <p class="text-sm text-gray-600">EIBM</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- Decorative elements -->
+        <div class="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-yellow opacity-10"></div>
+        <div class="absolute top-12 -left-12 w-32 h-32 rounded-full bg-yellow opacity-10"></div>
     </section>
 
-    <!-- Psicopedagogia Introduction -->
-    <section class="subpage-intro">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>O que é Psicopedagogia Infantil?</h2>
-                <p>Uma ponte entre o potencial da criança e sua realização acadêmica</p>
-            </div>
-            <div class="content-columns">
-                <div class="content-text animate-on-scroll fade-in">
-                    <p>A Psicopedagogia Infantil é uma área que estuda os processos de aprendizagem humana, suas características, evolução e possíveis distúrbios. Nossos psicopedagogos trabalham na identificação, avaliação e intervenção em dificuldades e transtornos de aprendizagem, considerando os aspectos cognitivos, afetivos, sociais e biológicos envolvidos nesse processo.</p>
-                    <p>Por meio de uma abordagem personalizada e multidisciplinar, buscamos compreender como cada criança aprende, identificando suas potencialidades e desafios, para então desenvolver estratégias que promovam uma aprendizagem significativa e prazerosa, tanto no ambiente escolar quanto familiar.</p>
-                    <div class="intro-key-points">
-                        <div class="key-point">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span>Avaliação psicopedagógica abrangente</span>
+    <!-- Main Content -->
+    <main>
+        <!-- Áreas de Atuação -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h3 class="text-2xl md:text-3xl font-bold text-yellow-700 mb-10 text-center">
+                    Áreas de Atuação da Psicopedagogia
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dificuldades de Aprendizagem -->
+                    <div class="bg-yellow-50/40 p-6 rounded-xl shadow-md hover-scale card-shadow">
+                        <div class="w-16 h-16 bg-yellow/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-book-open text-2xl text-yellow-700"></i>
                         </div>
-                        <div class="key-point">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span>Intervenção personalizada para cada criança</span>
+                        <h4 class="text-xl font-bold text-yellow-700 mb-3 text-center">Dificuldades de Aprendizagem</h4>
+                        <p class="text-gray-700 mb-4">
+                            Avaliação e intervenção em dificuldades relacionadas à leitura, escrita, matemática, atenção e memória, criando planos personalizados.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
+                                <span>Dislexia e disgrafia</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
+                                <span>Discalculia</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
+                                <span>Transtornos de atenção</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
+                                <span>Dificuldades visuoespaciais</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Métodos e Técnicas de Estudo -->
+                    <div class="bg-yellow-50/40 p-6 rounded-xl shadow-md hover-scale card-shadow">
+                        <div class="w-16 h-16 bg-yellow/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-tasks text-2xl text-yellow-700"></i>
                         </div>
-                        <div class="key-point">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span>Orientação à família e escola</span>
+                        <h4 class="text-xl font-bold text-yellow-700 mb-3 text-center">Métodos de Estudo</h4>
+                        <p class="text-gray-700 mb-4">
+                            Desenvolvimento de estratégias personalizadas de aprendizagem baseadas no perfil cognitivo de cada criança, respeitando seu ritmo e potencial.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
+                                <span>Técnicas de organização</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
+                                <span>Gestão do tempo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
+                                <span>Estratégias de memorização</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
+                                <span>Mapas mentais e resumos</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Adaptação Curricular -->
+                    <div class="bg-yellow-50/40 p-6 rounded-xl shadow-md hover-scale card-shadow">
+                        <div class="w-16 h-16 bg-yellow/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-chalkboard-teacher text-2xl text-yellow-700"></i>
                         </div>
+                        <h4 class="text-xl font-bold text-yellow-700 mb-3 text-center">Adaptação Curricular</h4>
+                        <p class="text-gray-700 mb-4">
+                            Orientação e desenvolvimento de adaptações curriculares para crianças com necessidades educacionais especiais, em parceria com escolas.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
+                                <span>Materiais pedagógicos adaptados</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
+                                <span>Avaliações diferenciadas</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
+                                <span>Tecnologias assistivas</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
+                                <span>Orientação às escolas</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="content-image animate-on-scroll slide-up">
-                    <img src="assets/img/pedagogy.svg" alt="Ilustração sobre Psicopedagogia Infantil">
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Áreas de Atuação -->
-    <section class="psicoped-areas alt-bg">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Áreas de Atuação</h2>
-                <p>Como podemos ajudar seu filho</p>
-            </div>
-            <div class="cards-container">
-                <div class="card animate-on-scroll slide-up">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                        </svg>
-                    </div>
-                    <h3>Dificuldades de Aprendizagem</h3>
-                    <p>Avaliação e intervenção em dificuldades relacionadas à leitura, escrita, matemática, atenção, memória e outras funções cognitivas essenciais para o aprendizado. Atendimento especializado para crianças com dislexia, disgrafia, discalculia e outros transtornos específicos da aprendizagem.</p>
+        <!-- Abordagens Psicopedagógicas -->
+        <section class="py-16 bg-gradient-yellow">
+            <div class="container mx-auto px-4">
+                <div class="mb-12 text-center">
+                    <h3 class="text-2xl md:text-3xl font-bold text-yellow-700 mb-3">Abordagens Psicopedagógicas</h3>
+                    <p class="text-gray-700 max-w-3xl mx-auto">Metodologias baseadas em evidências que utilizamos em nossos atendimentos de Psicopedagogia</p>
                 </div>
-                <div class="card animate-on-scroll slide-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Métodos e Técnicas de Estudo</h3>
-                    <p>Desenvolvimento de estratégias personalizadas de aprendizagem, considerando o perfil cognitivo e estilo de aprendizagem de cada criança. Treinamento em organização, planejamento, gerenciamento do tempo e técnicas eficientes de estudo e memorização.</p>
-                </div>
-                <div class="card animate-on-scroll slide-up" data-delay="400">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                        </svg>
-                    </div>
-                    <h3>Adaptação Curricular</h3>
-                    <p>Orientação e desenvolvimento de adaptações curriculares e recursos pedagógicos específicos para crianças com necessidades educacionais especiais, facilitando sua inclusão escolar e potencializando seu desenvolvimento acadêmico.</p>
-                </div>
-            </div>
-            <div class="cards-container" style="margin-top: 2rem;">
-                <div class="card animate-on-scroll slide-up" data-delay="600">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Estimulação Cognitiva</h3>
-                    <p>Desenvolvimento de atividades específicas para estimular as funções cognitivas essenciais para a aprendizagem, como atenção, memória, percepção, raciocínio lógico e linguagem, prevenindo dificuldades futuras ou minimizando aquelas já existentes.</p>
-                </div>
-                <div class="card animate-on-scroll slide-up" data-delay="800">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                    </div>
-                    <h3>Orientação Familiar e Escolar</h3>
-                    <p>Suporte e orientação à família e aos educadores sobre como lidar com as dificuldades de aprendizagem da criança, fornecendo estratégias práticas e ferramentas para facilitar o desenvolvimento escolar no dia a dia.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Abordagens Terapêuticas -->
-    <section id="abordagens" class="psicoped-abordagens">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Abordagens Terapêuticas</h2>
-                <p>Metodologias que utilizamos em nossos atendimentos</p>
-            </div>
-            <div class="abordagens-grid">
-                <div class="abordagem-item animate-on-scroll fade-in">
-                    <h3>Abordagem Cognitivo-Comportamental</h3>
-                    <p>Utiliza princípios da psicologia cognitiva e comportamental para identificar e modificar padrões de pensamento e comportamento que interferem na aprendizagem, trabalhando crenças limitantes e desenvolvendo comportamentos facilitadores do processo educacional.</p>
-                </div>
-                <div class="abordagem-item animate-on-scroll fade-in" data-delay="200">
-                    <h3>Neuropsicopedagogia</h3>
-                    <p>Integra conhecimentos da neurociência à prática psicopedagógica, considerando o funcionamento cerebral nos processos de aprendizagem e desenvolvendo intervenções baseadas nos princípios da plasticidade neural e da neuroeducação.</p>
-                </div>
-                <div class="abordagem-item animate-on-scroll fade-in" data-delay="400">
-                    <h3>Ludopedagogia</h3>
-                    <p>Utiliza jogos, brinquedos e atividades lúdicas como instrumentos de avaliação e intervenção psicopedagógica, favorecendo o desenvolvimento de habilidades cognitivas, sociais e emocionais de forma prazerosa e significativa para a criança.</p>
-                </div>
-                <div class="abordagem-item animate-on-scroll fade-in" data-delay="600">
-                    <h3>Psicopedagogia Construtivista</h3>
-                    <p>Baseada nas teorias de Jean Piaget e outros construtivistas, compreende o conhecimento como uma construção ativa do sujeito, valorizando o erro como parte do processo de aprendizagem e respeitando os estágios de desenvolvimento da criança.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefícios Section -->
-    <section id="beneficios" class="psicoped-beneficios alt-bg">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Benefícios da Psicopedagogia</h2>
-                <p>Como seu filho pode se desenvolver com nosso acompanhamento</p>
-            </div>
-            <div class="beneficios-container">
-                <div class="beneficio-item animate-on-scroll fade-in">
-                    <div class="beneficio-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Melhora no Desempenho Acadêmico</h3>
-                    <p>Identificação e superação de dificuldades específicas, desenvolvimento de estratégias de aprendizagem eficientes e fortalecimento das habilidades necessárias para um bom desempenho escolar, resultando em melhores notas e maior satisfação com os estudos.</p>
-                </div>
-                <div class="beneficio-item animate-on-scroll fade-in" data-delay="200">
-                    <div class="beneficio-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                        </svg>
-                    </div>
-                    <h3>Aumento da Autoestima e Motivação</h3>
-                    <p>O desenvolvimento de uma relação positiva com o aprendizado e a superação de dificuldades contribuem para o fortalecimento da autoestima, autoconfiança e motivação intrínseca, essenciais para o bem-estar emocional e para a busca contínua por conhecimento.</p>
-                </div>
-                <div class="beneficio-item animate-on-scroll fade-in" data-delay="400">
-                    <div class="beneficio-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                    </div>
-                    <h3>Redução da Ansiedade Escolar</h3>
-                    <p>O suporte psicopedagógico ajuda a diminuir a ansiedade, o estresse e a frustração relacionados às dificuldades escolares, criando um ambiente de aprendizagem mais seguro e prazeroso para a criança, o que impacta positivamente sua saúde mental e bem-estar geral.</p>
-                </div>
-                <div class="beneficio-item animate-on-scroll fade-in" data-delay="600">
-                    <div class="beneficio-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                        </svg>
-                    </div>
-                    <h3>Desenvolvimento da Autonomia nos Estudos</h3>
-                    <p>A aquisição de métodos e técnicas de estudo eficientes, aliada ao autoconhecimento cognitivo, promove maior independência e protagonismo da criança em relação à sua própria aprendizagem, preparando-a para os desafios educacionais futuros.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Equipe Section -->
-    <section id="equipe" class="psicoped-equipe">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Nossa Equipe</h2>
-                <p>Psicopedagogos especializados em atendimento infantil</p>
-            </div>
-            <div class="equipe-descricao animate-on-scroll fade-in">
-                <p>Nossa equipe de psicopedagogos é formada por profissionais com sólida formação acadêmica e ampla experiência em dificuldades e transtornos de aprendizagem, avaliação psicopedagógica, intervenção precoce e educação inclusiva. Todos possuem especialização em Psicopedagogia Clínica e/ou Institucional e participam constantemente de cursos de aperfeiçoamento nas diversas áreas relacionadas à aprendizagem.</p>
-                <p>Trabalhamos de forma integrada com os demais profissionais da clínica e estabelecemos parcerias com as escolas e professores, garantindo uma abordagem multidisciplinar e colaborativa que considera todos os aspectos e ambientes relacionados ao processo de aprendizagem da criança.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="faq alt-bg">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Perguntas Frequentes</h2>
-                <p>Respostas para suas dúvidas sobre a Psicopedagogia Infantil</p>
-            </div>
-            <div class="faq-container">
-                <div class="faq-item animate-on-scroll fade-in">
-                    <div class="faq-question">
-                        <h3>Como saber se meu filho precisa de atendimento psicopedagógico?</h3>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Alguns sinais que podem indicar a necessidade de uma avaliação psicopedagógica incluem: dificuldades persistentes em acompanhar o conteúdo escolar, diferença significativa entre o potencial da criança e seu desempenho acadêmico, resistência ou aversão a atividades escolares, dificuldades específicas em leitura, escrita ou matemática, desorganização constante com materiais e tarefas, dificuldade para manter a atenção, problemas de memória, baixa autoestima relacionada aos estudos, e queixas frequentes de professores sobre desempenho ou comportamento. Se você observar esses sinais, é recomendável buscar uma avaliação profissional.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate-on-scroll fade-in" data-delay="200">
-                    <div class="faq-question">
-                        <h3>Qual a diferença entre o trabalho do psicopedagogo e do psicólogo?</h3>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Embora haja algumas sobreposições, o psicopedagogo é um profissional especializado nos processos de aprendizagem e suas dificuldades, focando principalmente nas questões acadêmicas e cognitivas. Ele avalia e intervém especificamente em problemas relacionados ao aprender, utilizando instrumentos e técnicas próprios da psicopedagogia. Já o psicólogo trabalha com aspectos mais amplos da saúde mental e do desenvolvimento emocional, comportamental e social. Quando as dificuldades de aprendizagem estão relacionadas a questões emocionais mais profundas, os dois profissionais podem trabalhar em conjunto, cada um em sua área de especialidade, para um atendimento mais completo.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate-on-scroll fade-in" data-delay="400">
-                    <div class="faq-question">
-                        <h3>Como é feita a avaliação psicopedagógica?</h3>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>A avaliação psicopedagógica é um processo abrangente que geralmente inclui: entrevista inicial com os pais para coleta de informações sobre a história de vida e escolar da criança; contato com a escola e professores para compreender o contexto educacional; aplicação de testes e atividades específicas para avaliar diferentes aspectos da aprendizagem (leitura, escrita, matemática, atenção, memória, raciocínio, etc.); observação do comportamento da criança durante as atividades; análise de materiais escolares e produções da criança. O processo costuma durar de 4 a 6 sessões e culmina com a elaboração de um relatório detalhado contendo os resultados da avaliação, hipótese diagnóstica e recomendações de intervenção.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate-on-scroll fade-in" data-delay="600">
-                    <div class="faq-question">
-                        <h3>Quanto tempo dura o atendimento psicopedagógico?</h3>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>A duração do tratamento psicopedagógico varia conforme as necessidades específicas de cada criança, a natureza e complexidade das dificuldades apresentadas, e o envolvimento da família e da escola no processo. Em geral, as sessões são semanais, com duração de 45 a 60 minutos. Alguns casos mais simples podem ser resolvidos em poucos meses, enquanto outros, como transtornos de aprendizagem mais complexos, podem requerer acompanhamento por períodos mais longos, até que a criança desenvolva estratégias compensatórias eficientes. Realizamos reavaliações periódicas para mensurar o progresso e ajustar o plano de intervenção conforme necessário.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Agende uma Avaliação</h2>
-                <p>Estamos prontos para ajudar seu filho em sua jornada de aprendizagem</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info animate-on-scroll slide-up">
-                    <h3>Informações de Contato</h3>
-                    <p><strong>Endereço:</strong> Rua das Terapias, 123 - Bairro Especial</p>
-                    <p><strong>Telefone:</strong> (11) 1234-5678</p>
-                    <p><strong>Email:</strong> contato@clinicaespecial.com.br</p>
-                    <p><strong>Horário:</strong> Segunda a Sexta, das 8h às 19h</p>
-                    <div class="contact-hours">
-                        <h4>Como funciona a primeira consulta:</h4>
-                        <p>A primeira consulta é uma entrevista inicial onde conheceremos você e seu filho e entenderemos suas necessidades específicas. Traga boletins escolares, relatórios de professores e quaisquer avaliações anteriores que possam contribuir para a compreensão do caso. Esta consulta é o primeiro passo para o processo de avaliação psicopedagógica.</p>
-                    </div>
-                </div>
-                <div class="contact-form animate-on-scroll slide-up" data-delay="200">
-                    <h3>Formulário de Contato</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nome completo</label>
-                            <input type="text" id="name" name="name" required>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Avaliação Psicopedagógica -->
+                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-yellow/30 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-clipboard-check text-lg text-yellow-700"></i>
+                            </div>
+                            <h4 class="font-bold text-yellow-700">Avaliação Psicopedagógica</h4>
                         </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" required>
+                        <p class="text-gray-700 text-sm">
+                            Processo sistemático para identificar capacidades e dificuldades, analisando aspectos cognitivos, emocionais e ambientais que influenciam a aprendizagem.
+                        </p>
+                    </div>
+                    
+                    <!-- Intervenção Cognitivo-Comportamental -->
+                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-yellow/30 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-brain text-lg text-yellow-700"></i>
+                            </div>
+                            <h4 class="font-bold text-yellow-700">Abordagem Cognitiva</h4>
                         </div>
-                        <div class="form-group">
-                            <label for="phone">Telefone</label>
-                            <input type="tel" id="phone" name="phone" required>
+                        <p class="text-gray-700 text-sm">
+                            Utilização de estratégias para modificar padrões de pensamento que interferem na aprendizagem, fortalecendo habilidades metacognitivas.
+                        </p>
+                    </div>
+                    
+                    <!-- Jogos e Atividades Lúdicas -->
+                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-yellow/30 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-puzzle-piece text-lg text-yellow-700"></i>
+                            </div>
+                            <h4 class="font-bold text-yellow-700">Aprendizagem Lúdica</h4>
                         </div>
-                        <div class="form-group">
-                            <label for="message">Mensagem</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                        <p class="text-gray-700 text-sm">
+                            Uso de jogos, brincadeiras e atividades lúdicas como ferramentas terapêuticas para desenvolver habilidades cognitivas e emocionais.
+                        </p>
+                    </div>
+                    
+                    <!-- Mediação da Aprendizagem -->
+                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-yellow/30 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-hands-helping text-lg text-yellow-700"></i>
+                            </div>
+                            <h4 class="font-bold text-yellow-700">Mediação da Aprendizagem</h4>
                         </div>
-                        <button type="submit" class="btn-primary">Solicitar Contato</button>
-                    </form>
-                    <div id="formMessage" class="form-message"></div>
+                        <p class="text-gray-700 text-sm">
+                            Baseada na teoria de Feuerstein, busca desenvolver funções cognitivas por meio da mediação, focando no potencial de aprendizagem de cada criança.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Estimulação Cognitiva Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-yellow-700 mb-3">Estimulação Cognitiva</h3>
+                    <p class="text-gray-600 max-w-3xl mx-auto">Trabalhando habilidades essenciais para o desenvolvimento educacional</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Atenção e Concentração -->
+                    <div class="bg-yellow-50/50 p-6 rounded-xl shadow-md card-shadow hover-scale">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow/20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-eye text-xl text-yellow-700"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-yellow-700">Atenção e Concentração</h4>
+                        </div>
+                        <p class="text-gray-700">
+                            Atividades para desenvolver a capacidade de manter o foco, filtrar estímulos irrelevantes e sustentar a atenção por períodos adequados, essenciais para o processo de aprendizagem escolar e desenvolvimento cognitivo.
+                        </p>
+                    </div>
+                    
+                    <!-- Memória e Aprendizagem -->
+                    <div class="bg-yellow-50/50 p-6 rounded-xl shadow-md card-shadow hover-scale">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow/20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-memory text-xl text-yellow-700"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-yellow-700">Memória e Aprendizagem</h4>
+                        </div>
+                        <p class="text-gray-700">
+                            Técnicas para fortalecer diferentes tipos de memória (de trabalho, visual, auditiva, sequencial) fundamentais para o armazenamento e recuperação de informações durante o processo de aprendizagem.
+                        </p>
+                    </div>
+                    
+                    <!-- Raciocínio Lógico -->
+                    <div class="bg-yellow-50/50 p-6 rounded-xl shadow-md card-shadow hover-scale">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow/20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-calculator text-xl text-yellow-700"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-yellow-700">Raciocínio Lógico</h4>
+                        </div>
+                        <p class="text-gray-700">
+                            Atividades estruturadas para desenvolver a capacidade de estabelecer relações, identificar padrões, fazer inferências e resolver problemas, especialmente importantes para o desempenho em matemática e ciências.
+                        </p>
+                    </div>
+                    
+                    <!-- Habilidades Socioemocionais -->
+                    <div class="bg-yellow-50/50 p-6 rounded-xl shadow-md card-shadow hover-scale">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow/20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-heart text-xl text-yellow-700"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-yellow-700">Habilidades Socioemocionais</h4>
+                        </div>
+                        <p class="text-gray-700">
+                            Desenvolvimento de competências emocionais como autoconhecimento, gerenciamento de emoções e habilidades sociais que impactam diretamente no desempenho acadêmico e na motivação para aprender.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="py-16 bg-yellow-50/50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-yellow-700 mb-3">Nossa Equipe</h3>
+                    <p class="text-gray-600 max-w-3xl mx-auto">Psicopedagogos especializados em atendimento infantil</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md max-w-4xl mx-auto card-shadow">
+                    <p class="text-gray-700 mb-4">
+                        Nossa equipe de psicopedagogos é formada por profissionais com formação específica em Psicopedagogia e ampla experiência no trabalho com crianças com dificuldades de aprendizagem, transtornos do neurodesenvolvimento e altas habilidades. Todos são registrados no Conselho de Psicopedagogia e investem constantemente em atualização profissional.
+                    </p>
+                    <p class="text-gray-700">
+                        Atuamos de forma integrada com as demais especialidades da clínica, além de manter contato próximo com as escolas, professores e coordenadores pedagógicos, formando uma rede de apoio para garantir o melhor desenvolvimento educacional de cada criança.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-yellow-700 mb-3">Perguntas Frequentes</h3>
+                    <p class="text-gray-600 max-w-3xl mx-auto">Respostas para suas dúvidas sobre a Psicopedagogia Infantil</p>
+                </div>
+                
+                <div class="space-y-6 max-w-4xl mx-auto">
+                    <!-- Pergunta 1 -->
+                    <div class="bg-yellow-50/30 rounded-xl overflow-hidden shadow-md card-shadow">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
+                            <h4 class="text-lg font-bold text-yellow-700">Como identificar se meu filho precisa de acompanhamento psicopedagógico?</h4>
+                            <i class="fas fa-plus text-yellow-700 transition-transform accordion-icon"></i>
+                        </button>
+                        <div class="px-6 pb-4 accordion-content hidden">
+                            <p class="text-gray-700">
+                                Alguns sinais que podem indicar a necessidade de uma avaliação psicopedagógica incluem: dificuldades persistentes na leitura, escrita ou matemática, mesmo com apoio em casa; desinteresse ou desmotivação em relação às atividades escolares; discrepância entre o potencial da criança e seu desempenho acadêmico; dificuldade em manter a atenção nas tarefas; resistência ou angústia diante de atividades escolares; e comentários frequentes de professores sobre dificuldades específicas. Se observar esses sinais, é recomendável buscar uma avaliação psicopedagógica para entender melhor as necessidades da criança.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Pergunta 2 -->
+                    <div class="bg-yellow-50/30 rounded-xl overflow-hidden shadow-md card-shadow">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
+                            <h4 class="text-lg font-bold text-yellow-700">Como funciona a avaliação psicopedagógica?</h4>
+                            <i class="fas fa-plus text-yellow-700 transition-transform accordion-icon"></i>
+                        </button>
+                        <div class="px-6 pb-4 accordion-content hidden">
+                            <p class="text-gray-700 mb-3">
+                                A avaliação psicopedagógica na EIBM é um processo completo que ocorre em várias etapas. Inicialmente, realizamos uma entrevista detalhada com os pais para conhecer a história de vida da criança, seu percurso escolar e as dificuldades observadas. Em seguida, realizamos sessões individuais com a criança, utilizando testes específicos, jogos e atividades que ajudam a identificar seus pontos fortes e fragilidades nas diversas áreas do conhecimento.
+                            </p>
+                            <p class="text-gray-700">
+                                Também solicitamos informações da escola e, quando necessário, de outros profissionais que atendem a criança. Após a coleta e análise de todos os dados, elaboramos um relatório completo e realizamos uma devolutiva com os pais, apresentando os resultados e sugerindo encaminhamentos e estratégias adequadas para o caso.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Pergunta 3 -->
+                    <div class="bg-yellow-50/30 rounded-xl overflow-hidden shadow-md card-shadow">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
+                            <h4 class="text-lg font-bold text-yellow-700">Qual a duração e frequência das sessões de psicopedagogia?</h4>
+                            <i class="fas fa-plus text-yellow-700 transition-transform accordion-icon"></i>
+                        </button>
+                        <div class="px-6 pb-4 accordion-content hidden">
+                            <p class="text-gray-700">
+                                As sessões de psicopedagogia na EIBM têm duração média de 50 minutos e a frequência recomendada é semanal para a maioria dos casos. Essa regularidade permite a consistência necessária para o desenvolvimento das habilidades trabalhadas. Em alguns casos, dependendo da intensidade das dificuldades, podemos recomendar duas sessões semanais, especialmente em períodos específicos como início do ano letivo ou preparação para avaliações importantes. Conforme a criança avança e desenvolve as habilidades necessárias, a frequência pode ser ajustada. O plano terapêutico é sempre personalizado, considerando as necessidades específicas de cada criança, o contexto familiar e escolar.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="bg-yellow-dark py-14">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
+                    Agende uma Avaliação Psicopedagógica
+                </h2>
+                <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                    Converse com nossa equipe e descubra como a Psicopedagogia pode ajudar no desenvolvimento educacional do seu filho.
+                </p>
+                <a href="contato.html" class="bg-white text-yellow-700 hover:bg-yellow-50 font-medium px-6 py-3 rounded-full inline-block transition-colors">
+                    Entrar em Contato
+                </a>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
-                    <h3>Clínica Especial</h3>
+    <footer class="bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-6 md:mb-0">
+                    <img src="assets/logo-eibm-white.svg" alt="Logo EIBM" class="h-10 mr-3">
+                    <div>
+                        <h3 class="text-xl font-bold">EIBM</h3>
+                        <p class="text-xs text-gray-400">Especialidades Integradas e Bem-estar Multidisciplinar</p>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><a href="index.html">Portal Principal</a></li>
-                        <li><a href="landing.html">Sobre a Clínica</a></li>
-                        <li><a href="terapias.html">Terapias</a></li>
-                        <li><a href="psicopedagogia.html">Psicopedagogia</a></li>
-                    </ul>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">&copy; 2025 EIBM - Todos os direitos reservados.</p>
+                    <div class="flex justify-center md:justify-end space-x-4 mt-3">
+                        <a href="#" class="text-white hover:text-yellow transition-colors" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-yellow transition-colors" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-yellow transition-colors" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-yellow transition-colors" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-services">
-                    <h4>Nossas Especializações</h4>
-                    <ul>
-                        <li>Avaliação Psicopedagógica</li>
-                        <li>Intervenção em Dificuldades de Aprendizagem</li>
-                        <li>Orientação Escolar</li>
-                        <li>Orientação Familiar</li>
-                    </ul>
-                </div>
-                <div class="footer-newsletter">
-                    <h4>Receba nossas novidades</h4>
-                    <form id="newsletterForm">
-                        <input type="email" placeholder="Seu e-mail" required>
-                        <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Clínica Especial. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-    </button>
+    <!-- Script para o acordeão FAQ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('.accordion-icon');
+                    
+                    // Toggle content
+                    content.classList.toggle('hidden');
+                    
+                    // Rotate icon
+                    if (content.classList.contains('hidden')) {
+                        icon.classList.remove('transform', 'rotate-45');
+                    } else {
+                        icon.classList.add('transform', 'rotate-45');
+                    }
+                });
+            });
+        });
+    </script>
 
-    <!-- Custom JavaScript -->
+    <!-- JavaScript principal -->
     <script src="script.js"></script>
 </body>
 </html>

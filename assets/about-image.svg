@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fundo com gradiente suave -->
+    <rect width="600" height="400" fill="#f9fafb" />
+    
+    <!-- Equipe multidisciplinar -->
+    <g transform="translate(50, 30)">
+        <!-- Profissional 1 (Terapeuta Ocupacional - Verde) -->
+        <g transform="translate(0, 0)">
+            <!-- Corpo -->
+            <path d="M70,120 L70,250 L110,250 L110,120 Z" fill="#6CBB45" />
+            
+            <!-- Cabeça -->
+            <circle cx="90" cy="90" r="40" fill="#fcd34d" />
+            <circle cx="75" cy="80" r="5" fill="#1e293b" /> <!-- Olho esquerdo -->
+            <circle cx="105" cy="80" r="5" fill="#1e293b" /> <!-- Olho direito -->
+            <path d="M75,100 Q90,110 105,100" fill="none" stroke="#1e293b" stroke-width="3" /> <!-- Sorriso -->
+            
+            <!-- Cabelo -->
+            <path d="M50,70 Q65,40 90,40 Q115,40 130,70 Q140,85 130,90 Q120,70 90,70 Q60,70 50,90 Q40,85 50,70 Z" fill="#713f12" />
+            
+            <!-- Símbolo da terapia ocupacional -->
+            <circle cx="90" cy="170" r="20" fill="white" />
+            <path d="M80,160 L100,180 M80,180 L100,160" stroke="#6CBB45" stroke-width="3" />
+        </g>
+        
+        <!-- Profissional 2 (Psicólogo - Azul) -->
+        <g transform="translate(100, 0)">
+            <!-- Corpo -->
+            <path d="M70,120 L70,250 L110,250 L110,120 Z" fill="#195184" />
+            
+            <!-- Cabeça -->
+            <circle cx="90" cy="90" r="40" fill="#fcd34d" />
+            <circle cx="75" cy="80" r="5" fill="#1e293b" /> <!-- Olho esquerdo -->
+            <circle cx="105" cy="80" r="5" fill="#1e293b" /> <!-- Olho direito -->
+            <path d="M75,100 Q90,110 105,100" fill="none" stroke="#1e293b" stroke-width="3" /> <!-- Sorriso -->
+            
+            <!-- Cabelo -->
+            <path d="M50,70 Q65,50 90,50 Q115,50 130,70 Q130,80 125,90 Q115,75 90,75 Q65,75 55,90 Q50,80 50,70 Z" fill="#1e1b4b" />
+            
+            <!-- Símbolo da psicologia -->
+            <circle cx="90" cy="170" r="20" fill="white" />
+            <path d="M90,150 L90,190 M75,170 L105,170" stroke="#195184" stroke-width="3" />
+        </g>
+        
+        <!-- Profissional 3 (Fonoaudiólogo - Azul Claro) -->
+        <g transform="translate(200, 0)">
+            <!-- Corpo -->
+            <path d="M70,120 L70,250 L110,250 L110,120 Z" fill="#439CD5" />
+            
+            <!-- Cabeça -->
+            <circle cx="90" cy="90" r="40" fill="#fcd34d" />
+            <circle cx="75" cy="80" r="5" fill="#1e293b" /> <!-- Olho esquerdo -->
+            <circle cx="105" cy="80" r="5" fill="#1e293b" /> <!-- Olho direito -->
+            <path d="M75,100 Q90,110 105,100" fill="none" stroke="#1e293b" stroke-width="3" /> <!-- Sorriso -->
+            
+            <!-- Cabelo -->
+            <path d="M60,60 Q70,40 90,40 Q110,40 120,60 Q130,70 120,80 Q110,65 90,65 Q70,65 60,80 Q50,70 60,60 Z" fill="#854d0e" />
+            
+            <!-- Símbolo da fonoaudiologia -->
+            <circle cx="90" cy="170" r="20" fill="white" />
+            <path d="M80,160 Q90,180 100,160" stroke="#439CD5" stroke-width="3" />
+        </g>
+        
+        <!-- Profissional 4 (Psicopedagogo - Roxo) -->
+        <g transform="translate(300, 0)">
+            <!-- Corpo -->
+            <path d="M70,120 L70,250 L110,250 L110,120 Z" fill="#A358E1" />
+            
+            <!-- Cabeça -->
+            <circle cx="90" cy="90" r="40" fill="#fcd34d" />
+            <circle cx="75" cy="80" r="5" fill="#1e293b" /> <!-- Olho esquerdo -->
+            <circle cx="105" cy="80" r="5" fill="#1e293b" /> <!-- Olho direito -->
+            <path d="M75,100 Q90,110 105,100" fill="none" stroke="#1e293b" stroke-width="3" /> <!-- Sorriso -->
+            
+            <!-- Cabelo -->
+            <path d="M60,70 Q75,45 90,45 Q105,45 120,70 Q125,80 118,90 Q110,75 90,75 Q70,75 62,90 Q55,80 60,70 Z" fill="#f472b6" />
+            
+            <!-- Símbolo da psicopedagogia -->
+            <circle cx="90" cy="170" r="20" fill="white" />
+            <path d="M80,170 L100,170 M90,160 L90,180" stroke="#A358E1" stroke-width="3" />
+        </g>
+        
+        <!-- Profissional 5 (Nutricionista - Amarelo) -->
+        <g transform="translate(400, 0)">
+            <!-- Corpo -->
+            <path d="M70,120 L70,250 L110,250 L110,120 Z" fill="#EFCD18" />
+            
+            <!-- Cabeça -->
+            <circle cx="90" cy="90" r="40" fill="#fcd34d" />
+            <circle cx="75" cy="80" r="5" fill="#1e293b" /> <!-- Olho esquerdo -->
+            <circle cx="105" cy="80" r="5" fill="#1e293b" /> <!-- Olho direito -->
+            <path d="M75,100 Q90,110 105,100" fill="none" stroke="#1e293b" stroke-width="3" /> <!-- Sorriso -->
+            
+            <!-- Cabelo -->
+            <path d="M55,65 Q65,45 90,45 Q115,45 125,65 Q130,75 123,85 Q115,70 90,70 Q65,70 57,85 Q50,75 55,65 Z" fill="#422006" />
+            
+            <!-- Símbolo da nutrição -->
+            <circle cx="90" cy="170" r="20" fill="white" />
+            <path d="M80,170 A10,10 0 0 0 100,170" stroke="#EFCD18" stroke-width="3" />
+        </g>
+    </g>
+    
+    <!-- Criança no centro -->
+    <g transform="translate(250, 260)">
+        <!-- Corpo -->
+        <path d="M40,50 A30,30 0 0 0 100,50 L100,90 L40,90 Z" fill="#ED3924" />
+        
+        <!-- Cabeça -->
+        <circle cx="70" cy="30" r="30" fill="#fcd34d" />
+        <circle cx="60" cy="25" r="4" fill="#1e293b" /> <!-- Olho esquerdo -->
+        <circle cx="80" cy="25" r="4" fill="#1e293b" /> <!-- Olho direito -->
+        <path d="M60,35 Q70,45 80,35" fill="none" stroke="#1e293b" stroke-width="2" /> <!-- Sorriso -->
+        
+        <!-- Cabelo -->
+        <path d="M40,20 Q50,0 70,0 Q90,0 100,20 Q105,25 100,30 Q90,15 70,15 Q50,15 40,30 Q35,25 40,20 Z" fill="#dc2626" />
+        
+        <!-- Braços abertos -->
+        <path d="M45,55 L20,40" stroke="#fcd34d" stroke-width="10" stroke-linecap="round" />
+        <path d="M95,55 L120,40" stroke="#fcd34d" stroke-width="10" stroke-linecap="round" />
+    </g>
+    
+    <!-- Balões de conexão - representando a abordagem multidisciplinar -->
+    <g>
+        <path d="M110,150 Q125,200 180,220" stroke="#6CBB45" stroke-width="2" fill="none" />
+        <path d="M210,150 Q230,190 230,220" stroke="#195184" stroke-width="2" fill="none" />
+        <path d="M310,150 Q290,190 280,220" stroke="#439CD5" stroke-width="2" fill="none" />
+        <path d="M410,150 Q380,200 330,220" stroke="#A358E1" stroke-width="2" fill="none" />
+        <path d="M510,150 Q480,190 380,220" stroke="#EFCD18" stroke-width="2" fill="none" />
+    </g>
+    
+    <!-- Símbolos de conexão entre os profissionais -->
+    <g>
+        <line x1="130" y1="100" x2="170" y2="100" stroke="#e5e7eb" stroke-width="3" />
+        <line x1="230" y1="100" x2="270" y2="100" stroke="#e5e7eb" stroke-width="3" />
+        <line x1="330" y1="100" x2="370" y2="100" stroke="#e5e7eb" stroke-width="3" />
+        <line x1="430" y1="100" x2="470" y2="100" stroke="#e5e7eb" stroke-width="3" />
+    </g>
+    
+    <!-- Círculos decorativos -->
+    <circle cx="30" cy="30" r="15" fill="#6CBB45" opacity="0.3" />
+    <circle cx="570" cy="30" r="15" fill="#195184" opacity="0.3" />
+    <circle cx="30" cy="370" r="15" fill="#ED3924" opacity="0.3" />
+    <circle cx="570" cy="370" r="15" fill="#A358E1" opacity="0.3" />
+</svg>

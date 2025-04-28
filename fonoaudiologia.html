@@ -3,403 +3,667 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fonoaudiologia Infantil | Clínica Especial</title>
-    <meta name="description" content="Fonoaudiologia infantil especializada no tratamento de distúrbios de fala, linguagem, voz, audição e deglutição para crianças com necessidades específicas.">
-    <meta name="keywords" content="Fonoaudiologia Infantil, Terapia de Fala, Tratamento de Gagueira, Disfagia Infantil, Atraso de Linguagem, Autismo, TEA">
-    
+    <title>Fonoaudiologia e Musicoterapia | EIBM</title>
+    <meta name="description" content="Serviços integrados de Fonoaudiologia e Musicoterapia da EIBM: Desenvolvimento da comunicação, linguagem, expressão emocional e habilidades sociais através de técnicas especializadas.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#195184',      // Azul principal
+                        secondary: '#6CBB45',    // Verde - Cor principal da Fonoaudiologia
+                        accent: '#ED3924',       // Vermelho
+                        blue: {
+                            light: '#439CD5',
+                            royal: '#136CB2',
+                        },
+                        green: {
+                            light: '#9DCB5B',    // Verde claro para Fonoaudiologia
+                            dark: '#648543',     // Verde sombra para Fonoaudiologia
+                        },
+                        red: {
+                            light: '#E8694B',
+                            dark: '#A53434',
+                        },
+                        yellow: {
+                            light: '#F2E5B0',
+                            DEFAULT: '#EFCD18',
+                        },
+                        orange: '#EA8C2C',
+                        purple: {
+                            light: '#D29BFF',
+                            DEFAULT: '#A358E1',
+                            dark: '#9930C2',
+                        },
+                        gold: '#D4AF37',
+                        brown: '#8B4513',
+                        beige: '#F5F5DC',
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="subpage fonoaudiologia-page">
+<body class="font-sans text-gray-800 bg-green-50 bg-opacity-30 min-h-screen">
     <!-- Header/Navigation -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
-                <h1>Clínica Especial</h1>
-            </div>
-            <nav>
-                <div class="mobile-menu-icon">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12 md:h-16">
+                        <div class="ml-3">
+                            <h1 class="text-xl md:text-2xl font-bold text-primary font-heading">EIBM</h1>
+                            <p class="text-xs text-gray-600 hidden md:block">Especialidades Integradas e Bem-estar Multidisciplinar</p>
+                        </div>
+                    </a>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Portal Principal</a></li>
-                    <li><a href="landing.html">Sobre a Clínica</a></li>
-                    <li><a href="terapias.html">Terapias</a></li>
-                    <li><a href="fonoaudiologia.html" class="active">Fonoaudiologia</a></li>
-                </ul>
-            </nav>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="index.html" class="text-primary hover:text-green-dark font-medium">Portal</a></li>
+                        <li><a href="terapias.html" class="text-primary hover:text-green-dark font-medium">Terapias</a></li>
+                        <li><a href="especialidades.html" class="text-primary hover:text-green-dark font-medium">Especialidades</a></li>
+                        <li><a href="ideia.html" class="text-primary hover:text-green-dark font-medium">IDEA</a></li>
+                        <li><a href="transtornos.html" class="text-primary hover:text-green-dark font-medium">Transtornos Alimentares</a></li>
+                        <li><a href="contato.html" class="text-primary hover:text-green-dark font-medium">Contato</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="block md:hidden text-primary" id="menu-toggle">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (hidden by default) -->
+        <div class="menu-mobile fixed top-0 left-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 p-5 transform -translate-x-full transition-transform duration-300" id="mobile-menu">
+            <div class="flex justify-between items-center mb-6">
+                <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12">
+                <button id="close-menu">
+                    <i class="fas fa-times text-2xl text-primary"></i>
+                </button>
+            </div>
+            <ul class="space-y-4">
+                <li><a href="index.html" class="block py-2 text-primary hover:text-green-dark font-medium">Portal</a></li>
+                <li><a href="terapias.html" class="block py-2 text-primary hover:text-green-dark font-medium">Terapias</a></li>
+                <li><a href="especialidades.html" class="block py-2 text-primary hover:text-green-dark font-medium">Especialidades</a></li>
+                <li><a href="ideia.html" class="block py-2 text-primary hover:text-green-dark font-medium">IDEA</a></li>
+                <li><a href="transtornos.html" class="block py-2 text-primary hover:text-green-dark font-medium">Transtornos Alimentares</a></li>
+                <li><a href="psicologia.html" class="block py-2 text-primary hover:text-green-dark font-medium">Psicologia</a></li>
+                <li><a href="fonoaudiologia.html" class="block py-2 text-primary hover:text-green-dark font-medium font-bold">Fonoaudiologia e Musicoterapia</a></li>
+                <li><a href="terapia-ocupacional.html" class="block py-2 text-primary hover:text-green-dark font-medium">Terapia Ocupacional</a></li>
+                <li><a href="psicopedagogia.html" class="block py-2 text-primary hover:text-green-dark font-medium">Psicopedagogia</a></li>
+                <li><a href="contato.html" class="block py-2 text-primary hover:text-green-dark font-medium">Contato</a></li>
+            </ul>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="subpage-hero fono-hero">
-        <div class="container">
-            <div class="subpage-hero-content animate-on-scroll fade-in">
-                <h2>Fonoaudiologia Infantil</h2>
-                <p>Desenvolvendo habilidades de comunicação para a vida</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary">Agende uma Avaliação</a>
-                    <a href="terapias.html" class="btn-back">Voltar para Terapias</a>
+    <section class="py-12 bg-gradient-to-r from-green-light/10 to-white relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 z-10">
+                    <div class="inline-block bg-secondary/20 px-4 py-1 rounded-full text-secondary font-medium mb-4">
+                        Terapia Especializada
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-secondary font-heading mb-6">
+                        Fonoaudiologia <span class="text-purple">&</span> Musicoterapia
+                    </h2>
+                    <p class="text-lg text-gray-700 mb-6">
+                        A Fonoaudiologia na EIBM é especializada no desenvolvimento da comunicação, linguagem, fala e funções orais, essenciais para a interação social e o aprendizado das crianças.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6">
+                        Nossa abordagem personalizada considera as características individuais de cada criança, utilizando técnicas baseadas em evidências para promover ganhos efetivos nas habilidades comunicativas.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">Desenvolvimento da linguagem</span>
+                        <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">Comunicação alternativa</span>
+                        <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">Processamento auditivo</span>
+                        <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">Funções orais</span>
+                        <span class="bg-purple-light/10 text-purple px-3 py-1 rounded-full text-sm font-medium">Expressão musical</span>
+                        <span class="bg-purple-light/10 text-purple px-3 py-1 rounded-full text-sm font-medium">Terapia com música</span>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Fonoaudiologia Introduction -->
-    <section class="subpage-intro">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>O que é Fonoaudiologia Infantil?</h2>
-                <p>Comunicação é a base para o desenvolvimento global da criança</p>
-            </div>
-            <div class="content-columns">
-                <div class="content-text animate-on-scroll fade-in">
-                    <p>A Fonoaudiologia Infantil é uma área da saúde especializada no desenvolvimento da comunicação e suas funções relacionadas em crianças. Nossos fonoaudiólogos trabalham com prevenção, avaliação, diagnóstico e tratamento dos distúrbios da fala, linguagem, voz, audição, respiração e deglutição.</p>
-                    <p>Por meio de uma abordagem lúdica, individualizada e baseada em evidências científicas, buscamos estimular o potencial comunicativo de cada criança, considerando suas habilidades e desafios específicos, promovendo sua participação ativa no ambiente familiar, escolar e social.</p>
-                    <div class="intro-key-points">
-                        <div class="key-point">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span>Avaliação fonoaudiológica completa</span>
+                <div class="md:w-1/2 flex justify-center z-10">
+                    <div class="bg-white p-6 rounded-xl shadow-lg max-w-md">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-comment-dots text-3xl text-secondary"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-xl font-bold text-secondary">Comunicação é transformação</h3>
+                                <p class="text-gray-600">Facilitando conexões e desenvolvimento</p>
+                            </div>
                         </div>
-                        <div class="key-point">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span>Terapia personalizada para cada necessidade</span>
+                        <p class="text-gray-700 mb-4">
+                            "A Fonoaudiologia trabalha a comunicação em todas suas formas. Na EIBM, focamos em transformar desafios em possibilidades, ampliando o potencial comunicativo de cada criança."
+                        </p>
+                        <div class="flex items-center">
+                            <img src="assets/about-image.svg" alt="Equipe EIBM" class="w-12 h-12 rounded-full object-cover mr-3">
+                            <div>
+                                <p class="font-medium">Equipe de Fonoaudiologia</p>
+                                <p class="text-sm text-gray-600">EIBM</p>
+                            </div>
                         </div>
-                        <div class="key-point">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span>Orientação familiar e escolar</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-image animate-on-scroll slide-up">
-                    <img src="assets/img/speech.svg" alt="Ilustração sobre Fonoaudiologia Infantil">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Áreas de Atuação -->
-    <section class="fono-areas alt-bg">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Áreas de Atuação</h2>
-                <p>Como podemos ajudar seu filho</p>
-            </div>
-            <div class="cards-container">
-                <div class="card animate-on-scroll slide-up">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                    </div>
-                    <h3>Linguagem</h3>
-                    <p>Tratamento de atrasos e distúrbios no desenvolvimento da linguagem oral e escrita, incluindo dificuldades na compreensão e expressão verbal. Atendemos crianças com atraso de linguagem, transtornos específicos e dificuldades associadas a outros quadros como TEA e síndromes genéticas.</p>
-                </div>
-                <div class="card animate-on-scroll slide-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
-                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                            <line x1="12" y1="19" x2="12" y2="23"></line>
-                            <line x1="8" y1="23" x2="16" y2="23"></line>
-                        </svg>
-                    </div>
-                    <h3>Fala</h3>
-                    <p>Intervenção em alterações na articulação dos sons da fala (trocas, omissões ou distorções), apraxias, disfluências (gagueira), alterações na ressonância e outras dificuldades que afetam a inteligibilidade e fluência da fala da criança.</p>
-                </div>
-                <div class="card animate-on-scroll slide-up" data-delay="400">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-                        </svg>
-                    </div>
-                    <h3>Audição</h3>
-                    <p>Identificação precoce de perdas auditivas e acompanhamento do desenvolvimento das habilidades auditivas. Também realizamos terapia auditivo-verbal para crianças com deficiência auditiva, usuárias de implante coclear ou aparelhos de amplificação sonora.</p>
-                </div>
-            </div>
-            <div class="cards-container" style="margin-top: 2rem;">
-                <div class="card animate-on-scroll slide-up" data-delay="600">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                        </svg>
-                    </div>
-                    <h3>Motricidade Orofacial</h3>
-                    <p>Tratamento de alterações na musculatura e funções da face relacionadas à respiração, mastigação, deglutição e articulação da fala. Atendemos crianças com alterações na amamentação, respiradores orais, bruxismo, disfagias e hábitos orais deletérios.</p>
-                </div>
-                <div class="card animate-on-scroll slide-up" data-delay="800">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                        </svg>
-                    </div>
-                    <h3>Aprendizagem</h3>
-                    <p>Intervenção em distúrbios da leitura e escrita, incluindo dislexia, disgrafia e dificuldades na compreensão textual. Trabalhamos o desenvolvimento da consciência fonológica, habilidades metalinguísticas e processos cognitivos envolvidos na alfabetização.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Abordagens Terapêuticas -->
-    <section id="abordagens" class="fono-abordagens">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Abordagens Terapêuticas</h2>
-                <p>Metodologias que utilizamos em nossos atendimentos</p>
-            </div>
-            <div class="abordagens-grid">
-                <div class="abordagem-item animate-on-scroll fade-in">
-                    <h3>Terapia Fonoaudiológica Lúdica</h3>
-                    <p>Utiliza brinquedos, jogos e atividades prazerosas para estimular as habilidades comunicativas da criança, favorecendo seu engajamento no processo terapêutico e potencializando os resultados do tratamento.</p>
-                </div>
-                <div class="abordagem-item animate-on-scroll fade-in" data-delay="200">
-                    <h3>Método Padovan</h3>
-                    <p>Baseia-se na reorganização neurofuncional para desenvolver e/ou reabilitar as funções do sistema nervoso relacionadas à fala, linguagem e funções orofaciais através de exercícios específicos que seguem o desenvolvimento natural do ser humano.</p>
-                </div>
-                <div class="abordagem-item animate-on-scroll fade-in" data-delay="400">
-                    <h3>Abordagem Fonológica</h3>
-                    <p>Voltada para o tratamento dos distúrbios fonológicos, trabalha a organização e uso dos sons da fala através de estratégias que visam a reorganização do sistema fonológico da criança, facilitando a inteligibilidade da fala.</p>
-                </div>
-                <div class="abordagem-item animate-on-scroll fade-in" data-delay="600">
-                    <h3>Comunicação Alternativa e Aumentativa</h3>
-                    <p>Utiliza recursos, estratégias e técnicas que complementam ou substituem a fala quando esta está ausente ou comprometida, permitindo que crianças com severas dificuldades de comunicação possam se expressar e interagir socialmente.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefícios Section -->
-    <section id="beneficios" class="fono-beneficios alt-bg">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Benefícios da Fonoaudiologia</h2>
-                <p>Como seu filho pode se desenvolver com nosso acompanhamento</p>
-            </div>
-            <div class="beneficios-container">
-                <div class="beneficio-item animate-on-scroll fade-in">
-                    <div class="beneficio-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                    </div>
-                    <h3>Melhora nas Habilidades Comunicativas</h3>
-                    <p>Desenvolvimento da capacidade de expressar necessidades, desejos e pensamentos de forma clara e eficiente, além de compreender adequadamente o que é comunicado por outras pessoas, facilitando as interações sociais e vínculos afetivos.</p>
-                </div>
-                <div class="beneficio-item animate-on-scroll fade-in" data-delay="200">
-                    <div class="beneficio-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Melhor Desempenho Acadêmico</h3>
-                    <p>Fortalecimento das habilidades necessárias para o processo de alfabetização e aprendizagem, como consciência fonológica, discriminação auditiva, linguagem oral e processamento cognitivo, prevenindo ou minimizando dificuldades escolares.</p>
-                </div>
-                <div class="beneficio-item animate-on-scroll fade-in" data-delay="400">
-                    <div class="beneficio-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                        </svg>
-                    </div>
-                    <h3>Aumento da Autoestima</h3>
-                    <p>O desenvolvimento da comunicação efetiva promove maior segurança e confiança, reduzindo a frustração, ansiedade e problemas comportamentais que podem surgir quando a criança não consegue se fazer entender ou compreender os outros.</p>
-                </div>
-                <div class="beneficio-item animate-on-scroll fade-in" data-delay="600">
-                    <div class="beneficio-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                        </svg>
-                    </div>
-                    <h3>Maior Autonomia e Participação Social</h3>
-                    <p>A intervenção fonoaudiológica proporciona à criança maior independência nas atividades cotidianas e melhor adaptação nos diferentes contextos sociais, como família, escola e grupos de amigos, promovendo sua inclusão plena na sociedade.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Equipe Section -->
-    <section id="equipe" class="fono-equipe">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Nossa Equipe</h2>
-                <p>Fonoaudiólogos especializados em atendimento infantil</p>
-            </div>
-            <div class="equipe-descricao animate-on-scroll fade-in">
-                <p>Nossa equipe de fonoaudiólogos é formada por profissionais com ampla experiência e formação especializada em diferentes áreas da fonoaudiologia infantil, incluindo linguagem, fala, motricidade orofacial, audiologia e aprendizagem. Todos são registrados no Conselho Regional de Fonoaudiologia (CRFa) e participam regularmente de cursos de atualização e congressos da área.</p>
-                <p>Trabalhamos de forma integrada com as demais especialidades da clínica e com outros profissionais que acompanham a criança, como médicos, professores e terapeutas, garantindo uma abordagem multidisciplinar e holística que considera todos os aspectos do desenvolvimento infantil.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="faq alt-bg">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Perguntas Frequentes</h2>
-                <p>Respostas para suas dúvidas sobre a Fonoaudiologia Infantil</p>
-            </div>
-            <div class="faq-container">
-                <div class="faq-item animate-on-scroll fade-in">
-                    <div class="faq-question">
-                        <h3>Como identificar se meu filho precisa de um fonoaudiólogo?</h3>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Alguns sinais que podem indicar a necessidade de avaliação fonoaudiológica incluem: atraso no desenvolvimento da fala (poucas palavras para a idade ou fala pouco compreensível), dificuldade para compreender ordens simples, trocas ou omissões de sons na fala após os 4 anos, gagueira persistente, rouquidão ou problemas vocais, respiração pela boca, dificuldades na amamentação ou alimentação, alterações na mastigação ou deglutição, e problemas de aprendizagem relacionados à leitura e escrita. Se você observar esses sinais, é recomendável buscar uma avaliação profissional.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate-on-scroll fade-in" data-delay="200">
-                    <div class="faq-question">
-                        <h3>Em que idade a criança deve iniciar a terapia fonoaudiológica?</h3>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Não existe uma idade específica para iniciar a terapia, pois isso depende das necessidades individuais de cada criança. A intervenção precoce, no entanto, é sempre recomendada quando há sinais de alterações no desenvolvimento da comunicação. Em alguns casos, o acompanhamento pode começar já nos primeiros meses de vida, como em situações de dificuldades na amamentação ou alterações decorrentes de condições neurológicas. Em outros casos, a terapia pode ser iniciada quando a criança apresenta atrasos na aquisição da fala ou linguagem, geralmente identificados a partir dos 2 anos de idade.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate-on-scroll fade-in" data-delay="400">
-                    <div class="faq-question">
-                        <h3>Quanto tempo dura o tratamento fonoaudiológico?</h3>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>A duração do tratamento varia conforme as necessidades da criança, a complexidade das dificuldades apresentadas e a regularidade das sessões. Algumas alterações mais simples podem ser resolvidas em poucos meses, enquanto outras, como distúrbios mais severos de linguagem ou associados a quadros neurológicos, podem requerer acompanhamento por períodos mais longos, às vezes por anos. É importante ressaltar que realizamos avaliações periódicas para monsurar o progresso e, quando necessário, ajustar o plano terapêutico ou dar alta quando os objetivos forem alcançados.</p>
-                    </div>
-                </div>
-                <div class="faq-item animate-on-scroll fade-in" data-delay="600">
-                    <div class="faq-question">
-                        <h3>A fonoaudiologia trabalha com estimulação precoce?</h3>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sim, a fonoaudiologia atua na estimulação precoce de bebês e crianças pequenas que apresentam riscos ou alterações no desenvolvimento da comunicação. Isso inclui bebês prematuros, crianças com síndromes genéticas, transtornos neurológicos, atrasos no desenvolvimento, entre outros. A estimulação é realizada através de atividades adequadas à idade e condições da criança, sempre com abordagem lúdica e envolvendo a família no processo. Quanto mais cedo a intervenção for iniciada, maiores são as chances de minimizar ou superar as dificuldades, aproveitando a plasticidade cerebral característica dos primeiros anos de vida.</p>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Decorative elements -->
+        <div class="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-secondary opacity-5"></div>
+        <div class="absolute top-12 -left-12 w-32 h-32 rounded-full bg-secondary opacity-5"></div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header animate-on-scroll fade-in">
-                <h2>Agende uma Avaliação</h2>
-                <p>Estamos prontos para ajudar seu filho em sua jornada de desenvolvimento</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info animate-on-scroll slide-up">
-                    <h3>Informações de Contato</h3>
-                    <p><strong>Endereço:</strong> Rua das Terapias, 123 - Bairro Especial</p>
-                    <p><strong>Telefone:</strong> (11) 1234-5678</p>
-                    <p><strong>Email:</strong> contato@clinicaespecial.com.br</p>
-                    <p><strong>Horário:</strong> Segunda a Sexta, das 8h às 19h</p>
-                    <div class="contact-hours">
-                        <h4>Como funciona a primeira consulta:</h4>
-                        <p>A primeira consulta é uma avaliação inicial onde conheceremos você e seu filho e entenderemos suas necessidades específicas. Traga laudos anteriores, se houver, e esteja preparado para compartilhar o histórico de desenvolvimento da criança e suas principais dificuldades no dia a dia.</p>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-10">
+        <!-- Musicoterapia Section -->
+        <section class="mb-16 bg-green-50 rounded-xl p-8">
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <div class="md:w-1/2">
+                    <div class="inline-block bg-green-light/20 px-4 py-1 rounded-full text-green-dark mb-4">
+                        Nova Terapia Integrada
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary mb-4 font-heading">
+                        Musicoterapia na Fonoaudiologia
+                    </h3>
+                    <p class="text-gray-700 mb-4">
+                        A Musicoterapia é uma abordagem terapêutica que utiliza a música e seus elementos - ritmo, melodia, harmonia e som - como ferramentas para desenvolver potencialidades e complementar o tratamento fonoaudiológico.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        Por meio de atividades como improvisação musical, composição, recriação de canções e escuta musical, estabelecemos uma comunicação que facilita a expressão emocional, estimula o desenvolvimento da linguagem e promove a integração social da criança em um ambiente lúdico.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mt-4">
+                        <span class="bg-green-light/10 text-green-dark px-3 py-1 rounded-full text-sm font-medium">Expressão emocional</span>
+                        <span class="bg-green-light/10 text-green-dark px-3 py-1 rounded-full text-sm font-medium">Desenvolvimento neuropsicomotor</span>
+                        <span class="bg-green-light/10 text-green-dark px-3 py-1 rounded-full text-sm font-medium">Comunicação não-verbal</span>
                     </div>
                 </div>
-                <div class="contact-form animate-on-scroll slide-up" data-delay="200">
-                    <h3>Formulário de Contato</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nome completo</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Telefone</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mensagem</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary">Solicitar Contato</button>
-                    </form>
-                    <div id="formMessage" class="form-message"></div>
+                <div class="md:w-1/2">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h4 class="text-xl font-bold text-secondary mb-4">Benefícios da Musicoterapia</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-music text-green-dark mt-1 mr-3"></i>
+                                <span>Melhora na comunicação e expressão, especialmente valioso para crianças com dificuldades na comunicação verbal</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-music text-green-dark mt-1 mr-3"></i>
+                                <span>Desenvolvimento motor e coordenação através de atividades rítmicas e manuseio de instrumentos musicais</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-music text-green-dark mt-1 mr-3"></i>
+                                <span>Regulação emocional e redução da ansiedade, utilizando a música como canal de expressão</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-music text-green-dark mt-1 mr-3"></i>
+                                <span>Estimulação cognitiva, incluindo atenção, memória, criatividade e habilidades de resolução de problemas</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </section>
+        
+        <!-- Áreas de Atuação -->
+        <section class="mb-16">
+            <h3 class="text-2xl font-bold text-secondary mb-8 text-center">
+                Áreas de Atuação
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Desenvolvimento da Linguagem -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-comments text-2xl text-secondary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-secondary mb-3 text-center">Desenvolvimento da Linguagem</h4>
+                    <p class="text-gray-700 mb-4">
+                        Estimulação das habilidades de compreensão e expressão da linguagem, trabalhando aspectos semânticos, sintáticos, pragmáticos e fonológicos.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Atraso de linguagem</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Transtorno específico de linguagem</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Estimulação precoce</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Desenvolvimento comunicativo no TEA</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Comunicação Alternativa -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-tablet-alt text-2xl text-secondary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-secondary mb-3 text-center">Comunicação Alternativa</h4>
+                    <p class="text-gray-700 mb-4">
+                        Implementação de sistemas de comunicação complementares ou substitutivos à fala para crianças com dificuldades severas de comunicação.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Sistemas pictográficos (PECS)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Comunicação por troca de figuras</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Dispositivos geradores de fala</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Adaptação de recursos tecnológicos</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Transtornos de Fala -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-microphone-alt text-2xl text-secondary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-secondary mb-3 text-center">Transtornos de Fala</h4>
+                    <p class="text-gray-700 mb-4">
+                        Tratamento das alterações na produção dos sons da fala, que podem afetar a inteligibilidade da comunicação e a integração social.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Transtornos fonológicos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Apraxia de fala infantil</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Distúrbios articulatórios</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Disfluência (gagueira)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Funções Orais e Alimentação -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-utensils text-2xl text-secondary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-secondary mb-3 text-center">Funções Orais e Alimentação</h4>
+                    <p class="text-gray-700 mb-4">
+                        Avaliação e tratamento das alterações nas funções de mastigação, deglutição, sucção e respiração, fundamentais para alimentação segura e desenvolvimento facial.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Dificuldades de mastigação</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Disfagia (dificuldade para engolir)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Transição alimentar</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Hipersensibilidade oral</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Processamento Auditivo -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-ear-listen text-2xl text-secondary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-secondary mb-3 text-center">Processamento Auditivo</h4>
+                    <p class="text-gray-700 mb-4">
+                        Intervenção para melhorar a capacidade de processar e interpretar os estímulos auditivos, habilidade essencial para o desenvolvimento da linguagem e aprendizagem.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Discriminação auditiva</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Atenção auditiva seletiva</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Memória auditiva</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Hipersensibilidade auditiva</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Alfabetização e Linguagem Escrita -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-book-open text-2xl text-secondary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-secondary mb-3 text-center">Alfabetização e Linguagem Escrita</h4>
+                    <p class="text-gray-700 mb-4">
+                        Desenvolvimento das habilidades necessárias para a aquisição e aprimoramento da leitura e escrita, trabalhando consciência fonológica e letramento.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Consciência fonológica</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Dislexia</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Disgrafia</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-secondary mr-2"></i>
+                            <span>Dificuldades de compreensão leitora</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Metodologia -->
+        <section class="mb-16 bg-white p-8 rounded-xl shadow-md">
+            <h3 class="text-2xl font-bold text-secondary mb-6 text-center">
+                Nossa Metodologia
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-secondary font-bold text-2xl">1</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-secondary mb-2">Avaliação Completa</h4>
+                    <p class="text-gray-700">
+                        Análise detalhada das habilidades comunicativas, linguísticas e orais para identificação precisa das necessidades individuais.
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-secondary font-bold text-2xl">2</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-secondary mb-2">Plano Personalizado</h4>
+                    <p class="text-gray-700">
+                        Desenvolvimento de estratégias terapêuticas específicas, considerando a idade, perfil sensorial e contexto familiar de cada criança.
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-secondary font-bold text-2xl">3</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-secondary mb-2">Intervenção Lúdica</h4>
+                    <p class="text-gray-700">
+                        Utilização de jogos, atividades interativas e recursos tecnológicos para tornar o processo terapêutico envolvente e motivador.
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-secondary font-bold text-2xl">4</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-secondary mb-2">Orientação Familiar</h4>
+                    <p class="text-gray-700">
+                        Capacitação da família para dar continuidade ao processo terapêutico em casa, potencializando os resultados.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-200">
+                <h4 class="text-xl font-bold text-secondary mb-4">Abordagens Utilizadas</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="flex items-start">
+                            <div class="bg-white p-2 rounded-full mr-3">
+                                <i class="fas fa-gamepad text-secondary"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-secondary">Terapia Lúdica</h5>
+                                <p class="text-gray-700 text-sm">
+                                    Utilização de atividades divertidas e motivadoras para estimular o desenvolvimento da comunicação, adaptadas à idade e interesses da criança.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="flex items-start">
+                            <div class="bg-white p-2 rounded-full mr-3">
+                                <i class="fas fa-users text-secondary"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-secondary">Abordagem Naturalística</h5>
+                                <p class="text-gray-700 text-sm">
+                                    Intervenção em contextos naturais e rotinas diárias, aproveitando oportunidades reais de comunicação para maior generalização das habilidades.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="flex items-start">
+                            <div class="bg-white p-2 rounded-full mr-3">
+                                <i class="fas fa-cogs text-secondary"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-secondary">Técnicas Motoras Orais</h5>
+                                <p class="text-gray-700 text-sm">
+                                    Exercícios específicos para aprimorar a mobilidade e funcionalidade dos órgãos fonoarticulatórios, melhorando a articulação e as funções orais.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="flex items-start">
+                            <div class="bg-white p-2 rounded-full mr-3">
+                                <i class="fas fa-child text-secondary"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-secondary">Integração Sensorial</h5>
+                                <p class="text-gray-700 text-sm">
+                                    Incorporação de estratégias sensoriais para crianças com hipersensibilidade oral ou auditiva, facilitando a aceitação de novos estímulos.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Parceria com outras Especialidades -->
+        <section>
+            <h3 class="text-2xl font-bold text-secondary mb-6 text-center">
+                Abordagem Integrada
+            </h3>
+            
+            <div class="bg-white p-6 rounded-xl shadow-md mb-8">
+                <h4 class="text-xl font-bold text-secondary mb-4">
+                    Trabalho em Equipe Multidisciplinar
+                </h4>
+                <p class="text-gray-700 mb-6">
+                    Na EIBM, nossa equipe de Fonoaudiologia trabalha de forma integrada com outras especialidades, garantindo uma abordagem completa para cada criança.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-brain text-white"></i>
+                            </div>
+                            <h5 class="font-bold text-primary">Psicologia</h5>
+                        </div>
+                        <p class="text-gray-700 text-sm">
+                            Trabalho conjunto para abordar aspectos emocionais e comportamentais que podem influenciar na comunicação, especialmente em crianças com TEA.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-hands text-white"></i>
+                            </div>
+                            <h5 class="font-bold text-secondary">Terapia Ocupacional</h5>
+                        </div>
+                        <p class="text-gray-700 text-sm">
+                            Integração com estratégias sensoriomotoras para melhorar postura, controle motor oral e escrita, essenciais para comunicação efetiva.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-purple rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-book-open text-white"></i>
+                            </div>
+                            <h5 class="font-bold text-purple">Psicopedagogia</h5>
+                        </div>
+                        <p class="text-gray-700 text-sm">
+                            Colaboração para desenvolver habilidades de linguagem escrita e apoiar o processo de alfabetização em crianças com dificuldades específicas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-blue-light to-blue-royal text-white p-8 rounded-xl">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 mb-6 md:mb-0 md:pr-8">
+                        <h4 class="text-xl font-bold mb-4">Fonoaudiologia na EIBM: Transformando a Comunicação</h4>
+                        <p class="mb-4">
+                            Acreditamos que a comunicação efetiva é um direito de todas as crianças. Nossa equipe de fonoaudiólogos está comprometida em encontrar a melhor forma de expressão para cada criança, seja pela fala convencional ou por meios alternativos.
+                        </p>
+                        <p>
+                            Com uma abordagem personalizada, lúdica e baseada em evidências, trabalhamos para desenvolver o potencial comunicativo máximo de cada criança, promovendo sua autonomia e inclusão social.
+                        </p>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center">
+                        <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center border-4 border-white/30">
+                            <i class="fas fa-comment-dots text-4xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="bg-blue-light py-14">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
+                Potencialize a Comunicação do Seu Filho
+            </h2>
+            <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                Agende uma avaliação fonoaudiológica e descubra como podemos ajudar no desenvolvimento comunicativo da sua criança.
+            </p>
+            <a href="contato.html" class="bg-white text-secondary hover:bg-green-50 font-medium px-6 py-3 rounded-full inline-block transition-colors">
+                Agendar Avaliação
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/img/logo.svg" alt="Logo Clínica Infantil">
-                    <h3>Clínica Especial</h3>
+    <footer class="bg-gray-900 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="assets/logo-eibm-white.svg" alt="Logo EIBM" class="h-10 mr-3">
+                    <div>
+                        <h3 class="text-xl font-bold">EIBM</h3>
+                        <p class="text-xs text-gray-400">Especialidades Integradas e Bem-estar Multidisciplinar</p>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><a href="index.html">Portal Principal</a></li>
-                        <li><a href="landing.html">Sobre a Clínica</a></li>
-                        <li><a href="terapias.html">Terapias</a></li>
-                        <li><a href="fonoaudiologia.html">Fonoaudiologia</a></li>
-                    </ul>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">&copy; 2025 EIBM - Todos os direitos reservados.</p>
+                    <div class="flex justify-center md:justify-end space-x-4 mt-2">
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-services">
-                    <h4>Nossas Especializações</h4>
-                    <ul>
-                        <li>Linguagem e Fala</li>
-                        <li>Motricidade Orofacial</li>
-                        <li>Audiologia</li>
-                        <li>Disfagia</li>
-                    </ul>
-                </div>
-                <div class="footer-newsletter">
-                    <h4>Receba nossas novidades</h4>
-                    <form id="newsletterForm">
-                        <input type="email" placeholder="Seu e-mail" required>
-                        <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Clínica Especial. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-    </button>
-
-    <!-- Custom JavaScript -->
-    <script src="script.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Menu Mobile
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            // Abre o menu
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.remove('-translate-x-full');
+                document.body.style.overflow = 'hidden'; // Impede rolagem da página
+            });
+            
+            // Fecha o menu
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('-translate-x-full');
+                document.body.style.overflow = ''; // Restaura rolagem
+            });
+            
+            // Fecha o menu ao clicar em um link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('-translate-x-full');
+                    document.body.style.overflow = '';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

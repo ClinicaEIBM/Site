@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | EIBM</title>
+    <meta name="description" content="Entre em contato com a clínica EIBM: Agende consultas, tire dúvidas e conheça nossos serviços de terapias infantis. Atendimento especializado em Terapia Ocupacional, Psicologia, Fonoaudiologia e Psicopedagogia.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#195184',      // Azul principal
+                        secondary: '#6CBB45',    // Verde
+                        accent: '#ED3924',       // Vermelho
+                        blue: {
+                            light: '#439CD5',
+                            royal: '#136CB2',
+                        },
+                        green: {
+                            light: '#9DCB5B',
+                            dark: '#648543',
+                        },
+                        red: {
+                            light: '#E8694B',
+                            dark: '#A53434',
+                        },
+                        yellow: {
+                            light: '#F2E5B0',
+                            DEFAULT: '#EFCD18',
+                            dark: '#D4AF37',
+                        },
+                        orange: '#EA8C2C',
+                        purple: {
+                            light: '#D29BFF',
+                            DEFAULT: '#A358E1',
+                            dark: '#9930C2',
+                        },
+                        gold: '#D4AF37',
+                        brown: '#8B4513',
+                        beige: '#F5F5DC',
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilos personalizados para a página -->
+    <style>
+        .bg-gradient-blue {
+            background: linear-gradient(135deg, rgba(25, 81, 132, 0.05) 0%, rgba(67, 156, 213, 0.15) 100%);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.03);
+        }
+        .card-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .input-focus:focus {
+            border-color: #195184;
+            box-shadow: 0 0 0 3px rgba(25, 81, 132, 0.2);
+        }
+        .map-container {
+            position: relative;
+            padding-bottom: 75%; /* Ajuste para controlar a altura */
+            height: 0;
+            overflow: hidden;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12 md:h-16">
+                        <div class="ml-3">
+                            <h1 class="text-xl md:text-2xl font-bold text-primary font-heading">EIBM</h1>
+                            <p class="text-xs text-gray-600 hidden md:block">Especialidades Integradas e Bem-estar Multidisciplinar</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="index.html" class="text-primary hover:text-blue-royal font-medium">Portal</a></li>
+                        <li><a href="terapias.html" class="text-primary hover:text-blue-royal font-medium">Terapias</a></li>
+                        <li><a href="especialidades.html" class="text-primary hover:text-blue-royal font-medium">Especialidades</a></li>
+                        <li><a href="ideia.html" class="text-primary hover:text-blue-royal font-medium">IDEA</a></li>
+                        <li><a href="transtornos.html" class="text-primary hover:text-blue-royal font-medium">Transtornos Alimentares</a></li>
+                        <li><a href="contato.html" class="text-primary hover:text-blue-royal font-medium border-b-2 border-primary">Contato</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="block md:hidden text-primary" id="menu-toggle">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (hidden by default) -->
+        <div class="fixed top-0 left-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 p-5 transform -translate-x-full transition-transform duration-300" id="mobile-menu">
+            <div class="flex justify-between items-center mb-6">
+                <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12">
+                <button id="close-menu">
+                    <i class="fas fa-times text-2xl text-primary"></i>
+                </button>
+            </div>
+            <ul class="space-y-4">
+                <li><a href="index.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Portal</a></li>
+                <li><a href="terapias.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Terapias</a></li>
+                <li><a href="especialidades.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Especialidades</a></li>
+                <li><a href="ideia.html" class="block py-2 text-primary hover:text-blue-royal font-medium">IDEA</a></li>
+                <li><a href="transtornos.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Transtornos Alimentares</a></li>
+                <li><a href="contato.html" class="block py-2 text-primary hover:text-blue-royal font-bold">Contato</a></li>
+                <li class="pt-4 border-t border-gray-200 mt-4">
+                    <p class="text-sm text-gray-500 mb-2">Nossas Terapias:</p>
+                </li>
+                <li><a href="psicologia.html" class="block py-2 text-primary hover:text-blue-royal font-medium text-sm">Psicologia</a></li>
+                <li><a href="fonoaudiologia.html" class="block py-2 text-primary hover:text-blue-royal font-medium text-sm">Fonoaudiologia</a></li>
+                <li><a href="terapia-ocupacional.html" class="block py-2 text-primary hover:text-blue-royal font-medium text-sm">Terapia Ocupacional</a></li>
+                <li><a href="psicopedagogia.html" class="block py-2 text-primary hover:text-blue-royal font-medium text-sm">Psicopedagogia</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-blue relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 z-10">
+                    <div class="inline-block bg-primary/10 px-4 py-1 rounded-full text-primary font-medium mb-4">
+                        EIBM Comunicação
+                    </div>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary font-heading mb-6">
+                        Entre em Contato Conosco
+                    </h2>
+                    <p class="text-lg text-gray-700 mb-8">
+                        Estamos à disposição para atender suas necessidades. Entre em contato para agendar uma avaliação, esclarecer dúvidas ou conhecer mais sobre nossos serviços de terapias infantis.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-phone-alt mr-2"></i> Atendimento telefônico
+                        </span>
+                        <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-envelope mr-2"></i> E-mail direto
+                        </span>
+                        <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-calendar-check mr-2"></i> Agendamento online
+                        </span>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center z-10">
+                    <div class="bg-white p-8 rounded-xl shadow-xl max-w-md card-shadow">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-headset text-3xl text-primary"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-xl font-bold text-primary">Atendimento ao Paciente</h3>
+                                <p class="text-gray-600">Resposta em até 24 horas</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-6">
+                            "Nossa equipe está pronta para fornecer todo o suporte necessário. Buscamos oferecer atendimento personalizado e acolhedor para todos os pacientes e suas famílias."
+                        </p>
+                        <div class="flex items-center">
+                            <img src="assets/about-image.svg" alt="Equipe EIBM" class="w-12 h-12 rounded-full object-cover mr-3">
+                            <div>
+                                <p class="font-medium">Equipe de Atendimento</p>
+                                <p class="text-sm text-gray-600">EIBM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Decorative elements -->
+        <div class="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-primary opacity-5"></div>
+        <div class="absolute top-12 -left-12 w-32 h-32 rounded-full bg-primary opacity-5"></div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Informações de Contato -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-5xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Telefone -->
+                        <div class="bg-blue-50/50 p-6 rounded-xl shadow-md hover-scale card-shadow">
+                            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-phone-alt text-2xl text-primary"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-primary mb-3 text-center">Telefone</h4>
+                            <p class="text-gray-700 mb-2 text-center">
+                                Atendimento de segunda a sexta, <br>das 08h às 18h
+                            </p>
+                            <div class="flex justify-center mt-4">
+                                <a href="tel:+551123456789" class="inline-flex items-center text-primary hover:text-blue-royal font-bold">
+                                    (11) 2345-6789 <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Email -->
+                        <div class="bg-blue-50/50 p-6 rounded-xl shadow-md hover-scale card-shadow">
+                            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-envelope text-2xl text-primary"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-primary mb-3 text-center">E-mail</h4>
+                            <p class="text-gray-700 mb-2 text-center">
+                                Resposta em até 24 horas <br>para todas as mensagens
+                            </p>
+                            <div class="flex justify-center mt-4">
+                                <a href="mailto:contato@eibm.com.br" class="inline-flex items-center text-primary hover:text-blue-royal font-bold">
+                                    contato@eibm.com.br <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Localização -->
+                        <div class="bg-blue-50/50 p-6 rounded-xl shadow-md hover-scale card-shadow">
+                            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-map-marker-alt text-2xl text-primary"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-primary mb-3 text-center">Endereço</h4>
+                            <p class="text-gray-700 mb-2 text-center">
+                                Av. Paulista, 1000 - Bela Vista <br>São Paulo - SP, 01310-100
+                            </p>
+                            <div class="flex justify-center mt-4">
+                                <a href="https://maps.google.com" target="_blank" class="inline-flex items-center text-primary hover:text-blue-royal font-bold">
+                                    Ver no mapa <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulário de Contato -->
+        <section class="py-16 bg-gradient-blue">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">Envie-nos uma Mensagem</h3>
+                    <p class="text-gray-600 mb-8 text-center max-w-2xl mx-auto">
+                        Preencha o formulário abaixo para entrar em contato com nossa equipe. Responderemos sua mensagem o mais breve possível.
+                    </p>
+                    
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Nome Completo</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus" placeholder="Seu nome completo" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">E-mail</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus" placeholder="seu.email@exemplo.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="phone" class="block text-gray-700 font-medium mb-2">Telefone</label>
+                                <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus" placeholder="(00) 00000-0000">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">Assunto</label>
+                                <select id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus" required>
+                                    <option value="" disabled selected>Selecione um assunto</option>
+                                    <option value="agendamento">Agendamento de Consulta</option>
+                                    <option value="informacoes">Informações sobre Terapias</option>
+                                    <option value="valores">Valores e Convênios</option>
+                                    <option value="feedback">Feedback sobre Atendimento</option>
+                                    <option value="outro">Outro Assunto</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Mensagem</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus" placeholder="Digite sua mensagem aqui..." required></textarea>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <input type="checkbox" id="privacy-policy" name="privacy-policy" class="mt-1 mr-2" required>
+                            <label for="privacy-policy" class="text-sm text-gray-600">
+                                Concordo com a <a href="#" class="text-primary hover:underline">Política de Privacidade</a> e autorizo o uso dos meus dados para contato.
+                            </label>
+                        </div>
+                        
+                        <div class="flex justify-center">
+                            <button type="submit" class="bg-primary hover:bg-blue-royal text-white font-medium px-8 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-paper-plane mr-2"></i> Enviar Mensagem
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mapa e Horários -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Mapa -->
+                    <div class="card-shadow rounded-xl overflow-hidden">
+                        <div class="bg-primary py-4 px-6">
+                            <h3 class="text-xl font-bold text-white">Nossa Localização</h3>
+                        </div>
+                        <div class="map-container">
+                            <!-- Substitua o src pelo seu mapa do Google Maps -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.0982660076914!2d-46.6522311239252!3d-23.5646177639508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%201000%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001310-100!5e0!3m2!1spt-BR!2sbr!4v1713399560409!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                    
+                    <!-- Horários e Informações Adicionais -->
+                    <div class="bg-blue-50/50 p-8 rounded-xl card-shadow">
+                        <h3 class="text-2xl font-bold text-primary mb-6">Horários de Funcionamento</h3>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex justify-between items-center pb-2 border-b border-gray-200">
+                                <span class="text-gray-700 font-medium">Segunda a Sexta</span>
+                                <span class="text-primary font-bold">08:00 - 18:00</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-2 border-b border-gray-200">
+                                <span class="text-gray-700 font-medium">Sábado</span>
+                                <span class="text-primary font-bold">08:00 - 12:00</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-2 border-b border-gray-200">
+                                <span class="text-gray-700 font-medium">Domingo e Feriados</span>
+                                <span class="text-red-500 font-bold">Fechado</span>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-xl font-bold text-primary mb-4">Informações Adicionais</h4>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-4 shrink-0">
+                                    <i class="fas fa-credit-card text-primary"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-gray-800 mb-1">Formas de Pagamento</h5>
+                                    <p class="text-gray-600">Aceitamos cartões de crédito, débito, PIX e dinheiro. Temos planos de terapia com opções de pacotes com desconto.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-4 shrink-0">
+                                    <i class="fas fa-ambulance text-primary"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-gray-800 mb-1">Convênios</h5>
+                                    <p class="text-gray-600">Trabalhamos com os principais convênios médicos. Entre em contato para verificar a cobertura do seu plano.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-4 shrink-0">
+                                    <i class="fas fa-wheelchair text-primary"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-gray-800 mb-1">Acessibilidade</h5>
+                                    <p class="text-gray-600">Nossa clínica é totalmente acessível, com rampas, elevadores e instalações adaptadas para pessoas com mobilidade reduzida.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ/Perguntas Frequentes -->
+        <section class="py-16 bg-gradient-blue">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-primary mb-3">Perguntas Frequentes</h3>
+                    <p class="text-gray-700 max-w-3xl mx-auto">Respostas para dúvidas comuns sobre nossos serviços e atendimentos</p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <!-- Pergunta 1 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-shadow">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
+                            <h4 class="text-lg font-bold text-primary">Como faço para agendar a primeira consulta?</h4>
+                            <i class="fas fa-plus text-primary transition-transform accordion-icon"></i>
+                        </button>
+                        <div class="px-6 pb-4 accordion-content hidden">
+                            <p class="text-gray-700">
+                                Para agendar a primeira consulta, você pode entrar em contato por telefone, e-mail ou preencher o formulário nesta página. Nossa equipe entrará em contato para confirmar sua data e horário, além de fornecer orientações sobre a documentação necessária para o primeiro atendimento. Recomendamos que você chegue com 15 minutos de antecedência para realizar o cadastro inicial.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Pergunta 2 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-shadow">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
+                            <h4 class="text-lg font-bold text-primary">Quais documentos devo levar para a primeira consulta?</h4>
+                            <i class="fas fa-plus text-primary transition-transform accordion-icon"></i>
+                        </button>
+                        <div class="px-6 pb-4 accordion-content hidden">
+                            <p class="text-gray-700">
+                                Para a primeira consulta, é importante trazer: documento de identificação dos pais ou responsáveis (RG e CPF), documento da criança (certidão de nascimento ou RG), carteirinha do convênio (se aplicável), relatórios médicos anteriores, relatórios escolares (se disponíveis) e encaminhamentos médicos (se houver). Também é útil trazer uma lista de medicamentos que a criança esteja utilizando atualmente.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Pergunta 3 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-shadow">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
+                            <h4 class="text-lg font-bold text-primary">Trabalham com convênios médicos?</h4>
+                            <i class="fas fa-plus text-primary transition-transform accordion-icon"></i>
+                        </button>
+                        <div class="px-6 pb-4 accordion-content hidden">
+                            <p class="text-gray-700">
+                                Sim, trabalhamos com os principais convênios médicos do mercado. A cobertura para terapias específicas pode variar de acordo com o plano do paciente. Recomendamos que você entre em contato conosco informando seu convênio e plano para verificarmos a cobertura específica para os serviços que você necessita. Também oferecemos opções de atendimento particular com valores acessíveis.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Pergunta 4 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-shadow">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
+                            <h4 class="text-lg font-bold text-primary">Qual a duração das sessões de terapia?</h4>
+                            <i class="fas fa-plus text-primary transition-transform accordion-icon"></i>
+                        </button>
+                        <div class="px-6 pb-4 accordion-content hidden">
+                            <p class="text-gray-700">
+                                As sessões de terapia têm duração média de 45 a 50 minutos, podendo variar de acordo com a modalidade terapêutica e as necessidades específicas de cada paciente. A frequência recomendada para as sessões (semanal, bissemanal, etc.) será definida pelo terapeuta após a avaliação inicial, considerando as necessidades individuais da criança e os objetivos do tratamento.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="bg-primary py-14">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
+                Agende uma Avaliação Inicial
+            </h2>
+            <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                Dê o primeiro passo para o desenvolvimento pleno do seu filho. Nossa equipe está pronta para oferecer o suporte necessário.
+            </p>
+            <a href="tel:+551123456789" class="bg-white text-primary hover:bg-blue-50 font-medium px-6 py-3 rounded-full inline-block transition-colors mr-4">
+                <i class="fas fa-phone-alt mr-2"></i> (11) 2345-6789
+            </a>
+            <a href="mailto:contato@eibm.com.br" class="bg-blue-royal hover:bg-blue-800 text-white font-medium px-6 py-3 rounded-full inline-block transition-colors">
+                <i class="fas fa-envelope mr-2"></i> E-mail
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="assets/logo-eibm-white.svg" alt="Logo EIBM" class="h-10 mr-3">
+                        <div>
+                            <h3 class="text-xl font-bold">EIBM</h3>
+                            <p class="text-xs text-gray-400">Especialidades Integradas</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Clínica especializada em avaliação e intervenção terapêutica para crianças, oferecendo abordagem multidisciplinar.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-blue-400 transition-colors" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-pink-400 transition-colors" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-red-400 transition-colors" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-blue-300 transition-colors" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Terapias</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="terapia-ocupacional.html" class="hover:text-white transition-colors">Terapia Ocupacional</a></li>
+                        <li><a href="psicologia.html" class="hover:text-white transition-colors">Psicologia</a></li>
+                        <li><a href="fonoaudiologia.html" class="hover:text-white transition-colors">Fonoaudiologia</a></li>
+                        <li><a href="psicopedagogia.html" class="hover:text-white transition-colors">Psicopedagogia</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Início</a></li>
+                        <li><a href="especialidades.html" class="hover:text-white transition-colors">Especialidades</a></li>
+                        <li><a href="ideia.html" class="hover:text-white transition-colors">IDEA</a></li>
+                        <li><a href="transtornos.html" class="hover:text-white transition-colors">Transtornos Alimentares</a></li>
+                        <li><a href="contato.html" class="hover:text-white transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contato</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-white"></i>
+                            <span>Av. Paulista, 1000 - Bela Vista<br>São Paulo - SP, 01310-100</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-white"></i>
+                            <span>(11) 2345-6789</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-white"></i>
+                            <span>contato@eibm.com.br</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-3 text-white"></i>
+                            <span>Seg - Sex: 8h às 18h</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-6 border-t border-gray-800 text-center md:flex md:justify-between">
+                <p class="text-gray-400">&copy; 2025 EIBM - Todos os direitos reservados.</p>
+                <div class="mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors mr-4">Política de Privacidade</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script para o acordeão FAQ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Script para o acordeão
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('.accordion-icon');
+                    
+                    // Toggle content
+                    content.classList.toggle('hidden');
+                    
+                    // Rotate icon
+                    if (content.classList.contains('hidden')) {
+                        icon.classList.remove('transform', 'rotate-45');
+                    } else {
+                        icon.classList.add('transform', 'rotate-45');
+                    }
+                });
+            });
+
+            // Script para o envio do formulário
+            const contactForm = document.getElementById('contact-form');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simulação de envio
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Enviando...';
+                    submitButton.disabled = true;
+                    
+                    // Simula uma requisição
+                    setTimeout(() => {
+                        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                        contactForm.reset();
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+
+    <!-- JavaScript principal -->
+    <script src="script.js"></script>
+</body>
+</html>

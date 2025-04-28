@@ -1,353 +1,285 @@
 /**
- * Clínica Infantil - Main JavaScript file
- * Handles animations, form validation, and interactive elements
- * Author: Developer
- * Version: 2.0
- * Updated: Portal structure with tree-like navigation
+ * EIBM - Site Institucional
+ * Script de funcionalidades para interatividade
  */
 
-// Wait for the DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functions
-    setupMobileMenu();
-    setupScrollAnimations();
-    setupQuestionsCarousel();
-    setupContactForm();
-    setupNewsletterForm();
-    setupBackToTopButton();
-    setupStickyHeader();
-    setupPortalNavigation();
-    setupFAQAccordion();
-    setupTestimonialsCarousel();
+// Espera o DOM ser completamente carregado
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        // Inicializa todos os componentes com tratamento de erro para cada um
+        try { initMobileMenu(); } catch (e) { console.error('Erro em initMobileMenu:', e); }
+        try { initSmoothScroll(); } catch (e) { console.error('Erro em initSmoothScroll:', e); }
+        try { initTestimonialCarousel(); } catch (e) { console.error('Erro em initTestimonialCarousel:', e); }
+        try { initModals(); } catch (e) { console.error('Erro em initModals:', e); }
+        try { initBackToTop(); } catch (e) { console.error('Erro em initBackToTop:', e); }
+        try { initForms(); } catch (e) { console.error('Erro em initForms:', e); }
+        try { observeAnimations(); } catch (e) { console.error('Erro em observeAnimations:', e); }
+        try { initPrismaEffect(); } catch (e) { console.error('Erro em initPrismaEffect:', e); } // Inicializa o efeito 3D do prisma na home
+    } catch (e) {
+        console.error('Erro na inicialização do site:', e);
+    }
 });
 
 /**
- * Handle Mobile Menu Toggle
+ * Menu Mobile
+ * Controla a abertura e fechamento do menu em dispositivos móveis
  */
-function setupMobileMenu() {
-    const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
-    const navLinks = document.querySelector('.nav-links');
+function initMobileMenu() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeMenu = document.getElementById('close-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
     
-    if (!mobileMenuIcon || !navLinks) return;
+    // Verifica se os elementos existem antes de prosseguir
+    if (!mobileMenu) return;
     
-    mobileMenuIcon.addEventListener('click', function() {
-        // Toggle active class for menu icon animation
-        this.classList.toggle('active');
-        
-        // Toggle bars to form X icon
-        const bars = this.querySelectorAll('div');
-        if (this.classList.contains('active')) {
-            bars[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
-            bars[1].style.opacity = '0';
-            bars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
-        } else {
-            bars[0].style.transform = 'none';
-            bars[1].style.opacity = '1';
-            bars[2].style.transform = 'none';
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    // Abre o menu (se o botão existir)
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Impede rolagem da página
+        });
+    }
+
+    // Fecha o menu (se o botão existir)
+    if (closeMenu) {
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = ''; // Restaura rolagem
+        });
+    }
+
+    // Fecha o menu ao clicar em um link
+    if (mobileLinks && mobileLinks.length > 0) {
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
+    // Fecha o menu ao clicar fora dele
+    document.addEventListener('click', (e) => {
+        if (mobileMenu && menuToggle && mobileMenu.classList.contains('active') && 
+            !mobileMenu.contains(e.target) && 
+            e.target !== menuToggle && 
+            !menuToggle.contains(e.target)) {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
         }
-        
-        // Toggle menu visibility
-        navLinks.classList.toggle('active');
     });
+}
+
+/**
+ * Rolagem Suave
+ * Implementa rolagem suave para os links de navegação
+ */
+function initSmoothScroll() {
+    const navLinks = document.querySelectorAll('a[href^="#"]');
     
-    // Close mobile menu when clicking on links
-    const menuLinks = navLinks.querySelectorAll('a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                mobileMenuIcon.click();
+    if (!navLinks || navLinks.length === 0) return;
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Previne o comportamento padrão do link
+            e.preventDefault();
+            
+            // Obtém o alvo a partir do atributo href
+            const targetId = this.getAttribute('href');
+            
+            // Se for um link vazio (#) ou (#inicio), role para o topo
+            if (targetId === '#' || targetId === '#inicio') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                return;
+            }
+            
+            // Encontra o elemento alvo
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                // Calcula a posição considerando o header fixo
+                const header = document.querySelector('header');
+                const headerHeight = header ? header.offsetHeight : 0;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
+                // Rola até o alvo
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
             }
         });
     });
 }
 
 /**
- * Setup IntersectionObserver for scroll animations
+ * Carrossel de Depoimentos
+ * Controla o carrossel na seção de depoimentos
  */
-function setupScrollAnimations() {
-    // Get all elements with the animation class
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+function initTestimonialCarousel() {
+    const track = document.querySelector('.testimonial-track');
+    const items = document.querySelectorAll('.testimonial-item');
+    const dots = document.querySelectorAll('#testimonial-dots button');
+    const prevButton = document.getElementById('prev-testimonial');
+    const nextButton = document.getElementById('next-testimonial');
     
-    if (!animatedElements.length) return;
-    
-    // Create observer options
-    const options = {
-        root: null, // viewport
-        rootMargin: '0px',
-        threshold: 0.15 // 15% of the element must be visible
-    };
-    
-    // Create the observer
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Get delay if specified in the data-delay attribute
-                const delay = entry.target.dataset.delay || 0;
-                
-                // Add the visible class after the specified delay
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, delay);
-                
-                // Stop observing once animation is triggered
-                observer.unobserve(entry.target);
-            }
-        });
-    }, options);
-    
-    // Observe each animated element
-    animatedElements.forEach(element => {
-        observer.observe(element);
-    });
-    
-    // Trigger animations that are already visible on page load
-    setTimeout(() => {
-        animatedElements.forEach(element => {
-            const rect = element.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                const delay = element.dataset.delay || 0;
-                setTimeout(() => {
-                    element.classList.add('visible');
-                }, delay);
-                observer.unobserve(element);
-            }
-        });
-    }, 100);
-}
-
-/**
- * Setup Questions Carousel
- */
-function setupQuestionsCarousel() {
-    const carouselTrack = document.querySelector('.carousel-track');
-    const carouselItems = document.querySelectorAll('.carousel-item');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    const dotsContainer = document.querySelector('.carousel-dots');
-    
-    if (!carouselTrack || !carouselItems.length) return;
+    if (!track || !items || items.length === 0) return;
     
     let currentIndex = 0;
-    let itemWidth = carouselItems[0].clientWidth;
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    // Create dots
-    carouselItems.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (index === 0) dot.classList.add('active');
+    const itemWidth = 100; // % de largura
+
+    // Função para atualizar a posição do carrossel
+    function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
         
-        dot.addEventListener('click', () => {
-            goToSlide(index);
+        // Atualiza os dots apenas se existirem
+        if (dots && dots.length > 0) {
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('bg-primary');
+                    dot.classList.remove('bg-gray-300');
+                } else {
+                    dot.classList.remove('bg-primary');
+                    dot.classList.add('bg-gray-300');
+                }
+            });
+        }
+    }
+    
+    // Botão anterior
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+            updateCarousel();
         });
-        
-        dotsContainer.appendChild(dot);
-    });
+    }
     
-    const dots = document.querySelectorAll('.dot');
+    // Botão próximo
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+    }
     
-    // Update slide position
-    function updateSlidePosition() {
-        carouselTrack.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-        
-        // Update active dot
+    // Dots de navegação
+    if (dots && dots.length > 0) {
         dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
-        });
-        
-        // Disable/enable navigation buttons for edge cases
-        if (prevBtn && nextBtn) {
-            prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
-            prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
-            
-            nextBtn.style.opacity = currentIndex === carouselItems.length - 1 ? '0.5' : '1';
-            nextBtn.style.pointerEvents = currentIndex === carouselItems.length - 1 ? 'none' : 'auto';
-        }
-    }
-    
-    // Go to a specific slide
-    function goToSlide(index) {
-        if (index < 0) index = 0;
-        if (index >= carouselItems.length) index = carouselItems.length - 1;
-        
-        currentIndex = index;
-        updateSlidePosition();
-    }
-    
-    // Initialize buttons
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            goToSlide(currentIndex - 1);
-        });
-        // Initially disable if at first slide
-        prevBtn.style.opacity = '0.5';
-        prevBtn.style.pointerEvents = 'none';
-    }
-    
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            goToSlide(currentIndex + 1);
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
         });
     }
     
-    // Handle touch events for swipe support
-    carouselTrack.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
+    // Auto-play (opcional)
+    let interval = setInterval(() => {
+        currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+        updateCarousel();
+    }, 6000);
     
-    carouselTrack.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
-    
-    function handleSwipe() {
-        const swipeThreshold = 50; // Minimum distance for a swipe
+    // Pausa o auto-play ao passar o mouse
+    const testimonialContainer = document.querySelector('.testimonial-container');
+    if (testimonialContainer) {
+        testimonialContainer.addEventListener('mouseenter', () => {
+            clearInterval(interval);
+        });
         
-        if (touchStartX - touchEndX > swipeThreshold) {
-            // Swipe left, go to next slide
-            goToSlide(currentIndex + 1);
-        } else if (touchEndX - touchStartX > swipeThreshold) {
-            // Swipe right, go to previous slide
-            goToSlide(currentIndex - 1);
-        }
+        testimonialContainer.addEventListener('mouseleave', () => {
+            interval = setInterval(() => {
+                currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+                updateCarousel();
+            }, 6000);
+        });
     }
-    
-    // Update on window resize
-    window.addEventListener('resize', () => {
-        itemWidth = carouselItems[0].clientWidth;
-        updateSlidePosition();
-    });
-    
-    // Initial update
-    updateSlidePosition();
 }
 
 /**
- * Setup Contact Form handling
+ * Modais
+ * Gerencia a abertura e fechamento de modais em todo o site
  */
-function setupContactForm() {
-    const contactForm = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
+function initModals() {
+    const modalTriggers = document.querySelectorAll('.modal-trigger');
+    const modalCloseButtons = document.querySelectorAll('.modal-close');
     
-    if (!contactForm || !formMessage) return;
-    
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Basic form validation
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const message = document.getElementById('message').value.trim();
-        
-        if (!name || !email || !phone || !message) {
-            showFormMessage('Por favor, preencha todos os campos.', 'error');
-            return;
-        }
-        
-        // Email validation with regex
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            showFormMessage('Por favor, insira um e-mail válido.', 'error');
-            return;
-        }
-        
-        // Phone validation with regex (Brazilian format)
-        const phoneRegex = /^[0-9]{10,11}$/;
-        const phoneStripped = phone.replace(/\D/g, '');
-        if (!phoneRegex.test(phoneStripped)) {
-            showFormMessage('Por favor, insira um telefone válido (apenas números).', 'error');
-            return;
-        }
-        
-        // In a real application, here would be an AJAX call to send the form data to a server
-        
-        // For this demo, just show a success message
-        showFormMessage('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-        
-        // Reset form fields
-        contactForm.reset();
-    });
-    
-    // Helper function to show form messages
-    function showFormMessage(text, type) {
-        formMessage.textContent = text;
-        formMessage.className = 'form-message ' + type;
-        
-        // Scroll to the form message
-        formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        
-        // Clear the message after 5 seconds
-        setTimeout(() => {
-            formMessage.textContent = '';
-            formMessage.className = 'form-message';
-        }, 5000);
+    // Abre o modal quando o gatilho é clicado
+    if (modalTriggers && modalTriggers.length > 0) {
+        modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const modalId = trigger.getAttribute('data-modal');
+                const modal = document.getElementById(`modal-${modalId}`);
+                
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Impede rolagem da página
+                }
+            });
+        });
     }
     
-    // Format phone input as the user types
-    const phoneInput = document.getElementById('phone');
-    if (phoneInput) {
-        phoneInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            
-            if (value.length > 11) {
-                value = value.substring(0, 11);
+    // Fecha o modal ao clicar no botão de fechar
+    if (modalCloseButtons && modalCloseButtons.length > 0) {
+        modalCloseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.modal');
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = ''; // Restaura rolagem
+                }
+            });
+        });
+    }
+    
+    // Fecha o modal ao clicar fora do conteúdo
+    document.addEventListener('click', (e) => {
+        if (e.target && e.target.classList && 
+            e.target.classList.contains('modal') && 
+            e.target.classList.contains('active')) {
+            e.target.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Fecha o modal ao pressionar a tecla ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const activeModals = document.querySelectorAll('.modal.active');
+            if (activeModals && activeModals.length > 0) {
+                activeModals.forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = '';
             }
-            
-            e.target.value = value;
-        });
-    }
-}
-
-/**
- * Setup Newsletter Form handling
- */
-function setupNewsletterForm() {
-    const newsletterForm = document.getElementById('newsletterForm');
-    
-    if (!newsletterForm) return;
-    
-    newsletterForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const emailInput = this.querySelector('input[type="email"]');
-        const email = emailInput.value.trim();
-        
-        // Basic email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!email || !emailRegex.test(email)) {
-            alert('Por favor, insira um e-mail válido.');
-            return;
         }
-        
-        // In a real application, here would be an AJAX call to subscribe the email
-        
-        // For this demo, just show an alert and reset the form
-        alert('Obrigado por se inscrever em nossa newsletter!');
-        emailInput.value = '';
     });
 }
 
 /**
- * Setup Back to Top button behavior
+ * Botão de Voltar ao Topo
+ * Exibe e oculta o botão de voltar ao topo conforme rolagem
  */
-function setupBackToTopButton() {
-    const backToTopBtn = document.getElementById('backToTop');
+function initBackToTop() {
+    const backToTopButton = document.getElementById('back-to-top');
     
-    if (!backToTopBtn) return;
+    if (!backToTopButton) return;
     
-    // Show button when user scrolls down 300px from the top
+    // Exibe o botão após rolar uma certa quantidade
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTopBtn.classList.add('visible');
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('opacity-100');
+            backToTopButton.classList.remove('opacity-0', 'invisible');
         } else {
-            backToTopBtn.classList.remove('visible');
+            backToTopButton.classList.remove('opacity-100');
+            backToTopButton.classList.add('opacity-0', 'invisible');
         }
     });
     
-    // Scroll to top when button is clicked
-    backToTopBtn.addEventListener('click', () => {
+    // Rola para o topo quando clicado
+    backToTopButton.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -356,96 +288,328 @@ function setupBackToTopButton() {
 }
 
 /**
- * Setup Sticky Header behavior
+ * Formulários
+ * Gerencia os formulários de contato e newsletter
  */
-function setupStickyHeader() {
-    const header = document.querySelector('header');
+function initForms() {
+    const schedulingForm = document.getElementById('scheduling-form');
+    const newsletterForm = document.getElementById('newsletter-form');
     
-    if (!header) return;
+    // Formulário de Agendamento
+    if (schedulingForm) {
+        schedulingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simulação de envio (em um caso real, enviaria para um servidor)
+            const submitButton = schedulingForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Altera o botão para indicar envio
+            submitButton.disabled = true;
+            submitButton.textContent = 'Enviando...';
+            
+            // Simula um atraso de processamento
+            setTimeout(() => {
+                // Reseta o formulário e exibe agradecimento
+                schedulingForm.reset();
+                submitButton.textContent = 'Enviado com Sucesso!';
+                
+                // Restaura o botão após um tempo
+                setTimeout(() => {
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                    
+                    // Fecha o modal
+                    const modal = document.getElementById('modal-agendamento');
+                    if (modal) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                    
+                    // Mensagem de agradecimento
+                    alert('Obrigado por entrar em contato! Em breve nossa equipe entrará em contato para confirmar seu agendamento.');
+                }, 2000);
+            }, 1500);
+        });
+    }
     
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+    // Formulário de Newsletter
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const emailInput = newsletterForm.querySelector('input[type="email"]');
+            const submitButton = newsletterForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            
+            // Valida o e-mail (simples)
+            if (!emailInput.value || !emailInput.value.includes('@')) {
+                alert('Por favor, informe um e-mail válido.');
+                emailInput.focus();
+                return;
+            }
+            
+            // Altera o botão para indicar envio
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            
+            // Simula um atraso de processamento
+            setTimeout(() => {
+                // Reseta o formulário e exibe agradecimento
+                newsletterForm.reset();
+                submitButton.innerHTML = '<i class="fas fa-check"></i>';
+                
+                // Restaura o botão após um tempo
+                setTimeout(() => {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalText;
+                }, 2000);
+                
+                // Mensagem de agradecimento
+                alert('Obrigado por se inscrever em nossa newsletter!');
+            }, 1500);
+        });
+    }
+}
+
+/**
+ * Animações baseadas em Observação
+ * Ativa animações conforme elementos entram no viewport
+ */
+function observeAnimations() {
+    // Verifica se o IntersectionObserver é suportado
+    if (!('IntersectionObserver' in window)) return;
+    
+    const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-right');
+    
+    if (!animatedElements || animatedElements.length === 0) return;
+    
+    // Configura um novo observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.visibility = 'visible';
+                entry.target.style.animationPlayState = 'running';
+                
+                // Deixa de observar o elemento após ativar a animação
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1 // Porcentagem do elemento visível para ativar a animação
+    });
+    
+    // Prepara os elementos e começa a observá-los
+    animatedElements.forEach(element => {
+        // Configura estado inicial
+        element.style.visibility = 'hidden';
+        element.style.animationPlayState = 'paused';
+        
+        // Começa a observar o elemento
+        observer.observe(element);
     });
 }
 
 /**
- * Setup Portal Navigation interactions
+ * Navigation Active State
+ * Destaca item do menu conforme a seção visível
  */
-function setupPortalNavigation() {
-    // Handle portal-main-item hover effects
-    const portalItems = document.querySelectorAll('.portal-main-item');
-    if (portalItems.length) {
-        portalItems.forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                // Add extra highlight effect on hover
-                item.style.transform = 'translateY(-10px) scale(1.02)';
-                item.style.boxShadow = '0 20px 30px rgba(0, 0, 0, 0.15)';
-            });
-            
-            item.addEventListener('mouseleave', () => {
-                // Reset to CSS-defined values
-                item.style.transform = '';
-                item.style.boxShadow = '';
-            });
-        });
-    }
+function updateNavActiveState() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a, #mobile-menu a');
     
-    // Handle tree-item connecting lines
-    const treeItems = document.querySelectorAll('.tree-item');
-    if (treeItems.length) {
-        // Add connecting lines between tree items dynamically
-        treeItems.forEach((item, index) => {
-            if (index > 0) {
-                const prevItem = treeItems[index - 1];
-                const connector = document.createElement('div');
-                connector.classList.add('tree-connector');
-                
-                // Position the connector between items
-                const prevRect = prevItem.getBoundingClientRect();
-                const currentRect = item.getBoundingClientRect();
-                
-                if (window.innerWidth > 768) {
-                    // On desktop, draw horizontal lines between items
-                    connector.style.width = `${currentRect.left - (prevRect.right)}px`;
-                    connector.style.height = '2px';
-                    connector.style.top = `${prevRect.top + prevRect.height / 2}px`;
-                    connector.style.left = `${prevRect.right}px`;
-                } else {
-                    // On mobile, draw vertical lines between items
-                    connector.style.width = '2px';
-                    connector.style.height = `${currentRect.top - prevRect.bottom}px`;
-                    connector.style.top = `${prevRect.bottom}px`;
-                    connector.style.left = `${prevRect.left + prevRect.width / 2}px`;
+    if (!sections || sections.length === 0) return;
+    
+    // Ponto na página onde consideramos a seção como "ativa"
+    const scrollPosition = window.scrollY + window.innerHeight / 3;
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            // Remove classe ativa de todos os links
+            if (navLinks && navLinks.length > 0) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+            }
+            
+            // Adiciona classe ativa ao link correspondente à seção
+            if (sectionId) {
+                const activeLinks = document.querySelectorAll(`a[href="#${sectionId}"]`);
+                if (activeLinks && activeLinks.length > 0) {
+                    activeLinks.forEach(link => {
+                        link.classList.add('active');
+                    });
                 }
-                
-                document.querySelector('.tree-navigation').appendChild(connector);
+            }
+        }
+    });
+}
+
+// Atualiza estado ativo do menu durante rolagem
+window.addEventListener('scroll', updateNavActiveState);
+
+/**
+ * Efeito 3D nas Bolinhas do Prisma
+ * Controla o efeito de movimento 3D e exibição da sinopse ao clicar nas bolinhas
+ */
+function initPrismaEffect() {
+    const container = document.getElementById('prisma-container');
+    if (!container) return;
+    
+    const circles = document.querySelectorAll('.circle-item');
+    if (!circles || circles.length === 0) return;
+    
+    let activeCircle = null;
+    let isPaused = false;
+
+    // Função para pausar todas as animações
+    function pauseAllAnimations() {
+        container.classList.add('animation-paused');
+        isPaused = true;
+    }
+
+    // Função para retomar todas as animações
+    function resumeAllAnimations() {
+        container.classList.remove('animation-paused');
+        isPaused = false;
+    }
+
+    // Função para resetar o estado de todas as bolinhas
+    function resetAllCircles() {
+        circles.forEach(c => {
+            c.classList.remove('active');
+            c.classList.remove('inactive');
+            c.style.zIndex = ""; // Remove o z-index inline
+            const s = c.querySelector('.circle-synopsis');
+            if (s) {
+                s.style.opacity = '0';
+                s.style.visibility = 'hidden';
             }
         });
+        activeCircle = null;
+        document.body.classList.remove('synopsis-active');
+        resumeAllAnimations();
     }
     
-    // Handle portal return button effects
-    const returnButtons = document.querySelectorAll('.portal-return-btn');
-    if (returnButtons.length) {
-        returnButtons.forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                // Animate the arrow icon
-                const arrow = btn.querySelector('svg');
-                if (arrow) {
-                    arrow.style.transform = 'translateX(-5px)';
-                    arrow.style.transition = 'transform 0.3s ease';
+    circles.forEach(circle => {
+        const button = circle.querySelector('.circle-button');
+        const synopsis = circle.querySelector('.circle-synopsis');
+        
+        if (!button) return;
+        
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Se esta bolinha já está ativa, redirecionar para a página
+            if (activeCircle === circle && synopsis) {
+                const linkElement = synopsis.querySelector('a');
+                if (linkElement) {
+                    const link = linkElement.getAttribute('href');
+                    if (link) window.location.href = link;
+                }
+                return;
+            }
+            
+            // Reset todas as bolinhas para o estado original
+            resetAllCircles();
+            
+            // Pausar todas as animações
+            pauseAllAnimations();
+            
+            // Ativar efeito na bolinha clicada
+            circle.classList.add('active');
+            circle.style.zIndex = "50"; // Aumenta o z-index da esfera clicada
+            
+            // Marcar outras bolinhas como inativas
+            circles.forEach(c => {
+                if (c !== circle) {
+                    c.classList.add('inactive');
+                    c.style.zIndex = "10"; // Reduz o z-index das outras esferas
                 }
             });
             
-            btn.addEventListener('mouseleave', () => {
-                const arrow = btn.querySelector('svg');
-                if (arrow) {
-                    arrow.style.transform = '';
+            // Adicionar classe de perspectiva 3D ao container
+            container.style.perspective = '1000px';
+            
+            // Exibir a sinopse
+            if (synopsis) {
+                synopsis.style.visibility = 'visible';
+                synopsis.style.opacity = '1';
+                
+                // Adicionar classe para overlay mobile
+                if (window.innerWidth < 640) {
+                    document.body.classList.add('synopsis-active');
+                    // Forçar centralização no mobile
+                    synopsis.style.left = '50%';
+                    synopsis.style.right = 'auto';
+                    synopsis.style.top = '50%';
+                    synopsis.style.transform = 'translate(-50%, -50%)';
+                }
+            }
+            
+            activeCircle = circle;
+        });
+
+        // Permitir clicar na sinopse sem fechar
+        if (synopsis) {
+            synopsis.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+            
+            // Adicionar comportamento de fechar ao clicar no X (pseudo-elemento :after)
+            synopsis.addEventListener('mousedown', (e) => {
+                // Verifica se clicou na área do botão de fechar (canto superior direito)
+                const rect = synopsis.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Se clicou na área do canto superior direito (30x30 pixels)
+                if (x > rect.width - 30 && y < 30) {
+                    resetAllCircles();
+                    e.preventDefault();
+                    e.stopPropagation();
                 }
             });
-        });
+        }
+    });
+    
+    // Fechar sinopse ao clicar fora das esferas e sinopses
+    document.addEventListener('click', (e) => {
+        // Verificar se clicou fora do container ou em alguma parte dele que não é um círculo ou sinopse
+        if (!container.contains(e.target) || 
+            (container.contains(e.target) && 
+             !e.target.closest('.circle-item') && 
+             !e.target.closest('.circle-synopsis'))) {
+            resetAllCircles();
+        }
+    });
+
+    // Adicionar responsividade
+    function adjustForMobile() {
+        const isMobile = window.innerWidth < 640;
+        
+        if (isMobile) {
+            // Distribuir as bolinhas em posições adequadas para mobile
+            circles.forEach(circle => {
+                // As posições já estão definidas via CSS com data-attributes
+                circle.classList.add('mobile-position');
+            });
+        } else {
+            // Remover ajustes mobile
+            circles.forEach(circle => {
+                circle.classList.remove('mobile-position');
+            });
+        }
     }
+
+    // Chamar uma vez na inicialização
+    adjustForMobile();
+    
+    // Adicionar evento de redimensionamento
+    window.addEventListener('resize', adjustForMobile);
 }
