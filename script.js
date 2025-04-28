@@ -1,4 +1,31 @@
-/**
+console.log('DOM carregado com sucesso.');
+console.log('Iniciando componentes...');
+console.log('Componentes iniciados com sucesso.');
+console.log('Erro na inicialização do site:', e);
+
+console.log('Menu Mobile iniciado com sucesso.');
+console.log('Erro em initMobileMenu:', e);
+
+console.log('Rolagem Suave iniciada com sucesso.');
+console.log('Erro em initSmoothScroll:', e);
+
+console.log('Carrossel de Depoimentos iniciado com sucesso.');
+console.log('Erro em initTestimonialCarousel:', e);
+
+console.log('Modais iniciados com sucesso.');
+console.log('Erro em initModals:', e);
+
+console.log('Botão de Voltar ao Topo iniciado com sucesso.');
+console.log('Erro em initBackToTop:', e);
+
+console.log('Formulários iniciados com sucesso.');
+console.log('Erro em initForms:', e);
+
+console.log('Animações baseadas em Observação iniciadas com sucesso.');
+console.log('Erro em observeAnimations:', e);
+
+console.log('Efeito 3D nas Bolinhas do Prisma iniciado com sucesso.');
+console.log('Erro em initPrismaEffect:', e);/**
  * EIBM - Site Institucional
  * Script de funcionalidades para interatividade
  */
@@ -459,10 +486,10 @@ window.addEventListener('scroll', updateNavActiveState);
 function initPrismaEffect() {
     const container = document.getElementById('prisma-container');
     if (!container) return;
-    
+
     const circles = document.querySelectorAll('.circle-item');
     if (!circles || circles.length === 0) return;
-    
+
     let activeCircle = null;
     let isPaused = false;
 
@@ -494,17 +521,18 @@ function initPrismaEffect() {
         document.body.classList.remove('synopsis-active');
         resumeAllAnimations();
     }
-    
+
     circles.forEach(circle => {
         const button = circle.querySelector('.circle-button');
         const synopsis = circle.querySelector('.circle-synopsis');
-        
+        const closeBtn = synopsis ? synopsis.querySelector('.synopsis-close') : null;
+
         if (!button) return;
-        
+
         button.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            
+
             // Se esta bolinha já está ativa, redirecionar para a página
             if (activeCircle === circle && synopsis) {
                 const linkElement = synopsis.querySelector('a');
@@ -514,17 +542,17 @@ function initPrismaEffect() {
                 }
                 return;
             }
-            
+
             // Reset todas as bolinhas para o estado original
             resetAllCircles();
-            
+
             // Pausar todas as animações
             pauseAllAnimations();
-            
+
             // Ativar efeito na bolinha clicada
             circle.classList.add('active');
             circle.style.zIndex = "50"; // Aumenta o z-index da esfera clicada
-            
+
             // Marcar outras bolinhas como inativas
             circles.forEach(c => {
                 if (c !== circle) {
@@ -532,15 +560,15 @@ function initPrismaEffect() {
                     c.style.zIndex = "10"; // Reduz o z-index das outras esferas
                 }
             });
-            
+
             // Adicionar classe de perspectiva 3D ao container
             container.style.perspective = '1000px';
-            
+
             // Exibir a sinopse
             if (synopsis) {
                 synopsis.style.visibility = 'visible';
                 synopsis.style.opacity = '1';
-                
+
                 // Adicionar classe para overlay mobile
                 if (window.innerWidth < 640) {
                     document.body.classList.add('synopsis-active');
@@ -551,7 +579,7 @@ function initPrismaEffect() {
                     synopsis.style.transform = 'translate(-50%, -50%)';
                 }
             }
-            
+
             activeCircle = circle;
         });
 
@@ -560,31 +588,28 @@ function initPrismaEffect() {
             synopsis.addEventListener('click', (e) => {
                 e.stopPropagation();
             });
-            
-            // Adicionar comportamento de fechar ao clicar no X (pseudo-elemento :after)
-            synopsis.addEventListener('mousedown', (e) => {
-                // Verifica se clicou na área do botão de fechar (canto superior direito)
-                const rect = synopsis.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                // Se clicou na área do canto superior direito (30x30 pixels)
-                if (x > rect.width - 30 && y < 30) {
-                    resetAllCircles();
-                    e.preventDefault();
-                    e.stopPropagation();
-                }
+
+            // Remover o antigo listener de mousedown para fechar no canto
+            // Agora usar o botão de fechar explícito
+        }
+
+        // Adicionar evento para o botão de fechar sinopse
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                resetAllCircles();
             });
         }
     });
-    
+
     // Fechar sinopse ao clicar fora das esferas e sinopses
     document.addEventListener('click', (e) => {
         // Verificar se clicou fora do container ou em alguma parte dele que não é um círculo ou sinopse
-        if (!container.contains(e.target) || 
-            (container.contains(e.target) && 
-             !e.target.closest('.circle-item') && 
-             !e.target.closest('.circle-synopsis'))) {
+        if (!container.contains(e.target) ||
+            (container.contains(e.target) &&
+                !e.target.closest('.circle-item') &&
+                !e.target.closest('.circle-synopsis'))) {
             resetAllCircles();
         }
     });
@@ -592,7 +617,7 @@ function initPrismaEffect() {
     // Adicionar responsividade
     function adjustForMobile() {
         const isMobile = window.innerWidth < 640;
-        
+
         if (isMobile) {
             // Distribuir as bolinhas em posições adequadas para mobile
             circles.forEach(circle => {
@@ -609,7 +634,7 @@ function initPrismaEffect() {
 
     // Chamar uma vez na inicialização
     adjustForMobile();
-    
+
     // Adicionar evento de redimensionamento
     window.addEventListener('resize', adjustForMobile);
 }

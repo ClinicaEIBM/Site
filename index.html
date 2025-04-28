@@ -362,74 +362,74 @@
             @media (max-width: 767px) {
                 /* Reduzir tamanho das esferas em telas menores */
                 .circle-button {
-                    width: 100px !important;
-                    height: 100px !important;
+                    width: 90px !important;
+                    height: 90px !important;
                 }
 
                 .circle-button i {
-                    font-size: 36px !important;
+                    font-size: 32px !important;
                 }
 
                 /* Ajustar posicionamento orbital */
                 @keyframes orbit-north {
                     0% {
                         transform: translate(-50%, -50%) rotate(0deg)
-                            translateY(-150px) rotate(0deg);
+                            translateY(-130px) rotate(0deg);
                     }
                     100% {
                         transform: translate(-50%, -50%) rotate(360deg)
-                            translateY(-150px) rotate(-360deg);
+                            translateY(-130px) rotate(-360deg);
                     }
                 }
 
                 @keyframes orbit-south {
                     0% {
                         transform: translate(-50%, -50%) rotate(0deg)
-                            translateY(150px) rotate(0deg);
+                            translateY(130px) rotate(0deg);
                     }
                     100% {
                         transform: translate(-50%, -50%) rotate(360deg)
-                            translateY(150px) rotate(-360deg);
+                            translateY(130px) rotate(-360deg);
                     }
                 }
 
                 @keyframes orbit-east {
                     0% {
                         transform: translate(-50%, -50%) rotate(0deg)
-                            translateX(150px) rotate(0deg);
+                            translateX(130px) rotate(0deg);
                     }
                     100% {
                         transform: translate(-50%, -50%) rotate(360deg)
-                            translateX(150px) rotate(-360deg);
+                            translateX(130px) rotate(-360deg);
                     }
                 }
 
                 @keyframes orbit-west {
                     0% {
                         transform: translate(-50%, -50%) rotate(0deg)
-                            translateX(-150px) rotate(0deg);
+                            translateX(-130px) rotate(0deg);
                     }
                     100% {
                         transform: translate(-50%, -50%) rotate(360deg)
-                            translateX(-150px) rotate(-360deg);
+                            translateX(-130px) rotate(-360deg);
                     }
                 }
 
                 /* Ajustar posição inicial */
                 #circle-terapias {
-                    transform: translate(-50%, -50%) translateY(-150px);
+                    transform: translate(-50%, -50%) translateY(-130px);
                 }
 
                 #circle-especialidades {
-                    transform: translate(-50%, -50%) translateY(150px);
+                    transform: translate(-50%, -50%) translateY(130px);
                 }
 
                 #circle-idea {
-                    transform: translate(-50%, -50%) translateX(-150px);
+                    transform: translate(-50%, -50%) translateX(-130px);
                 }
 
                 #circle-transtornos {
-                    transform: translate(-50%, -50%) translateX(150px);
+                    transform: translate(-50%, -50%) translateX(130px);
                 }
             }
 
@@ -437,23 +437,23 @@
             @media (max-width: 640px) {
                 /* Reduzir ainda mais o tamanho das esferas */
                 .circle-button {
-                    width: 80px !important;
-                    height: 80px !important;
+                    width: 70px !important;
+                    height: 70px !important;
                 }
 
                 .circle-button i {
-                    font-size: 28px !important;
+                    font-size: 24px !important;
                 }
 
                 .circle-label {
-                    font-size: 12px;
-                    padding: 3px 8px;
+                    font-size: 11px;
+                    padding: 2px 6px;
                 }
 
                 /* Ajustes das sinopses no mobile */
                 .circle-synopsis {
-                    width: 260px;
-                    padding: 16px;
+                    width: 240px;
+                    padding: 14px;
                     position: fixed;
                     left: 50% !important;
                     transform: translate(-50%, -50%);
@@ -467,53 +467,63 @@
                 }
 
                 .synopsis-text {
-                    font-size: 14px;
-                    margin-bottom: 16px;
+                    font-size: 13px;
+                    margin-bottom: 14px;
                     line-height: 1.4;
                 }
 
                 .synopsis-button {
-                    padding: 8px 16px;
-                    font-size: 14px;
+                    padding: 7px 14px;
+                    font-size: 13px;
                     display: block;
                     text-align: center;
                     width: 100%;
                 }
 
                 /* Ajustes para que as bolinhas fiquem em posições melhores no mobile */
-                /* Usando outro tipo de animação em mobile: posições fixas sem animação */
-                #circle-terapias,
-                #circle-especialidades,
-                #circle-idea,
+                /* Mantendo animação de órbita igual à versão desktop */
+                #circle-terapias {
+                    animation: orbit-north-mobile 20s linear infinite !important;
+                    transform: translate(-50%, -50%) translateY(-130px) !important;
+                }
+                #circle-especialidades {
+                    animation: orbit-south-mobile 20s linear infinite !important;
+                    transform: translate(-50%, -50%) translateY(130px) !important;
+                }
+                #circle-idea {
+                    animation: orbit-west-mobile 20s linear infinite !important;
+                    transform: translate(-50%, -50%) translateX(-130px) !important;
+                }
                 #circle-transtornos {
-                    animation: none;
+                    animation: orbit-east-mobile 20s linear infinite !important;
+                    transform: translate(-50%, -50%) translateX(130px) !important;
                 }
 
                 #prisma-container {
-                    height: 360px !important;
+                    height: 320px !important;
                 }
 
                 .circle-item[data-position="top"] {
-                    top: 2% !important;
+                    top: 3% !important;
                     left: 50% !important;
                     transform: translateX(-50%) !important;
                 }
 
                 .circle-item[data-position="bottom"] {
-                    bottom: 2% !important;
+                    bottom: 3% !important;
                     top: auto !important;
                     left: 50% !important;
                     transform: translateX(-50%) !important;
                 }
 
                 .circle-item[data-position="left"] {
-                    left: 2% !important;
+                    left: 3% !important;
                     top: 50% !important;
                     transform: translateY(-50%) !important;
                 }
 
                 .circle-item[data-position="right"] {
-                    right: 2% !important;
+                    right: 3% !important;
                     left: auto !important;
                     top: 50% !important;
                     transform: translateY(-50%) !important;
@@ -601,8 +611,7 @@
                                 EIBM
                             </h1>
                             <p class="text-xs text-gray-600 hidden md:block">
-                                Especialidades Integradas e Bem-estar
-                                Multidisciplinar
+                                Especialidades Integradas
                             </p>
                         </div>
                     </div>
@@ -610,13 +619,6 @@
                     <!-- Menu de navegação -->
                     <div class="hidden md:block">
                         <ul class="flex space-x-6">
-                            <li>
-                                <a
-                                    href="index.html"
-                                    class="text-primary hover:text-blue-royal font-medium border-b-2 border-primary"
-                                    >Início</a
-                                >
-                            </li>
                             <li>
                                 <a
                                     href="terapias.html"
@@ -635,14 +637,14 @@
                                 <a
                                     href="ideia.html"
                                     class="text-primary hover:text-blue-royal font-medium"
-                                    >IDEA</a
+                                    >IDEIA</a
                                 >
                             </li>
                             <li>
                                 <a
                                     href="transtornos.html"
                                     class="text-primary hover:text-blue-royal font-medium"
-                                    >Transtornos Alimentares</a
+                                    >GETTON</a
                                 >
                             </li>
                             <li>
@@ -696,6 +698,7 @@
 
                     <!-- Sinopse -->
                     <div class="circle-synopsis">
+                        <button class="synopsis-close" aria-label="Fechar sinopse">×</button>
                         <div class="synopsis-title text-primary">Terapias</div>
                         <div class="synopsis-text">
                             Abordagens terapêuticas personalizadas e integradas
@@ -728,6 +731,7 @@
 
                     <!-- Sinopse -->
                     <div class="circle-synopsis">
+                        <button class="synopsis-close" aria-label="Fechar sinopse">×</button>
                         <div class="synopsis-title text-accent">
                             Transtornos Alimentares
                         </div>
@@ -762,6 +766,7 @@
 
                     <!-- Sinopse -->
                     <div class="circle-synopsis">
+                        <button class="synopsis-close" aria-label="Fechar sinopse">×</button>
                         <div class="synopsis-title text-yellow">IDEA</div>
                         <div class="synopsis-text">
                             Instituto de Desenvolvimento e Estruturação de
@@ -794,6 +799,7 @@
 
                     <!-- Sinopse -->
                     <div class="circle-synopsis">
+                        <button class="synopsis-close" aria-label="Fechar sinopse">×</button>
                         <div class="synopsis-title text-secondary">
                             Especialidades
                         </div>
