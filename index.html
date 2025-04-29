@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>
-            EIBM - Especialidades Integradas e Bem-estar Multidisciplinar
+            EIBM - Especialidades Integradas
         </title>
         <meta
             name="description"
@@ -205,28 +205,29 @@
             }
 
             /* Configurar animações específicas para cada esfera */
-            #circle-terapias {
-                /* Norte */
-                animation: orbit-north 40s linear infinite;
+            
+            #circle-idea {
+               /* Norte */
+               animation: orbit-north 40s linear infinite;
                 transform: translate(-50%, -50%) translateY(-200px);
             }
-
+            
+            #circle-transtornos {
+                /* Leste */
+                animation: orbit-east 40s linear infinite;
+                transform: translate(-50%, -50%) translateX(200px);
+            }
+            
             #circle-especialidades {
                 /* Sul */
                 animation: orbit-south 40s linear infinite;
                 transform: translate(-50%, -50%) translateY(200px);
             }
 
-            #circle-idea {
+            #circle-terapias {
                 /* Oeste */
                 animation: orbit-west 40s linear infinite;
                 transform: translate(-50%, -50%) translateX(-200px);
-            }
-
-            #circle-transtornos {
-                /* Leste */
-                animation: orbit-east 40s linear infinite;
-                transform: translate(-50%, -50%) translateX(200px);
             }
 
             /* Pausar animação ao passar o mouse */
@@ -612,23 +613,9 @@
                         <ul class="flex space-x-6">
                             <li>
                                 <a
-                                    href="terapias.html"
-                                    class="text-primary hover:text-blue-royal font-medium"
-                                    >Terapias</a
-                                >
-                            </li>
-                            <li>
-                                <a
                                     href="especialidades.html"
                                     class="text-primary hover:text-blue-royal font-medium"
-                                    >Especialidades</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="ideia.html"
-                                    class="text-primary hover:text-blue-royal font-medium"
-                                    >IDEIA</a
+                                    >Especialidades Médicas</a
                                 >
                             </li>
                             <li>
@@ -636,6 +623,20 @@
                                     href="transtornos.html"
                                     class="text-primary hover:text-blue-royal font-medium"
                                     >GETTON</a
+                                >
+                            </li>                            
+                            <li>
+                                <a
+                                    href="terapias.html"
+                                    class="text-primary hover:text-blue-royal font-medium"
+                                    >EIBM Terapias</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="ideia.html"
+                                    class="text-primary hover:text-blue-royal font-medium"
+                                    >IDEIA</a
                                 >
                             </li>
                             <li>
@@ -683,12 +684,12 @@
                     </div>
 
                     </div>
-                    <span class="circle-label text-primary">Terapias</span>
+                    <span class="circle-label text-primary">EIBM Terapias</span>
 
                     <!-- Sinopse -->
                     <div class="circle-synopsis">
                         <button class="synopsis-close" aria-label="Fechar sinopse">×</button>
-                        <div class="synopsis-title text-primary">Terapias</div>
+                        <div class="synopsis-title text-primary">EIBM Terapias</div>
                         <div class="synopsis-text">
                             Abordagens terapêuticas personalizadas e integradas
                             para diferentes necessidades, com foco no
@@ -723,18 +724,18 @@
                     </div>
                         
                     </div>
-                    <span class="circle-label text-accent">Transtornos</span>
+                    <span class="circle-label text-accent">GETTON</span>
 
                     <!-- Sinopse -->
                     <div class="circle-synopsis">
                         <button class="synopsis-close" aria-label="Fechar sinopse">×</button>
                         <div class="synopsis-title text-accent">
-                            Transtornos Alimentares
+                            GETTON
                         </div>
                         <div class="synopsis-text">
-                            Tratamento especializado para transtornos
-                            alimentares infantis com abordagem multidisciplinar
-                            e individualizada.
+                            Grupo de Estudos 
+                            Obesidade
+                            em Transtornos Alimentares
                         </div>
                         <a
                             href="transtornos.html"
@@ -804,14 +805,14 @@
 
                     </div>
                     <span class="circle-label text-secondary"
-                        >Especialidades</span
+                        >Especialidades Médicas</span
                     >
 
                     <!-- Sinopse -->
                     <div class="circle-synopsis">
                         <button class="synopsis-close" aria-label="Fechar sinopse">×</button>
                         <div class="synopsis-title text-secondary">
-                            Especialidades
+                            Especialidades Médicas
                         </div>
                         <div class="synopsis-text">
                             Especialidades médicas e terapêuticas integradas
