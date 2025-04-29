@@ -1,35 +1,3 @@
-console.log('DOM carregado com sucesso.');
-console.log('Iniciando componentes...');
-console.log('Componentes iniciados com sucesso.');
-console.log('Erro na inicialização do site:', e);
-
-console.log('Menu Mobile iniciado com sucesso.');
-console.log('Erro em initMobileMenu:', e);
-
-console.log('Rolagem Suave iniciada com sucesso.');
-console.log('Erro em initSmoothScroll:', e);
-
-console.log('Carrossel de Depoimentos iniciado com sucesso.');
-console.log('Erro em initTestimonialCarousel:', e);
-
-console.log('Modais iniciados com sucesso.');
-console.log('Erro em initModals:', e);
-
-console.log('Botão de Voltar ao Topo iniciado com sucesso.');
-console.log('Erro em initBackToTop:', e);
-
-console.log('Formulários iniciados com sucesso.');
-console.log('Erro em initForms:', e);
-
-console.log('Animações baseadas em Observação iniciadas com sucesso.');
-console.log('Erro em observeAnimations:', e);
-
-console.log('Efeito 3D nas Bolinhas do Prisma iniciado com sucesso.');
-console.log('Erro em initPrismaEffect:', e);/**
- * EIBM - Site Institucional
- * Script de funcionalidades para interatividade
- */
-
 // Espera o DOM ser completamente carregado
 document.addEventListener('DOMContentLoaded', () => {
     try {
@@ -41,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try { initBackToTop(); } catch (e) { console.error('Erro em initBackToTop:', e); }
         try { initForms(); } catch (e) { console.error('Erro em initForms:', e); }
         try { observeAnimations(); } catch (e) { console.error('Erro em observeAnimations:', e); }
-        try { initPrismaEffect(); } catch (e) { console.error('Erro em initPrismaEffect:', e); } // Inicializa o efeito 3D do prisma na home
+        try { initPrismaEffect(); } catch (e) { console.error('Erro em initPrismaEffect:', e); }
     } catch (e) {
         console.error('Erro na inicialização do site:', e);
     }
