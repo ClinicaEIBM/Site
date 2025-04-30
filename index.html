@@ -287,7 +287,7 @@
             /* Sinopse */
             .circle-synopsis {
                 position: absolute;
-                background-color: white;
+                background-color: rgba(91, 91, 91, 0.386);
                 border-radius: 12px;
                 padding: 16px;
                 width: 250px;
@@ -303,9 +303,10 @@
 
             /* Posições personalizadas para cada sinopse */
             #circle-terapias .circle-synopsis {
-                top: 130%;
-                left: 50%;
-                transform: translateX(-50%) translateY(0);
+                width: 230px;
+                left: 130%;
+                top: 50%;
+                transform: translateX(0) translateY(-50%);
             }
 
             #circle-especialidades .circle-synopsis {
@@ -339,6 +340,7 @@
                 font-size: 16px;
                 font-weight: bold;
                 margin-bottom: 8px;
+                text-align: center;
             }
 
             .synopsis-text {
@@ -346,10 +348,14 @@
                 color: #555;
                 margin-bottom: 12px;
                 line-height: 1.4;
+                text-align: center;
             }
 
             .synopsis-button {
-                display: inline-block;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: fit-content;
                 padding: 8px 16px;
                 border-radius: 20px;
                 font-weight: bold;
@@ -463,7 +469,7 @@
                     bottom: auto !important;
                     right: auto !important; /* Garantir que right não seja usado no mobile */
                     z-index: 1000; /* Valor extremamente alto para garantir visibilidade no mobile */
-                    background-color: white;
+                    background-color: rgb(255, 255, 255);
                     border-radius: 16px;
                     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
                 }
@@ -471,7 +477,7 @@
                 .synopsis-text {
                     font-size: 13px;
                     margin-bottom: 14px;
-                    line-height: 1.4;
+                    line-height: 1.4
                 }
 
                 .synopsis-button {
@@ -620,9 +626,9 @@
                             </li>
                             <li>
                                 <a
-                                    href="transtornos.html"
+                                    href="gatta.html"
                                     class="text-primary hover:text-blue-royal font-medium"
-                                    >GETTON</a
+                                    >GATTA</a
                                 >
                             </li>                            
                             <li>
@@ -678,7 +684,7 @@
                     <div class="flex items-center">
                         <img
                             src="attached_assets/logo_eibm_terapias.svg"
-                            alt="Logo EIBM"
+                            alt="Logo EIBM Terapias"
                             class="h-28 md:h-28"
                         />
                     </div>
@@ -698,6 +704,7 @@
                         <a
                             href="terapias.html"
                             class="synopsis-button bg-primary"
+                            data-position="center"
                             >Visitar</a
                         >
                     </div>
@@ -717,28 +724,28 @@
                         
                     <div class="flex items-start">
                         <img
-                            src="attached_assets/logo_getton.svg"
-                            alt="Logo EIBM"
-                            class="h-36 md:h-36 mt-6"
+                            src="attached_assets/logo_gatta.svg"
+                            alt="Logo GATTA"
+                            class="h-32 md:h-32 mt-0"
                         />
                     </div>
                         
                     </div>
-                    <span class="circle-label text-accent">GETTON</span>
+                    <span class="circle-label text-accent">GATTA</span>
 
                     <!-- Sinopse -->
                     <div class="circle-synopsis">
                         <button class="synopsis-close" aria-label="Fechar sinopse">×</button>
                         <div class="synopsis-title text-accent">
-                            GETTON
+                            GATTA
                         </div>
                         <div class="synopsis-text">
-                            Grupo de Estudos 
-                            Obesidade
-                            em Transtornos Alimentares
+                            Grupo de Apoio e
+                            Tratamento de
+                            Transtornos Alimentares
                         </div>
                         <a
-                            href="transtornos.html"
+                            href="gatta.html"
                             class="synopsis-button bg-accent"
                             >Visitar</a
                         >
@@ -760,7 +767,7 @@
                     <div class="flex items-center">
                         <img
                             src="attached_assets/logo_ideia.svg"
-                            alt="Logo EIBM"
+                            alt="Logo IDEIA"
                             class="h-28 md:h-28"
                         />
                     </div>
