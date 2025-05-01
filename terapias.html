@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EIBM Terapias</title>
     <meta name="description" content="Conheça as terapias oferecidas pela EIBM: Terapia Ocupacional, Psicologia, Fonoaudiologia e Psicopedagogia.">
+    
+    <style>
+      /* Modal backdrop */
+      .modal-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(4px);
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+      }
+    </style>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -16,8 +30,9 @@
                         secondary: '#6CBB45',    // Verde
                         accent: '#ED3924',       // Vermelho
                         blue: {
-                            light: '#439CD5',
-                            royal: '#136CB2',
+                            light: '#439CD5',   // tom mais claro
+                            DEFAULT: '#136CB2', // seu tom principal
+                            dark: '#195184',    // tom mais escuro
                         },
                         green: {
                             light: '#9DCB5B',
@@ -31,7 +46,11 @@
                             light: '#F2E5B0',
                             DEFAULT: '#EFCD18',
                         },
-                        orange: '#EA8C2C',
+                        orange: {
+                            light: '#FFB766',   // tom mais claro
+                            DEFAULT: '#EA8C2C', // seu tom principal
+                            dark: '#C66F23',    // tom mais escuro
+                        },
                         purple: {
                             light: '#D29BFF',
                             DEFAULT: '#A358E1',
@@ -45,16 +64,18 @@
                         sans: ['Nunito', 'sans-serif'],
                         heading: ['Poppins', 'sans-serif'],
                     },
+                    
                 }
             }
         }
+        
     </script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <!-- Google Fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+     <!-- Font Awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .therapy-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -66,30 +87,64 @@
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 bg-gray-50 min-h-screen">
+
+<body class="font-sans text-gray-800 bg-purple-50 min-h-screen">
     <!-- Header/Navigation -->
-    <header class="bg-white shadow-md">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <a href="index.html" class="flex items-center">
-                        <img src="attached_assets/logo_eibm_terapias_escrito.svg" alt="EIBM Terapias" class="h-12 md:h-16">
-                    </a>
-                </div>
-                
-                <!-- Navigation -->
-                <nav class="hidden md:block">
-                    <ul class="flex space-x-6">
-                        <li><a href="terapia-ocupacional.html" class="text-black hover:text-blue-royal font-medium">Terapia Ocupacional</a></li>
-                        <li><a href="fonoaudiologia.html" class="text-black hover:text-blue-royal font-medium">Fonoaudiologia</a></li>
-                        <li><a href="Psicologia.html" class="text-black hover:text-blue-royal font-medium">Psicologia</a></li>
-                        <li><a href="psicopedagogia.html" class="text-black hover:text-blue-royal font-medium">Psicopedagogia</a></li>
-                        <li><a href="ideia.html" class="text-black hover:text-blue-royal font-medium">IDEIA</a></li>
-                        <li><a href="contato.html" class="text-black hover:text-blue-royal font-medium">Contato</a></li>
-                    </ul>
-                </nav>
-                
+    <header class="fixed top-0 left-0 w-full bg-white shadow-md rounded-b-xl z-50">
+      <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center">
+          <img
+            src="attached_assets/logo_eibm_terapias_escrito.svg"
+            alt="Logo IDEIA"
+            class="h-24 md:h-24"
+          />
+        </a>
+    
+        <!-- Navegação Desktop -->
+        <nav class="hidden md:flex space-x-6">
+          <a
+            href="terapia-ocupacional.html"
+            class="text-black hover:text-blue-dark font-medium transition"
+            >Terapia Ocupacional</a
+          >
+          <a
+            href="fonoaudiologia.html"
+            class="text-black hover:text-blue-dark font-medium transition"
+            >Fonoaudiologia</a
+          >
+          <a
+            href="psicologia.html"
+            class="text-black hover:text-blue-dark font-medium transition"
+            >Psicologia</a
+          >
+          <a
+            href="psicopedagogia.html"
+            class="text-black hover:text-blue-dark font-medium transition"
+            >Psicopedagogia</a
+          >
+          <a
+            href="ideia.html"
+            class="text-black hover:text-blue-dark font-medium transition"
+            >IDEIA</a
+          >
+          <a
+            href="contato.html"
+            class="text-black hover:text-blue-dark font-medium transition"
+            >Contato</a
+          >
+        </nav>
+    
+        <!-- Botão Mobile -->
+        <button
+          id="menu-toggle"
+          class="md:hidden text-gray-800 hover:text-orange focus:outline-none"
+        >
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </header>
+    
                 <!-- Mobile Menu Toggle -->
                 <button class="block md:hidden text-primary" id="menu-toggle">
                     <i class="fas fa-bars text-2xl"></i>
@@ -100,68 +155,351 @@
         <!-- Mobile Menu (hidden by default) -->
         <div class="menu-mobile fixed top-0 left-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 p-5 transform -translate-x-full transition-transform duration-300" id="mobile-menu">
             <div class="flex justify-between items-center mb-6">
-                <img src="attached_assets/logo_eibm_terapias_escrito.svg" alt="Logo EIBM" class="h-12">
+                <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12">
                 <button id="close-menu">
                     <i class="fas fa-times text-2xl text-primary"></i>
                 </button>
             </div>
             <ul class="space-y-4">
-                <li><a href="terapia-ocupacional.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Terapia Ocupacional</a></li>
-                <li><a href="fonoaudiologia.html" class="block py-2 text-primary hover:text-blue-royal font-medium font-bold">Fonoaudiologia</a></li>
-                <li><a href="Psicologia.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Psicologia</a></li>
-                <li><a href="psicopedagogia.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Psicopedagogia</a></li>
-                <li><a href="contato.html" class="block py-2 text-primary hover:text-blue-royal font-medium">Contato</a></li>
+                <li><a href="index.html" class="block py-2 text-primary hover:text-black font-medium">Início</a></li>
+                <li><a href="terapias.html" class="block py-2 text-primary hover:text-black font-medium">Terapias</a></li>
+                <li><a href="especialidades.html" class="block py-2 text-primary hover:text-black font-medium">Especialidades</a></li>
+                <li><a href="ideia.html" class="block py-2 text-primary hover:text-black font-medium font-bold">IDEIA</a></li>
+                <li><a href="transtornos.html" class="block py-2 text-primary hover:text-black font-medium">Transtornos Alimentares</a></li>
+                <li><a href="contato.html" class="block py-2 text-primary hover:text-black font-medium">Contato</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- Hero Section - Versão mais marcante e direta -->
-    <section class="bg-gradient-to-r from-blue-royal to-primary text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="max-w-5xl mx-auto">
-                <div class="text-center mb-8">
-                    <span class="inline-block text-sm font-bold px-3 py-1 bg-white/20 rounded-full mb-4">EIBM TERAPIAS</span>
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Transformando o Desenvolvimento Infantil</h1>
-                    <div class="h-1 w-32 bg-white mx-auto mb-6"></div>
-                    <p class="text-xl text-white/90 mb-6">Serviços terapêuticos especializados prontos para atendimento imediato.</p>
-                </div>
-                
-                <!-- Botões rápidos para as terapias -->
-                <div class="flex flex-wrap justify-center gap-3 mb-6">
-                    <a href="#psicologia" class="bg-white text-primary hover:bg-blue-50 font-medium px-5 py-2 rounded-full transition-all duration-200 flex items-center">
-                        <i class="fas fa-brain mr-2"></i> Psicologia
-                    </a>
-                    <a href="#fonoaudiologia" class="bg-white text-primary hover:bg-blue-50 font-medium px-5 py-2 rounded-full transition-all duration-200 flex items-center">
-                        <i class="fas fa-comment-medical mr-2"></i> Fonoaudiologia
-                    </a>
-                    <a href="#terapia-ocupacional" class="bg-white text-primary hover:bg-blue-50 font-medium px-5 py-2 rounded-full transition-all duration-200 flex items-center">
-                        <i class="fas fa-hands mr-2"></i> Terapia Ocupacional
-                    </a>
-                    <a href="#psicopedagogia" class="bg-white text-primary hover:bg-blue-50 font-medium px-5 py-2 rounded-full transition-all duration-200 flex items-center">
-                        <i class="fas fa-book-reader mr-2"></i> Psicopedagogia
-                    </a>
+    <!-- Hero Section -->
+ <section id="hero"
+ class="relative h-screen overflow-hidden
+        bg-gradient-to-b from-blue-100 via-blue-300 to-white">
+<!-- Parallax Lamps -->
 
-                </div>
-                
-                <div class="flex justify-center">
-                    <a href="contato.html" class="bg-blue-royal hover:bg-blue-800 text-white font-bold px-8 py-3 rounded-lg transition-all duration-300 inline-flex items-center">
-                        <i class="fas fa-calendar-check mr-2"></i> Agendar Consulta
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+
+<!-- Parallax Lamps -->
+<div class="absolute inset-0 pointer-events-none">
+    <!-- Peças principais com a classe parallax-lamp e data-speed -->
+    <i class="fas fa-puzzle-piece parallax-lamp absolute top-32 left-80 text-8xl text-orange-400 animate-pulse-slow" data-speed="0.70"></i>
+    <i class="fas fa-puzzle-piece parallax-lamp absolute top-32 right-16 text-8xl text-green-500 animate-pulse-slow" data-speed="0.70"></i>
+    <i class="fas fa-puzzle-piece parallax-lamp absolute bottom-28 left-1/4 text-9xl text-purple-400 animate-pulse-slow" data-speed="0.30"></i>
+    <i class="fas fa-puzzle-piece parallax-lamp absolute bottom-32 left-1/2 text-5xl text-red-500 animate-pulse-slow" data-speed="0.25"></i>
+    <i class="fas fa-puzzle-piece parallax-lamp absolute top-36 right-1/2 text-6xl text-blue-500 animate-pulse-slow" data-speed="0.70"></i>
+    <i class="fas fa-puzzle-piece parallax-lamp absolute bottom-16 left-2/3 text-8xl text-orange-400 animate-pulse-slow" data-speed="0.40"></i>
+    <i class="fas fa-puzzle-piece parallax-lamp absolute top-72 left-10 text-6xl text-red-500 animate-pulse-slow" data-speed="0.20"></i>
+    <i class="fas fa-puzzle-piece parallax-lamp absolute bottom-20 right-36 text-9xl text-green-500 animate-pulse-slow" data-speed="0.25"></i>
+</div>
+
+  
+
+
+
+<!-- Hero Content -->
+<div class="relative z-10 container mx-auto px-6 h-full flex flex-col md:flex-row items-center">
+<!-- Left Text -->
+<div class="w-full md:w-1/2 text-center md:text-left space-y-4">
+<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 leading-tight">
+Inclusão e desenvolvimento <br>para todas as crianças
+</h1>
+<p class="text-base sm:text-lg md:text-xl text-gray-700 max-w-md">
+IDEIA une ciência, tecnologia e equipe multidisciplinar para apoiar o desenvolvimento de crianças neurodivergentes, suas famílias e educadores.
+</p>
+<a href="#funcionamento"
+ class="inline-flex items-center gap-2 mt-4 bg-blue-700 hover:bg-blue-800
+        text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
+<i class="fas fa-lightbulb"></i>
+Caminho do Desenvolvimento
+</a>
+</div>
+
+<!-- Right Cards -->
+<div class="w-full md:w-2/4 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-8 md:mt-0">
+  <button
+    onclick="openModal('modal-fono')"
+    class="w-full h-36 sm:h-54  md:h-61 group flex flex-col items-center justify-center
+           bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 cursor-pointer
+           border-2 border-transparent hover:border-blue-700 hover:bg-blue-50
+           focus:outline-none focus:ring-4 focus:ring-blue-royal-300
+           transition-all duration-300"
+  >
+    <i class="fa-solid fa-ear-listen text-green-600 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
+    <span class="text-lg sm:text-xl font-bold text-gray-900 text-center mb-2">
+        Fonoaudiologia
+    </span>
+    <span class="text-sm sm:text-base text-blue-600 font-bold uppercase tracking-wide group-hover:underline">
+        Saiba mais
+      </span>
+  </button>
+
+  <button
+    onclick="openModal('modal-psico')"
+    class="w-full h-36 sm:h-54  md:h-61 group flex flex-col items-center justify-center
+    bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 cursor-pointer
+    border-2 border-transparent hover:border-blue-700 hover:bg-blue-50
+    focus:outline-none focus:ring-4 focus:ring-blue-royal-300
+    transition-all duration-300"
+  >
+    <i class="fa-solid fa-brain text-yellow-400 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
+    <span class="text-lg sm:text-xl font-semibold text-gray-900 text-center mb-2">Psicologia</span>
+    <span class="text-sm sm:text-base text-blue-600 font-bold uppercase tracking-wide group-hover:underline">
+        Saiba mais
+      </span>
+  </button>
+
+  <button
+    onclick="openModal('modal-to')"
+    class="w-full h-36 sm:h-54  md:h-61 group flex flex-col items-center justify-center
+           bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 cursor-pointer
+           border-2 border-transparent hover:border-blue-700 hover:bg-blue-50
+           focus:outline-none focus:ring-4 focus:ring-blue-royal-300
+           transition-all duration-300"
+  >
+    <i class="fa-solid fa-cubes-stacked text-blue-600 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
+    <span class="text-lg sm:text-xl font-semibold text-gray-900 text-center mb-2">Terapia Ocupacional</span>
+    <span class="text-sm sm:text-base text-blue-600 font-bold uppercase tracking-wide group-hover:underline">
+      Saiba mais
+    </span>
+  </button>
+
+  <button
+    onclick="openModal('modal-psicoped')"
+    class="w-full h-36 sm:h-54  md:h-61 group flex flex-col items-center justify-center
+           bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 cursor-pointer
+           border-2 border-transparent hover:border-blue-700 hover:bg-blue-50
+           focus:outline-none focus:ring-4 focus:ring-blue-royal-300
+           transition-all duration-300"
+  >
+    <i class="fa-solid fa-person-chalkboard text-purple-400 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
+    <span class="text-lg sm:text-xl font-semibold text-gray-900 text-center mb-2">Psicopedagogia</span>
+    <span class="text-sm sm:text-base text-blue-600 font-bold uppercase tracking-wide group-hover:underline">
+      Saiba mais
+    </span>
+  </button>
+
+<button
+onclick="openModal('modal-clinica')"
+class="w-full h-40 sm:h-54 md:h-61 group flex flex-col items-center justify-center
+       bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 cursor-pointer
+       border-2 border-transparent hover:border-blue-700 hover:bg-blue-50
+       focus:outline-none focus:ring-4 focus:ring-blue-royal-300
+       transition-all duration-300
+       sm:col-span-2 sm:mx-auto"
+>
+<img
+      src="/attached_assets/logo_eibm_terapias.svg"
+      alt="Logo EIBM Terapias"
+      class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-4 group-hover:scale-110 transition-transform"
+    />
+<span class="text-lg sm:text-xl font-semibold text-gray-900 text-center mb-2">IDEIA</span>
+<span class="text-sm sm:text-base text-blue-600 font-bold uppercase tracking-wide group-hover:underline">
+  Saiba mais
+</span>
+</button>
+
+</div>
+
+
+<!-- Scroll Indicator -->
+<div id="scroll-indicator"
+class="absolute text-center bottom-6 left-1/2 transform -translate-x-1/2 z-20 opacity-90 transition-opacity duration-500">
+<span class="animate-bounce text-blue-600 text-2xl"><i class="fas fa-chevron-down"></i></span>
+<span class="block text-xs text-blue-700">Role para ver mais</span>
+</div>
+</section>
+
+<!-- Modal: Fonoaudiologia -->
+<section id="modal-fono" class="modal-backdrop">
+  <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
+    <button onclick="closeModal('modal-fono')"
+            class="absolute top-4 right-4 text-gray-400 hover:text-green-500 text-2xl font-bold"
+            aria-label="Fechar">&times;</button>
+    <div class="flex flex-col items-center">
+      <img src="/attached_assets/logo_eibm_terapias.svg"
+           alt="Logo EIBM Terapias"
+           class="w-24 h-24 mb-4"/>
+      <h2 class="text-xl font-bold text-green-600 mb-2">Fonoaudiologia</h2>
+      <p class="text-gray-800 mb-4 text-center">
+        Trabalha com o desenvolvimento da comunicação, linguagem, fala e funções orais, essenciais para a interação social e aprendizado.
+      </p>
+      <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
+        <li class="flex items-center gap-2">
+          <i class="fa-solid fa-chart-column text-orange-400"></i>
+          Desenvolvimento da linguagem
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-hand-holding-medical text-indigo-400"></i>
+          Comunicação alternativa
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-comment-dots text-pink-400"></i>
+          Funções orais e alimentação
+        </li>
+      </ul>
+      <a href="fonoaudiologia.html"
+ class="inline-flex items-center gap-2 mt-4 bg-green-700 hover:bg-green-600
+        text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
+<i class="fas fa-lightbulb"></i>
+      Saiba Mais
+</a>
+    </div>
+  </div>
+</section>
+
+<!-- Modal: Psicologia -->
+<section id="modal-psico" class="modal-backdrop">
+  <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
+    <button onclick="closeModal('modal-psico')"
+            class="absolute top-4 right-4 text-gray-400 hover:text-yellow-500 text-2xl font-bold"
+            aria-label="Fechar">&times;</button>
+    <div class="flex flex-col items-center">
+      <img src="/attached_assets/logo_eibm_terapias.svg"
+           alt="Logo EIBM Terapias"
+           class="w-24 h-24 mb-4"/>
+      <h2 class="text-xl font-bold text-yellow-500 mb-2">Psicologia</h2>
+      <p class="text-gray-800 mb-4 text-center">
+        Foca no desenvolvimento emocional, comportamental e social, utilizando técnicas baseadas em evidências como ABA e terapia cognitivo-comportamental.
+      </p>
+      <ul class="mb-4 text-black space-y-2 text-sm text-left">
+        <li class="flex items-center gap-2">
+          <i class="fas fa-brain text-yellow-500"></i>
+          Análise do Comportamento Aplicada (ABA)
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-hand-holding-medical text-indigo-400"></i>
+          Terapia cognitivo-comportamental
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-hand-holding-medical text-indigo-400"></i>
+          Habilidades sociais e emocionais
+        </li>
+      </ul>
+      <a href="psicologia.html"
+ class="inline-flex items-center gap-2 mt-4 bg-yellow-500 hover:bg-yellow-400
+        text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
+<i class="fas fa-lightbulb"></i>
+      Saiba Mais
+</a>
+    </div>
+  </div>
+</section>
+
+<!-- Modal: Terapia Ocupacional -->
+<section id="modal-to" class="modal-backdrop">
+  <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
+    <button onclick="closeModal('modal-to')"
+            class="absolute top-4 right-4 text-gray-400 hover:text-blue-500 text-2xl font-bold"
+            aria-label="Fechar">&times;</button>
+    <div class="flex flex-col items-center">
+      <img src="/attached_assets/logo_eibm_terapias.svg"
+           alt="Logo EIBM Terapias"
+           class="w-24 h-24 mb-4"/>
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Terapia Ocupacional</h2>
+      <p class="text-gray-800 mb-4 text-center">
+        Auxilia no desenvolvimento de habilidades necessárias para atividades diárias, trabalhando coordenação motora, integração sensorial e autonomia.
+      </p>
+      <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
+        <li class="flex items-center gap-2">
+          <i class="fas fa-brain text-blue-400"></i>     
+            Coordenação motora fina e grossa
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-hand-holding-medical text-indigo-400"></i>
+            Processamento sensorial
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-comment-dots text-pink-400"></i>    
+            Atividades de vida diária
+        </li>
+      </ul>
+      <a href="terapia-ocupacional.html"
+ class="inline-flex items-center gap-2 mt-4 bg-blue-600 hover:bg-blue-500
+        text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
+<i class="fas fa-lightbulb"></i>
+      Saiba Mais
+</a>
+    </div>
+  </div>
+</section>
+
+<!-- Modal: Psicopedagogia -->
+<section id="modal-psicoped" class="modal-backdrop">
+  <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
+    <button onclick="closeModal('modal-psicoped')"
+            class="absolute top-4 right-4 text-gray-400 hover:text-purple-500 text-2xl font-bold"
+            aria-label="Fechar">&times;</button>
+    <div class="flex flex-col items-center">
+      <img src="/attached_assets/logo_eibm_terapias.svg"
+           alt="Logo EIBM Terapias"
+           class="w-24 h-24 mb-4"/>
+      <h2 class="text-xl font-bold text-purple-400 mb-2">Psicopedagogia</h2>
+      <p class="text-gray-800 mb-4 text-center">
+        Foca nos processos de aprendizagem, ajudando a identificar dificuldades e desenvolver estratégias para superar desafios educacionais.
+      </p>
+      <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
+        <li class="flex items-center gap-2">
+          <i class="fas fa-brain text-purple-400"></i>
+          Avaliação psicopedagógica
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-hand-holding-medical text-indigo-400"></i>
+          Adaptação de conteúdos escolares
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-comment-dots text-pink-400"></i>
+          Desenvolvimento cognitivo
+        </li>
+      </ul>
+      <a href="terapia-ocupacional.html"
+ class="inline-flex items-center gap-2 mt-4 bg-purple-500 hover:bg-purple-400
+        text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
+<i class="fas fa-lightbulb"></i>
+      Saiba Mais
+</a>
+    </div>
+  </div>
+</section>
+
+<!-- Modal: EIBM Terapias -->
+<section id="modal-clinica" class="modal-backdrop">
+  <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
+    <button onclick="closeModal('modal-clinica')"
+            class="absolute top-4 right-4 text-gray-400 hover:text-orange-500 text-2xl font-bold"
+            aria-label="Fechar">&times;</button>
+    <div class="flex flex-col items-center">
+      <img src="/attached_assets/logo_eibm_terapias.svg"
+           alt="Logo EIBM Terapias"
+           class="w-24 h-24 mb-4"/>
+      <h2 class="text-xl font-bold text-orange-600 mb-2">IDEIA</h2>
+      <p class="text-gray-800 mb-4 text-center">
+        Polo de referência em neurodiversidade, a EIBM Terapias integra abordagens inovadoras e equipe multidisciplinar para promover autonomia e bem-estar.
+      </p>
+      <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
+        <li class="flex items-center gap-2">
+          <i class="fas fa-brain text-orange-400"></i>
+          Psicologia
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-hand-holding-medical text-indigo-400"></i>
+          Terapia Ocupacional
+        </li>
+        <li class="flex items-center gap-2">
+          <i class="fas fa-comment-dots text-pink-400"></i>
+          Fonoaudiologia
+        </li>
+      </ul>
+      <a href="terapia-ocupacional.html"
+ class="inline-flex items-center gap-2 mt-4 bg-orange-500 hover:bg-orange-400
+        text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
+<i class="fas fa-lightbulb"></i>
+      Saiba Mais
+</a>
+    </div>
+  </div>
+</section>
     
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-10">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-primary font-heading mb-4">
-                Nossas Terapias
-            </h2>
-            <p class="text-lg text-gray-700 max-w-3xl mx-auto">
-                A EIBM oferece uma abordagem multidisciplinar para o desenvolvimento infantil, com terapias integradas e personalizadas para cada necessidade.
-            </p>
-        </div>
         
         <!-- Abordagem Multidisciplinar Section -->
         <section class="mb-16">
@@ -200,143 +538,10 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Terapias -->
-        <section>
-            <h3 class="text-2xl font-bold text-primary mb-6 text-center">
-                Conheça nossas terapias especializadas
-            </h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Terapia Ocupacional -->
-                <div class="therapy-card bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="h-3 bg-primary"></div>
-                    <div class="p-6">
-                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-hands text-2xl text-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-3 text-center">Terapia Ocupacional</h3>
-                        <p class="text-gray-700 mb-4">
-                            Auxilia no desenvolvimento de habilidades necessárias para atividades diárias, trabalhando coordenação motora, integração sensorial e autonomia.
-                        </p>
-                        <ul class="space-y-2 mb-4">
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-primary mr-2"></i>
-                                <span>Coordenação motora fina e grossa</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-primary mr-2"></i>
-                                <span>Processamento sensorial</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-primary mr-2"></i>
-                                <span>Atividades de vida diária</span>
-                            </li>
-                        </ul>
-                        <a href="terapia-ocupacional.html" class="block w-full bg-primary hover:bg-blue-royal text-white font-medium py-2 rounded-lg transition-colors text-center">
-                            Saiba Mais
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Psicologia -->
-                <div class="therapy-card bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="h-3 bg-primary"></div>
-                    <div class="p-6">
-                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-brain text-2xl text-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-3 text-center">Psicologia</h3>
-                        <p class="text-gray-700 mb-4">
-                            Foca no desenvolvimento emocional, comportamental e social, utilizando técnicas baseadas em evidências como ABA e terapia cognitivo-comportamental.
-                        </p>
-                        <ul class="space-y-2 mb-4">
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-primary mr-2"></i>
-                                <span>Análise do Comportamento Aplicada (ABA)</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-primary mr-2"></i>
-                                <span>Terapia cognitivo-comportamental</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-primary mr-2"></i>
-                                <span>Habilidades sociais e emocionais</span>
-                            </li>
-                        </ul>
-                        <a href="psicologia.html" class="block w-full bg-primary hover:bg-blue-royal text-white font-medium py-2 rounded-lg transition-colors text-center">
-                            Saiba Mais
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Fonoaudiologia -->
-                <div class="therapy-card bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="h-3 bg-primary"></div>
-                    <div class="p-6">
-                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-comment-dots text-2xl text-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-3 text-center">Fonoaudiologia</h3>
-                        <p class="text-gray-700 mb-4">
-                            Trabalha com o desenvolvimento da comunicação, linguagem, fala e funções orais, essenciais para a interação social e aprendizado.
-                        </p>
-                        <ul class="space-y-2 mb-4">
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-primary mr-2"></i>
-                                <span>Desenvolvimento da linguagem</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-primary mr-2"></i>
-                                <span>Comunicação alternativa</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-primary mr-2"></i>
-                                <span>Funções orais e alimentação</span>
-                            </li>
-                        </ul>
-                        <a href="fonoaudiologia.html" class="block w-full bg-primary hover:bg-blue-royal text-white font-medium py-2 rounded-lg transition-colors text-center">
-                            Saiba Mais
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Psicopedagogia -->
-                <div class="therapy-card bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="h-3 bg-primary"></div>
-                    <div class="p-6">
-                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-book-open text-2xl text-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-3 text-center">Psicopedagogia</h3>
-                        <p class="text-gray-700 mb-4">
-                            Foca nos processos de aprendizagem, ajudando a identificar dificuldades e desenvolver estratégias para superar desafios educacionais.
-                        </p>
-                        <ul class="space-y-2 mb-4">
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-primary mr-2"></i>
-                                <span>Avaliação psicopedagógica</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-primary mr-2"></i>
-                                <span>Adaptação de conteúdos escolares</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-primary mr-2"></i>
-                                <span>Desenvolvimento cognitivo</span>
-                            </li>
-                        </ul>
-                        <a href="psicopedagogia.html" class="block w-full bg-primary hover:bg-blue-royal text-white font-medium py-2 rounded-lg transition-colors text-center">
-                            Saiba Mais
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
+    
         
         <!-- Processo de Terapias -->
-        <section class="mb-16 bg-white p-8 rounded-xl shadow-md">
+        <section id="funcionamento" class="mb-16 bg-white p-8 rounded-xl shadow-md">
             <h3 class="text-2xl font-bold text-primary mb-8 text-center">Como Funcionam Nossas Terapias</h3>
             
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -443,6 +648,37 @@
 
     <!-- JavaScript -->
     <script>
+      // Parallax otimizado
+      document.addEventListener('DOMContentLoaded', () => {
+        const lamps = document.querySelectorAll('.parallax-lamp');
+        let ticking = false;
+        function updateParallax() {
+          const y = window.scrollY;
+          lamps.forEach(el => {
+            const speed = parseFloat(el.dataset.speed) || 0;
+            el.style.transform = `translate3d(0,${y * speed}px,0)`;
+          });
+          ticking = false;
+        }
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(updateParallax);
+            ticking = true;
+          }
+        }, { passive: true });
+      });
+        // Indicador some ao rolar
+  const indicator = document.getElementById('scroll-indicator');
+  window.addEventListener('scroll', () => {
+    indicator.style.opacity = window.scrollY > 60 ? '0' : '0.9';
+  }, { passive: true });
+      // Toggle modal
+      function openModal(id) {
+        document.getElementById(id).style.display = 'flex';
+      }
+      function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+      }
         // Menu Mobile
         document.addEventListener('DOMContentLoaded', () => {
             const menuToggle = document.getElementById('menu-toggle');
