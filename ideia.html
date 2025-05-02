@@ -54,10 +54,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      /* Modal backdrop */
+      .modal-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(4px);
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+      }
+    </style>
 </head>
 <body class="font-sans text-gray-800 bg-purple-50 min-h-screen">
     <!-- Header/Navigation -->
-    <header class="fixed top-0 left-0 w-full bg-white shadow-md rounded-b-xl z-50">
+    <header class="fixed top-0 left-0 w-full bg-white shadow-xl rounded-b-xl z-50">
       <div class="container mx-auto px-4 py-3 flex items-center justify-between">
         <!-- Logo -->
         <a href="index.html" class="flex items-center">
@@ -91,7 +104,7 @@
             >EIBM Terapias</a
           >
           <a
-            href="ideia.html"
+            href="contato.html"
             class="text-black hover:text-orange font-medium transition"
             >Contato</a
           >
@@ -105,19 +118,11 @@
           <i class="fas fa-bars text-2xl"></i>
         </button>
       </div>
-    </header>
-    
-                <!-- Mobile Menu Toggle -->
-                <button class="block md:hidden text-primary" id="menu-toggle">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-        </div>
         
         <!-- Mobile Menu (hidden by default) -->
         <div class="menu-mobile fixed top-0 left-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 p-5 transform -translate-x-full transition-transform duration-300" id="mobile-menu">
             <div class="flex justify-between items-center mb-6">
-                <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12">
+                <img src="attached_assets/logo_ideia_escrito.svg" alt="Logo IDEIA" class="h-12">
                 <button id="close-menu">
                     <i class="fas fa-times text-2xl text-primary"></i>
                 </button>
@@ -132,262 +137,242 @@
             </ul>
         </div>
     </header>
-    <style>
-      /* Modal backdrop */
-      .modal-backdrop {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.5);
-        backdrop-filter: blur(4px);
-        align-items: center;
-        justify-content: center;
-        z-index: 100;
-      }
-    </style>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="font-sans antialiased">
   
- <!-- Hero Section -->
- <section id="hero"
- class="relative h-screen overflow-hidden
-        bg-gradient-to-b from-orange-100 via-orange-200 to-white">
-<!-- Parallax Lamps -->
-<img src="/attached_assets/logo_ideia_lampada.svg" data-speed="0.20"
-class="parallax-lamp hidden sm:block absolute top-[15%] left-[20%]
-      w-20 sm:w-24 md:w-28 opacity-70 will-change-transform" />
-<img src="/attached_assets/logo_ideia_lampada.svg" data-speed="0.15"
-class="parallax-lamp hidden sm:block absolute top-[20%] right-[20%]
-      w-16 sm:w-20 md:w-24 opacity-6- will-change-transform" />
-<img src="/attached_assets/logo_ideia_lampada.svg" data-speed="0.30"
-class="parallax-lamp absolute bottom-[15%] left-[15%]
-      w-20 sm:w-24 md:w-28 opacity-70 will-change-transform" />
-<img src="/attached_assets/logo_ideia_lampada.svg" data-speed="0.25"
-class="parallax-lamp absolute bottom-[15%] right-[15%]
-      w-20 sm:w-24 md:w-28 opacity-70 will-change-transform" />
-<img src="/attached_assets/logo_ideia_lampada.svg" data-speed="0.35"
-class="parallax-lamp absolute bottom-[10%] left-1/2 transform -translate-x-1/2
-      w-20 sm:w-24 md:w-28 opacity-70 will-change-transform" />
-
-<!-- Hero Content -->
-<div class="relative z-10 container mx-auto px-6 h-full flex flex-col md:flex-row items-center">
-<!-- Left Text -->
-<div class="w-full md:w-1/2 text-center md:text-left space-y-4">
-<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 leading-tight">
-Inclusão e desenvolvimento <br>para todas as crianças
-</h1>
-<p class="text-base sm:text-lg md:text-xl text-gray-700 max-w-md">
-IDEIA une ciência, tecnologia e equipe multidisciplinar para apoiar o desenvolvimento de crianças neurodivergentes, suas famílias e educadores.
-</p>
-<a href="#diferenciais"
- class="inline-flex items-center gap-2 mt-4 bg-orange-400 hover:bg-orange-600
-        text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
-Diferenciais
-</a>
-<a href="#principios"
- class="inline-flex items-center gap-2 mt-4 bg-orange-400 hover:bg-orange-600
-        text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
-Principios
-</a>
-<a href="#sobre"
- class="inline-flex items-center gap-2 mt-4 bg-orange-400 hover:bg-orange-600
-        text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
-Mais do IDEIA
-</a>
-<a href="#sobre"
- class="inline-flex items-center gap-2 mt-4 bg-orange-400 hover:bg-orange-600
-        text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
-Nosso Time
-</a>
-</div>
-<!-- Right Cards -->
-<div class="w-full md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-8 md:mt-0">
-  <button
-    onclick="openModal('modal-treinamento')"
-    class="w-full h-46 sm:h-54  md:h-61 group flex flex-col items-center justify-center
-           bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 cursor-pointer
-           border-2 border-transparent hover:border-orange-500 hover:bg-orange-50
-           focus:outline-none focus:ring-4 focus:ring-orange-300
-           transition-all duration-300"
-  >
-    <i class="fas fa-chart-line text-orange-500 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
-    <span class="text-lg sm:text-xl font-semibold text-gray-900 text-center mb-2">
-      Treinamento Intensivo<br>de Habilidades
-    </span>
-  </button>
-
-  <button
-    onclick="openModal('modal-amb-escolar')"
-    class="w-full h-46 sm:h-54  md:h-61 group flex flex-col items-center justify-center
-           bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 cursor-pointer
-           border-2 border-transparent hover:border-orange-500 hover:bg-orange-50
-           focus:outline-none focus:ring-4 focus:ring-orange-300
-           transition-all duration-300"
-  >
-    <i class="fas fa-chalkboard-teacher text-orange-500 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
-    <span class="text-lg sm:text-xl font-semibold text-gray-900 text-center mb-2">Ambiente Escolar</span>
-  </button>
-
-  <button
-    onclick="openModal('modal-amb-familiar')"
-    class="w-full h-46 sm:h-54  md:h-61 group flex flex-col items-center justify-center
-           bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 cursor-pointer
-           border-2 border-transparent hover:border-orange-500 hover:bg-orange-50
-           focus:outline-none focus:ring-4 focus:ring-orange-300
-           transition-all duration-300"
-  >
-    <i class="fas fa-home text-orange-500 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
-    <span class="text-lg sm:text-xl font-semibold text-gray-900 text-center mb-2">Ambiente Familiar</span>
-
-  </button>
-
-  <button
-    onclick="openModal('modal-eibm')"
-    class="w-full h-46 sm:h-54  md:h-61 group flex flex-col items-center justify-center
-           bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 cursor-pointer
-           border-2 border-transparent hover:border-orange-500 hover:bg-orange-50
-           focus:outline-none focus:ring-4 focus:ring-orange-300
-           transition-all duration-300"
-  >
-    <img
-      src="/attached_assets/logo_eibm_terapias.svg"
-      alt="Logo EIBM Terapias"
-      class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-4 group-hover:scale-110 transition-transform"
-    />
-    <span class="text-lg sm:text-xl font-semibold text-gray-900 text-center mb-2">EIBM TERAPIAS</span>
-  </button>
-</div>
-
-
-<!-- Scroll Indicator -->
-<div id="scroll-indicator"
-class="absolute text-center bottom-6 left-1/2 transform -translate-x-1/2 z-20 opacity-90 transition-opacity duration-500">
-<span class="animate-bounce text-orange-600 text-2xl"><i class="fas fa-chevron-down"></i></span>
-<span class="block text-xs text-orange-700">Role para ver mais</span>
-</div>
-</section>
-
-<!-- Modal: EIBM Terapias -->
-<section id="modal-eibm" class="modal-backdrop">
-  <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
-    <button onclick="closeModal('modal-eibm')"
-            class="absolute top-4 right-4 text-gray-400 hover:text-orange-500 text-2xl font-bold"
-            aria-label="Fechar">&times;</button>
-    <div class="flex flex-col items-center">
-      <img src="/attached_assets/logo_eibm_terapias.svg"
-           alt="Logo EIBM Terapias"
-           class="w-24 h-24 mb-4"/>
-      <h2 class="text-xl font-bold text-blue-royal mb-2">EIBM Terapias</h2>
-      <p class="text-gray-800 mb-4 text-center">
-        Polo de referência em neurodiversidade, a EIBM Terapias integra abordagens inovadoras e equipe multidisciplinar para promover autonomia e bem-estar.
-      </p>
-      <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
-        <li class="flex items-center gap-2">
-          <i class="fas fa-brain text-orange-400"></i>
-          Psicologia
-        </li>
-        <li class="flex items-center gap-2">
-          <i class="fas fa-hand-holding-medical text-indigo-400"></i>
-          Terapia Ocupacional
-        </li>
-        <li class="flex items-center gap-2">
-          <i class="fas fa-comment-dots text-pink-400"></i>
-          Fonoaudiologia
-        </li>
-        <li class="flex items-center gap-2">
-          <i class="fas fa-chalkboard-teacher text-green-400"></i>
-          Psicopedagogia
-        </li>
-        <li class="flex items-center gap-2">
-          <i class="fas fa-music text-purple-400"></i>
-          Musicoterapia
-        </li>
-      </ul>
-      <a href="fonoaudiologia.html"
-      class="inline-flex items-center gap-2 mt-4 bg-blue-royal hover:bg-green-600
-             text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
-     <i class="fas fa-lightbulb"></i>
-           Saiba Mais
-     </a>
-    </div>
-  </div>
-</section>
-
-    <!-- Modal: Atendimento Personalizado -->
-    <section id="modal-treinamento" class="modal-backdrop">
-      <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
-        <button onclick="closeModal('modal-treinamento')"
-                class="absolute top-4 right-4 text-gray-400 hover:text-orange-500 text-2xl font-bold"
-                aria-label="Fechar">&times;</button>
-        <div class="flex flex-col items-center">
-          <img src="attached_assets/logo_ideia.svg"
-               alt="Lâmpada Atendimento Personalizado"
-               class="w-24 h-24 mb-4"/>
-          <h2 class="text-xl font-bold text-orange-600 mb-2">Treinamento Intensivo de Habilidades</h2>
-          <p class="text-gray-800 mb-4 text-center">
-            Trabalhamos o desenvolvimento de um amplo repertório de habilidades, sempre com base em metodologias como ABA, TEACCH e ensino naturalista.
-          </p>
-          <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
-            <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-orange-400"></i>Comunicação</li>
-            <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-purple-400"></i>Habilidades Sociais</li>
-            <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-green-400"></i>Autonomia</li>
-            <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-red-400"></i>Regulação emocional</li>
-            <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-blue-400"></i>Auto-Higiene</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  
-        <!-- Modal: Ambiente Familiar -->
-        <section id="modal-amb-familiar" class="modal-backdrop">
-          <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
-            <button onclick="closeModal('modal-amb-familiar')"
-                    class="absolute top-4 right-4 text-gray-400 hover:text-orange-500 text-2xl font-bold"
-                    aria-label="Fechar">&times;</button>
-            <div class="flex flex-col items-center">
-              <img src="attached_assets/logo_ideia.svg"
-                   alt="Lâmpada Atendimento Personalizado"
-                   class="w-24 h-24 mb-4"/>
-              <h2 class="text-xl font-bold text-orange-600 mb-2">Ambiente Familiar</h2>
-              <p class="text-gray-800 mb-4 text-center">
-                Orientamos famílias na adaptação de suas casas para promover independência, segurança e estímulos adequados..
-              </p>
-              <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
-                <li class="flex items-center gap-2"><i class="fas fa-window-restore text-orange-400"></i>Organização de espaços</li>
-                <li class="flex items-center gap-2"><i class="fas fa-eye text-purple-400"></i>Rotinas visuais</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-child-reaching text-green-400"></i>Adaptações para autonomia</li>
-                <li class="flex items-center gap-2"><i class="fas fa-cubes-stacked text-red-400"></i>Espaços de integração sensorial</li>
-                <li class="flex items-center gap-2"><i class="fas fa-people-roof text-blue-400"></i>Acompanhamento Parental</li>
-              </ul>
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen pt-28 md:pt-32 pb-24 overflow-hidden bg-gradient-to-b from-orange-100 via-orange-200 to-white flex flex-col justify-center">
+        <!-- Parallax Lamps -->
+        <img src="attached_assets/logo_ideia_lampada.svg" data-speed="0.05"
+            class="parallax-lamp hidden md:block absolute top-[15%] left-[20%]
+                w-14 md:w-16 lg:w-20 opacity-60 will-change-transform" />
+        <img src="attached_assets/logo_ideia_lampada.svg" data-speed="0.03"
+            class="parallax-lamp hidden md:block absolute top-[20%] right-[20%]
+                w-12 md:w-14 lg:w-16 opacity-60 will-change-transform" />
+        <img src="attached_assets/logo_ideia_lampada.svg" data-speed="0.07"
+            class="parallax-lamp hidden sm:block absolute bottom-[15%] left-[15%]
+                w-14 md:w-16 lg:w-20 opacity-60 will-change-transform" />
+        <img src="attached_assets/logo_ideia_lampada.svg" data-speed="0.04"
+            class="parallax-lamp hidden sm:block absolute bottom-[15%] right-[15%]
+                w-14 md:w-16 lg:w-20 opacity-60 will-change-transform" />
+        <img src="attached_assets/logo_ideia_lampada.svg" data-speed="0.06"
+            class="parallax-lamp absolute bottom-[10%] left-1/2 transform -translate-x-1/2
+                w-14 md:w-16 lg:w-20 opacity-60 will-change-transform" />
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 container mx-auto px-4 sm:px-6 my-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
+            <!-- Left Text -->
+            <div class="w-full lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0 mt-4 lg:mt-0">
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 leading-tight">
+                    Inclusão e desenvolvimento <span class="block mt-2">para todas as crianças</span>
+                </h1>
+                <p class="text-base sm:text-lg text-gray-700 max-w-xl mx-auto lg:mx-0 mt-4">
+                    IDEIA une ciência, tecnologia e equipe multidisciplinar para apoiar o desenvolvimento de crianças neurodivergentes, suas famílias e educadores.
+                </p>
+                <div class="flex flex-wrap justify-center lg:justify-start gap-3 mt-6">
+                    <a href="#diferenciais"
+                        class="inline-flex items-center gap-2 bg-orange-400 hover:bg-orange-600
+                            text-white font-bold px-4 py-2 rounded-full shadow-lg transition text-sm sm:text-base">
+                        Diferenciais
+                    </a>
+                    <a href="#principios"
+                        class="inline-flex items-center gap-2 bg-orange-400 hover:bg-orange-600
+                            text-white font-bold px-4 py-2 rounded-full shadow-lg transition text-sm sm:text-base">
+                        Princípios
+                    </a>
+                    <a href="#sobre"
+                        class="inline-flex items-center gap-2 bg-orange-400 hover:bg-orange-600
+                            text-white font-bold px-4 py-2 rounded-full shadow-lg transition text-sm sm:text-base">
+                        Mais do IDEIA
+                    </a>
+                    <a href="#time"
+                        class="inline-flex items-center gap-2 bg-orange-400 hover:bg-orange-600
+                            text-white font-bold px-4 py-2 rounded-full shadow-lg transition text-sm sm:text-base">
+                        Nosso Time
+                    </a>
+                </div>
             </div>
-          </div>
-        </section>
-
-    <!-- Modal: Atendimento Personalizado -->
-    <section id="modal-amb-escolar" class="modal-backdrop">
-      <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
-        <button onclick="closeModal('modal-amb-escolar')"
-                class="absolute top-4 right-4 text-gray-400 hover:text-orange-500 text-2xl font-bold"
-                aria-label="Fechar">&times;</button>
-        <div class="flex flex-col items-center">
-          <img src="attached_assets/logo_ideia.svg"
-               alt="Lâmpada Atendimento Personalizado"
-               class="w-24 h-24 mb-4"/>
-          <h2 class="text-xl font-bold text-orange-600 mb-2">Ambiente Escolar</h2>
-          <p class="text-gray-800 mb-4 text-center">
-            Capacitamos equipes escolares e desenvolvemos projetos de adaptação de salas de aula e espaços escolares para atender às necessidades de todas as crianças.
-          </p>
-          <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
-            <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-orange-400"></i>Treinamento de Equipes</li>
-            <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-purple-400"></i>Áreas de descanso sensorial</li>
-            <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-green-400"></i>Organização de ambiente sensorial</li>
-            <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-red-400"></i>Áreas de descanso sensorial</li>
-            <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-blue-400"></i>Adaptação de mobiliário</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+            <!-- Right Cards -->
+            <div class="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 mt-4 lg:mt-0">
+     <button
+       onclick="openModal('modal-treinamento')"
+       class="w-full aspect-square sm:aspect-auto sm:h-auto group flex flex-col items-center justify-center
+              bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8
+              border-2 border-transparent hover:border-orange-500 hover:bg-orange-50
+              focus:outline-none focus:ring-2 focus:ring-orange-300
+              transition-all duration-300"
+     >
+       <i class="fas fa-chart-line text-orange-500 text-2xl sm:text-3xl lg:text-4xl mb-2 sm:mb-4 group-hover:scale-110 transition-transform"></i>
+       <span class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 text-center">
+         Treinamento<br class="hidden sm:block"> de Habilidades
+       </span>
+     </button>
+   
+     <button
+       onclick="openModal('modal-amb-escolar')"
+       class="w-full aspect-square sm:aspect-auto sm:h-auto group flex flex-col items-center justify-center
+              bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8
+              border-2 border-transparent hover:border-orange-500 hover:bg-orange-50
+              focus:outline-none focus:ring-2 focus:ring-orange-300
+              transition-all duration-300"
+     >
+       <i class="fas fa-chalkboard-teacher text-orange-500 text-2xl sm:text-3xl lg:text-4xl mb-2 sm:mb-4 group-hover:scale-110 transition-transform"></i>
+       <span class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 text-center">Ambiente Escolar</span>
+     </button>
+   
+     <button
+       onclick="openModal('modal-amb-familiar')"
+       class="w-full aspect-square sm:aspect-auto sm:h-auto group flex flex-col items-center justify-center
+              bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8
+              border-2 border-transparent hover:border-orange-500 hover:bg-orange-50
+              focus:outline-none focus:ring-2 focus:ring-orange-300
+              transition-all duration-300"
+     >
+       <i class="fas fa-home text-orange-500 text-2xl sm:text-3xl lg:text-4xl mb-2 sm:mb-4 group-hover:scale-110 transition-transform"></i>
+       <span class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 text-center">Ambiente Familiar</span>
+     </button>
+   
+     <button
+       onclick="openModal('modal-eibm')"
+       class="w-full aspect-square sm:aspect-auto sm:h-auto group flex flex-col items-center justify-center
+              bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8
+              border-2 border-transparent hover:border-orange-500 hover:bg-orange-50
+              focus:outline-none focus:ring-2 focus:ring-orange-300
+              transition-all duration-300"
+     >
+       <img
+         src="attached_assets/logo_eibm_terapias.svg"
+         alt="Logo EIBM Terapias"
+         class="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 mb-2 sm:mb-4 group-hover:scale-110 transition-transform"
+       />
+       <span class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 text-center">EIBM Terapias</span>
+     </button>
+   </div>
+   
+   
+   <!-- Scroll Indicator -->
+   <div id="scroll-indicator"
+   class="fixed text-center bottom-8 left-1/2 transform -translate-x-1/2 z-20 opacity-90 transition-opacity duration-500 bg-white/70 backdrop-blur-sm p-2 rounded-full shadow-md">
+     <span class="animate-bounce inline-block text-orange-600 text-xl sm:text-2xl"><i class="fas fa-chevron-down"></i></span>
+     <span class="block text-xs sm:text-sm text-orange-700 font-bold">Role para ver mais</span>
+   </div>
+</div>
+</section>
+   
+   <!-- Modal: EIBM Terapias -->
+   <section id="modal-eibm" class="modal-backdrop">
+     <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full mx-4 p-5 sm:p-8 relative">
+       <button onclick="closeModal('modal-eibm')"
+               class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-orange-500 text-xl sm:text-2xl font-bold"
+               aria-label="Fechar">&times;</button>
+       <div class="flex flex-col items-center">
+         <img src="attached_assets/logo_eibm_terapias.svg"
+              alt="Logo EIBM Terapias"
+              class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-3 sm:mb-4"/>
+         <h2 class="text-lg sm:text-xl font-bold text-blue-royal mb-2">EIBM Terapias</h2>
+         <p class="text-gray-800 mb-4 text-center text-sm sm:text-base">
+           Polo de referência em neurodiversidade, a EIBM Terapias integra abordagens inovadoras e equipe multidisciplinar para promover autonomia e bem-estar.
+         </p>
+         <ul class="mb-4 text-gray-700 space-y-2 text-xs sm:text-sm text-left w-full max-w-xs">
+           <li class="flex items-center gap-2">
+             <i class="fas fa-brain text-orange-400 w-5 text-center"></i>
+             Psicologia
+           </li>
+           <li class="flex items-center gap-2">
+             <i class="fas fa-hand-holding-medical text-indigo-400 w-5 text-center"></i>
+             Terapia Ocupacional
+           </li>
+           <li class="flex items-center gap-2">
+             <i class="fas fa-comment-dots text-pink-400 w-5 text-center"></i>
+             Fonoaudiologia
+           </li>
+           <li class="flex items-center gap-2">
+             <i class="fas fa-chalkboard-teacher text-green-400 w-5 text-center"></i>
+             Psicopedagogia
+           </li>
+           <li class="flex items-center gap-2">
+             <i class="fas fa-music text-purple-400 w-5 text-center"></i>
+             Musicoterapia
+           </li>
+         </ul>
+         <a href="terapias.html"
+         class="inline-flex items-center gap-2 mt-2 sm:mt-4 bg-blue-royal hover:bg-blue-500
+                text-white font-bold text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg transition">
+        <i class="fas fa-lightbulb"></i>
+              Saiba Mais
+        </a>
+       </div>
+     </div>
+   </section>
+   
+       <!-- Modal: Atendimento Personalizado -->
+       <section id="modal-treinamento" class="modal-backdrop">
+         <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full mx-4 p-5 sm:p-8 relative">
+           <button onclick="closeModal('modal-treinamento')"
+                   class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-orange-500 text-xl sm:text-2xl font-bold"
+                   aria-label="Fechar">&times;</button>
+           <div class="flex flex-col items-center">
+             <img src="attached_assets/logo_ideia.svg"
+                  alt="Lâmpada Atendimento Personalizado"
+                  class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-3 sm:mb-4"/>
+             <h2 class="text-lg sm:text-xl font-bold text-orange-600 mb-2">Treinamento Intensivo de Habilidades</h2>
+             <p class="text-gray-800 mb-4 text-center text-sm sm:text-base">
+               Trabalhamos o desenvolvimento de um amplo repertório de habilidades, sempre com base em metodologias como ABA, TEACCH e ensino naturalista.
+             </p>
+             <ul class="mb-4 text-gray-700 space-y-2 text-xs sm:text-sm text-left w-full max-w-xs">
+               <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-orange-400 w-5 text-center"></i>Comunicação</li>
+               <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-purple-400 w-5 text-center"></i>Habilidades Sociais</li>
+               <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-green-400 w-5 text-center"></i>Autonomia</li>
+               <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-red-400 w-5 text-center"></i>Regulação emocional</li>
+               <li class="flex items-center gap-2"><i class="fas fa-puzzle-piece text-blue-400 w-5 text-center"></i>Auto-Higiene</li>
+             </ul>
+           </div>
+         </div>
+       </section>
+     
+           <!-- Modal: Ambiente Familiar -->
+           <section id="modal-amb-familiar" class="modal-backdrop">
+             <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full mx-4 p-5 sm:p-8 relative">
+               <button onclick="closeModal('modal-amb-familiar')"
+                       class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-orange-500 text-xl sm:text-2xl font-bold"
+                       aria-label="Fechar">&times;</button>
+               <div class="flex flex-col items-center">
+                 <i class="fas fa-home text-orange-500 text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4"></i>
+                 <h2 class="text-lg sm:text-xl font-bold text-orange-600 mb-2">Ambiente Familiar</h2>
+                 <p class="text-gray-800 mb-4 text-center text-sm sm:text-base">
+                   Adaptamos ambientes domésticos para facilitar o desenvolvimento e autonomia de crianças neurodivergentes em suas próprias casas.
+                 </p>
+                 <ul class="mb-4 text-gray-700 space-y-2 text-xs sm:text-sm text-left w-full max-w-xs">
+                   <li class="flex items-center gap-2"><i class="fas fa-check-circle text-orange-400 w-5 text-center"></i>Avaliação ambiental completa</li>
+                   <li class="flex items-center gap-2"><i class="fas fa-check-circle text-orange-400 w-5 text-center"></i>Adaptações sensoriais personalizadas</li>
+                   <li class="flex items-center gap-2"><i class="fas fa-check-circle text-orange-400 w-5 text-center"></i>Treinamento dos cuidadores</li>
+                   <li class="flex items-center gap-2"><i class="fas fa-check-circle text-orange-400 w-5 text-center"></i>Suporte contínuo à família</li>
+                   <li class="flex items-center gap-2"><i class="fas fa-check-circle text-orange-400 w-5 text-center"></i>Protocolos de rotina visual e estruturada</li>
+                 </ul>
+               </div>
+             </div>
+           </section>
+         
+               <!-- Modal: Ambiente Escolar -->
+               <section id="modal-amb-escolar" class="modal-backdrop">
+                 <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full mx-4 p-5 sm:p-8 relative">
+                   <button onclick="closeModal('modal-amb-escolar')"
+                           class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-orange-500 text-xl sm:text-2xl font-bold"
+                           aria-label="Fechar">&times;</button>
+                   <div class="flex flex-col items-center">
+                     <i class="fas fa-chalkboard-teacher text-orange-500 text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4"></i>
+                     <h2 class="text-lg sm:text-xl font-bold text-orange-600 mb-2">Ambiente Escolar</h2>
+                     <p class="text-gray-800 mb-4 text-center text-sm sm:text-base">
+                       Adaptamos espaços escolares, oferecemos treinamento para educadores e apoiamos a inclusão efetiva de crianças com necessidades especiais.
+                     </p>
+                     <ul class="mb-4 text-gray-700 space-y-2 text-xs sm:text-sm text-left w-full max-w-xs">
+                       <li class="flex items-center gap-2"><i class="fas fa-check-circle text-orange-400 w-5 text-center"></i>Avaliação de acessibilidade e funcionalidade</li>
+                       <li class="flex items-center gap-2"><i class="fas fa-check-circle text-orange-400 w-5 text-center"></i>Capacitação da equipe pedagógica</li>
+                       <li class="flex items-center gap-2"><i class="fas fa-check-circle text-orange-400 w-5 text-center"></i>Material didático adaptado</li>
+                       <li class="flex items-center gap-2"><i class="fas fa-check-circle text-orange-400 w-5 text-center"></i>Salas de aula sensorialmente acessíveis</li>
+                       <li class="flex items-center gap-2"><i class="fas fa-check-circle text-orange-400 w-5 text-center"></i>Mediação escolar qualificada</li>
+                     </ul>
+                   </div>
+                 </div>
+               </section>
 
             <!-- Diferenciais IDEIA -->
             <section id="diferenciais" class="bg-gradient-to-b from-white via-orange-100 to-white py-24 sm:py-32">
@@ -410,7 +395,7 @@ class="absolute text-center bottom-6 left-1/2 transform -translate-x-1/2 z-20 op
                         </p>
                       </div>
                       <div class="relative min-h-[16rem] w-full grow flex items-center justify-center">
-                        <img class="w-40 h-40 object-contain" src="/attached_assets/logo_ideia_lampada.svg" alt="Atendimento Personalizado IDEIA">
+                        <img class="w-40 h-40 object-contain" src="attached_assets/logo_ideia_lampada.svg" alt="Atendimento Personalizado IDEIA">
                       </div>
                     </div>
                     <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-orange-100 lg:rounded-l-[2rem]"></div>
@@ -426,7 +411,7 @@ class="absolute text-center bottom-6 left-1/2 transform -translate-x-1/2 z-20 op
                           Equipe Multidisciplinar
                         </p>
                         <p class="mt-2 max-w-lg text-sm text-gray-700 max-lg:text-center">
-                          Psicólogos, TO, fonoaudiólogos, psicopedagogos, nutricionistas e musicoterapeutas atuando em conjunto.
+                          Psicólogos, Terapias Ocupacional, fonoaudiólogos, psicopedagogos, nutricionistas e musicoterapeutas atuando em conjunto.
                         </p>
                       </div>
                       <div class="flex flex-1 items-center justify-center px-8 max-lg:pt-10 max-lg:pb-12 sm:px-10 lg:pb-2">
@@ -479,8 +464,9 @@ class="absolute text-center bottom-6 left-1/2 transform -translate-x-1/2 z-20 op
               </div>
               <div id="principios"></div>
             </section>
+
              <!--Seção de Principios do IDEIA-->
-             <section class="bg-gradient-to-b from-white to-white py-16">
+             <section id="principios" class="bg-gradient-to-b from-white to-white py-16">
               <div class="container mx-auto px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
                   Princípios do IDEIA
@@ -529,7 +515,7 @@ class="absolute text-center bottom-6 left-1/2 transform -translate-x-1/2 z-20 op
                 </div>
               </div>
               </section>
-            <!-- Seção Missão e Equipe IDEIA -->
+
 <section id="sobre" class="bg-gradient-to-b from-white via-orange-100 to-white py-24 px-4">
   <div class="max-w-7xl mx-auto">
     <!-- Missão e números -->
@@ -563,15 +549,18 @@ class="absolute text-center bottom-6 left-1/2 transform -translate-x-1/2 z-20 op
       </div>
       <!-- Imagens ilustrativas em grid suave -->
       <div class="grid grid-cols-2 gap-4">
-        <img src="/attached_assets/ideia-foto1.jpg" alt="Equipe IDEIA" class="rounded-2xl shadow-lg object-cover aspect-square" />
-        <img src="/attached_assets/ideia-foto2.jpg" alt="Ambiente IDEIA" class="rounded-2xl shadow-lg object-cover aspect-square" />
-        <img src="/attached_assets/ideia-foto3.jpg" alt="Crianças IDEIA" class="rounded-2xl shadow-lg object-cover aspect-square" />
-        <img src="/attached_assets/ideia-foto4.jpg" alt="Família IDEIA" class="rounded-2xl shadow-lg object-cover aspect-square" />
+        <img src="attached_assets/ideia-foto1.jpg" alt="Equipe IDEIA" class="rounded-2xl shadow-lg object-cover aspect-square" />
+        <img src="attached_assets/ideia-foto2.jpg" alt="Ambiente IDEIA" class="rounded-2xl shadow-lg object-cover aspect-square" />
+        <img src="attached_assets/ideia-foto3.jpg" alt="Crianças IDEIA" class="rounded-2xl shadow-lg object-cover aspect-square" />
+        <img src="attached_assets/ideia-foto4.jpg" alt="Família IDEIA" class="rounded-2xl shadow-lg object-cover aspect-square" />
       </div>
     </div>
+</section>
 
     <!-- Equipe IDEIA -->
-    <div class="mb-12">
+ <section id="time" class="py-16 px-4 bg-white">
+    <div class="container mx-auto">
+      <div class="mb-12">
       <h3 class="text-3xl font-bold text-gray-700 text-center mb-2">Conheça nosso time</h3>
       <p class="text-center text-gray-700 mb-10 max-w-2xl mx-auto">
         Uma equipe multidisciplinar apaixonada por inclusão, formada por psicólogos, terapeutas ocupacionais, fonoaudiólogos, psicopedagogos, nutricionistas e musicoterapeutas.
@@ -579,19 +568,19 @@ class="absolute text-center bottom-6 left-1/2 transform -translate-x-1/2 z-20 op
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Exemplo de card de membro -->
         <div class="bg-white/90 rounded-2xl shadow-lg flex flex-col items-center p-8 hover:shadow-xl transition">
-          <img src="/attached_assets/equipe1.jpg" alt="Nome do Profissional" class="w-28 h-28 rounded-full object-cover mb-4 border-4 border-orange-100 shadow" />
+          <img src="attached_assets/equipe1.jpg" alt="Nome do Profissional" class="w-28 h-28 rounded-full object-cover mb-4 border-4 border-orange-100 shadow" />
           <h4 class="text-lg font-bold text-gray-900">Dra. Ana Souza</h4>
           <span class="text-sm text-orange-600 font-semibold mb-2">Psicóloga</span>
           <p class="text-sm text-gray-600 text-center">Especialista em desenvolvimento infantil e inclusão escolar.</p>
         </div>
         <div class="bg-white/90 rounded-2xl shadow-lg flex flex-col items-center p-8 hover:shadow-xl transition">
-          <img src="/attached_assets/equipe2.jpg" alt="Nome do Profissional" class="w-28 h-28 rounded-full object-cover mb-4 border-4 border-orange-100 shadow" />
+          <img src="attached_assets/equipe2.jpg" alt="Nome do Profissional" class="w-28 h-28 rounded-full object-cover mb-4 border-4 border-orange-100 shadow" />
           <h4 class="text-lg font-bold text-gray-900">Lucas Martins</h4>
           <span class="text-sm text-orange-600 font-semibold mb-2">Terapeuta Ocupacional</span>
           <p class="text-sm text-gray-600 text-center">Foco em autonomia e integração sensorial.</p>
         </div>
         <div class="bg-white/90 rounded-2xl shadow-lg flex flex-col items-center p-8 hover:shadow-xl transition">
-          <img src="/attached_assets/equipe3.jpg" alt="Nome do Profissional" class="w-28 h-28 rounded-full object-cover mb-4 border-4 border-orange-100 shadow" />
+          <img src="attached_assets/equipe3.jpg" alt="Nome do Profissional" class="w-28 h-28 rounded-full object-cover mb-4 border-4 border-orange-100 shadow" />
           <h4 class="text-lg font-bold text-gray-900">Marina Lima</h4>
           <span class="text-sm text-orange-600 font-semibold mb-2">Fonoaudióloga</span>
           <p class="text-sm text-gray-600 text-center">Comunicação alternativa e linguagem funcional.</p>
@@ -599,8 +588,11 @@ class="absolute text-center bottom-6 left-1/2 transform -translate-x-1/2 z-20 op
         <!-- Adicione mais cards conforme necessário -->
       </div>
     </div>
-  </div>
-</section>         
+    </div>
+</section>
+
+
+
     <!-- Footer -->
     <footer class="bg-gray-700 text-white py-6">
         <div class="container mx-auto px-4">
@@ -630,66 +622,136 @@ class="absolute text-center bottom-6 left-1/2 transform -translate-x-1/2 z-20 op
         </div>
     </footer>
 
+    <!-- Botão Voltar ao Topo -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-orange text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 focus:outline-none hover:bg-orange-600">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <!-- JavaScript -->
+    <script src="script.js"></script>
     <script>
       // Parallax otimizado
       document.addEventListener('DOMContentLoaded', () => {
         const lamps = document.querySelectorAll('.parallax-lamp');
         let ticking = false;
+        
+        // Função para aplicar efeito de paralaxe
         function updateParallax() {
           const y = window.scrollY;
-          lamps.forEach(el => {
-            const speed = parseFloat(el.dataset.speed) || 0;
-            el.style.transform = `translate3d(0,${y * speed}px,0)`;
+          lamps.forEach(lamp => {
+            // Valida o valor speed
+            let speed = parseFloat(lamp.getAttribute('data-speed')) || 0.05;
+            let yOffset = y * speed;
+            
+            // Aplica a transformação com translate Y
+            lamp.style.transform = `translateY(${yOffset}px)`;
           });
+          
           ticking = false;
         }
-        window.addEventListener('scroll', () => {
+        
+        // Chama uma vez no carregamento
+        updateParallax();
+        
+        // Adiciona evento de scroll com passive true para melhor performance
+        window.addEventListener('scroll', function() {
           if (!ticking) {
             window.requestAnimationFrame(updateParallax);
             ticking = true;
           }
         }, { passive: true });
-      });
+
         // Indicador some ao rolar
-  const indicator = document.getElementById('scroll-indicator');
-  window.addEventListener('scroll', () => {
-    indicator.style.opacity = window.scrollY > 60 ? '0' : '0.9';
-  }, { passive: true });
-      // Toggle modal
-      function openModal(id) {
-        document.getElementById(id).style.display = 'flex';
-      }
-      function closeModal(id) {
-        document.getElementById(id).style.display = 'none';
-      }
-        // Menu Mobile
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.getElementById('menu-toggle');
-            const closeMenu = document.getElementById('close-menu');
-            const mobileMenu = document.getElementById('mobile-menu');
+        const indicator = document.getElementById('scroll-indicator');
+        if (indicator) {
+          window.addEventListener('scroll', () => {
+            indicator.style.opacity = window.scrollY > 60 ? '0' : '0.9';
+          }, { passive: true });
+        }
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        if (backToTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            }, { passive: true });
             
-            // Abre o menu
-            menuToggle.addEventListener('click', () => {
-                mobileMenu.classList.remove('-translate-x-full');
-                document.body.style.overflow = 'hidden'; // Impede rolagem da página
-            });
-            
-            // Fecha o menu
-            closeMenu.addEventListener('click', () => {
-                mobileMenu.classList.add('-translate-x-full');
-                document.body.style.overflow = ''; // Restaura rolagem
-            });
-            
-            // Fecha o menu ao clicar em um link
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('-translate-x-full');
-                    document.body.style.overflow = '';
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
                 });
             });
+        }
+      });
+
+      // Toggle modal
+      function openModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+          modal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+      }
+      
+      function closeModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+          modal.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      }
+      
+      // Close modals when clicking outside content
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.modal-backdrop').forEach(modal => {
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+              closeModal(modal.id);
+            }
+          });
         });
+      });
+      
+      // Menu Mobile
+      document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuToggle && mobileMenu) {
+          // Abre o menu
+          menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('-translate-x-full');
+            document.body.style.overflow = 'hidden'; // Impede rolagem da página
+          });
+        }
+        
+        if (closeMenu && mobileMenu) {
+          // Fecha o menu
+          closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('-translate-x-full');
+            document.body.style.overflow = ''; // Restaura rolagem
+          });
+        }
+        
+        if (mobileMenu) {
+          // Fecha o menu ao clicar em um link
+          const mobileLinks = mobileMenu.querySelectorAll('a');
+          mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+              mobileMenu.classList.add('-translate-x-full');
+              document.body.style.overflow = '';
+            });
+          });
+        }
+      });
     </script>
 </body>
 </html>
