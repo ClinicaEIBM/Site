@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EIBM Terapias</title>
+    <meta name="description" content="Conheça as terapias oferecidas pela EIBM: Terapia Ocupacional, Psicologia, Fonoaudiologia e Psicopedagogia.">
+    
+    <style>
+  /* Linha vertical base */
+  .section-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 0;
+    background-color: #136CB2; /* cor principal */
+    transition: height 1s ease-out;
+    z-index: -1;
+  }
+  /* Quando ativa, preenche toda a altura da seção */
+  .section-line.active {
+    height: 100%;
+  }
+
+
+      /* Modal backdrop */
+      .modal-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(4px);
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+      }
+    </style>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#195184',      // Azul principal
+                        secondary: '#6CBB45',    // Verde
+                        accent: '#ED3924',       // Vermelho
+                        blue: {
+                            light: '#439CD5',   // tom mais claro
+                            DEFAULT: '#136CB2', // seu tom principal
+                            dark: '#195184',    // tom mais escuro
+                        },
+                        green: {
+                            light: '#9DCB5B',
+                            dark: '#648543',
+                        },
+                        red: {
+                            light: '#E8694B',
+                            dark: '#A53434',
+                        },
+                        yellow: {
+                            light: '#F2E5B0',
+                            DEFAULT: '#EFCD18',
+                        },
+                        orange: {
+                            light: '#FFB766',   // tom mais claro
+                            DEFAULT: '#EA8C2C', // seu tom principal
+                            dark: '#C66F23',    // tom mais escuro
+                        },
+                        purple: {
+                            light: '#D29BFF',
+                            DEFAULT: '#A358E1',
+                            dark: '#9930C2',
+                        },
+                        gold: '#D4AF37',
+                        brown: '#8B4513',
+                        beige: '#F5F5DC',
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    
+                }
+            }
+        }
+        
+    </script>
+     <!-- Google Fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+     <!-- Font Awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .therapy-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .therapy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Animação para desenhar o caminho da estrada */
+        @keyframes drawPath {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        /* Animações de entrada para blocos de conteúdo */
+        @keyframes fadeRight {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes fadeLeft {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Animações de flutuação para elementos decorativos */
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0) rotate(12deg); }
+            50% { transform: translateY(-15px) rotate(8deg); }
+        }
+        
+        @keyframes float-slow-reverse {
+            0%, 100% { transform: translateY(0) rotate(-12deg); }
+            50% { transform: translateY(-10px) rotate(-8deg); }
+        }
+        
+        /* Classes de animação */
+        .animate-float-slow {
+            animation: float-slow 8s ease-in-out infinite;
+        }
+        
+        .animate-float-slow-reverse {
+            animation: float-slow-reverse 9s ease-in-out infinite;
+        }
+        
+        /* Animações ativadas por JavaScript */
+        .path-animation-active {
+            animation: drawPath 2s ease-in-out forwards;
+        }
+        
+        .animate-fade-right {
+            animation: fadeRight 0.8s ease-out forwards;
+        }
+        
+        .animate-fade-left {
+            animation: fadeLeft 0.8s ease-out forwards;
+        }
+        
+        .animate-fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        
+        /* Estilo para as seções do roadmap */
+        .section-line {
+            height: 100%;
+            width: 4px;
+            background-color: #e0e7ff;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+        
+        .section-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background-color: #136CB2;
+            transition: height 1.5s ease-out;
+        }
+        
+        .section-line.animate::before {
+            height: 100%;
+        }
+        
+        .animate-section {
+            opacity: 0;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .section-content {
+                padding: 2rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-line {
+                left: 30px;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-800 bg-purple-50 min-h-screen">
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 left-0 w-full bg-white shadow-md rounded-b-xl z-50">
+      <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center">
+          <img
+            src="attached_assets/logo_eibm_terapias_escrito.svg"
+            alt="Logo IDEIA"
+            class="h-24 md:h-24"
+          />
+        </a>
+    
+        <!-- Navegação Desktop -->
+        <nav class="hidden md:flex space-x-6">
+          <a
+            href="terapia-ocupacional.html"
+            class="text-black hover:text-blue-dark font-medium transition"
+            >Terapia Ocupacional</a
+          >
+          <a
+            href="fonoaudiologia.html"
+            class="text-black hover:text-blue-dark font-medium transition"
+            >Fonoaudiologia</a
+          >
+          <a
+            href="psicologia.html"
+            class="text-black hover:text-blue-dark font-medium transition"
+            >Psicologia</a
+          >
+          <a
+            href="psicopedagogia.html"
+            class="text-black hover:text-blue-dark font-medium transition"
+            >Psicopedagogia</a
+          >
+          <a
+            href="ideia.html"
+            class="text-black hover:text-blue-dark font-medium transition"
+            >IDEIA</a
+          >
+          <a
+            href="contato.html"
+            class="text-black hover:text-blue-dark font-medium transition"
+            >Contato</a
+          >
+        </nav>
+    
+        <!-- Botão Mobile -->
+        <button
+          id="menu-toggle"
+          class="md:hidden text-gray-800 hover:text-orange focus:outline-none"
+        >
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </header>
+    
+    <!-- Mobile Menu Toggle -->
+    <button class="block md:hidden text-primary" id="menu-toggle">
+        <i class="fas fa-bars text-2xl"></i>
+    </button>
+    
+    <!-- Mobile Menu (hidden by default) -->
+    <div class="menu-mobile fixed top-0 left-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 p-5 transform -translate-x-full transition-transform duration-300" id="mobile-menu">
+        <div class="flex justify-between items-center mb-6">
+            <img src="attached_assets/logo_eibm_terapias.svg" alt="Logo EIBM" class="h-12">
+            <button id="close-menu">
+                <i class="fas fa-times text-2xl text-primary"></i>
+            </button>
+        </div>
+        <ul class="space-y-4">
+            <li><a href="index.html" class="block py-2 text-primary hover:text-black font-medium">Início</a></li>
+            <li><a href="terapias.html" class="block py-2 text-primary hover:text-black font-medium">Terapias</a></li>
+            <li><a href="especialidades.html" class="block py-2 text-primary hover:text-black font-medium">Especialidades</a></li>
+            <li><a href="ideia.html" class="block py-2 text-primary hover:text-black font-medium font-bold">IDEIA</a></li>
+            <li><a href="transtornos.html" class="block py-2 text-primary hover:text-black font-medium">Transtornos Alimentares</a></li>
+            <li><a href="contato.html" class="block py-2 text-primary hover:text-black font-medium">Contato</a></li>
+        </ul>
+    </div>
+
+    <!-- Layout com quatro telas de altura total -->
+    <div id="funcionamento" class="relative">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen bg-gradient-to-b from-blue-100 via-blue-300 to-white py-24 relative flex items-center">
+            <!-- Elementos decorativos flutuantes -->
+            <div class="absolute inset-0 pointer-events-none overflow-hidden">
+                <i class="fas fa-puzzle-piece absolute top-32 left-80 text-8xl text-orange-400 animate-float-slow"></i>
+                <i class="fas fa-puzzle-piece absolute top-32 right-16 text-8xl text-green-500 animate-float-slow"></i>
+                <i class="fas fa-puzzle-piece absolute bottom-28 left-1/4 text-9xl text-purple-400 animate-float-slow-reverse"></i>
+                <i class="fas fa-puzzle-piece absolute bottom-32 left-1/2 text-5xl text-red-500 animate-float-slow"></i>
+                <i class="fas fa-puzzle-piece absolute top-36 right-1/2 text-6xl text-blue-500 animate-float-slow-reverse"></i>
+                <i class="fas fa-puzzle-piece absolute bottom-16 left-2/3 text-8xl text-orange-400 animate-float-slow"></i>
+            </div>
+            
+            <div class="container mx-auto px-4 sm:px-6 relative z-10">
+                <div class="grid md:grid-cols-5 gap-6 items-center">
+                    <!-- Left Content -->
+                    <div class="md:col-span-2 text-center md:text-left">
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 leading-tight">
+                            Inclusão e desenvolvimento para todas as crianças
+                        </h1>
+                        <p class="text-lg text-gray-700 mb-6">
+                            IDEIA une ciência, tecnologia e equipe multidisciplinar para apoiar o desenvolvimento de crianças neurodivergentes, suas famílias e educadores.
+                        </p>
+                        <a href="#step-1" class="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
+                            <i class="fas fa-lightbulb"></i>
+                            Caminho do Desenvolvimento
+                        </a>
+                    </div>
+                    
+                    <!-- Right Cards -->
+                    <div class="md:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-4 mt-8 md:mt-0">
+                        <button onclick="openModal('modal-fono')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center hover:shadow-xl transition-all">
+                            <i class="fa-solid fa-ear-listen text-green-600 text-3xl mb-2"></i>
+                            <span class="font-bold text-center">Fonoaudiologia</span>
+                        </button>
+                        
+                        <button onclick="openModal('modal-psico')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center hover:shadow-xl transition-all">
+                            <i class="fa-solid fa-brain text-yellow-400 text-3xl mb-2"></i>
+                            <span class="font-bold text-center">Psicologia</span>
+                        </button>
+                        
+                        <button onclick="openModal('modal-to')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center hover:shadow-xl transition-all">
+                            <i class="fa-solid fa-cubes-stacked text-blue-600 text-3xl mb-2"></i>
+                            <span class="font-bold text-center">Terapia Ocupacional</span>
+                        </button>
+                        
+                        <button onclick="openModal('modal-psicoped')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center hover:shadow-xl transition-all">
+                            <i class="fa-solid fa-person-chalkboard text-purple-400 text-3xl mb-2"></i>
+                            <span class="font-bold text-center">Psicopedagogia</span>
+                        </button>
+                        
+                        <button onclick="openModal('modal-clinica')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center col-span-2 md:col-span-1 hover:shadow-xl transition-all">
+                            <img src="attached_assets/logo_eibm_terapias.svg" alt="Logo EIBM" class="h-10 mb-2">
+                            <span class="font-bold text-center">IDEIA</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Scroll Indicator -->
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center animate-bounce">
+                    <p class="text-sm text-blue-700 mb-1">Conheça nosso método</p>
+                    <i class="fas fa-chevron-down text-blue-500"></i>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tela 1: Avaliação Inicial -->
+        <section id="step-1" class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-white py-24 relative flex items-center">
+            <!-- Linha vertical com animação -->
+            <div class="section-line" id="line-1"></div>
+            
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <!-- Conteúdo -->
+                    <div class="animate-section" data-animation="fade-right">
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="bg-blue-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg">
+                                1
+                            </div>
+                            <h2 class="text-4xl md:text-5xl font-bold text-blue-700 section-title">Avaliação<br>Inicial</h2>
+                        </div>
+                        
+                        <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                            Identificamos necessidades específicas através de uma avaliação detalhada com nossa equipe multidisciplinar, estabelecendo a base para um plano eficaz.
+                        </p>
+                        
+                        <div class="bg-white rounded-2xl shadow-xl p-6 space-y-4 section-content">
+                            <h3 class="text-xl font-semibold text-blue-700 flex items-center gap-3">
+                                <i class="fas fa-clipboard-check text-blue-500"></i>
+                                Nosso Processo
+                            </h3>
+                            
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div class="bg-blue-50 p-4 rounded-xl">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fas fa-user-edit text-blue-600 mt-1"></i>
+                                        <div>
+                                            <h4 class="font-medium text-blue-900">Entrevistas</h4>
+                                            <p class="text-sm text-gray-600">Com pais e educadores</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-blue-50 p-4 rounded-xl">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fas fa-tasks text-blue-600 mt-1"></i>
+                                        <div>
+                                            <h4 class="font-medium text-blue-900">Testes Individuais</h4>
+                                            <p class="text-sm text-gray-600">Protocolos validados</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-blue-50 p-4 rounded-xl">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fas fa-eye text-blue-600 mt-1"></i>
+                                        <div>
+                                            <h4 class="font-medium text-blue-900">Observações Clínicas</h4>
+                                            <p class="text-sm text-gray-600">Em ambiente controlado</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-blue-50 p-4 rounded-xl">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fas fa-users text-blue-600 mt-1"></i>
+                                        <div>
+                                            <h4 class="font-medium text-blue-900">Análise Multidisciplinar</h4>
+                                            <p class="text-sm text-gray-600">Integração de especialidades</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ilustração -->
+                    <div class="flex justify-center animate-section" data-animation="fade-left">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-blue-200 rounded-full opacity-20 transform scale-125 rotate-12"></div>
+                            <div class="relative flex items-center justify-center p-8">
+                                <i class="fas fa-clipboard-list text-9xl text-blue-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Indicador de scroll -->
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center animate-bounce">
+                    <p class="text-sm text-blue-700 mb-1">Continue rolando</p>
+                    <i class="fas fa-chevron-down text-blue-500"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tela 2: Plano Personalizado -->
+        <section id="step-2" class="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-white py-24 relative flex items-center">
+            <!-- Linha vertical com animação -->
+            <div class="section-line" id="line-2"></div>
+            
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <!-- Ilustração -->
+                    <div class="flex justify-center order-2 md:order-1 animate-section" data-animation="fade-right">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-green-200 rounded-full opacity-20 transform scale-125 rotate-12"></div>
+                            <div class="relative flex items-center justify-center p-8">
+                                <i class="fas fa-sitemap text-9xl text-green-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Conteúdo -->
+                    <div class="order-1 md:order-2 animate-section" data-animation="fade-left">
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg">
+                                2
+                            </div>
+                            <h2 class="text-4xl md:text-5xl font-bold text-green-700 section-title">Plano<br>Personalizado</h2>
+                        </div>
+                        
+                        <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                            Desenvolvemos um plano individualizado com metas claras e mensuráveis, focado nas necessidades e potencialidades únicas identificadas para cada criança.
+                        </p>
+                        
+                        <div class="bg-white rounded-2xl shadow-xl p-6 space-y-4 section-content">
+                            <h3 class="text-xl font-semibold text-green-700 flex items-center gap-3">
+                                <i class="fas fa-check-square text-green-500"></i>
+                                Metodologia SMART
+                            </h3>
+                            
+                            <div class="grid grid-cols-1 gap-3">
+                                <div class="border-l-4 border-green-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Específico</h4>
+                                    <p class="text-sm text-gray-600">Metas claramente definidas</p>
+                                </div>
+                                
+                                <div class="border-l-4 border-green-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Mensurável</h4>
+                                    <p class="text-sm text-gray-600">Progresso quantificável</p>
+                                </div>
+                                
+                                <div class="border-l-4 border-green-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Atingível</h4>
+                                    <p class="text-sm text-gray-600">Objetivos realistas</p>
+                                </div>
+                                
+                                <div class="border-l-4 border-green-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Relevante</h4>
+                                    <p class="text-sm text-gray-600">Significativo para a criança</p>
+                                </div>
+                                
+                                <div class="border-l-4 border-green-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Temporal</h4>
+                                    <p class="text-sm text-gray-600">Com prazos estabelecidos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Indicador de scroll -->
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center animate-bounce">
+                    <p class="text-sm text-green-700 mb-1">Continue rolando</p>
+                    <i class="fas fa-chevron-down text-green-500"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tela 3: Intervenção Integrada -->
+        <section id="step-3" class="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-white py-24 relative flex items-center">
+            <!-- Linha vertical com animação -->
+            <div class="section-line" id="line-3"></div>
+            
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <!-- Conteúdo -->
+                    <div class="animate-section" data-animation="fade-right">
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="bg-purple-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg">
+                                3
+                            </div>
+                            <h2 class="text-4xl md:text-5xl font-bold text-purple-700 section-title">Intervenção<br>Integrada</h2>
+                        </div>
+                        
+                        <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                            Implementamos terapias coordenadas com nossa equipe multidisciplinar para resultados mais eficazes, com comunicação contínua entre os profissionais.
+                        </p>
+                        
+                        <div class="bg-white rounded-2xl shadow-xl p-6 space-y-4 section-content">
+                            <h3 class="text-xl font-semibold text-purple-700 flex items-center gap-3">
+                                <i class="fas fa-users-cog text-purple-500"></i>
+                                Equipe Multidisciplinar
+                            </h3>
+                            
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-center">
+                                <div class="bg-purple-50 rounded-xl p-3 transform transition hover:scale-105">
+                                    <i class="fas fa-brain text-yellow-500 text-2xl mb-2"></i>
+                                    <p class="font-medium text-gray-800">Psicologia</p>
+                                </div>
+                                
+                                <div class="bg-purple-50 rounded-xl p-3 transform transition hover:scale-105">
+                                    <i class="fas fa-hands text-blue-500 text-2xl mb-2"></i>
+                                    <p class="font-medium text-gray-800">Terapia Ocupacional</p>
+                                </div>
+                                
+                                <div class="bg-purple-50 rounded-xl p-3 transform transition hover:scale-105">
+                                    <i class="fas fa-comment-dots text-green-500 text-2xl mb-2"></i>
+                                    <p class="font-medium text-gray-800">Fonoaudiologia</p>
+                                </div>
+                                
+                                <div class="bg-purple-50 rounded-xl p-3 transform transition hover:scale-105">
+                                    <i class="fas fa-book-reader text-purple-500 text-2xl mb-2"></i>
+                                    <p class="font-medium text-gray-800">Psicopedagogia</p>
+                                </div>
+                                
+                                <div class="bg-purple-50 rounded-xl p-3 transform transition hover:scale-105 sm:col-span-2 md:col-span-1">
+                                    <i class="fas fa-user-plus text-indigo-500 text-2xl mb-2"></i>
+                                    <p class="font-medium text-gray-800">Outras Especialidades</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ilustração -->
+                    <div class="flex justify-center animate-section" data-animation="fade-left">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-purple-200 rounded-full opacity-20 transform scale-125 rotate-12"></div>
+                            <div class="relative flex items-center justify-center p-8">
+                                <i class="fas fa-hands-helping text-9xl text-purple-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Indicador de scroll -->
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center animate-bounce">
+                    <p class="text-sm text-purple-700 mb-1">Continue rolando</p>
+                    <i class="fas fa-chevron-down text-purple-500"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tela 4: Acompanhamento Contínuo -->
+        <section id="step-4" class="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-white py-24 relative flex items-center">
+            <!-- Linha vertical com animação -->
+            <div class="section-line" id="line-4"></div>
+            
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <!-- Ilustração -->
+                    <div class="flex justify-center order-2 md:order-1 animate-section" data-animation="fade-right">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-orange-200 rounded-full opacity-20 transform scale-125 rotate-12"></div>
+                            <div class="relative flex items-center justify-center p-8">
+                                <i class="fas fa-chart-line text-9xl text-orange-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Conteúdo -->
+                    <div class="order-1 md:order-2 animate-section" data-animation="fade-left">
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="bg-orange-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg">
+                                4
+                            </div>
+                            <h2 class="text-4xl md:text-5xl font-bold text-orange-700 section-title">Acompanhamento<br>Contínuo</h2>
+                        </div>
+                        
+                        <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                            Monitoramos o progresso, ajustando as intervenções conforme necessário e mantendo comunicação constante com familiares para garantir evolução contínua.
+                        </p>
+                        
+                        <div class="bg-white rounded-2xl shadow-xl p-6 space-y-4 section-content">
+                            <div class="flex items-start space-x-4 mb-4">
+                                <div class="bg-orange-100 rounded-lg p-3 flex-shrink-0">
+                                    <i class="fas fa-chart-bar text-2xl text-orange-500"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-orange-700">Evolução Mensurável</h3>
+                                    <p class="text-gray-700 mt-1">
+                                        Acompanhamos cada marco de desenvolvimento para otimizar resultados.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="grid sm:grid-cols-2 gap-3">
+                                <div class="bg-orange-50 rounded-xl p-3">
+                                    <h4 class="font-medium text-orange-800 flex items-center gap-2">
+                                        <i class="fas fa-file-alt text-orange-600"></i>
+                                        Relatórios Detalhados
+                                    </h4>
+                                    <p class="text-sm text-gray-700 mt-1">
+                                        Documentação completa da evolução
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-orange-50 rounded-xl p-3">
+                                    <h4 class="font-medium text-orange-800 flex items-center gap-2">
+                                        <i class="fas fa-comments text-orange-600"></i>
+                                        Reuniões Regulares
+                                    </h4>
+                                    <p class="text-sm text-gray-700 mt-1">
+                                        Encontros periódicos com os pais
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 text-center md:text-right">
+                            <a href="contato.html" class="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition transform hover:scale-105">
+                                <i class="fas fa-calendar-alt"></i>
+                                Agende uma Avaliação
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Modal: Fonoaudiologia -->
+    <section id="modal-fono" class="modal-backdrop">
+      <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
+        <button onclick="closeModal('modal-fono')"
+                class="absolute top-4 right-4 text-gray-400 hover:text-green-500 text-2xl font-bold"
+                aria-label="Fechar">&times;</button>
+        <div class="flex flex-col items-center">
+          <img src="attached_assets/logo_eibm_terapias.svg"
+               alt="Logo EIBM Terapias"
+               class="w-24 h-24 mb-4"/>
+          <h2 class="text-xl font-bold text-green-600 mb-2">Fonoaudiologia</h2>
+          <p class="text-gray-800 mb-4 text-center">
+            Trabalha com o desenvolvimento da comunicação, linguagem, fala e funções orais, essenciais para a interação social e aprendizado.
+          </p>
+          <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-chart-column text-orange-400"></i>
+              Desenvolvimento da linguagem
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fas fa-hand-holding-medical text-indigo-400"></i>
+              Comunicação alternativa
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fas fa-comment-dots text-pink-400"></i>
+              Funções orais e alimentação
+            </li>
+          </ul>
+          <a href="fonoaudiologia.html"
+     class="inline-flex items-center gap-2 mt-4 bg-green-700 hover:bg-green-600
+            text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
+    <i class="fas fa-lightbulb"></i>
+          Saiba Mais
+    </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Modal: Psicologia -->
+    <section id="modal-psico" class="modal-backdrop">
+      <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
+        <button onclick="closeModal('modal-psico')"
+                class="absolute top-4 right-4 text-gray-400 hover:text-yellow-500 text-2xl font-bold"
+                aria-label="Fechar">&times;</button>
+        <div class="flex flex-col items-center">
+          <img src="attached_assets/logo_eibm_terapias.svg"
+               alt="Logo EIBM Terapias"
+               class="w-24 h-24 mb-4"/>
+          <h2 class="text-xl font-bold text-yellow-500 mb-2">Psicologia</h2>
+          <p class="text-gray-800 mb-4 text-center">
+            Foca no desenvolvimento emocional, comportamental e social, utilizando técnicas baseadas em evidências como ABA e terapia cognitivo-comportamental.
+          </p>
+          <ul class="mb-4 text-black space-y-2 text-sm text-left">
+            <li class="flex items-center gap-2">
+              <i class="fas fa-brain text-yellow-500"></i>
+              Análise do Comportamento Aplicada (ABA)
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fas fa-hand-holding-medical text-indigo-400"></i>
+              Terapia cognitivo-comportamental
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fas fa-hand-holding-medical text-indigo-400"></i>
+              Habilidades sociais e emocionais
+            </li>
+          </ul>
+          <a href="psicologia.html"
+     class="inline-flex items-center gap-2 mt-4 bg-yellow-500 hover:bg-yellow-400
+            text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
+    <i class="fas fa-lightbulb"></i>
+          Saiba Mais
+    </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Modal: Terapia Ocupacional -->
+    <section id="modal-to" class="modal-backdrop">
+      <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
+        <button onclick="closeModal('modal-to')"
+                class="absolute top-4 right-4 text-gray-400 hover:text-blue-500 text-2xl font-bold"
+                aria-label="Fechar">&times;</button>
+        <div class="flex flex-col items-center">
+          <img src="attached_assets/logo_eibm_terapias.svg"
+               alt="Logo EIBM Terapias"
+               class="w-24 h-24 mb-4"/>
+          <h2 class="text-xl font-bold text-blue-600 mb-2">Terapia Ocupacional</h2>
+          <p class="text-gray-800 mb-4 text-center">
+            Auxilia no desenvolvimento de habilidades necessárias para atividades diárias, trabalhando coordenação motora, integração sensorial e autonomia.
+          </p>
+          <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
+            <li class="flex items-center gap-2">
+              <i class="fas fa-hands text-blue-400"></i>
+              Coordenação motora fina e global
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fas fa-brain text-purple-400"></i>
+              Integração sensorial
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fas fa-child text-teal-400"></i>
+              Atividades da vida diária
+            </li>
+          </ul>
+          <a href="terapia-ocupacional.html"
+     class="inline-flex items-center gap-2 mt-4 bg-blue-700 hover:bg-blue-600
+            text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
+    <i class="fas fa-lightbulb"></i>
+          Saiba Mais
+    </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Modal: Psicopedagogia -->
+    <section id="modal-psicoped" class="modal-backdrop">
+      <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
+        <button onclick="closeModal('modal-psicoped')"
+                class="absolute top-4 right-4 text-gray-400 hover:text-purple-500 text-2xl font-bold"
+                aria-label="Fechar">&times;</button>
+        <div class="flex flex-col items-center">
+          <img src="attached_assets/logo_eibm_terapias.svg"
+               alt="Logo EIBM Terapias"
+               class="w-24 h-24 mb-4"/>
+          <h2 class="text-xl font-bold text-purple-600 mb-2">Psicopedagogia</h2>
+          <p class="text-gray-800 mb-4 text-center">
+            Aborda dificuldades de aprendizagem, fornecendo estratégias e intervenções personalizadas para promover o sucesso escolar e acadêmico.
+          </p>
+          <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
+            <li class="flex items-center gap-2">
+              <i class="fas fa-graduation-cap text-purple-400"></i>
+              Dificuldades de aprendizagem
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fas fa-book-open text-indigo-400"></i>
+              Estratégias de estudo
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fas fa-pencil-alt text-pink-400"></i>
+              Adaptações curriculares
+            </li>
+          </ul>
+          <a href="psicopedagogia.html"
+     class="inline-flex items-center gap-2 mt-4 bg-purple-700 hover:bg-purple-600
+            text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
+    <i class="fas fa-lightbulb"></i>
+          Saiba Mais
+    </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Modal: Clínica IDEIA -->
+    <section id="modal-clinica" class="modal-backdrop">
+      <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
+        <button onclick="closeModal('modal-clinica')"
+                class="absolute top-4 right-4 text-gray-400 hover:text-blue-500 text-2xl font-bold"
+                aria-label="Fechar">&times;</button>
+        <div class="flex flex-col items-center">
+          <img src="attached_assets/logo_ideia.svg"
+               alt="Logo IDEIA"
+               class="w-24 h-24 mb-4"/>
+          <h2 class="text-xl font-bold text-blue-600 mb-2">IDEIA - Inclusão e Desenvolvimento Infantil</h2>
+          <p class="text-gray-800 mb-4 text-center">
+            Um espaço integrado e acolhedor, projetado para proporcionar o melhor atendimento para crianças com necessidades especiais e suas famílias.
+          </p>
+          <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
+            <li class="flex items-center gap-2">
+              <i class="fas fa-heart text-red-400"></i>
+              Ambiente acolhedor e seguro
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fas fa-users text-blue-400"></i>
+              Equipe multidisciplinar
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fas fa-clipboard-check text-green-400"></i>
+              Atendimento personalizado
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fas fa-lightbulb text-yellow-400"></i>
+              Abordagem inovadora
+            </li>
+          </ul>
+          <a href="ideia.html"
+     class="inline-flex items-center gap-2 mt-4 bg-blue-700 hover:bg-blue-600
+            text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
+    <i class="fas fa-clinic-medical"></i>
+          Conheça o IDEIA
+    </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- JavaScript para animações e interatividade -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos para animar
+            const sections = document.querySelectorAll('section[id^="step-"]');
+            const animateSections = document.querySelectorAll('.animate-section');
+            const lines = document.querySelectorAll('.section-line');
+            
+            // Função para verificar se um elemento está visível na viewport
+            const isInViewport = (element, threshold = 0.3) => {
+                if (!element) return false;
+                const rect = element.getBoundingClientRect();
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                return (
+                    rect.top <= windowHeight * (1 - threshold) &&
+                    rect.bottom >= windowHeight * threshold
+                );
+            };
+            
+            // Função para animar elementos quando visíveis
+            const animateOnScroll = () => {
+                // Só anima depois da hero section
+                const heroSection = document.getElementById('hero');
+                const isPastHero = heroSection ? heroSection.getBoundingClientRect().bottom <= 0 : true;
+                
+                if (!isPastHero) return;
+                
+                sections.forEach((section, index) => {
+                    if (isInViewport(section, 0.2)) {
+                        // Animar a linha vertical
+                        const lineId = `line-${index + 1}`;
+                        const line = document.getElementById(lineId);
+                        if (line) {
+                            line.classList.add('animate');
+                        }
+                        
+                        // Animar conteúdo dentro da seção
+                        const animations = section.querySelectorAll('.animate-section');
+                        animations.forEach(item => {
+                            if (!item.classList.contains('animated')) {
+                                const animation = item.getAttribute('data-animation');
+                                if (animation) {
+                                    item.classList.add(`animate-${animation}`);
+                                } else {
+                                    item.classList.add('animate-fade-up');
+                                }
+                                item.classList.add('animated');
+                            }
+                        });
+                    }
+                });
+            };
+            
+            // Verificar ao rolar a página
+            window.addEventListener('scroll', animateOnScroll, { passive: true });
+            
+            // Também verificar quando a página carrega
+            setTimeout(animateOnScroll, 300);
+            
+            // Funções para os modais
+            window.openModal = function(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'flex';
+                }
+            };
+            
+            window.closeModal = function(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+            };
+            
+            // Fechar o modal ao clicar no fundo
+            document.querySelectorAll('.modal-backdrop').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Menu Mobile
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.remove('-translate-x-full');
+                });
+            }
+            
+            if (closeMenu && mobileMenu) {
+                closeMenu.addEventListener('click', () => {
+                    mobileMenu.classList.add('-translate-x-full');
+                });
+            }
+        });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const options = {
+      root: null,
+      threshold: 0.3
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const line = entry.target.querySelector('.section-line');
+        if (line) {
+          if (entry.isIntersecting) {
+            line.classList.add('active');
+          } else {
+            line.classList.remove('active');
+          }
+        }
+      });
+    }, options);
+
+    // Observe cada etapa do roadmap
+    document.querySelectorAll('section[id^="step-"]').forEach(sec => {
+      observer.observe(sec);
+    });
+  });
+
+    </script>
+</body>
+</html>
