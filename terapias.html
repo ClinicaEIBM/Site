@@ -200,10 +200,10 @@
 <!-- Left Text -->
 <div class="w-full md:w-1/2 text-center md:text-left space-y-4">
 <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 leading-tight">
-Inclusão e desenvolvimento <br>para todas as crianças
+Oferecer caminhos reais<br>humanos e possíveis
 </h1>
 <p class="text-base sm:text-lg md:text-xl text-gray-700 max-w-md">
-IDEIA une ciência, tecnologia e equipe multidisciplinar para apoiar o desenvolvimento de crianças neurodivergentes, suas famílias e educadores.
+Proporcionar uma chance para que cada criança alcance sua máxima de potencialidade.
 </p>
 <a href="#funcionamento"
  class="inline-flex items-center gap-2 mt-4 bg-blue-700 hover:bg-blue-800
@@ -499,90 +499,102 @@ class="absolute text-center bottom-6 left-1/2 transform -translate-x-1/2 z-20 op
 </section>
     
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-10">
+      <section class="relative h-screen overflow-hidden
+          bg-gradient-to-b from-white via-blue-100 to-white">
+    <div class="max-w-5xl mx-auto text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Quem somos</h2>
+      <p class="text-gray-700 text-lg md:text-xl max-w-3xl mx-auto">
+        Fundada em 2017, a EIBM Terapias nasceu do desejo de transformar vidas com cuidado, propósito e besados em ciência. Somos uma equipe multidisciplinar comprometida com o desenvolvimento infantil, que acredita na força da escuta, da técnica e do vínculo humano.
+      </p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row items-center max-w-6xl mx-auto gap-12">
+    <!-- Imagem ilustrativa -->
+    <div class="w-full lg:w-1/2 transform transition duration-1000 opacity-0 translate-y-12 will-change-transform" data-animate-on-scroll>
+      <img src="/attached_assets/equipe-eibm.png" alt="Equipe EIBM" class="rounded-3xl shadow-lg w-full h-auto object-cover">
+    </div>
+
+    <!-- Texto lateral -->
+    <div class="w-full lg:w-1/2 space-y-6 text-left transform transition duration-1000 opacity-0 translate-y-12 will-change-transform" data-animate-on-scroll>
+      <div class="flex flex-col items-center">
+        <h3 class="text-2xl font-bold text-primary mb-4">Missão</h3>
+        <p class="text-gray-700 text-lg">Proporcionar uma chance para que cada criança atinja seu máximo potencial.</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <h3 class="text-2xl font-bold text-primary mb-4">Visão</h3>
+        <p class="text-gray-700 text-lg">Ser referência em desenvolvimento infantil, oferecendo soluções integradas e humanizadas para crianças com desafios no desenvolvimento.</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <h3 class="text-2xl font-bold text-primary mb-4">Valores</h3>
+        <ul class="list-disc pl-4">
+          <li class="text-gray-700 text-lg">Cuidado que transforma</li>
+          <li class="text-gray-700 text-lg">Escuta e vínculo humano</li>
+          <li class="text-gray-700 text-lg">Inovação e excelência</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
         
         <!-- Abordagem Multidisciplinar Section -->
-        <section class="mb-16">
-            <div class="flex flex-col md:flex-row items-center bg-white rounded-xl shadow-md overflow-hidden">
-                <div class="md:w-1/2 p-8">
-                    <h3 class="text-2xl font-bold text-primary mb-4">Abordagem Multidisciplinar</h3>
-                    <p class="text-gray-700 mb-4">
-                        Nossa abordagem multidisciplinar garante que cada criança receba um tratamento completo e personalizado, abordando todos os aspectos do seu desenvolvimento.
-                    </p>
-                    <p class="text-gray-700 mb-4">
-                        As diferentes terapias trabalham de forma integrada, compartilhando informações e estratégias para potencializar os resultados e proporcionar um desenvolvimento harmônico.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <div class="flex items-center">
-                            <div class="bg-primary rounded-full p-2 text-white mr-2">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <span class="font-medium">Equipe Integrada</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-secondary rounded-full p-2 text-white mr-2">
-                                <i class="fas fa-clipboard-check"></i>
-                            </div>
-                            <span class="font-medium">Plano Personalizado</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-accent rounded-full p-2 text-white mr-2">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <span class="font-medium">Evolução Mensurável</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-1/2 bg-blue-50 p-8 flex items-center justify-center">
-                    <img src="assets/about-image.svg" alt="Abordagem multidisciplinar" class="max-w-full h-auto">
-                </div>
-            </div>
-        </section>
-    
-        
-        <!-- Processo de Terapias -->
-        <section id="funcionamento" class="mb-16 bg-white p-8 rounded-xl shadow-md">
-            <h3 class="text-2xl font-bold text-primary mb-8 text-center">Como Funcionam Nossas Terapias</h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 relative">
-                        <span class="absolute -top-2 -right-2 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
-                        <i class="fas fa-clipboard-list text-2xl text-primary"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-primary mb-2">Avaliação Inicial</h4>
-                    <p class="text-sm text-gray-700">Identificamos necessidades específicas através de uma avaliação detalhada com nossa equipe multidisciplinar.</p>
-                </div>
-                
-                <div class="flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 relative">
-                        <span class="absolute -top-2 -right-2 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
-                        <i class="fas fa-sitemap text-2xl text-primary"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-primary mb-2">Plano Personalizado</h4>
-                    <p class="text-sm text-gray-700">Desenvolvemos um plano terapêutico personalizado com objetivos claros e mensuráveis para cada criança.</p>
-                </div>
-                
-                <div class="flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 relative">
-                        <span class="absolute -top-2 -right-2 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
-                        <i class="fas fa-hands-helping text-2xl text-primary"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-primary mb-2">Intervenção Integrada</h4>
-                    <p class="text-sm text-gray-700">Implementamos terapias coordenadas com nossa equipe multidisciplinar para resultados mais eficazes.</p>
-                </div>
-                
-                <div class="flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 relative">
-                        <span class="absolute -top-2 -right-2 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
-                        <i class="fas fa-chart-line text-2xl text-primary"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-primary mb-2">Acompanhamento Contínuo</h4>
-                    <p class="text-sm text-gray-700">Monitoramos o progresso com avaliações regulares, ajustando o plano conforme necessário para melhor desenvolvimento.</p>
-                </div>
-            </div>
-        </section>
-        
+        <section class="relative h-screen overflow-hidden
+        bg-gradient-to-b from-white via-blue-100 to-white">
+  <div class="max-w-6xl mx-auto text-center mb-16">
+    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">O que fazemos</h2>
+    <p class="text-gray-700 text-lg md:text-xl max-w-2xl mx-auto">
+      Terapias integradas para o desenvolvimento infantil com foco no que mais importa: <strong class="text-primary">o potencial único de cada criança</strong>.
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+    <!-- Psicologia -->
+    <div class="group transform transition duration-1000 opacity-0 translate-y-12 will-change-transform" data-animate-on-scroll>
+      <div class="rounded-3xl overflow-hidden shadow-xl relative">
+        <img src="/attached_assets/psicologia.jpg" alt="Psicologia" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+          <h3 class="text-xl font-bold text-white">Psicologia</h3>
+          <p class="text-white text-sm mt-1">Desenvolvimento emocional, ABA e estratégias comportamentais.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fonoaudiologia -->
+    <div class="group transform transition duration-1000 opacity-0 translate-y-12 will-change-transform" data-animate-on-scroll>
+      <div class="rounded-3xl overflow-hidden shadow-xl relative">
+        <img src="/attached_assets/fonoaudiologia.jpg" alt="Fonoaudiologia" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+          <h3 class="text-xl font-bold text-white">Fonoaudiologia</h3>
+          <p class="text-white text-sm mt-1">Comunicação, linguagem, alimentação e alternativas vocais.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terapia Ocupacional -->
+    <div class="group transform transition duration-1000 opacity-0 translate-y-12 will-change-transform" data-animate-on-scroll>
+      <div class="rounded-3xl overflow-hidden shadow-xl relative">
+        <img src="/attached_assets/terapia-ocupacional.jpg" alt="Terapia Ocupacional" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+          <h3 class="text-xl font-bold text-white">Terapia Ocupacional</h3>
+          <p class="text-white text-sm mt-1">Coordenação, sensorial e autonomia nas atividades do dia a dia.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Psicopedagogia -->
+    <div class="group transform transition duration-1000 opacity-0 translate-y-12 will-change-transform" data-animate-on-scroll>
+      <div class="rounded-3xl overflow-hidden shadow-xl relative">
+        <img src="/attached_assets/psicopedagogia.jpg" alt="Psicopedagogia" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+          <h3 class="text-xl font-bold text-white">Psicopedagogia</h3>
+          <p class="text-white text-sm mt-1">Aprendizagem, adaptação escolar e desenvolvimento cognitivo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>        
         <!-- Entre em Contato -->
         <section class="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl shadow-md">
             <div class="text-center mb-6">
@@ -706,6 +718,36 @@ class="absolute text-center bottom-6 left-1/2 transform -translate-x-1/2 z-20 op
                 });
             });
         });
+           document.addEventListener("DOMContentLoaded", () => {
+      const observers = document.querySelectorAll('[data-animate-on-scroll]');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0", "translate-y-12");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      observers.forEach(el => observer.observe(el));
+    });
+        document.addEventListener("DOMContentLoaded", () => {
+      const observers = document.querySelectorAll('[data-animate-on-scroll]');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0", "translate-y-12");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      observers.forEach(el => observer.observe(el));
+    });
     </script>
 </body>
 </html>
