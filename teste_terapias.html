@@ -7,22 +7,15 @@
     <meta name="description" content="Conheça as terapias oferecidas pela EIBM: Terapia Ocupacional, Psicologia, Fonoaudiologia e Psicopedagogia.">
     
     <style>
-  /* Linha vertical base */
-  .section-line {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 0;
-    background-color: #136CB2; /* cor principal */
-    transition: height 1s ease-out;
-    z-index: -1;
-  }
-  /* Quando ativa, preenche toda a altura da seção */
-  .section-line.active {
-    height: 100%;
-  }
-
+      /* Configurações para Scroll Snapping */
+      html {
+          scroll-snap-type: y mandatory; /* Habilita o scroll snapping vertical e o torna obrigatório */
+          scroll-behavior: smooth; /* Torna o scroll suave */
+          scroll-padding-top: 6rem; /* Altura do cabeçalho fixo para que o conteúdo não fique escondido */
+      }
+      body {
+          overflow-y: scroll; /* Garante que o scroll snapping funcione corretamente */
+      }
 
       /* Modal backdrop */
       .modal-backdrop {
@@ -35,8 +28,23 @@
         justify-content: center;
         z-index: 100;
       }
+
+      /* Linha vertical base do roadmap */
+      .section-line {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 0;
+        background-color: #136CB2; /* cor principal */
+        transition: height 1s ease-out;
+        z-index: -1;
+      }
+      /* Quando ativa, preenche toda a altura da seção */
+      .section-line.active {
+        height: 100%;
+      }
     </style>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -87,11 +95,9 @@
         }
         
     </script>
-     <!-- Google Fonts -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-     <!-- Font Awesome -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .therapy-card {
@@ -111,23 +117,26 @@
         }
         
         /* Animações de entrada para blocos de conteúdo */
-        @keyframes fadeRight {
+        /* Animação genérica para fade-in e slide-up */
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Animação para slide-right */
+        @keyframes slideRight {
             from { opacity: 0; transform: translateX(-50px); }
             to { opacity: 1; transform: translateX(0); }
         }
-        
-        @keyframes fadeLeft {
+
+        /* Animação para slide-left */
+        @keyframes slideLeft {
             from { opacity: 0; transform: translateX(50px); }
             to { opacity: 1; transform: translateX(0); }
         }
         
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Animações de flutuação para elementos decorativos */
-        @keyframes float-slow {
+        /* Animações de flutuação para elementos decorativos (removidas para evitar conflito com parallax JS) */
+        /* @keyframes float-slow {
             0%, 100% { transform: translateY(0) rotate(12deg); }
             50% { transform: translateY(-15px) rotate(8deg); }
         }
@@ -135,32 +144,38 @@
         @keyframes float-slow-reverse {
             0%, 100% { transform: translateY(0) rotate(-12deg); }
             50% { transform: translateY(-10px) rotate(-8deg); }
-        }
+        } */
         
         /* Classes de animação */
-        .animate-float-slow {
+        /* .animate-float-slow {
             animation: float-slow 8s ease-in-out infinite;
         }
         
         .animate-float-slow-reverse {
             animation: float-slow-reverse 9s ease-in-out infinite;
-        }
+        } */
         
         /* Animações ativadas por JavaScript */
         .path-animation-active {
             animation: drawPath 2s ease-in-out forwards;
         }
         
-        .animate-fade-right {
-            animation: fadeRight 0.8s ease-out forwards;
+        /* Classes de animação para elementos */
+        .animated-element {
+            opacity: 0; /* Estado inicial oculto */
+            animation-fill-mode: forwards; /* Mantém o estado final da animação */
         }
-        
-        .animate-fade-left {
-            animation: fadeLeft 0.8s ease-out forwards;
+
+        .animated-element.fade-in-slide-up {
+            animation: fadeInSlideUp 0.8s ease-out forwards;
         }
-        
-        .animate-fade-up {
-            animation: fadeUp 0.8s ease-out forwards;
+
+        .animated-element.slide-right {
+            animation: slideRight 0.8s ease-out forwards;
+        }
+
+        .animated-element.slide-left {
+            animation: slideLeft 0.8s ease-out forwards;
         }
         
         /* Estilo para as seções do roadmap */
@@ -189,10 +204,6 @@
             height: 100%;
         }
         
-        .animate-section {
-            opacity: 0;
-        }
-        
         /* Responsividade */
         @media (max-width: 768px) {
             .section-content {
@@ -212,19 +223,16 @@
 </head>
 
 <body class="font-sans text-gray-800 bg-purple-50 min-h-screen">
-    <!-- Header/Navigation -->
     <header class="fixed top-0 left-0 w-full bg-white shadow-md rounded-b-xl z-50">
       <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-        <!-- Logo -->
         <a href="index.html" class="flex items-center">
           <img
             src="attached_assets/logo_eibm_terapias_escrito.svg"
-            alt="Logo IDEIA"
+            alt="Logótipo IDEIA"
             class="h-24 md:h-24"
           />
         </a>
     
-        <!-- Navegação Desktop -->
         <nav class="hidden md:flex space-x-6">
           <a
             href="terapia-ocupacional.html"
@@ -254,11 +262,10 @@
           <a
             href="contato.html"
             class="text-black hover:text-blue-dark font-medium transition"
-            >Contato</a
+            >Contacto</a
           >
         </nav>
     
-        <!-- Botão Mobile -->
         <button
           id="menu-toggle"
           class="md:hidden text-gray-800 hover:text-orange focus:outline-none"
@@ -268,15 +275,13 @@
       </div>
     </header>
     
-    <!-- Mobile Menu Toggle -->
     <button class="block md:hidden text-primary" id="menu-toggle">
         <i class="fas fa-bars text-2xl"></i>
     </button>
     
-    <!-- Mobile Menu (hidden by default) -->
     <div class="menu-mobile fixed top-0 left-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 p-5 transform -translate-x-full transition-transform duration-300" id="mobile-menu">
         <div class="flex justify-between items-center mb-6">
-            <img src="attached_assets/logo_eibm_terapias.svg" alt="Logo EIBM" class="h-12">
+            <img src="attached_assets/logo_eibm_terapias.svg" alt="Logótipo EIBM" class="h-12">
             <button id="close-menu">
                 <i class="fas fa-times text-2xl text-primary"></i>
             </button>
@@ -286,34 +291,30 @@
             <li><a href="terapias.html" class="block py-2 text-primary hover:text-black font-medium">Terapias</a></li>
             <li><a href="especialidades.html" class="block py-2 text-primary hover:text-black font-medium">Especialidades</a></li>
             <li><a href="ideia.html" class="block py-2 text-primary hover:text-black font-medium font-bold">IDEIA</a></li>
-            <li><a href="transtornos.html" class="block py-2 text-primary hover:text-black font-medium">Transtornos Alimentares</a></li>
-            <li><a href="contato.html" class="block py-2 text-primary hover:text-black font-medium">Contato</a></li>
+            <li><a href="transtornos.html" class="block py-2 text-primary hover:text-black font-medium">Perturbações Alimentares</a></li>
+            <li><a href="contato.html" class="block py-2 text-primary hover:text-black font-medium">Contacto</a></li>
         </ul>
     </div>
 
-    <!-- Layout com quatro telas de altura total -->
     <div id="funcionamento" class="relative">
-        <!-- Hero Section -->
-        <section id="hero" class="min-h-screen bg-gradient-to-b from-blue-100 via-blue-300 to-white py-24 relative flex items-center">
-            <!-- Elementos decorativos flutuantes -->
+        <section id="hero" class="min-h-screen bg-gradient-to-b from-blue-100 via-blue-300 to-white py-24 relative flex items-center scroll-snap-align-start">
             <div class="absolute inset-0 pointer-events-none overflow-hidden">
-                <i class="fas fa-puzzle-piece absolute top-32 left-80 text-8xl text-orange-400 animate-float-slow"></i>
-                <i class="fas fa-puzzle-piece absolute top-32 right-16 text-8xl text-green-500 animate-float-slow"></i>
-                <i class="fas fa-puzzle-piece absolute bottom-28 left-1/4 text-9xl text-purple-400 animate-float-slow-reverse"></i>
-                <i class="fas fa-puzzle-piece absolute bottom-32 left-1/2 text-5xl text-red-500 animate-float-slow"></i>
-                <i class="fas fa-puzzle-piece absolute top-36 right-1/2 text-6xl text-blue-500 animate-float-slow-reverse"></i>
-                <i class="fas fa-puzzle-piece absolute bottom-16 left-2/3 text-8xl text-orange-400 animate-float-slow"></i>
+                <i class="fas fa-puzzle-piece parallax-lamp absolute top-32 left-80 text-8xl text-orange-400" data-speed="0.7"></i>
+                <i class="fas fa-puzzle-piece parallax-lamp absolute top-32 right-16 text-8xl text-green-500" data-speed="0.6"></i>
+                <i class="fas fa-puzzle-piece parallax-lamp absolute bottom-28 left-1/4 text-9xl text-purple-400" data-speed="0.5"></i>
+                <i class="fas fa-puzzle-piece parallax-lamp absolute bottom-32 left-1/2 text-5xl text-red-500" data-speed="0.4"></i>
+                <i class="fas fa-puzzle-piece parallax-lamp absolute top-36 right-1/2 text-6xl text-blue-500" data-speed="0.75"></i>
+                <i class="fas fa-puzzle-piece parallax-lamp absolute bottom-16 left-2/3 text-8xl text-orange-400" data-speed="0.65"></i>
             </div>
             
             <div class="container mx-auto px-4 sm:px-6 relative z-10">
                 <div class="grid md:grid-cols-5 gap-6 items-center">
-                    <!-- Left Content -->
                     <div class="md:col-span-2 text-center md:text-left">
                         <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 leading-tight">
                             Inclusão e desenvolvimento para todas as crianças
                         </h1>
                         <p class="text-lg text-gray-700 mb-6">
-                            IDEIA une ciência, tecnologia e equipe multidisciplinar para apoiar o desenvolvimento de crianças neurodivergentes, suas famílias e educadores.
+                            IDEIA une ciência, tecnologia e equipa multidisciplinar para apoiar o desenvolvimento de crianças neurodivergentes, as suas famílias e educadores.
                         </p>
                         <a href="#step-1" class="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold px-6 py-3 rounded-full shadow-lg transition">
                             <i class="fas fa-lightbulb"></i>
@@ -321,86 +322,81 @@
                         </a>
                     </div>
                     
-                    <!-- Right Cards -->
                     <div class="md:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-4 mt-8 md:mt-0">
-                        <button onclick="openModal('modal-fono')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center hover:shadow-xl transition-all">
-                            <i class="fa-solid fa-ear-listen text-green-600 text-3xl mb-2"></i>
-                            <span class="font-bold text-center">Fonoaudiologia</span>
+                        <button onclick="openModal('modal-fono')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center hover:shadow-xl transition-all group border-2 border-transparent hover:border-green-600">
+                            <i class="fa-solid fa-ear-listen text-green-600 text-3xl mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="font-bold text-center group-hover:text-green-800 transition-colors">Fonoaudiologia</span>
                         </button>
                         
-                        <button onclick="openModal('modal-psico')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center hover:shadow-xl transition-all">
-                            <i class="fa-solid fa-brain text-yellow-400 text-3xl mb-2"></i>
-                            <span class="font-bold text-center">Psicologia</span>
+                        <button onclick="openModal('modal-psico')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center hover:shadow-xl transition-all group border-2 border-transparent hover:border-yellow-400">
+                            <i class="fa-solid fa-brain text-yellow-400 text-3xl mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="font-bold text-center group-hover:text-yellow-600 transition-colors">Psicologia</span>
                         </button>
                         
-                        <button onclick="openModal('modal-to')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center hover:shadow-xl transition-all">
-                            <i class="fa-solid fa-cubes-stacked text-blue-600 text-3xl mb-2"></i>
-                            <span class="font-bold text-center">Terapia Ocupacional</span>
+                        <button onclick="openModal('modal-to')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center hover:shadow-xl transition-all group border-2 border-transparent hover:border-blue-600">
+                            <i class="fa-solid fa-cubes-stacked text-blue-600 text-3xl mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="font-bold text-center group-hover:text-blue-800 transition-colors">Terapia Ocupacional</span>
                         </button>
                         
-                        <button onclick="openModal('modal-psicoped')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center hover:shadow-xl transition-all">
-                            <i class="fa-solid fa-person-chalkboard text-purple-400 text-3xl mb-2"></i>
-                            <span class="font-bold text-center">Psicopedagogia</span>
+                        <button onclick="openModal('modal-psicoped')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center hover:shadow-xl transition-all group border-2 border-transparent hover:border-purple-400">
+                            <i class="fa-solid fa-person-chalkboard text-purple-400 text-3xl mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="font-bold text-center group-hover:text-purple-600 transition-colors">Psicopedagogia</span>
                         </button>
                         
-                        <button onclick="openModal('modal-clinica')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center col-span-2 md:col-span-1 hover:shadow-xl transition-all">
-                            <img src="attached_assets/logo_eibm_terapias.svg" alt="Logo EIBM" class="h-10 mb-2">
-                            <span class="font-bold text-center">IDEIA</span>
+                        <button onclick="openModal('modal-clinica')" class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center col-span-2 md:col-span-1 hover:shadow-xl transition-all group border-2 border-transparent hover:border-primary">
+                            <img src="attached_assets/logo_eibm_terapias.svg" alt="Logótipo EIBM" class="h-10 mb-2 group-hover:scale-110 transition-transform">
+                            <span class="font-bold text-center group-hover:text-primary transition-colors">IDEIA</span>
                         </button>
                     </div>
                 </div>
                 
-                <!-- Scroll Indicator -->
-                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center animate-bounce">
-                    <p class="text-sm text-blue-700 mb-1">Conheça nosso método</p>
+                <div id="scroll-indicator-hero" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center animate-bounce p-3 rounded-full bg-white/70 backdrop-blur-sm shadow-md">
+                    <p class="text-sm text-blue-700 mb-1">Conheça o nosso método</p>
                     <i class="fas fa-chevron-down text-blue-500"></i>
                 </div>
             </div>
         </section>
         
-        <!-- Tela 1: Avaliação Inicial -->
-        <section id="step-1" class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-white py-24 relative flex items-center">
-            <!-- Linha vertical com animação -->
+        <section id="step-1" class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-white py-24 relative flex items-center scroll-snap-align-start">
             <div class="section-line" id="line-1"></div>
             
             <div class="container mx-auto px-4 relative z-10">
                 <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <!-- Conteúdo -->
-                    <div class="animate-section" data-animation="fade-right">
+                    <div class="animated-element slide-right" data-delay="0.1s">
                         <div class="mb-6 flex items-center gap-4">
                             <div class="bg-blue-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg">
                                 1
                             </div>
-                            <h2 class="text-4xl md:text-5xl font-bold text-blue-700 section-title">Avaliação<br>Inicial</h2>
+                            <h2 class="text-4xl md:text-5xl font-bold text-blue-700 section-title">Anamnese e<br>Acompanhamento Diferencial</h2>
                         </div>
                         
                         <p class="text-xl text-gray-700 mb-8 leading-relaxed">
-                            Identificamos necessidades específicas através de uma avaliação detalhada com nossa equipe multidisciplinar, estabelecendo a base para um plano eficaz.
+                            <span class="font-bold text-primary">Marco 0: Duração de até 1 semana.</span> A nossa jornada começa com um olhar atento e personalizado. Realizamos uma anamnese completa, apoiada por tecnologia e uma equipa multidisciplinar. É o nosso primeiro passo para compreender profundamente as necessidades únicas do seu filho, focando no que realmente importa para o seu desenvolvimento. Geramos o documento **ANAMNESE**.
                         </p>
                         
                         <div class="bg-white rounded-2xl shadow-xl p-6 space-y-4 section-content">
                             <h3 class="text-xl font-semibold text-blue-700 flex items-center gap-3">
                                 <i class="fas fa-clipboard-check text-blue-500"></i>
-                                Nosso Processo
+                                O Nosso Processo Inicial
                             </h3>
                             
                             <div class="grid sm:grid-cols-2 gap-4">
                                 <div class="bg-blue-50 p-4 rounded-xl">
                                     <div class="flex items-start gap-3">
-                                        <i class="fas fa-user-edit text-blue-600 mt-1"></i>
+                                        <i class="fas fa-laptop-code text-blue-600 mt-1"></i>
                                         <div>
-                                            <h4 class="font-medium text-blue-900">Entrevistas</h4>
-                                            <p class="text-sm text-gray-600">Com pais e educadores</p>
+                                            <h4 class="font-medium text-blue-900">Tecnologia Aplicada</h4>
+                                            <p class="text-sm text-gray-600">Ferramentas avançadas para avaliação</p>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="bg-blue-50 p-4 rounded-xl">
                                     <div class="flex items-start gap-3">
-                                        <i class="fas fa-tasks text-blue-600 mt-1"></i>
+                                        <i class="fas fa-user-friends text-blue-600 mt-1"></i>
                                         <div>
-                                            <h4 class="font-medium text-blue-900">Testes Individuais</h4>
-                                            <p class="text-sm text-gray-600">Protocolos validados</p>
+                                            <h4 class="font-medium text-blue-900">Entrevistas Abrangentes</h4>
+                                            <p class="text-sm text-gray-600">Com pais e educadores</p>
                                         </div>
                                     </div>
                                 </div>
@@ -417,10 +413,10 @@
                                 
                                 <div class="bg-blue-50 p-4 rounded-xl">
                                     <div class="flex items-start gap-3">
-                                        <i class="fas fa-users text-blue-600 mt-1"></i>
+                                        <i class="fas fa-chart-line text-blue-600 mt-1"></i>
                                         <div>
-                                            <h4 class="font-medium text-blue-900">Análise Multidisciplinar</h4>
-                                            <p class="text-sm text-gray-600">Integração de especialidades</p>
+                                            <h4 class="font-medium text-blue-900">Acompanhamento Personalizado</h4>
+                                            <p class="text-sm text-gray-600">Foco nas necessidades reais da criança</p>
                                         </div>
                                     </div>
                                 </div>
@@ -428,201 +424,160 @@
                         </div>
                     </div>
                     
-                    <!-- Ilustração -->
-                    <div class="flex justify-center animate-section" data-animation="fade-left">
+                    <div class="flex justify-center animated-element slide-left" data-delay="0.2s">
                         <div class="relative">
                             <div class="absolute inset-0 bg-blue-200 rounded-full opacity-20 transform scale-125 rotate-12"></div>
                             <div class="relative flex items-center justify-center p-8">
-                                <i class="fas fa-clipboard-list text-9xl text-blue-500"></i>
+                                <img src="https://placehold.co/100x100/195184/FFFFFF?text=FOTO" alt="Anamnese Ilustração" class="w-24 h-24 object-cover rounded-full">
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Indicador de scroll -->
-                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center animate-bounce">
-                    <p class="text-sm text-blue-700 mb-1">Continue rolando</p>
-                    <i class="fas fa-chevron-down text-blue-500"></i>
-                </div>
             </div>
         </section>
 
-        <!-- Tela 2: Plano Personalizado -->
-        <section id="step-2" class="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-white py-24 relative flex items-center">
-            <!-- Linha vertical com animação -->
+        <section id="step-2" class="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-white py-24 relative flex items-center scroll-snap-align-start">
             <div class="section-line" id="line-2"></div>
             
             <div class="container mx-auto px-4 relative z-10">
                 <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <!-- Ilustração -->
-                    <div class="flex justify-center order-2 md:order-1 animate-section" data-animation="fade-right">
+                    <div class="flex justify-center order-2 md:order-1 animated-element slide-right" data-delay="0.1s">
                         <div class="relative">
                             <div class="absolute inset-0 bg-green-200 rounded-full opacity-20 transform scale-125 rotate-12"></div>
                             <div class="relative flex items-center justify-center p-8">
-                                <i class="fas fa-sitemap text-9xl text-green-500"></i>
+                                <img src="https://placehold.co/100x100/6CBB45/FFFFFF?text=FOTO" alt="Vínculo Ilustração" class="w-24 h-24 object-cover rounded-full">
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Conteúdo -->
-                    <div class="order-1 md:order-2 animate-section" data-animation="fade-left">
+                    <div class="order-1 md:order-2 animated-element slide-left" data-delay="0.2s">
                         <div class="mb-6 flex items-center gap-4">
                             <div class="bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg">
                                 2
                             </div>
-                            <h2 class="text-4xl md:text-5xl font-bold text-green-700 section-title">Plano<br>Personalizado</h2>
+                            <h2 class="text-4xl md:text-5xl font-bold text-green-700 section-title">Vínculo e<br>Plano Terapêutico</h2>
                         </div>
                         
                         <p class="text-xl text-gray-700 mb-8 leading-relaxed">
-                            Desenvolvemos um plano individualizado com metas claras e mensuráveis, focado nas necessidades e potencialidades únicas identificadas para cada criança.
+                            <span class="font-bold text-secondary">Marco 1: Duração de até 4 semanas após o Marco 0.</span> Em até 4 semanas após a anamnese, dedicamo-nos a construir uma relação de confiança com o seu filho. Através de sessões interativas e lúdicas, descobrimos as suas preferências, hiperfocos, e identificamos barreiras, limitações e, acima de tudo, as suas incríveis potencialidades. Os registos de cada sessão serão feitos em **PONTUÁRIO**. Ao final, as informações de percepção dos pais na ANAMNESE e relatórios anteriores serão ajustadas, e um **PLANO TERAPÊUTICO** será criado.
                         </p>
                         
                         <div class="bg-white rounded-2xl shadow-xl p-6 space-y-4 section-content">
                             <h3 class="text-xl font-semibold text-green-700 flex items-center gap-3">
-                                <i class="fas fa-check-square text-green-500"></i>
-                                Metodologia SMART
+                                <i class="fas fa-users-medical text-green-500"></i>
+                                Sessões com a Equipa
                             </h3>
                             
                             <div class="grid grid-cols-1 gap-3">
                                 <div class="border-l-4 border-green-400 pl-4 py-2">
-                                    <h4 class="font-semibold text-gray-800">Específico</h4>
-                                    <p class="text-sm text-gray-600">Metas claramente definidas</p>
+                                    <h4 class="font-semibold text-gray-800">Observação Interativa</h4>
+                                    <p class="text-sm text-gray-600">Conhecer a criança em diferentes contextos</p>
                                 </div>
                                 
                                 <div class="border-l-4 border-green-400 pl-4 py-2">
-                                    <h4 class="font-semibold text-gray-800">Mensurável</h4>
-                                    <p class="text-sm text-gray-600">Progresso quantificável</p>
+                                    <h4 class="font-semibold text-gray-800">Atividades Lúdicas</h4>
+                                    <p class="text-sm text-gray-600">Para estimular a interação e a confiança</p>
                                 </div>
                                 
                                 <div class="border-l-4 border-green-400 pl-4 py-2">
-                                    <h4 class="font-semibold text-gray-800">Atingível</h4>
-                                    <p class="text-sm text-gray-600">Objetivos realistas</p>
+                                    <h4 class="font-semibold text-gray-800">Diálogo com a Família</h4>
+                                    <p class="text-sm text-gray-600">Para recolher informações valiosas</p>
                                 </div>
                                 
                                 <div class="border-l-4 border-green-400 pl-4 py-2">
-                                    <h4 class="font-semibold text-gray-800">Relevante</h4>
-                                    <p class="text-sm text-gray-600">Significativo para a criança</p>
-                                </div>
-                                
-                                <div class="border-l-4 border-green-400 pl-4 py-2">
-                                    <h4 class="font-semibold text-gray-800">Temporal</h4>
-                                    <p class="text-sm text-gray-600">Com prazos estabelecidos</p>
+                                    <h4 class="font-medium text-blue-900">Construção de Confiança</h4>
+                                    <p class="text-sm text-gray-600">Fundamento para o processo terapêutico</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Indicador de scroll -->
-                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center animate-bounce">
-                    <p class="text-sm text-green-700 mb-1">Continue rolando</p>
-                    <i class="fas fa-chevron-down text-green-500"></i>
-                </div>
             </div>
         </section>
 
-        <!-- Tela 3: Intervenção Integrada -->
-        <section id="step-3" class="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-white py-24 relative flex items-center">
-            <!-- Linha vertical com animação -->
+        <section id="step-3" class="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-white py-24 relative flex items-center scroll-snap-align-start">
             <div class="section-line" id="line-3"></div>
             
             <div class="container mx-auto px-4 relative z-10">
                 <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <!-- Conteúdo -->
-                    <div class="animate-section" data-animation="fade-right">
+                    <div class="animated-element slide-right" data-delay="0.1s">
                         <div class="mb-6 flex items-center gap-4">
                             <div class="bg-purple-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg">
                                 3
                             </div>
-                            <h2 class="text-4xl md:text-5xl font-bold text-purple-700 section-title">Intervenção<br>Integrada</h2>
+                            <h2 class="text-4xl md:text-5xl font-bold text-purple-700 section-title">Avaliações<br>Padronizadas</h2>
                         </div>
                         
                         <p class="text-xl text-gray-700 mb-8 leading-relaxed">
-                            Implementamos terapias coordenadas com nossa equipe multidisciplinar para resultados mais eficazes, com comunicação contínua entre os profissionais.
+                            <span class="font-bold text-purple-700">Marco 2: Duração de até 8 semanas após o Marco 1.</span> É o momento de aprofundar o conhecimento através de avaliações científicas. Será avaliada a necessidade de realização de testes padronizados, que serão aplicados juntamente com as sessões. Os resultados desses testes fornecem dados objetivos e são entregues em documentos detalhados chamados **AVALIAÇÕES**.
                         </p>
                         
                         <div class="bg-white rounded-2xl shadow-xl p-6 space-y-4 section-content">
                             <h3 class="text-xl font-semibold text-purple-700 flex items-center gap-3">
-                                <i class="fas fa-users-cog text-purple-500"></i>
-                                Equipe Multidisciplinar
+                                <i class="fas fa-file-prescription text-purple-500"></i>
+                                Metodologia e Estratégia
                             </h3>
                             
-                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-center">
-                                <div class="bg-purple-50 rounded-xl p-3 transform transition hover:scale-105">
-                                    <i class="fas fa-brain text-yellow-500 text-2xl mb-2"></i>
-                                    <p class="font-medium text-gray-800">Psicologia</p>
+                            <div class="grid grid-cols-1 gap-3">
+                                <div class="border-l-4 border-purple-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Base Científica</h4>
+                                    <p class="text-sm text-gray-600">Protocolos e abordagens validadas</p>
                                 </div>
                                 
-                                <div class="bg-purple-50 rounded-xl p-3 transform transition hover:scale-105">
-                                    <i class="fas fa-hands text-blue-500 text-2xl mb-2"></i>
-                                    <p class="font-medium text-gray-800">Terapia Ocupacional</p>
+                                <div class="border-l-4 border-purple-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Personalização</h4>
+                                    <p class="text-sm text-gray-600">Metas e estratégias adaptadas à criança</p>
                                 </div>
                                 
-                                <div class="bg-purple-50 rounded-xl p-3 transform transition hover:scale-105">
-                                    <i class="fas fa-comment-dots text-green-500 text-2xl mb-2"></i>
-                                    <p class="font-medium text-gray-800">Fonoaudiologia</p>
+                                <div class="border-l-4 border-purple-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Integração</h4>
+                                    <p class="text-sm text-gray-600">Resultados da anamnese e observações</p>
                                 </div>
                                 
-                                <div class="bg-purple-50 rounded-xl p-3 transform transition hover:scale-105">
-                                    <i class="fas fa-book-reader text-purple-500 text-2xl mb-2"></i>
-                                    <p class="font-medium text-gray-800">Psicopedagogia</p>
-                                </div>
-                                
-                                <div class="bg-purple-50 rounded-xl p-3 transform transition hover:scale-105 sm:col-span-2 md:col-span-1">
-                                    <i class="fas fa-user-plus text-indigo-500 text-2xl mb-2"></i>
-                                    <p class="font-medium text-gray-800">Outras Especialidades</p>
+                                <div class="border-l-4 border-purple-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Objetivos Claros</h4>
+                                    <p class="text-sm text-gray-600">Metas mensuráveis e alcançáveis</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Ilustração -->
-                    <div class="flex justify-center animate-section" data-animation="fade-left">
+                    <div class="flex justify-center animated-element slide-left" data-delay="0.2s">
                         <div class="relative">
                             <div class="absolute inset-0 bg-purple-200 rounded-full opacity-20 transform scale-125 rotate-12"></div>
                             <div class="relative flex items-center justify-center p-8">
-                                <i class="fas fa-hands-helping text-9xl text-purple-500"></i>
+                                <img src="https://placehold.co/100x100/A358E1/FFFFFF?text=FOTO" alt="Plano Terapêutico Ilustração" class="w-24 h-24 object-cover rounded-full">
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Indicador de scroll -->
-                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center animate-bounce">
-                    <p class="text-sm text-purple-700 mb-1">Continue rolando</p>
-                    <i class="fas fa-chevron-down text-purple-500"></i>
                 </div>
             </div>
         </section>
 
-        <!-- Tela 4: Acompanhamento Contínuo -->
-        <section id="step-4" class="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-white py-24 relative flex items-center">
-            <!-- Linha vertical com animação -->
+        <section id="step-4" class="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-white py-24 relative flex items-center scroll-snap-align-start">
             <div class="section-line" id="line-4"></div>
             
             <div class="container mx-auto px-4 relative z-10">
                 <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <!-- Ilustração -->
-                    <div class="flex justify-center order-2 md:order-1 animate-section" data-animation="fade-right">
+                    <div class="flex justify-center order-2 md:order-1 animated-element slide-right" data-delay="0.1s">
                         <div class="relative">
                             <div class="absolute inset-0 bg-orange-200 rounded-full opacity-20 transform scale-125 rotate-12"></div>
                             <div class="relative flex items-center justify-center p-8">
-                                <i class="fas fa-chart-line text-9xl text-orange-500"></i>
+                                <img src="https://placehold.co/100x100/EA8C2C/FFFFFF?text=FOTO" alt="Avaliações Científicas Ilustração" class="w-24 h-24 object-cover rounded-full">
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Conteúdo -->
-                    <div class="order-1 md:order-2 animate-section" data-animation="fade-left">
+                    <div class="order-1 md:order-2 animated-element slide-left" data-delay="0.2s">
                         <div class="mb-6 flex items-center gap-4">
                             <div class="bg-orange-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg">
                                 4
                             </div>
-                            <h2 class="text-4xl md:text-5xl font-bold text-orange-700 section-title">Acompanhamento<br>Contínuo</h2>
+                            <h2 class="text-4xl md:text-5xl font-bold text-orange-700 section-title">Plano de Treinamento<br>Intensivo de Habilidades (IDEIA)</h2>
                         </div>
                         
                         <p class="text-xl text-gray-700 mb-8 leading-relaxed">
-                            Monitoramos o progresso, ajustando as intervenções conforme necessário e mantendo comunicação constante com familiares para garantir evolução contínua.
+                            <span class="font-bold text-orange-700">Marco 3: Duração de até 4 semanas após o Marco 1.</span> Avaliamos se o seu filho se beneficiará de um Plano de Treinamento Intensivo de Habilidades, utilizando os ambientes e recursos inovadores do IDEIA. Este plano consiste em atividades estruturadas, programadas para serem aplicadas de forma intensiva, seja no ambiente familiar, escolar ou nas nossas instalações simuladas do IDEIA.
                         </p>
                         
                         <div class="bg-white rounded-2xl shadow-xl p-6 space-y-4 section-content">
@@ -631,7 +586,7 @@
                                     <i class="fas fa-chart-bar text-2xl text-orange-500"></i>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-semibold text-orange-700">Evolução Mensurável</h3>
+                                    <h3 class="text-xl font-semibold text-orange-700">Progresso Mensurável</h3>
                                     <p class="text-gray-700 mt-1">
                                         Acompanhamos cada marco de desenvolvimento para otimizar resultados.
                                     </p>
@@ -642,20 +597,20 @@
                                 <div class="bg-orange-50 rounded-xl p-3">
                                     <h4 class="font-medium text-orange-800 flex items-center gap-2">
                                         <i class="fas fa-file-alt text-orange-600"></i>
-                                        Relatórios Detalhados
+                                        Atividades Estruturadas
                                     </h4>
                                     <p class="text-sm text-gray-700 mt-1">
-                                        Documentação completa da evolução
+                                        Recursos terapêuticos programados
                                     </p>
                                 </div>
                                 
                                 <div class="bg-orange-50 rounded-xl p-3">
                                     <h4 class="font-medium text-orange-800 flex items-center gap-2">
-                                        <i class="fas fa-comments text-orange-600"></i>
-                                        Reuniões Regulares
+                                        <i class="fas fa-chart-pie text-orange-600"></i>
+                                        Registo de Evolução
                                     </h4>
                                     <p class="text-sm text-gray-700 mt-1">
-                                        Encontros periódicos com os pais
+                                        Registo e premiação por conquistas
                                     </p>
                                 </div>
                             </div>
@@ -663,8 +618,278 @@
                         
                         <div class="mt-8 text-center md:text-right">
                             <a href="contato.html" class="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition transform hover:scale-105">
-                                <i class="fas fa-calendar-alt"></i>
-                                Agende uma Avaliação
+                                <i class="fas fa-info-circle"></i>
+                                Saiba Mais
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="step-5" class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-white py-24 relative flex items-center scroll-snap-align-start">
+            <div class="section-line" id="line-5"></div>
+            
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="animated-element slide-right" data-delay="0.1s">
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="bg-blue-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg">
+                                5
+                            </div>
+                            <h2 class="text-4xl md:text-5xl font-bold text-blue-700 section-title">Suporte e<br>PEI Escolar</h2>
+                        </div>
+                        
+                        <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                            <span class="font-bold text-primary">Marco 4: Duração de até 8 semanas após o Marco 1.</span> Dedicamo-nos a apoiar o desenvolvimento do seu filho no ambiente escolar. Recolhemos informações sobre a sua evolução e, se necessário, a equipa do IDEIA pode visitar a escola para aconselhamento, treinamentos e consultoria. Oferecemos suporte para a criação do Plano Educacional Individualizado (PEI), um documento crucial para o sucesso académico.
+                        </p>
+                        
+                        <div class="bg-white rounded-2xl shadow-xl p-6 space-y-4 section-content">
+                            <h3 class="text-xl font-semibold text-blue-700 flex items-center gap-3">
+                                <i class="fas fa-chalkboard-teacher text-blue-500"></i>
+                                Suporte Educacional
+                            </h3>
+                            
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div class="bg-blue-50 p-4 rounded-xl">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fas fa-school text-blue-600 mt-1"></i>
+                                        <div>
+                                            <h4 class="font-medium text-blue-900">Parceria com Escolas</h4>
+                                            <p class="text-sm text-gray-600">Colaboração para adaptações</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-blue-50 p-4 rounded-xl">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fas fa-book-reader text-blue-600 mt-1"></i>
+                                        <div>
+                                            <h4 class="font-medium text-blue-900">Materiais Adaptados</h4>
+                                            <p class="text-sm text-gray-600">Recursos didáticos personalizados</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-blue-50 p-4 rounded-xl">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fas fa-user-graduate text-blue-600 mt-1"></i>
+                                        <div>
+                                            <h4 class="font-medium text-blue-900">Metas Acadêmicas</h4>
+                                            <p class="text-sm text-gray-600">Objetivos claros para o aprendizado</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-blue-50 p-4 rounded-xl">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fas fa-handshake text-blue-600 mt-1"></i>
+                                        <div>
+                                            <h4 class="font-medium text-blue-900">Apoio Contínuo</h4>
+                                            <p class="text-sm text-gray-600">Suporte à criança e à família</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center animated-element slide-left" data-delay="0.2s">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-blue-200 rounded-full opacity-20 transform scale-125 rotate-12"></div>
+                            <div class="relative flex items-center justify-center p-8">
+                                <img src="https://placehold.co/100x100/136CB2/FFFFFF?text=FOTO" alt="PEI Ilustração" class="w-24 h-24 object-cover rounded-full">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="step-6" class="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-white py-24 relative flex items-center scroll-snap-align-start">
+            <div class="section-line" id="line-6"></div>
+            
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="flex justify-center order-2 md:order-1 animated-element slide-right" data-delay="0.1s">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-green-200 rounded-full opacity-20 transform scale-125 rotate-12"></div>
+                            <div class="relative flex items-center justify-center p-8">
+                                <img src="https://placehold.co/100x100/6CBB45/FFFFFF?text=FOTO" alt="Acompanhamento Residencial Ilustração" class="w-24 h-24 object-cover rounded-full">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-1 md:order-2 animated-element slide-left" data-delay="0.2s">
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg">
+                                6
+                            </div>
+                            <h2 class="text-4xl md:text-5xl font-bold text-green-700 section-title">Acompanhamento Residencial<br>e Autonomia</h2>
+                        </div>
+                        
+                        <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                            Para uma evolução completa, oferecemos acompanhamento no ambiente residencial do seu filho, com o apoio do IDEIA. Focamos na otimização de rotinas e no desenvolvimento das Atividades de Vida Diária (AVD's), como higiene e alimentação. O objetivo é fortalecer a autonomia e a confiança no seu próprio lar.
+                        </p>
+                        
+                        <div class="bg-white rounded-2xl shadow-xl p-6 space-y-4 section-content">
+                            <h3 class="text-xl font-semibold text-green-700 flex items-center gap-3">
+                                <i class="fas fa-child-reaching text-green-500"></i>
+                                Autonomia no Dia a Dia
+                            </h3>
+                            
+                            <div class="grid grid-cols-1 gap-3">
+                                <div class="border-l-4 border-green-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Adaptação do Ambiente</h4>
+                                    <p class="text-sm text-gray-600">Tornar o lar mais funcional</p>
+                                </div>
+                                
+                                <div class="border-l-4 border-green-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Rotinas Estruturadas</h4>
+                                    <p class="text-sm text-gray-600">Para maior previsibilidade e segurança</p>
+                                </div>
+                                
+                                <div class="border-l-4 border-green-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Treino de AVD's</h4>
+                                    <p class="text-sm text-gray-600">Higiene, alimentação, vestuário</p>
+                                </div>
+                                
+                                <div class="border-l-4 border-green-400 pl-4 py-2">
+                                    <h4 class="font-medium text-blue-900">Suporte Familiar</h4>
+                                    <p class="text-sm text-gray-600">Orientação para pais e cuidadores</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="step-7" class="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-white py-24 relative flex items-center scroll-snap-align-start">
+            <div class="section-line" id="line-7"></div>
+            
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="animated-element slide-right" data-delay="0.1s">
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="bg-purple-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg">
+                                7
+                            </div>
+                            <h2 class="text-4xl md:text-5xl font-bold text-purple-700 section-title">Relatórios<br>sobre Evolução</h2>
+                        </div>
+                        
+                        <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                            <span class="font-bold text-purple-700">Marco 5: Duração de até 30 semanas após o Marco 1.</span> Realizamos uma avaliação abrangente para demonstrar a evolução notável do seu filho. Geramos um **RELATÓRIO DE EVOLUÇÃO** detalhado, com dados claros e mensuráveis das conquistas. Este relatório serve como um mapa para o próximo semestre, planeando os passos futuros rumo à alta terapêutica e ao pleno potencial.
+                        </p>
+                        
+                        <div class="bg-white rounded-2xl shadow-xl p-6 space-y-4 section-content">
+                            <h3 class="text-xl font-semibold text-purple-700 flex items-center gap-3">
+                                <i class="fas fa-chart-line text-purple-500"></i>
+                                Transparência e Acompanhamento
+                            </h3>
+                            
+                            <div class="grid grid-cols-1 gap-3">
+                                <div class="border-l-4 border-purple-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Dados Quantificáveis</h4>
+                                    <p class="text-sm text-gray-600">Progresso baseado em métricas</p>
+                                </div>
+                                
+                                <div class="border-l-4 border-purple-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Feedback Contínuo</h4>
+                                    <p class="text-sm text-gray-600">Reuniões periódicas com a família</p>
+                                </div>
+                                
+                                <div class="border-l-4 border-purple-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Ajustes no Plano</h4>
+                                    <p class="text-sm text-gray-600">Adaptação às necessidades da criança</p>
+                                </div>
+                                
+                                <div class="border-l-4 border-purple-400 pl-4 py-2">
+                                    <h4 class="font-semibold text-gray-800">Comunicação Integrada</h4>
+                                    <p class="text-sm text-gray-600">Entre equipa, família e escola</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center animated-element slide-left" data-delay="0.2s">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-purple-200 rounded-full opacity-20 transform scale-125 rotate-12"></div>
+                            <div class="relative flex items-center justify-center p-8">
+                                <img src="https://placehold.co/100x100/A358E1/FFFFFF?text=FOTO" alt="Relatórios Ilustração" class="w-24 h-24 object-cover rounded-full">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="step-8" class="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-white py-24 relative flex items-center scroll-snap-align-start">
+            <div class="section-line" id="line-8"></div>
+            
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="flex justify-center order-2 md:order-1 animated-element slide-right" data-delay="0.1s">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-orange-200 rounded-full opacity-20 transform scale-125 rotate-12"></div>
+                            <div class="relative flex items-center justify-center p-8">
+                                <img src="https://placehold.co/100x100/EA8C2C/FFFFFF?text=FOTO" alt="Habilidades Intensivas Ilustração" class="w-24 h-24 object-cover rounded-full">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-1 md:order-2 animated-element slide-left" data-delay="0.2s">
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="bg-orange-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg">
+                                8
+                            </div>
+                            <h2 class="text-4xl md:text-5xl font-bold text-orange-700 section-title">Caminho para a Alta<br>e Potencial Pleno</h2>
+                        </div>
+                        
+                        <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                            O nosso objetivo final é capacitar cada criança para alcançar o seu pleno potencial e, eventualmente, a alta terapêutica. Continuamos a monitorizar o progresso, ajustando estratégias e fornecendo o suporte necessário para que as habilidades adquiridas sejam generalizadas e sustentadas em todos os ambientes. É a celebração de uma jornada de sucesso!
+                        </p>
+                        
+                        <div class="bg-white rounded-2xl shadow-xl p-6 space-y-4 section-content">
+                            <div class="flex items-start space-x-4 mb-4">
+                                <div class="bg-orange-100 rounded-lg p-3 flex-shrink-0">
+                                    <i class="fas fa-star text-2xl text-orange-500"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-orange-700">Sustentabilidade e Autonomia</h3>
+                                    <p class="text-gray-700 mt-1">
+                                        Focamos na aplicação das habilidades no dia a dia.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="grid sm:grid-cols-2 gap-3">
+                                <div class="bg-orange-50 rounded-xl p-3">
+                                    <h4 class="font-medium text-orange-800 flex items-center gap-2">
+                                        <i class="fas fa-chart-line text-orange-600"></i>
+                                        Monitorização Pós-Alta
+                                    </h4>
+                                    <p class="text-sm text-gray-700 mt-1">
+                                        Acompanhamento para garantir a continuidade.
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-orange-50 rounded-xl p-3">
+                                    <h4 class="font-medium text-orange-800 flex items-center gap-2">
+                                        <i class="fas fa-hand-holding-heart text-orange-600"></i>
+                                        Suporte Contínuo
+                                    </h4>
+                                    <p class="text-sm text-gray-700 mt-1">
+                                        Apoio à família sempre que necessário.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 text-center md:text-right">
+                            <a href="ideia.html" class="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition transform hover:scale-105">
+                                <i class="fas fa-info-circle"></i>
+                                Conheça o IDEIA
                             </a>
                         </div>
                     </div>
@@ -673,7 +898,6 @@
         </section>
     </div>
     
-    <!-- Modal: Fonoaudiologia -->
     <section id="modal-fono" class="modal-backdrop">
       <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
         <button onclick="closeModal('modal-fono')"
@@ -681,11 +905,11 @@
                 aria-label="Fechar">&times;</button>
         <div class="flex flex-col items-center">
           <img src="attached_assets/logo_eibm_terapias.svg"
-               alt="Logo EIBM Terapias"
+               alt="Logótipo EIBM Terapias"
                class="w-24 h-24 mb-4"/>
           <h2 class="text-xl font-bold text-green-600 mb-2">Fonoaudiologia</h2>
           <p class="text-gray-800 mb-4 text-center">
-            Trabalha com o desenvolvimento da comunicação, linguagem, fala e funções orais, essenciais para a interação social e aprendizado.
+            Trabalha com o desenvolvimento da comunicação, linguagem, fala e funções orais, essenciais para a interação social e aprendizagem.
           </p>
           <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
             <li class="flex items-center gap-2">
@@ -711,7 +935,6 @@
       </div>
     </section>
     
-    <!-- Modal: Psicologia -->
     <section id="modal-psico" class="modal-backdrop">
       <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
         <button onclick="closeModal('modal-psico')"
@@ -719,7 +942,7 @@
                 aria-label="Fechar">&times;</button>
         <div class="flex flex-col items-center">
           <img src="attached_assets/logo_eibm_terapias.svg"
-               alt="Logo EIBM Terapias"
+               alt="Logótipo EIBM Terapias"
                class="w-24 h-24 mb-4"/>
           <h2 class="text-xl font-bold text-yellow-500 mb-2">Psicologia</h2>
           <p class="text-gray-800 mb-4 text-center">
@@ -749,7 +972,6 @@
       </div>
     </section>
     
-    <!-- Modal: Terapia Ocupacional -->
     <section id="modal-to" class="modal-backdrop">
       <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
         <button onclick="closeModal('modal-to')"
@@ -757,7 +979,7 @@
                 aria-label="Fechar">&times;</button>
         <div class="flex flex-col items-center">
           <img src="attached_assets/logo_eibm_terapias.svg"
-               alt="Logo EIBM Terapias"
+               alt="Logótipo EIBM Terapias"
                class="w-24 h-24 mb-4"/>
           <h2 class="text-xl font-bold text-blue-600 mb-2">Terapia Ocupacional</h2>
           <p class="text-gray-800 mb-4 text-center">
@@ -787,7 +1009,6 @@
       </div>
     </section>
     
-    <!-- Modal: Psicopedagogia -->
     <section id="modal-psicoped" class="modal-backdrop">
       <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
         <button onclick="closeModal('modal-psicoped')"
@@ -795,11 +1016,11 @@
                 aria-label="Fechar">&times;</button>
         <div class="flex flex-col items-center">
           <img src="attached_assets/logo_eibm_terapias.svg"
-               alt="Logo EIBM Terapias"
+               alt="Logótipo EIBM Terapias"
                class="w-24 h-24 mb-4"/>
           <h2 class="text-xl font-bold text-purple-600 mb-2">Psicopedagogia</h2>
           <p class="text-gray-800 mb-4 text-center">
-            Aborda dificuldades de aprendizagem, fornecendo estratégias e intervenções personalizadas para promover o sucesso escolar e acadêmico.
+            Aborda dificuldades de aprendizagem, fornecendo estratégias e intervenções personalizadas para promover o sucesso escolar e académico.
           </p>
           <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
             <li class="flex items-center gap-2">
@@ -825,7 +1046,6 @@
       </div>
     </section>
     
-    <!-- Modal: Clínica IDEIA -->
     <section id="modal-clinica" class="modal-backdrop">
       <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative">
         <button onclick="closeModal('modal-clinica')"
@@ -833,11 +1053,11 @@
                 aria-label="Fechar">&times;</button>
         <div class="flex flex-col items-center">
           <img src="attached_assets/logo_ideia.svg"
-               alt="Logo IDEIA"
+               alt="Logótipo IDEIA"
                class="w-24 h-24 mb-4"/>
           <h2 class="text-xl font-bold text-blue-600 mb-2">IDEIA - Inclusão e Desenvolvimento Infantil</h2>
           <p class="text-gray-800 mb-4 text-center">
-            Um espaço integrado e acolhedor, projetado para proporcionar o melhor atendimento para crianças com necessidades especiais e suas famílias.
+            Um espaço integrado e acolhedor, projetado para proporcionar o melhor atendimento para crianças com necessidades especiais e as suas famílias.
           </p>
           <ul class="mb-4 text-gray-700 space-y-2 text-sm text-left">
             <li class="flex items-center gap-2">
@@ -846,7 +1066,7 @@
             </li>
             <li class="flex items-center gap-2">
               <i class="fas fa-users text-blue-400"></i>
-              Equipe multidisciplinar
+              Equipa multidisciplinar
             </li>
             <li class="flex items-center gap-2">
               <i class="fas fa-clipboard-check text-green-400"></i>
@@ -867,131 +1087,623 @@
       </div>
     </section>
     
-    <!-- JavaScript para animações e interatividade -->
+    <section class="py-16 bg-gradient-to-r from-purple-50 to-blue-50 scroll-snap-align-start">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-8 text-center">
+                Ferramenta de Orientação de Terapia ✨
+            </h2>
+            <p class="text-gray-700 text-lg text-center mb-10">
+                Descubra qual terapia pode ser mais indicada para o desenvolvimento do seu filho. Preencha as informações abaixo para uma recomendação personalizada.
+            </p>
+
+            <div class="bg-white p-8 rounded-2xl shadow-lg space-y-6">
+                <div>
+                    <label for="child-age" class="block text-gray-700 font-medium mb-2">Idade da Criança:</label>
+                    <select id="child-age" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:shadow-outline-blue">
+                        <option value="">Selecione a idade</option>
+                        <option value="0-3">0-3 anos</option>
+                        <option value="4-6">4-6 anos</option>
+                        <option value="7-10">7-10 anos</option>
+                        <option value="11-14">11-14 anos</option>
+                        <option value="15+">15+ anos</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="main-challenges" class="block text-gray-700 font-medium mb-2">Principais Desafios (selecione um ou mais):</label>
+                    <select id="main-challenges" multiple class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:shadow-outline-blue h-32">
+                        <option value="Comunicação">Comunicação (fala, linguagem, interação)</option>
+                        <option value="Comportamento">Comportamento (birras, impulsividade, agressividade)</option>
+                        <option value="Aprendizagem">Aprendizagem (leitura, escrita, matemática, atenção)</option>
+                        <option value="Social">Social (interação com pares, empatia)</option>
+                        <option value="Motor">Motor (coordenação, equilíbrio, destreza)</option>
+                        <option value="Emocional">Emocional (ansiedade, tristeza, regulação)</option>
+                        <option value="Sensorial">Sensorial (hipersensibilidade, busca sensorial)</option>
+                        <option value="Autonomia">Autonomia (atividades diárias, autocuidado)</option>
+                    </select>
+                    <p class="text-sm text-gray-500 mt-1">Pode selecionar múltiplas opções segurando Ctrl/Cmd.</p>
+                </div>
+
+                <div class="flex justify-center">
+                    <button id="get-recommendation-btn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-8 py-3 rounded-full shadow-lg transition flex items-center gap-2">
+                        Obter Recomendação ✨
+                    </button>
+                </div>
+
+                <div id="recommendation-results" class="mt-8 p-6 bg-blue-50 rounded-lg shadow-inner hidden">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center gap-2">
+                        <i class="fas fa-lightbulb text-yellow-500"></i>
+                        Nossa Recomendação:
+                    </h3>
+                    <div id="loading-indicator" class="text-center text-gray-600 hidden">
+                        <i class="fas fa-spinner fa-spin text-2xl text-primary"></i> A gerar recomendação...
+                    </div>
+                    <div id="recommendation-content">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gradient-to-r from-green-50 to-yellow-50 scroll-snap-align-start">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-8 text-center">
+                Gerador de Atividades Diárias Personalizadas ✨
+            </h2>
+            <p class="text-gray-700 text-lg text-center mb-10">
+                Obtenha sugestões de atividades lúdicas e educativas para o dia a dia, focadas no desenvolvimento do seu filho.
+            </p>
+
+            <div class="bg-white p-8 rounded-2xl shadow-lg space-y-6">
+                <div>
+                    <label for="activity-child-age" class="block text-gray-700 font-medium mb-2">Idade da Criança:</label>
+                    <select id="activity-child-age" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:shadow-outline-green">
+                        <option value="">Selecione a idade</option>
+                        <option value="0-3 anos">0-3 anos</option>
+                        <option value="4-6 anos">4-6 anos</option>
+                        <option value="7-10 anos">7-10 anos</option>
+                        <option value="11-14 anos">11-14 anos</option>
+                        <option value="15+ anos">15+ anos</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="development-area" class="block text-gray-700 font-medium mb-2">Área de Desenvolvimento a Focar:</label>
+                    <select id="development-area" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:shadow-outline-green">
+                        <option value="">Selecione a área</option>
+                        <option value="Comunicação">Comunicação</option>
+                        <option value="Motricidade Fina">Motricidade Fina</option>
+                        <option value="Motricidade Global">Motricidade Global</option>
+                        <option value="Interação Social">Interação Social</option>
+                        <option value="Autonomia">Autonomia</option>
+                        <option value="Regulação Emocional">Regulação Emocional</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="activity-type" class="block text-gray-700 font-medium mb-2">Tipo de Atividade:</label>
+                    <select id="activity-type" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:shadow-outline-green">
+                        <option value="">Selecione o tipo</option>
+                        <option value="Lúdica">Lúdica (brincadeira)</option>
+                        <option value="Educacional">Educacional (aprendizagem)</option>
+                        <option value="Relaxamento">Relaxamento (calma)</option>
+                        <option value="Social">Social (interação)</option>
+                    </select>
+                </div>
+
+                <div class="flex justify-center">
+                    <button id="generate-activity-btn" class="bg-secondary hover:bg-green-dark text-white font-bold px-8 py-3 rounded-full shadow-lg transition flex items-center gap-2">
+                        Gerar Atividade ✨
+                    </button>
+                </div>
+
+                <div id="activity-results" class="mt-8 p-6 bg-yellow-50 rounded-lg shadow-inner hidden">
+                    <h3 class="text-xl font-bold text-green-800 mb-4 flex items-center gap-2">
+                        <i class="fas fa-puzzle-piece text-orange-500"></i>
+                        Atividade Sugerida:
+                    </h3>
+                    <div id="activity-loading-indicator" class="text-center text-gray-600 hidden">
+                        <i class="fas fa-spinner fa-spin text-2xl text-secondary"></i> A gerar atividade...
+                    </div>
+                    <div id="activity-content">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gradient-to-r from-purple-100 to-pink-100 scroll-snap-align-start">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-purple-700 mb-8 text-center">
+                Gerador de Histórias Terapêuticas ✨
+            </h2>
+            <p class="text-gray-700 text-lg text-center mb-10">
+                Crie histórias personalizadas para ajudar a criança a compreender e lidar com emoções ou situações específicas.
+            </p>
+
+            <div class="bg-white p-8 rounded-2xl shadow-lg space-y-6">
+                <div>
+                    <label for="story-child-age" class="block text-gray-700 font-medium mb-2">Idade da Criança:</label>
+                    <select id="story-child-age" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-700 focus:shadow-outline-purple">
+                        <option value="">Selecione a idade</option>
+                        <option value="3-5 anos">3-5 anos</option>
+                        <option value="6-8 anos">6-8 anos</option>
+                        <option value="9-12 anos">9-12 anos</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="story-theme" class="block text-gray-700 font-medium mb-2">Tema da História:</label>
+                    <select id="story-theme" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-700 focus:shadow-outline-purple">
+                        <option value="">Selecione um tema</option>
+                        <option value="Lidar com a raiva">Lidar com a raiva</option>
+                        <option value="Fazer novos amigos">Fazer novos amigos</option>
+                        <option value="Superar o medo do escuro">Superar o medo do escuro</option>
+                        <option value="Partilhar brinquedos">Partilhar brinquedos</option>
+                        <option value="Aceitar mudanças">Aceitar mudanças</option>
+                        <option value="Importância da escuta">A importância da escuta</option>
+                    </select>
+                </div>
+
+                <div class="flex justify-center">
+                    <button id="generate-story-btn" class="bg-purple-700 hover:bg-purple-dark text-white font-bold px-8 py-3 rounded-full shadow-lg transition flex items-center gap-2">
+                        Gerar História ✨
+                    </button>
+                </div>
+
+                <div id="story-results" class="mt-8 p-6 bg-purple-50 rounded-lg shadow-inner hidden">
+                    <h3 class="text-xl font-bold text-purple-800 mb-4 flex items-center gap-2">
+                        <i class="fas fa-book-open text-pink-500"></i>
+                        A Sua História:
+                    </h3>
+                    <div id="story-loading-indicator" class="text-center text-gray-600 hidden">
+                        <i class="fas fa-spinner fa-spin text-2xl text-purple-700"></i> A gerar história...
+                    </div>
+                    <div id="story-content">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl shadow-md scroll-snap-align-start">
+        <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold text-primary mb-2">Precisa de Ajuda Especializada?</h3>
+            <p class="text-gray-700">Entre em contacto connosco para agendar uma avaliação ou obter mais informações sobre as nossas terapias.</p>
+        </div>
+        
+        <div class="flex justify-center">
+            <a href="contato.html" class="bg-primary hover:bg-blue-royal text-white font-medium px-6 py-3 rounded-lg transition-colors inline-flex items-center">
+                <i class="fas fa-calendar-alt mr-2"></i> Entrar em Contacto
+            </a>
+        </div>
+    </section>
+    
+    <footer class="bg-gray-900 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="attached_assets/logo_eibm_clinica_escrito.svg" alt="Logótipo EIBM" class="h-10 mr-3">
+                    <div>
+                        <h3 class="text-xl font-bold">EIBM</h3>
+                        <p class="text-xs text-gray-400">Especialidades Integradas e Bem-estar Multidisciplinar</p>
+                    </div>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">&copy; 2025 EIBM - Todos os direitos reservados.</p>
+                    <div class="flex justify-center md:justify-end space-x-4 mt-2">
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 focus:outline-none hover:bg-blue-dark z-50">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Elementos para animar
-            const sections = document.querySelectorAll('section[id^="step-"]');
-            const animateSections = document.querySelectorAll('.animate-section');
-            const lines = document.querySelectorAll('.section-line');
-            
-            // Função para verificar se um elemento está visível na viewport
-            const isInViewport = (element, threshold = 0.3) => {
-                if (!element) return false;
-                const rect = element.getBoundingClientRect();
-                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-                return (
-                    rect.top <= windowHeight * (1 - threshold) &&
-                    rect.bottom >= windowHeight * threshold
-                );
-            };
-            
-            // Função para animar elementos quando visíveis
-            const animateOnScroll = () => {
-                // Só anima depois da hero section
-                const heroSection = document.getElementById('hero');
-                const isPastHero = heroSection ? heroSection.getBoundingClientRect().bottom <= 0 : true;
-                
-                if (!isPastHero) return;
-                
-                sections.forEach((section, index) => {
-                    if (isInViewport(section, 0.2)) {
-                        // Animar a linha vertical
-                        const lineId = `line-${index + 1}`;
-                        const line = document.getElementById(lineId);
-                        if (line) {
-                            line.classList.add('animate');
-                        }
-                        
-                        // Animar conteúdo dentro da seção
-                        const animations = section.querySelectorAll('.animate-section');
-                        animations.forEach(item => {
-                            if (!item.classList.contains('animated')) {
-                                const animation = item.getAttribute('data-animation');
-                                if (animation) {
-                                    item.classList.add(`animate-${animation}`);
-                                } else {
-                                    item.classList.add('animate-fade-up');
-                                }
-                                item.classList.add('animated');
-                            }
-                        });
-                    }
-                });
-            };
-            
-            // Verificar ao rolar a página
-            window.addEventListener('scroll', animateOnScroll, { passive: true });
-            
-            // Também verificar quando a página carrega
-            setTimeout(animateOnScroll, 300);
-            
-            // Funções para os modais
-            window.openModal = function(modalId) {
-                const modal = document.getElementById(modalId);
-                if (modal) {
-                    modal.style.display = 'flex';
-                }
-            };
-            
-            window.closeModal = function(modalId) {
-                const modal = document.getElementById(modalId);
-                if (modal) {
-                    modal.style.display = 'none';
-                }
-            };
-            
-            // Fechar o modal ao clicar no fundo
-            document.querySelectorAll('.modal-backdrop').forEach(modal => {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        modal.style.display = 'none';
-                    }
-                });
+      // Parallax otimizado
+      document.addEventListener('DOMContentLoaded', () => {
+        const parallaxLamps = document.querySelectorAll('.parallax-lamp');
+        let ticking = false;
+
+        function updateParallax() {
+          const y = window.scrollY;
+          parallaxLamps.forEach(el => {
+            const speed = parseFloat(el.dataset.speed) || 0;
+            // Aplica a transformação 3D para melhor performance de hardware
+            el.style.transform = `translate3d(0, ${y * speed}px, 0)`;
+          });
+          ticking = false;
+        }
+
+        // Chama a função uma vez para definir a posição inicial
+        updateParallax();
+
+        // Adiciona o listener de scroll para atualizar a posição
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(updateParallax);
+            ticking = true;
+          }
+        }, { passive: true }); // 'passive: true' para melhor performance de scroll
+      });
+
+        // Indicador de scroll da Hero Section (visível apenas na Hero)
+    const heroScrollIndicator = document.getElementById('scroll-indicator-hero');
+    if (heroScrollIndicator) {
+        window.addEventListener('scroll', () => {
+            const heroSection = document.getElementById('hero');
+            // Verifica se a parte inferior da secção hero ainda está visível na viewport
+            if (heroSection && heroSection.getBoundingClientRect().bottom > 100) { 
+                heroScrollIndicator.style.opacity = '0.9';
+                heroScrollIndicator.style.visibility = 'visible';
+            } else {
+                heroScrollIndicator.style.opacity = '0';
+                heroScrollIndicator.style.visibility = 'hidden';
+            }
+        }, { passive: true });
+    }
+
+    // Botão Voltar ao Topo
+    const backToTopButton = document.getElementById('back-to-top');
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            // O botão aparece após rolar 80% da altura da viewport
+            if (window.scrollY > window.innerHeight * 0.8) { 
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        }, { passive: true });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
-            
-            // Menu Mobile
+        });
+    }
+
+      // Função para abrir modais
+      function openModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Impede rolagem da página
+        }
+      }
+      // Função para fechar modais
+      function closeModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; // Restaura rolagem
+        }
+      }
+        // Menu Mobile
+        document.addEventListener('DOMContentLoaded', () => {
             const menuToggle = document.getElementById('menu-toggle');
             const closeMenu = document.getElementById('close-menu');
             const mobileMenu = document.getElementById('mobile-menu');
             
             if (menuToggle && mobileMenu) {
+                // Abre o menu
                 menuToggle.addEventListener('click', () => {
                     mobileMenu.classList.remove('-translate-x-full');
+                    document.body.style.overflow = 'hidden'; // Impede rolagem da página
                 });
             }
             
             if (closeMenu && mobileMenu) {
+                // Fecha o menu
                 closeMenu.addEventListener('click', () => {
                     mobileMenu.classList.add('-translate-x-full');
+                    document.body.style.overflow = ''; // Restaura rolagem
+                });
+            }
+            
+            if (mobileMenu) {
+                // Fecha o menu ao clicar em um link
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('-translate-x-full');
+                        document.body.style.overflow = '';
+                    });
                 });
             }
         });
+        
+        // Animações genéricas para elementos ao rolar
+        document.addEventListener("DOMContentLoaded", () => {
+            const animatedElements = document.querySelectorAll('.animated-element');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = parseFloat(entry.target.dataset.delay) || 0;
+                        setTimeout(() => {
+                            // Remove classes de estado inicial e adiciona a classe de animação
+                            if (entry.target.classList.contains('slide-right')) {
+                                entry.target.classList.add('slide-right');
+                            } else if (entry.target.classList.contains('slide-left')) {
+                                entry.target.classList.add('slide-left');
+                            } else {
+                                entry.target.classList.add('fade-in-slide-up');
+                            }
+                            entry.target.classList.add('animated'); // Marca como animado para não repetir
+                        }, delay * 1000); // Converte segundos para milissegundos
+                        observer.unobserve(entry.target); // Para de observar após a animação
+                    }
+                });
+            }, {
+                threshold: 0.1 // 10% do elemento visível para acionar
+            });
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const options = {
-      root: null,
-      threshold: 0.3
-    };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const line = entry.target.querySelector('.section-line');
-        if (line) {
-          if (entry.isIntersecting) {
-            line.classList.add('active');
-          } else {
-            line.classList.remove('active');
-          }
-        }
-      });
-    }, options);
+            animatedElements.forEach(el => {
+                el.classList.add('opacity-0'); // Garante que o elemento esteja oculto inicialmente
+                observer.observe(el);
+            });
 
-    // Observe cada etapa do roadmap
-    document.querySelectorAll('section[id^="step-"]').forEach(sec => {
-      observer.observe(sec);
-    });
-  });
+            // Lógica para a Ferramenta de Orientação de Terapia (Gemini API)
+            const getRecommendationBtn = document.getElementById('get-recommendation-btn');
+            const childAgeSelect = document.getElementById('child-age');
+            const mainChallengesSelect = document.getElementById('main-challenges');
+            const recommendationResultsDiv = document.getElementById('recommendation-results');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const recommendationContent = document.getElementById('recommendation-content');
 
+            if (getRecommendationBtn) {
+                getRecommendationBtn.addEventListener('click', async () => {
+                    const age = childAgeSelect.value;
+                    const selectedChallenges = Array.from(mainChallengesSelect.selectedOptions).map(option => option.value);
+
+                    if (!age || selectedChallenges.length === 0) {
+                        alert('Por favor, selecione a idade da criança e pelo menos um desafio.');
+                        return;
+                    }
+
+                    // Mostrar indicador de carregamento e ocultar resultados anteriores
+                    recommendationResultsDiv.classList.remove('hidden');
+                    loadingIndicator.classList.remove('hidden');
+                    recommendationContent.innerHTML = ''; // Limpar conteúdo anterior
+
+                    const prompt = `A criança tem ${age} e apresenta os seguintes desafios: ${selectedChallenges.join(', ')}. Com base nas terapias oferecidas pela EIBM (Fonoaudiologia, Psicologia, Terapia Ocupacional, Psicopedagogia), qual terapia seria mais indicada e porquê? Forneça uma lista de terapias recomendadas e uma breve explicação.`;
+
+                    try {
+                        let chatHistory = [];
+                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                        const payload = {
+                            contents: chatHistory,
+                            generationConfig: {
+                                responseMimeType: "application/json",
+                                responseSchema: {
+                                    type: "OBJECT",
+                                    properties: {
+                                        "recommendedTherapies": {
+                                            "type": "ARRAY",
+                                            "items": { "type": "STRING" }
+                                        },
+                                        "explanation": { "type": "STRING" }
+                                    },
+                                    "propertyOrdering": ["recommendedTherapies", "explanation"]
+                                }
+                            }
+                        };
+                        const apiKey = ""; // A chave API será fornecida em tempo de execução pelo Canvas
+                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                        
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        
+                        const result = await response.json();
+
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            
+                            const jsonText = result.candidates[0].content.parts[0].text;
+                            const parsedJson = JSON.parse(jsonText);
+
+                            let htmlOutput = '<ul class="list-disc pl-5 mb-4 space-y-1 text-gray-800">';
+                            parsedJson.recommendedTherapies.forEach(therapy => {
+                                htmlOutput += `<li class="font-semibold text-primary">${therapy}</li>`;
+                            });
+                            htmlOutput += '</ul>';
+                            htmlOutput += `<p class="text-gray-700 leading-relaxed">${parsedJson.explanation}</p>`;
+                            
+                            recommendationContent.innerHTML = htmlOutput;
+
+                        } else {
+                            recommendationContent.innerHTML = '<p class="text-red-500">Não foi possível gerar uma recomendação. Por favor, tente novamente.</p>';
+                        }
+                    } catch (error) {
+                        console.error('Erro ao chamar a API Gemini:', error);
+                        recommendationContent.innerHTML = '<p class="text-red-500">Ocorreu um erro ao gerar a recomendação. Por favor, tente novamente mais tarde.</p>';
+                    } finally {
+                        loadingIndicator.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Lógica para o Gerador de Atividades Diárias Personalizadas (Gemini API)
+            const generateActivityBtn = document.getElementById('generate-activity-btn');
+            const activityChildAgeSelect = document.getElementById('activity-child-age');
+            const developmentAreaSelect = document.getElementById('development-area');
+            const activityTypeSelect = document.getElementById('activity-type');
+            const activityResultsDiv = document.getElementById('activity-results');
+            const activityLoadingIndicator = document.getElementById('activity-loading-indicator');
+            const activityContent = document.getElementById('activity-content');
+
+            if (generateActivityBtn) {
+                generateActivityBtn.addEventListener('click', async () => {
+                    const age = activityChildAgeSelect.value;
+                    const area = developmentAreaSelect.value;
+                    const type = activityTypeSelect.value;
+
+                    if (!age || !area || !type) {
+                        alert('Por favor, selecione a idade da criança, a área de desenvolvimento e o tipo de atividade.');
+                        return;
+                    }
+
+                    // Mostrar indicador de carregamento e ocultar resultados anteriores
+                    activityResultsDiv.classList.remove('hidden');
+                    activityLoadingIndicator.classList.remove('hidden');
+                    activityContent.innerHTML = ''; // Limpar conteúdo anterior
+
+                    const prompt = `Gere uma atividade diária para uma criança de ${age} focada em ${area}, que seja do tipo ${type}. Inclua uma breve descrição da atividade, uma lista de materiais necessários (se aplicável, caso contrário, diga 'Nenhum material específico.') e o objetivo principal da atividade em relação à área de desenvolvimento. Formate a resposta como JSON com as chaves "description", "materials", e "objective".`;
+
+                    try {
+                        let chatHistory = [];
+                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                        const payload = {
+                            contents: chatHistory,
+                            generationConfig: {
+                                responseMimeType: "application/json",
+                                responseSchema: {
+                                    type: "OBJECT",
+                                    properties: {
+                                        "description": { "type": "STRING" },
+                                        "materials": { "type": "STRING" },
+                                        "objective": { "type": "STRING" }
+                                    },
+                                    "propertyOrdering": ["description", "materials", "objective"]
+                                }
+                            }
+                        };
+                        const apiKey = ""; // A chave API será fornecida em tempo de execução pelo Canvas
+                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                        
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        
+                        const result = await response.json();
+
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            
+                            const jsonText = result.candidates[0].content.parts[0].text;
+                            const parsedJson = JSON.parse(jsonText);
+
+                            let htmlOutput = `<p class="text-gray-700 mb-3"><strong>Descrição:</strong> ${parsedJson.description}</p>`;
+                            htmlOutput += `<p class="text-gray-700 mb-3"><strong>Materiais:</strong> ${parsedJson.materials}</p>`;
+                            htmlOutput += `<p class="text-gray-700"><strong>Objetivo:</strong> ${parsedJson.objective}</p>`;
+                            
+                            activityContent.innerHTML = htmlOutput;
+
+                        } else {
+                            activityContent.innerHTML = '<p class="text-red-500">Não foi possível gerar uma atividade. Por favor, tente novamente.</p>';
+                        }
+                    } catch (error) {
+                        console.error('Erro ao chamar a API Gemini para atividades:', error);
+                        activityContent.innerHTML = '<p class="text-red-500">Ocorreu um erro ao gerar a atividade. Por favor, tente novamente mais tarde.</p>';
+                    } finally {
+                        activityLoadingIndicator.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Lógica para o Gerador de Histórias Terapêuticas (Gemini API)
+            const generateStoryBtn = document.getElementById('generate-story-btn');
+            const storyChildAgeSelect = document.getElementById('story-child-age');
+            const storyThemeSelect = document.getElementById('story-theme');
+            const storyResultsDiv = document.getElementById('story-results');
+            const storyLoadingIndicator = document.getElementById('story-loading-indicator');
+            const storyContent = document.getElementById('story-content');
+
+            if (generateStoryBtn) {
+                generateStoryBtn.addEventListener('click', async () => {
+                    const age = storyChildAgeSelect.value;
+                    const theme = storyThemeSelect.value;
+
+                    if (!age || !theme) {
+                        alert('Por favor, selecione a idade da criança e um tema para a história.');
+                        return;
+                    }
+
+                    // Mostrar indicador de carregamento e ocultar resultados anteriores
+                    storyResultsDiv.classList.remove('hidden');
+                    storyLoadingIndicator.classList.remove('hidden');
+                    storyContent.innerHTML = ''; // Limpar conteúdo anterior
+
+                    const prompt = `Gere uma história terapêutica curta e adequada para uma criança de ${age} com o tema "${theme}". A história deve ter um título e uma moral clara no final. Formate a resposta como JSON com as chaves "title", "story", e "moral".`;
+
+                    try {
+                        let chatHistory = [];
+                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                        const payload = {
+                            contents: chatHistory,
+                            generationConfig: {
+                                responseMimeType: "application/json",
+                                responseSchema: {
+                                    type: "OBJECT",
+                                    properties: {
+                                        "title": { "type": "STRING" },
+                                        "story": { "type": "STRING" },
+                                        "moral": { "type": "STRING" }
+                                    },
+                                    "propertyOrdering": ["title", "story", "moral"]
+                                }
+                            }
+                        };
+                        const apiKey = ""; // A chave API será fornecida em tempo de execução pelo Canvas
+                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                        
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        
+                        const result = await response.json();
+
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            
+                            const jsonText = result.candidates[0].content.parts[0].text;
+                            const parsedJson = JSON.parse(jsonText);
+
+                            let htmlOutput = `<h4 class="font-bold text-purple-700 mb-2">${parsedJson.title}</h4>`;
+                            htmlOutput += `<p class="text-gray-700 mb-3">${parsedJson.story}</p>`;
+                            htmlOutput += `<p class="text-gray-700"><strong>Moral da História:</strong> ${parsedJson.moral}</p>`;
+                            
+                            storyContent.innerHTML = htmlOutput;
+
+                        } else {
+                            storyContent.innerHTML = '<p class="text-red-500">Não foi possível gerar a história. Por favor, tente novamente.</p>';
+                        }
+                    } catch (error) {
+                        console.error('Erro ao chamar a API Gemini para histórias:', error);
+                        storyContent.innerHTML = '<p class="text-red-500">Ocorreu um erro ao gerar a história. Por favor, tente novamente mais tarde.</p>';
+                    } finally {
+                        storyLoadingIndicator.classList.add('hidden');
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
