@@ -3,13 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            EIBM - Especialidades Integradas
-        </title>
-        <meta
-            name="description"
-            content="EIBM: Saúde infantil integrada com foco em terapias para autismo e transtornos alimentares. Abordagem humanizada e personalizada."
-        />
+        <title>EIBM - Especialidades Integradas</title>
+        <meta name="description" content="EIBM: Saúde infantil integrada com foco em terapias para autismo e transtornos alimentares. Abordagem humanizada e personalizada." />
         <link rel="icon" type="image/x-icon" href="favicon.ico">
         <!-- Tailwind CSS -->
         <script src="https://cdn.tailwindcss.com"></script>
@@ -21,29 +16,12 @@
                             primary: "#195184", // Azul principal
                             secondary: "#6CBB45", // Verde
                             accent: "#ED3924", // Vermelho
-                            blue: {
-                                light: "#439CD5",
-                                royal: "#136CB2",
-                            },
-                            green: {
-                                light: "#9DCB5B",
-                                dark: "#648543",
-                            },
-                            red: {
-                                light: "#E8694B",
-                                dark: "#A53434",
-                            },
-                            yellow: {
-                                light: "#F2E5B0",
-                                DEFAULT: "#EFCD18",
-                            },
+                            blue: { light: "#439CD5", royal: "#136CB2" },
+                            green: { light: "#9DCB5B", dark: "#648543" },
+                            red: { light: "#E8694B", dark: "#A53434" },
+                            yellow: { light: "#F2E5B0", DEFAULT: "#EFCD18" },
                             orange: "#EA8C2C",
-                            purple: {
-                                light: "#D29BFF",
-                                DEFAULT: "#A358E1",
-                                dark: "#9930C2",
-                            },
-                            // Paleta de transtornos alimentares
+                            purple: { light: "#D29BFF", DEFAULT: "#A358E1", dark: "#9930C2" },
                             gold: "#D4AF37",
                             brown: "#8B4513",
                             beige: "#F5F5DC",
@@ -56,204 +34,73 @@
                 },
             };
         </script>
-        <!-- Google Fonts -->
+        <!-- Google Fonts & Font Awesome -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
-        />
-        <!-- Font Awesome -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
         <style>
-            .card {
-                transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-                position: relative;
+            /* --- Global Styles & Overlays --- */
+            html { scroll-behavior: smooth; }
+            header { position: relative; z-index: 40; }
+            body.synopsis-active::after, body.mobile-menu-active::after {
+                content: "";
+                position: fixed;
+                inset: 0;
+                background: rgba(25, 81, 132, 0.3);
+                backdrop-filter: blur(4px);
+                z-index: 80;
+                pointer-events: auto;
             }
 
-            .card:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            }
-
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                    transform: translateY(20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-
-            @keyframes pulse {
-                0% {
-                    transform: scale(1);
-                    opacity: 0.8;
-                }
-                50% {
-                    transform: scale(1.05);
-                    opacity: 0.4;
-                }
-                100% {
-                    transform: scale(1);
-                    opacity: 0.8;
-                }
-            }
-
-            .animate-fadeIn {
-                animation: fadeIn 1s ease forwards;
-                opacity: 0;
-            }
-
-            .animate-pulse {
-                animation: pulse 3s ease-in-out infinite;
-            }
-
-            /* Staggered animations for cards */
-            .card:nth-child(1) {
-                animation-delay: 0.1s;
-            }
-            .card:nth-child(2) {
-                animation-delay: 0.2s;
-            }
-            .card:nth-child(3) {
-                animation-delay: 0.3s;
-            }
-            .card:nth-child(4) {
-                animation-delay: 0.4s;
-            }
-
-            /* Prisma Effect - Clean & Elegant */
-            #prisma-container {
-                position: relative;
-                perspective: 800px;
-                transform-style: preserve-3d;
-            }
-
-            /* Animações orbitais para cada esfera, cada uma em sua própria órbita */
-            @keyframes orbit-north {
-                0% {
-                    transform: translate(-50%, -50%) rotate(0deg)
-                        translateY(-200px) rotate(0deg);
-                }
-                100% {
-                    transform: translate(-50%, -50%) rotate(360deg)
-                        translateY(-200px) rotate(-360deg);
-                }
-            }
-
-            @keyframes orbit-south {
-                0% {
-                    transform: translate(-50%, -50%) rotate(0deg)
-                        translateY(200px) rotate(0deg);
-                }
-                100% {
-                    transform: translate(-50%, -50%) rotate(360deg)
-                        translateY(200px) rotate(-360deg);
-                }
-            }
-
-            @keyframes orbit-east {
-                0% {
-                    transform: translate(-50%, -50%) rotate(0deg)
-                        translateX(200px) rotate(0deg);
-                }
-                100% {
-                    transform: translate(-50%, -50%) rotate(360deg)
-                        translateX(200px) rotate(-360deg);
-                }
-            }
-
-            @keyframes orbit-west {
-                0% {
-                    transform: translate(-50%, -50%) rotate(0deg)
-                        translateX(-200px) rotate(0deg);
-                }
-                100% {
-                    transform: translate(-50%, -50%) rotate(360deg)
-                        translateX(-200px) rotate(-360deg);
-                }
-            }
-
-            /* Configuração do container como centro das órbitas */
+            /* --- Prisma Container & Circle Items --- */
             #prisma-container {
                 position: relative;
                 transform-style: preserve-3d;
                 perspective: 1000px;
-                overflow: visible;
             }
-
             .circle-item {
                 position: absolute;
-                top: 50% !important;
-                left: 50% !important;
+                top: 50%;
+                left: 50%;
                 transform-origin: center center;
+                transition: opacity 0.4s ease, filter 0.4s ease, transform 0.5s ease;
                 z-index: 20;
-                /* Remover transformações inline definidas no HTML */
-                bottom: auto !important;
-                right: auto !important;
             }
-
-            /* Classe que controla se as animações estão pausadas */
             .animation-paused .circle-item {
                 animation-play-state: paused !important;
             }
-
-            /* Configurar animações específicas para cada esfera */
-            
-            #circle-idea {
-               /* Norte */
-               animation: orbit-north 40s linear infinite;
-                transform: translate(-50%, -50%) translateY(-200px);
-            }
-            
-            #circle-transtornos {
-                /* Leste */
-                animation: orbit-east 40s linear infinite;
-                transform: translate(-50%, -50%) translateX(200px);
-            }
-            
-            #circle-especialidades {
-                /* Sul */
-                animation: orbit-south 40s linear infinite;
-                transform: translate(-50%, -50%) translateY(200px);
-            }
-
-            #circle-terapias {
-                /* Oeste */
-                animation: orbit-west 40s linear infinite;
-                transform: translate(-50%, -50%) translateX(-200px);
-            }
-
-            /* Pausar animação ao passar o mouse */
-            .circle-item:hover,
             .circle-item.active {
-                animation-play-state: paused;
+                z-index: 95;
+            }
+            .circle-item.inactive {
+                z-index: 10;
+                filter: saturate(0.5) brightness(0.9);
+                opacity: 0.7;
             }
 
-            .circle-item:hover .circle-button,
-            .circle-item:hover .circle-label,
-            .circle-item.active .circle-button,
-            .circle-item.active .circle-label {
-                animation-play-state: paused;
-            }
-
+            /* --- Circle Buttons (The clickable cards) --- */
             .circle-button {
                 cursor: pointer;
                 transition: all 0.4s ease;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 position: relative;
-                z-index: 25; /* Um pouco maior que o item pai */
+                border-width: 6px;
+                background-color: white;
+            }
+            .circle-button:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            }
+            .circle-item.active .circle-button {
+                transform: scale(1.15);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             }
 
+            /* --- Circle Labels --- */
             .circle-label {
                 position: absolute;
                 top: 105%;
@@ -262,673 +109,318 @@
                 white-space: nowrap;
                 transition: all 0.3s ease;
                 background-color: white;
-                padding: 5px 12px;
+                padding: 6px 14px;
                 border-radius: 20px;
-                font-weight: bold;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                font-weight: 600;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
                 font-size: 14px;
-                z-index: 30; /* Para garantir que os rótulos também fiquem visíveis */
             }
 
-            /* Efeito de destaque para o item ativo */
-            .circle-item.active .circle-button {
-                transform: scale(1.2);
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-                z-index: 50; /* Valor mais alto para a bolinha ativa */
-            }
-
-            /* Efeito para os itens não ativos */
-            .circle-item.inactive .circle-button {
-                transform: scale(0.85);
-                filter: brightness(0.7);
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            }
-
-            /* Sinopse */
+            /* --- Synopsis Card (Info Box) - Repositioned --- */
             .circle-synopsis {
-                position: absolute;
-                background-color: rgba(91, 91, 91, 0.386);
-                border-radius: 12px;
-                padding: 16px;
-                width: 250px;
+                position: fixed;
+                top: 50%;
                 left: 50%;
-                transform: translateX(-50%);
-                top: 120%; /* Maior distância para evitar sobreposições */
+                background-color: white;
+                border-radius: 1rem;
+                padding: 1.5rem;
+                width: 90vw;
+                max-width: 340px;
                 opacity: 0;
                 visibility: hidden;
-                transition: all 0.3s ease;
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-                z-index: 100; /* Valor maior para garantir que fique acima de qualquer esfera */
+                transform: translate(-50%, -50%) scale(0.95);
+                transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+                z-index: 100;
+                border-top-width: 5px;
+                border-style: solid;
             }
-
-            /* Posições personalizadas para cada sinopse */
-            #circle-terapias .circle-synopsis {
-                width: 230px;
-                left: 130%;
-                top: 50%;
-                transform: translateX(0) translateY(-50%);
-            }
-
-            #circle-especialidades .circle-synopsis {
-                top: auto;
-                bottom: 130%;
-                left: 50%;
-                transform: translateX(-50%) translateY(0);
-            }
-
-            #circle-idea .circle-synopsis {
-                width: 230px;
-                left: 130%;
-                top: 50%;
-                transform: translateX(0) translateY(-50%);
-            }
-
-            #circle-transtornos .circle-synopsis {
-                width: 230px;
-                right: 130%;
-                left: auto;
-                top: 50%;
-                transform: translateX(0) translateY(-50%);
-            }
-
-            .circle-item.active .circle-synopsis {
+            .circle-synopsis.active {
                 opacity: 1;
                 visibility: visible;
+                transform: translate(-50%, -50%) scale(1);
             }
+            #synopsis-terapias { border-color: #195184; }
+            #synopsis-transtornos { border-color: #ED3924; }
+            #synopsis-idea { border-color: #EFCD18; }
+            #synopsis-especialidades { border-color: #6CBB45; }
 
-            .synopsis-title {
-                font-size: 16px;
-                font-weight: bold;
-                margin-bottom: 8px;
-                text-align: center;
+            /* --- Synopsis Content --- */
+            .synopsis-close {
+                position: absolute;
+                top: 0.5rem; right: 0.5rem;
+                width: 32px; height: 32px;
+                background-color: #f3f4f6;
+                border: none;
+                border-radius: 50%;
+                color: #6b7280;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s;
             }
-
-            .synopsis-text {
-                font-size: 14px;
-                color: #555;
-                margin-bottom: 12px;
-                line-height: 1.4;
-                text-align: center;
+            .synopsis-close:hover {
+                background-color: #e5e7eb;
+                color: #1f2937;
+                transform: rotate(90deg);
             }
-
+            .synopsis-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; text-align: center; }
+            .synopsis-text { font-size: 0.95rem; color: #4b5563; margin-bottom: 1.25rem; line-height: 1.6; text-align: center; }
             .synopsis-button {
                 display: block;
-                margin-left: auto;
-                margin-right: auto;
-                width: fit-content;
-                padding: 8px 16px;
-                border-radius: 20px;
-                font-weight: bold;
-                font-size: 14px;
+                width: 100%;
+                padding: 0.75rem 1.5rem;
+                border-radius: 9999px;
+                font-weight: 700;
                 color: white;
                 cursor: pointer;
-                transition: background-color 0.3s;
+                transition: all 0.3s;
                 text-align: center;
+                text-decoration: none;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            }
+            .synopsis-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 7px 20px rgba(0,0,0,0.15);
             }
 
-            /* Responsividade para tamanhos médios */
+            /* --- Orbit Animations & Positioning --- */
+            @keyframes orbit-north { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(-200px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(-200px) rotate(-360deg); } }
+            @keyframes orbit-south { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(200px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(200px) rotate(-360deg); } }
+            @keyframes orbit-east { 0% { transform: translate(-50%,-50%) rotate(0deg) translateX(200px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateX(200px) rotate(-360deg); } }
+            @keyframes orbit-west { 0% { transform: translate(-50%,-50%) rotate(0deg) translateX(-200px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateX(-200px) rotate(-360deg); } }
+            #circle-terapias { animation: orbit-north 40s linear infinite; }
+            #circle-transtornos { animation: orbit-east 40s linear infinite; }
+            #circle-especialidades { animation: orbit-south 40s linear infinite; }
+            #circle-idea { animation: orbit-west 40s linear infinite; }
+            
+            /* --- Responsive Adjustments --- */
             @media (max-width: 767px) {
-                /* Reduzir tamanho das esferas em telas menores */
-                .circle-button {
-                    width: 90px !important;
-                    height: 90px !important;
-                }
-
-                .circle-button i {
-                    font-size: 32px !important;
-                }
-
-                /* Ajustar posicionamento orbital */
-                @keyframes orbit-north {
-                    0% {
-                        transform: translate(-50%, -50%) rotate(0deg)
-                            translateY(-130px) rotate(0deg);
-                    }
-                    100% {
-                        transform: translate(-50%, -50%) rotate(360deg)
-                            translateY(-130px) rotate(-360deg);
-                    }
-                }
-
-                @keyframes orbit-south {
-                    0% {
-                        transform: translate(-50%, -50%) rotate(0deg)
-                            translateY(130px) rotate(0deg);
-                    }
-                    100% {
-                        transform: translate(-50%, -50%) rotate(360deg)
-                            translateY(130px) rotate(-360deg);
-                    }
-                }
-
-                @keyframes orbit-east {
-                    0% {
-                        transform: translate(-50%, -50%) rotate(0deg)
-                            translateX(130px) rotate(0deg);
-                    }
-                    100% {
-                        transform: translate(-50%, -50%) rotate(360deg)
-                            translateX(130px) rotate(-360deg);
-                    }
-                }
-
-                @keyframes orbit-west {
-                    0% {
-                        transform: translate(-50%, -50%) rotate(0deg)
-                            translateX(-130px) rotate(0deg);
-                    }
-                    100% {
-                        transform: translate(-50%, -50%) rotate(360deg)
-                            translateX(-130px) rotate(-360deg);
-                    }
-                }
-
-                /* Ajustar posição inicial */
-                #circle-terapias {
-                    transform: translate(-50%, -50%) translateY(-130px);
-                }
-
-                #circle-especialidades {
-                    transform: translate(-50%, -50%) translateY(130px);
-                }
-
-                #circle-idea {
-                    transform: translate(-50%, -50%) translateX(-130px);
-                }
-
-                #circle-transtornos {
-                    transform: translate(-50%, -50%) translateX(130px);
-                }
+                @keyframes orbit-north { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(-150px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(-150px) rotate(-360deg); } }
+                @keyframes orbit-south { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(150px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(150px) rotate(-360deg); } }
+                @keyframes orbit-east { 0% { transform: translate(-50%,-50%) rotate(0deg) translateX(150px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateX(150px) rotate(-360deg); } }
+                @keyframes orbit-west { 0% { transform: translate(-50%,-50%) rotate(0deg) translateX(-150px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateX(-150px) rotate(-360deg); } }
             }
-
-            /* Responsividade para mobile */
             @media (max-width: 640px) {
-                /* Reduzir ainda mais o tamanho das esferas */
-                .circle-button {
-                    width: 70px !important;
-                    height: 70px !important;
-                }
-
-                .circle-button i {
-                    font-size: 24px !important;
-                }
-
-                .circle-label {
-                    font-size: 11px;
-                    padding: 2px 6px;
-                }
-
-                /* Ajustes das sinopses no mobile */
-                .circle-synopsis {
-                    width: 240px;
-                    padding: 14px;
-                    position: fixed;
-                    left: 50% !important;
-                    transform: translate(-50%, -50%);
-                    top: 50% !important;
-                    bottom: auto !important;
-                    right: auto !important; /* Garantir que right não seja usado no mobile */
-                    z-index: 1000; /* Valor extremamente alto para garantir visibilidade no mobile */
-                    background-color: rgb(255, 255, 255);
-                    border-radius: 16px;
-                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-                }
-
-                .synopsis-text {
-                    font-size: 13px;
-                    margin-bottom: 14px;
-                    line-height: 1.4
-                }
-
-                .synopsis-button {
-                    padding: 7px 14px;
-                    font-size: 13px;
-                    display: block;
-                    text-align: center;
-                    width: 100%;
-                }
-
-                /* Ajustes para que as bolinhas fiquem em posições melhores no mobile */
-                /* Mantendo animação de órbita igual à versão desktop */
-                #circle-terapias {
-                    animation: orbit-north-mobile 20s linear infinite !important;
-                    transform: translate(-50%, -50%) translateY(-130px) !important;
-                }
-                #circle-especialidades {
-                    animation: orbit-south-mobile 20s linear infinite !important;
-                    transform: translate(-50%, -50%) translateY(130px) !important;
-                }
-                #circle-idea {
-                    animation: orbit-west-mobile 20s linear infinite !important;
-                    transform: translate(-50%, -50%) translateX(-130px) !important;
-                }
-                #circle-transtornos {
-                    animation: orbit-east-mobile 20s linear infinite !important;
-                    transform: translate(-50%, -50%) translateX(130px) !important;
-                }
-
-                #prisma-container {
-                    height: 320px !important;
-                }
-
-                .circle-item[data-position="top"] {
-                    top: 3% !important;
-                    left: 50% !important;
-                    transform: translateX(-50%) !important;
-                }
-
-                .circle-item[data-position="bottom"] {
-                    bottom: 3% !important;
-                    top: auto !important;
-                    left: 50% !important;
-                    transform: translateX(-50%) !important;
-                }
-
-                .circle-item[data-position="left"] {
-                    left: 3% !important;
-                    top: 50% !important;
-                    transform: translateY(-50%) !important;
-                }
-
-                .circle-item[data-position="right"] {
-                    right: 3% !important;
-                    left: auto !important;
-                    top: 50% !important;
-                    transform: translateY(-50%) !important;
-                }
-
-                /* Overlay para o mobile quando um card está ativo */
-                body::after {
-                    content: "";
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: rgba(0, 0, 0, 0);
-                    z-index: -1;
-                    pointer-events: none;
-                    transition: background 0.3s ease;
-                }
-
-                body.synopsis-active::after {
-                    background: rgba(0, 0, 0, 0.5);
-                    z-index: 500;
-                    pointer-events: auto;
-                }
-
-                /* Garantir que a sinopse apareça acima do overlay */
-                .circle-item.active .circle-synopsis {
-                    z-index: 1001;
-                    opacity: 1 !important;
-                    visibility: visible !important;
-                }
-
-                /* Botão de fechar na sinopse mobile */
-                .circle-synopsis::after {
-                    content: "×";
-                    position: absolute;
-                    top: 8px;
-                    right: 12px;
-                    font-size: 24px;
-                    color: #aaa;
-                    cursor: pointer;
-                }
-            }
-
-            /* Custom scrollbar */
-            ::-webkit-scrollbar {
-                width: 8px;
-            }
-
-            ::-webkit-scrollbar-track {
-                background: #f1f1f1;
-            }
-
-            ::-webkit-scrollbar-thumb {
-                background: #195184;
-                border-radius: 10px;
-            }
-
-            ::-webkit-scrollbar-thumb:hover {
-                background: #136cb2;
-            }
-
-            /* Smooth scroll */
-            html {
-                scroll-behavior: smooth;
+                .circle-button { width: 90px !important; height: 90px !important; border-width: 4px; }
+                .circle-button img { max-height: 80%; max-width: 80%; }
+                .circle-label { font-size: 12px; padding: 4px 10px; }
+                @keyframes orbit-north { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(-130px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(-130px) rotate(-360deg); } }
+                @keyframes orbit-south { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(130px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(130px) rotate(-360deg); } }
+                @keyframes orbit-east { 0% { transform: translate(-50%,-50%) rotate(0deg) translateX(130px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateX(130px) rotate(-360deg); } }
+                @keyframes orbit-west { 0% { transform: translate(-50%,-50%) rotate(0deg) translateX(-130px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateX(-130px) rotate(-360deg); } }
             }
         </style>
     </head>
     <body class="font-sans text-gray-800 bg-gray-50 min-h-screen">
-        <!-- Header/Navigation -->
         <header class="bg-white shadow-md">
             <div class="container mx-auto px-4 py-3">
                 <div class="flex justify-between items-center">
-                    <!-- Logo -->
                     <div class="flex items-center">
-                        <img
-                            src="attached_assets/logo_eibm_clinica_escrito.svg"
-                            alt="Logo EIBM"
-                            class="h-12 md:h-16"
-                        />
+                        <a href="index.html">
+                           <img src="attached_assets/logo_eibm_clinica_escrito.svg" alt="Logo EIBM" class="h-12 md:h-16" />
+                        </a>
                     </div>
-
-                    <!-- Menu de navegação -->
-                    <div class="hidden md:block">
+                    <!-- Desktop Menu -->
+                    <nav class="hidden md:block">
                         <ul class="flex space-x-6">
-                            <li>
-                                <a
-                                    href="especialidades.html"
-                                    class="text-primary hover:text-blue-royal font-medium"
-                                    >Especialidades Integradas</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="gatta.html"
-                                    class="text-primary hover:text-blue-royal font-medium"
-                                    >GATTA</a
-                                >
-                            </li>                            
-                            <li>
-                                <a
-                                    href="terapias.html"
-                                    class="text-primary hover:text-blue-royal font-medium"
-                                    >EIBM Terapias</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="ideia.html"
-                                    class="text-primary hover:text-blue-royal font-medium"
-                                    >IDEIA</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="contato.html"
-                                    class="text-primary hover:text-blue-royal font-medium"
-                                    >Contato</a
-                                >
-                            </li>
+                            <li><a href="especialidades.html" class="text-primary hover:text-blue-royal font-medium">Clínica EIBM</a></li>
+                            <li><a href="gatta.html" class="text-primary hover:text-blue-royal font-medium">GATTA</a></li>                            
+                            <li><a href="terapias.html" class="text-primary hover:text-blue-royal font-medium">EIBM Terapias</a></li>
+                            <li><a href="ideia.html" class="text-primary hover:text-blue-royal font-medium">IDEIA</a></li>
+                            <li><a href="contato.html" class="text-primary hover:text-blue-royal font-medium">Contato</a></li>
                         </ul>
+                    </nav>
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden">
+                        <button id="menu-toggle" class="text-primary focus:outline-none">
+                            <i class="fas fa-bars text-2xl"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- Main Content - Prisma de bolinhas -->
-        <main
-            class="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[80vh]"
-        >
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu-panel" class="fixed top-0 right-0 h-full w-72 bg-white shadow-lg p-6 transform translate-x-full transition-transform duration-300 ease-in-out z-90">
+            <!-- Close Button -->
+            <div class="flex justify-end mb-8">
+                <button id="close-menu" class="text-gray-600 hover:text-primary">
+                    <i class="fas fa-times text-3xl"></i>
+                </button>
+            </div>
+            <!-- Menu Links -->
+            <nav>
+                <ul class="space-y-6">
+                   <li><a href="especialidades.html" class="block text-primary hover:text-blue-royal font-medium text-lg">Clínica EIBM</a></li>
+                   <li><a href="gatta.html" class="block text-primary hover:text-blue-royal font-medium text-lg">GATTA</a></li>                            
+                   <li><a href="terapias.html" class="block text-primary hover:text-blue-royal font-medium text-lg">EIBM Terapias</a></li>
+                   <li><a href="ideia.html" class="block text-primary hover:text-blue-royal font-medium text-lg">IDEIA</a></li>
+                   <li><a href="contato.html" class="block text-primary hover:text-blue-royal font-medium text-lg">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
 
 
-            <!-- Bolinhas com efeito 3D e sinopse -->
-            <div
-                class="relative w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl mx-auto h-[320px] xs:h-[380px] sm:h-[440px] md:h-[520px] lg:h-[580px]"
-                id="prisma-container"
-            >
-                <!-- Terapias (Azul) - Topo -->
-                <div
-                    class="circle-item"
-                    id="circle-terapias"
-                    data-position="top"
-                    style="top: 0; left: 50%; transform: translateX(-50%)"
-                >
-                    <div
-                        class="circle-button w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px]
-                        border-4 border-primary bg-transparent rounded-full shadow-xl flex items-center justify-center bg-primary rounded-full shadow-xl"
-                    >
-                        
-                    <div class="flex items-center">
-                        <img
-                            src="attached_assets/logo_eibm_terapias.svg"
-                            alt="Logo EIBM Terapias"
-                            class="h-28 md:h-28"
-                        />
-                    </div>
-
+        <main class="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[80vh]">
+            <div class="relative w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl mx-auto h-[320px] xs:h-[380px] sm:h-[440px] md:h-[520px] lg:h-[580px]" id="prisma-container">
+                <!-- Círculos Orbitantes -->
+                <div class="circle-item" id="circle-terapias">
+                    <div class="circle-button w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] border-primary rounded-full" data-synopsis-target="#synopsis-terapias">
+                        <img src="attached_assets/logo_eibm_terapias.svg" alt="Logo EIBM Terapias" class="h-24 md:h-28 object-contain"/>
                     </div>
                     <span class="circle-label text-primary">EIBM Terapias</span>
-
-                    <!-- Sinopse -->
-                    <div class="circle-synopsis">
-                        <button class="synopsis-close" aria-label="Fechar sinopse">×</button>
-                        <div class="synopsis-title text-primary">EIBM Terapias</div>
-                        <div class="synopsis-text">
-                            Abordagens terapêuticas personalizadas e integradas
-                            para diferentes necessidades, com foco no
-                            desenvolvimento infantil completo.
-                        </div>
-                        <a
-                            href="terapias.html"
-                            class="synopsis-button bg-primary"
-                            data-position="center"
-                            >Visitar</a
-                        >
-                    </div>
                 </div>
 
-                <!-- Transtornos (Vermelho) - Direita -->
-                <div
-                    class="circle-item"
-                    id="circle-transtornos"
-                    data-position="right"
-                    style="top: 50%; right: 2%; transform: translateY(-50%)"
-                >
-                    <div
-                        class="circle-button w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px]
-                        border-4 border-red-500 rounded-full shadow-xl flex items-center justify-center rounded-full shadow-xl"
-                    >
-                        
-                    <div class="flex items-start">
-                        <img
-                            src="attached_assets/logo_gatta.svg"
-                            alt="Logo GATTA"
-                            class="h-32 md:h-32 mt-0"
-                        />
-                    </div>
-                        
+                <div class="circle-item" id="circle-transtornos">
+                    <div class="circle-button w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] border-accent rounded-full" data-synopsis-target="#synopsis-transtornos">
+                        <img src="attached_assets/logo_gatta.svg" alt="Logo GATTA" class="h-28 md:h-32 object-contain"/>
                     </div>
                     <span class="circle-label text-accent">GATTA</span>
-
-                    <!-- Sinopse -->
-                    <div class="circle-synopsis">
-                        <button class="synopsis-close" aria-label="Fechar sinopse">×</button>
-                        <div class="synopsis-title text-accent">
-                            GATTA
-                        </div>
-                        <div class="synopsis-text">
-                            Grupo de Apoio e
-                            Tratamento de
-                            Transtornos Alimentares
-                        </div>
-                        <a
-                            href="gatta.html"
-                            class="synopsis-button bg-accent"
-                            >Visitar</a
-                        >
-                    </div>
                 </div>
 
-                <!-- IDEIA (Amarelo) - Esquerda -->
-                <div
-                    class="circle-item"
-                    id="circle-idea"
-                    data-position="left"
-                    style="top: 50%; left: 2%; transform: translateY(-50%)"
-                >
-                    <div
-                        class="circle-button w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px]
-                        border-4 border-yellow bg-transparent rounded-full shadow-xl flex items-center justify-center rounded-full shadow-xl"
-                    >
-                        
-                    <div class="flex items-center">
-                        <img
-                            src="attached_assets/logo_ideia.svg"
-                            alt="Logo IDEIA"
-                            class="h-28 md:h-28"
-                        />
-                    </div>
-
+                <div class="circle-item" id="circle-idea">
+                    <div class="circle-button w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] border-yellow rounded-full" data-synopsis-target="#synopsis-idea">
+                        <img src="attached_assets/logo_ideia.svg" alt="Logo IDEIA" class="h-24 md:h-28 object-contain"/>
                     </div>
                     <span class="circle-label text-yellow">IDEIA</span>
-
-                    <!-- Sinopse -->
-                    <div class="circle-synopsis">
-                        <button class="synopsis-close" aria-label="Fechar sinopse">×</button>
-                        <div class="synopsis-title text-yellow">IDEA</div>
-                        <div class="synopsis-text">
-                            Instituto de Desenvolvimento e Estruturação de
-                            Ambientes Inclusivos para crianças com necessidades
-                            especiais.
-                        </div>
-                        <a href="ideia.html" class="synopsis-button bg-yellow"
-                            >Visitar</a
-                        >
-                    </div>
                 </div>
 
-                <!-- Especialidades (Verde) - Fundo -->
-                <div
-                    class="circle-item"
-                    id="circle-especialidades"
-                    data-position="bottom"
-                    style="bottom: 0; left: 50%; transform: translateX(-50%)"
-                >
-                    <div
-                        class="circle-button w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px]
-                        border-4 border-secondary bg-transparent rounded-full shadow-xl flex items-center justify-center rounded-full shadow-xl"
-                    >
-                        
-                    <div class="flex items-center">
-                        <img
-                            src="attached_assets/logo_eibm_clinica.svg"
-                            alt="Logo EIBM"
-                            class="h-28 md:h-28"
-                        />
+                <div class="circle-item" id="circle-especialidades">
+                    <div class="circle-button w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] border-secondary rounded-full" data-synopsis-target="#synopsis-especialidades">
+                        <img src="attached_assets/logo_eibm_clinica.svg" alt="Logo EIBM Clínica" class="h-24 md:h-28 object-contain"/>
                     </div>
-
-                    </div>
-                    <span class="circle-label text-secondary"
-                        >Especialidades Integradas</span
-                    >
-
-                    <!-- Sinopse -->
-                    <div class="circle-synopsis">
-                        <button class="synopsis-close" aria-label="Fechar sinopse">×</button>
-                        <div class="synopsis-title text-secondary">
-                            Especialidades Integradas
-                        </div>
-                        <div class="synopsis-text">
-                            Especialidades integradas e terapêuticas integradas
-                            para um atendimento completo e multidisciplinar
-                            eficaz.
-                        </div>
-                        <a
-                            href="especialidades.html"
-                            class="synopsis-button bg-secondary"
-                            >Visitar</a
-                        >
-                    </div>
+                    <span class="circle-label text-secondary">Clínica EIBM</span>
                 </div>
             </div>
         </main>
+        
+        <!-- Cards de Informação (Sinopses) -->
+        <div id="synopsis-terapias" class="circle-synopsis">
+            <button class="synopsis-close" aria-label="Fechar sinopse"><i class="fas fa-times"></i></button>
+            <h3 class="synopsis-title text-primary">EIBM Terapias</h3>
+            <p class="synopsis-text">
+                Abordagens terapêuticas personalizadas e integradas para diferentes necessidades, com foco no desenvolvimento infantil completo.
+            </p>
+            <a href="terapias.html" class="synopsis-button bg-primary hover:bg-blue-royal">Visitar</a>
+        </div>
 
-        <!-- Footer -->
-        <footer class="bg-gray-900 text-white py-6">
+        <div id="synopsis-transtornos" class="circle-synopsis">
+            <button class="synopsis-close" aria-label="Fechar sinopse"><i class="fas fa-times"></i></button>
+            <h3 class="synopsis-title text-accent">GATTA</h3>
+            <p class="synopsis-text">
+                Grupo de Apoio e Tratamento de Transtornos Alimentares, oferecendo suporte especializado e multidisciplinar.
+            </p>
+            <a href="gatta.html" class="synopsis-button bg-accent hover:bg-red-light">Visitar</a>
+        </div>
+
+        <div id="synopsis-idea" class="circle-synopsis">
+            <button class="synopsis-close" aria-label="Fechar sinopse"><i class="fas fa-times"></i></button>
+            <h3 class="synopsis-title text-yellow">IDEIA</h3>
+            <p class="synopsis-text">
+                Instituto de Desenvolvimento e Estruturação de Ambientes Inclusivos para crianças com necessidades especiais.
+            </p>
+            <a href="ideia.html" class="synopsis-button bg-yellow-500 hover:bg-yellow-400">Visitar</a>
+        </div>
+
+        <div id="synopsis-especialidades" class="circle-synopsis">
+            <button class="synopsis-close" aria-label="Fechar sinopse"><i class="fas fa-times"></i></button>
+            <h3 class="synopsis-title text-secondary">Clínica EIBM</h3>
+            <p class="synopsis-text">
+                Atendimento completo e multidisciplinar eficaz, integrando diversas especialidades terapêuticas para um cuidado holístico.
+            </p>
+            <a href="especialidades.html" class="synopsis-button bg-secondary hover:bg-green-light">Visitar</a>
+        </div>
+
+
+        <!-- Footer Comentado -->
+        <!-- 
+        <footer class="fixed bottom-0 left-0 w-full z-50 bg-gray-900 text-white py-6">
             <div class="container mx-auto px-4">
-                <div
-                    class="flex flex-col md:flex-row justify-between items-center"
-                >
-
-                    <div class="text-center md:text-right">
-                        <p class="text-gray-400">
-                            &copy; 2025 EIBM - Todos os direitos reservados.
-                        </p>                     
-                    </div>
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400">&copy; 2025 EIBM - Todos os direitos reservados.</p>                     
                 </div>
             </div>
-        </footer>
+        </footer> 
+        -->
 
-        <!-- Scripts -->
-        <script src="script.js"></script>
-
-        <!-- Efeito Elegante das Bolinhas do Prisma -->
         <script>
             document.addEventListener("DOMContentLoaded", function () {
+                // --- Mobile Menu Logic ---
+                const menuToggle = document.getElementById('menu-toggle');
+                const closeMenu = document.getElementById('close-menu');
+                const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+
+                const openMobileMenu = () => {
+                    mobileMenuPanel.classList.remove('translate-x-full');
+                    document.body.classList.add('mobile-menu-active');
+                };
+
+                const closeMobileMenu = () => {
+                    mobileMenuPanel.classList.add('translate-x-full');
+                    document.body.classList.remove('mobile-menu-active');
+                };
+
+                if (menuToggle) {
+                    menuToggle.addEventListener('click', openMobileMenu);
+                }
+                if (closeMenu) {
+                    closeMenu.addEventListener('click', closeMobileMenu);
+                }
+
+                // --- Synopsis Logic ---
                 const container = document.getElementById("prisma-container");
                 if (!container) return;
 
                 const circles = document.querySelectorAll(".circle-item");
+                const synopses = document.querySelectorAll(".circle-synopsis");
                 let activeCircle = null;
+                let activeSynopsis = null;
 
-                // Função para fechar qualquer sinopse aberta
                 function resetAll() {
-                    // Remover classe que pausa todas as animações
                     container.classList.remove("animation-paused");
-
                     circles.forEach((circle) => {
-                        // Remove classes ativas
                         circle.classList.remove("active", "inactive");
-
-                        // Reset qualquer transformação aplicada ao botão
-                        const button = circle.querySelector(".circle-button");
-                        if (button) button.style.transform = "";
                     });
-
-                    // Remover classe do body
+                    synopses.forEach((synopsis) => {
+                        synopsis.classList.remove("active");
+                    });
                     document.body.classList.remove("synopsis-active");
                     activeCircle = null;
+                    activeSynopsis = null;
                 }
 
-                // Como já configuramos as animações via CSS, apenas
-                // armazenamos o estado das animações para controle posterior
-                circles.forEach((circle) => {
-                    const computedStyle = window.getComputedStyle(circle);
-                    const animationValue =
-                        computedStyle.getPropertyValue("animation");
-                    if (animationValue && animationValue !== "none") {
-                        circle.setAttribute(
-                            "data-original-animation",
-                            animationValue,
-                        );
-                    }
-                });
-
-                // Lidar com interações do mouse de forma mais simples -
-                // as pausas são controladas pelo CSS :hover
                 circles.forEach((circle) => {
                     const button = circle.querySelector(".circle-button");
-
+                    
                     button.addEventListener("click", function (e) {
                         e.preventDefault();
                         e.stopPropagation();
 
-                        // Se esta bolinha já está ativa, redirecionar para a página
+                        const targetId = button.dataset.synopsisTarget;
+                        const targetSynopsis = document.querySelector(targetId);
+
                         if (activeCircle === circle) {
-                            const link = circle
-                                .querySelector(".synopsis-button")
-                                .getAttribute("href");
-                            window.location.href = link;
+                            const link = targetSynopsis.querySelector(".synopsis-button").getAttribute("href");
+                            if (link) window.location.href = link;
                             return;
                         }
 
-                        // Fechar qualquer sinopse aberta anteriormente
                         resetAll();
 
-                        // Ativar a bolinha atual
+                        // Ativar o círculo clicado e a sinopse correspondente
                         circle.classList.add("active");
+                        if (targetSynopsis) {
+                            targetSynopsis.classList.add("active");
+                            activeSynopsis = targetSynopsis;
+                        }
+                        
                         activeCircle = circle;
-
-                        // Pausar a animação de TODAS as bolinhas adicionando a classe ao container
                         container.classList.add("animation-paused");
-
-                        // Adicionar classe ao body para overlay em mobile
                         document.body.classList.add("synopsis-active");
 
-                        // Desativar visualmente as outras bolinhas
+                        // Desativar outros círculos
                         circles.forEach((c) => {
                             if (c !== circle) {
                                 c.classList.add("inactive");
@@ -937,17 +429,38 @@
                     });
                 });
 
-                // Fechar ao clicar fora
-                document.addEventListener("click", function (e) {
-                    if (container && !container.contains(e.target)) {
+                // Adicionar evento de fechar para cada sinopse
+                synopses.forEach(synopsis => {
+                    const closeButton = synopsis.querySelector(".synopsis-close");
+                    if(closeButton) {
+                        closeButton.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            resetAll();
+                        });
+                    }
+                });
+
+                // Fechar ao clicar no overlay (fundo)
+                document.body.addEventListener("click", function (e) {
+                    // Close synopsis if active
+                    if (e.target === document.body && document.body.classList.contains('synopsis-active')) {
                         resetAll();
+                    }
+                    // Close mobile menu if active
+                    if (e.target !== mobileMenuPanel && !mobileMenuPanel.contains(e.target) && document.body.classList.contains('mobile-menu-active')) {
+                        closeMobileMenu();
                     }
                 });
 
                 // Fechar com a tecla Esc
                 document.addEventListener("keydown", function (e) {
-                    if (e.key === "Escape" && activeCircle) {
-                        resetAll();
+                    if (e.key === "Escape") {
+                        if (activeCircle) {
+                           resetAll();
+                        }
+                        if (document.body.classList.contains('mobile-menu-active')) {
+                           closeMobileMenu();
+                        }
                     }
                 });
             });
