@@ -163,19 +163,27 @@
         /* Classes de animação para elementos */
         .animated-element {
             opacity: 0; /* Estado inicial oculto */
-            animation-fill-mode: forwards; /* Mantém o estado final da animação */
-        }
-
-        .animated-element.fade-in-slide-up {
-            animation: fadeInSlideUp 0.8s ease-out forwards;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Transição suave */
         }
 
         .animated-element.slide-right {
-            animation: slideRight 0.8s ease-out forwards;
+            transform: translateX(-50px);
         }
 
         .animated-element.slide-left {
-            animation: slideLeft 0.8s ease-out forwards;
+            transform: translateX(50px);
+        }
+
+        .animated-element.fade-in-slide-up {
+            transform: translateY(30px);
+        }
+
+        /* Classes ativas para acionar a animação */
+        .animated-element.slide-right-active,
+        .animated-element.slide-left-active,
+        .animated-element.fade-in-slide-up-active {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
         }
         
         /* Estilo para as seções do roadmap */
@@ -1086,198 +1094,7 @@
         </div>
       </div>
     </section>
-    
-    <section class="py-16 bg-gradient-to-r from-purple-50 to-blue-50 scroll-snap-align-start">
-        <div class="container mx-auto px-4 max-w-3xl">
-            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-8 text-center">
-                Ferramenta de Orientação de Terapia ✨
-            </h2>
-            <p class="text-gray-700 text-lg text-center mb-10">
-                Descubra qual terapia pode ser mais indicada para o desenvolvimento do seu filho. Preencha as informações abaixo para uma recomendação personalizada.
-            </p>
-
-            <div class="bg-white p-8 rounded-2xl shadow-lg space-y-6">
-                <div>
-                    <label for="child-age" class="block text-gray-700 font-medium mb-2">Idade da Criança:</label>
-                    <select id="child-age" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:shadow-outline-blue">
-                        <option value="">Selecione a idade</option>
-                        <option value="0-3">0-3 anos</option>
-                        <option value="4-6">4-6 anos</option>
-                        <option value="7-10">7-10 anos</option>
-                        <option value="11-14">11-14 anos</option>
-                        <option value="15+">15+ anos</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="main-challenges" class="block text-gray-700 font-medium mb-2">Principais Desafios (selecione um ou mais):</label>
-                    <select id="main-challenges" multiple class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:shadow-outline-blue h-32">
-                        <option value="Comunicação">Comunicação (fala, linguagem, interação)</option>
-                        <option value="Comportamento">Comportamento (birras, impulsividade, agressividade)</option>
-                        <option value="Aprendizagem">Aprendizagem (leitura, escrita, matemática, atenção)</option>
-                        <option value="Social">Social (interação com pares, empatia)</option>
-                        <option value="Motor">Motor (coordenação, equilíbrio, destreza)</option>
-                        <option value="Emocional">Emocional (ansiedade, tristeza, regulação)</option>
-                        <option value="Sensorial">Sensorial (hipersensibilidade, busca sensorial)</option>
-                        <option value="Autonomia">Autonomia (atividades diárias, autocuidado)</option>
-                    </select>
-                    <p class="text-sm text-gray-500 mt-1">Pode selecionar múltiplas opções segurando Ctrl/Cmd.</p>
-                </div>
-
-                <div class="flex justify-center">
-                    <button id="get-recommendation-btn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-8 py-3 rounded-full shadow-lg transition flex items-center gap-2">
-                        Obter Recomendação ✨
-                    </button>
-                </div>
-
-                <div id="recommendation-results" class="mt-8 p-6 bg-blue-50 rounded-lg shadow-inner hidden">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center gap-2">
-                        <i class="fas fa-lightbulb text-yellow-500"></i>
-                        Nossa Recomendação:
-                    </h3>
-                    <div id="loading-indicator" class="text-center text-gray-600 hidden">
-                        <i class="fas fa-spinner fa-spin text-2xl text-primary"></i> A gerar recomendação...
-                    </div>
-                    <div id="recommendation-content">
-                        </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 bg-gradient-to-r from-green-50 to-yellow-50 scroll-snap-align-start">
-        <div class="container mx-auto px-4 max-w-3xl">
-            <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-8 text-center">
-                Gerador de Atividades Diárias Personalizadas ✨
-            </h2>
-            <p class="text-gray-700 text-lg text-center mb-10">
-                Obtenha sugestões de atividades lúdicas e educativas para o dia a dia, focadas no desenvolvimento do seu filho.
-            </p>
-
-            <div class="bg-white p-8 rounded-2xl shadow-lg space-y-6">
-                <div>
-                    <label for="activity-child-age" class="block text-gray-700 font-medium mb-2">Idade da Criança:</label>
-                    <select id="activity-child-age" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:shadow-outline-green">
-                        <option value="">Selecione a idade</option>
-                        <option value="0-3 anos">0-3 anos</option>
-                        <option value="4-6 anos">4-6 anos</option>
-                        <option value="7-10 anos">7-10 anos</option>
-                        <option value="11-14 anos">11-14 anos</option>
-                        <option value="15+ anos">15+ anos</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="development-area" class="block text-gray-700 font-medium mb-2">Área de Desenvolvimento a Focar:</label>
-                    <select id="development-area" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:shadow-outline-green">
-                        <option value="">Selecione a área</option>
-                        <option value="Comunicação">Comunicação</option>
-                        <option value="Motricidade Fina">Motricidade Fina</option>
-                        <option value="Motricidade Global">Motricidade Global</option>
-                        <option value="Interação Social">Interação Social</option>
-                        <option value="Autonomia">Autonomia</option>
-                        <option value="Regulação Emocional">Regulação Emocional</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="activity-type" class="block text-gray-700 font-medium mb-2">Tipo de Atividade:</label>
-                    <select id="activity-type" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:shadow-outline-green">
-                        <option value="">Selecione o tipo</option>
-                        <option value="Lúdica">Lúdica (brincadeira)</option>
-                        <option value="Educacional">Educacional (aprendizagem)</option>
-                        <option value="Relaxamento">Relaxamento (calma)</option>
-                        <option value="Social">Social (interação)</option>
-                    </select>
-                </div>
-
-                <div class="flex justify-center">
-                    <button id="generate-activity-btn" class="bg-secondary hover:bg-green-dark text-white font-bold px-8 py-3 rounded-full shadow-lg transition flex items-center gap-2">
-                        Gerar Atividade ✨
-                    </button>
-                </div>
-
-                <div id="activity-results" class="mt-8 p-6 bg-yellow-50 rounded-lg shadow-inner hidden">
-                    <h3 class="text-xl font-bold text-green-800 mb-4 flex items-center gap-2">
-                        <i class="fas fa-puzzle-piece text-orange-500"></i>
-                        Atividade Sugerida:
-                    </h3>
-                    <div id="activity-loading-indicator" class="text-center text-gray-600 hidden">
-                        <i class="fas fa-spinner fa-spin text-2xl text-secondary"></i> A gerar atividade...
-                    </div>
-                    <div id="activity-content">
-                        </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 bg-gradient-to-r from-purple-100 to-pink-100 scroll-snap-align-start">
-        <div class="container mx-auto px-4 max-w-3xl">
-            <h2 class="text-3xl md:text-4xl font-bold text-purple-700 mb-8 text-center">
-                Gerador de Histórias Terapêuticas ✨
-            </h2>
-            <p class="text-gray-700 text-lg text-center mb-10">
-                Crie histórias personalizadas para ajudar a criança a compreender e lidar com emoções ou situações específicas.
-            </p>
-
-            <div class="bg-white p-8 rounded-2xl shadow-lg space-y-6">
-                <div>
-                    <label for="story-child-age" class="block text-gray-700 font-medium mb-2">Idade da Criança:</label>
-                    <select id="story-child-age" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-700 focus:shadow-outline-purple">
-                        <option value="">Selecione a idade</option>
-                        <option value="3-5 anos">3-5 anos</option>
-                        <option value="6-8 anos">6-8 anos</option>
-                        <option value="9-12 anos">9-12 anos</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="story-theme" class="block text-gray-700 font-medium mb-2">Tema da História:</label>
-                    <select id="story-theme" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-700 focus:shadow-outline-purple">
-                        <option value="">Selecione um tema</option>
-                        <option value="Lidar com a raiva">Lidar com a raiva</option>
-                        <option value="Fazer novos amigos">Fazer novos amigos</option>
-                        <option value="Superar o medo do escuro">Superar o medo do escuro</option>
-                        <option value="Partilhar brinquedos">Partilhar brinquedos</option>
-                        <option value="Aceitar mudanças">Aceitar mudanças</option>
-                        <option value="Importância da escuta">A importância da escuta</option>
-                    </select>
-                </div>
-
-                <div class="flex justify-center">
-                    <button id="generate-story-btn" class="bg-purple-700 hover:bg-purple-dark text-white font-bold px-8 py-3 rounded-full shadow-lg transition flex items-center gap-2">
-                        Gerar História ✨
-                    </button>
-                </div>
-
-                <div id="story-results" class="mt-8 p-6 bg-purple-50 rounded-lg shadow-inner hidden">
-                    <h3 class="text-xl font-bold text-purple-800 mb-4 flex items-center gap-2">
-                        <i class="fas fa-book-open text-pink-500"></i>
-                        A Sua História:
-                    </h3>
-                    <div id="story-loading-indicator" class="text-center text-gray-600 hidden">
-                        <i class="fas fa-spinner fa-spin text-2xl text-purple-700"></i> A gerar história...
-                    </div>
-                    <div id="story-content">
-                        </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl shadow-md scroll-snap-align-start">
-        <div class="text-center mb-6">
-            <h3 class="text-2xl font-bold text-primary mb-2">Precisa de Ajuda Especializada?</h3>
-            <p class="text-gray-700">Entre em contacto connosco para agendar uma avaliação ou obter mais informações sobre as nossas terapias.</p>
-        </div>
-        
-        <div class="flex justify-center">
-            <a href="contato.html" class="bg-primary hover:bg-blue-royal text-white font-medium px-6 py-3 rounded-lg transition-colors inline-flex items-center">
-                <i class="fas fa-calendar-alt mr-2"></i> Entrar em Contacto
-            </a>
-        </div>
-    </section>
-    
+   
     <footer class="bg-gray-900 text-white py-6">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
@@ -1438,271 +1255,47 @@
                     if (entry.isIntersecting) {
                         const delay = parseFloat(entry.target.dataset.delay) || 0;
                         setTimeout(() => {
-                            // Remove classes de estado inicial e adiciona a classe de animação
+                            // Adiciona a classe de animação apropriada
                             if (entry.target.classList.contains('slide-right')) {
-                                entry.target.classList.add('slide-right');
+                                entry.target.classList.add('slide-right-active');
                             } else if (entry.target.classList.contains('slide-left')) {
-                                entry.target.classList.add('slide-left');
+                                entry.target.classList.add('slide-left-active');
                             } else {
-                                entry.target.classList.add('fade-in-slide-up');
+                                entry.target.classList.add('fade-in-slide-up-active');
                             }
-                            entry.target.classList.add('animated'); // Marca como animado para não repetir
+                            entry.target.style.opacity = 1; // Torna o elemento visível
                         }, delay * 1000); // Converte segundos para milissegundos
                         observer.unobserve(entry.target); // Para de observar após a animação
                     }
                 });
             }, {
-                threshold: 0.1 // 10% do elemento visível para acionar
+                threshold: 0.2 // Aciona quando 20% do elemento estiver visível
             });
 
             animatedElements.forEach(el => {
-                el.classList.add('opacity-0'); // Garante que o elemento esteja oculto inicialmente
+                el.style.opacity = 0; // Garante que o elemento esteja oculto inicialmente via JS
                 observer.observe(el);
             });
 
-            // Lógica para a Ferramenta de Orientação de Terapia (Gemini API)
-            const getRecommendationBtn = document.getElementById('get-recommendation-btn');
-            const childAgeSelect = document.getElementById('child-age');
-            const mainChallengesSelect = document.getElementById('main-challenges');
-            const recommendationResultsDiv = document.getElementById('recommendation-results');
-            const loadingIndicator = document.getElementById('loading-indicator');
-            const recommendationContent = document.getElementById('recommendation-content');
-
-            if (getRecommendationBtn) {
-                getRecommendationBtn.addEventListener('click', async () => {
-                    const age = childAgeSelect.value;
-                    const selectedChallenges = Array.from(mainChallengesSelect.selectedOptions).map(option => option.value);
-
-                    if (!age || selectedChallenges.length === 0) {
-                        alert('Por favor, selecione a idade da criança e pelo menos um desafio.');
-                        return;
-                    }
-
-                    // Mostrar indicador de carregamento e ocultar resultados anteriores
-                    recommendationResultsDiv.classList.remove('hidden');
-                    loadingIndicator.classList.remove('hidden');
-                    recommendationContent.innerHTML = ''; // Limpar conteúdo anterior
-
-                    const prompt = `A criança tem ${age} e apresenta os seguintes desafios: ${selectedChallenges.join(', ')}. Com base nas terapias oferecidas pela EIBM (Fonoaudiologia, Psicologia, Terapia Ocupacional, Psicopedagogia), qual terapia seria mais indicada e porquê? Forneça uma lista de terapias recomendadas e uma breve explicação.`;
-
-                    try {
-                        let chatHistory = [];
-                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                        const payload = {
-                            contents: chatHistory,
-                            generationConfig: {
-                                responseMimeType: "application/json",
-                                responseSchema: {
-                                    type: "OBJECT",
-                                    properties: {
-                                        "recommendedTherapies": {
-                                            "type": "ARRAY",
-                                            "items": { "type": "STRING" }
-                                        },
-                                        "explanation": { "type": "STRING" }
-                                    },
-                                    "propertyOrdering": ["recommendedTherapies", "explanation"]
-                                }
-                            }
-                        };
-                        const apiKey = ""; // A chave API será fornecida em tempo de execução pelo Canvas
-                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-                        
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-                        
-                        const result = await response.json();
-
-                        if (result.candidates && result.candidates.length > 0 &&
-                            result.candidates[0].content && result.candidates[0].content.parts &&
-                            result.candidates[0].content.parts.length > 0) {
-                            
-                            const jsonText = result.candidates[0].content.parts[0].text;
-                            const parsedJson = JSON.parse(jsonText);
-
-                            let htmlOutput = '<ul class="list-disc pl-5 mb-4 space-y-1 text-gray-800">';
-                            parsedJson.recommendedTherapies.forEach(therapy => {
-                                htmlOutput += `<li class="font-semibold text-primary">${therapy}</li>`;
-                            });
-                            htmlOutput += '</ul>';
-                            htmlOutput += `<p class="text-gray-700 leading-relaxed">${parsedJson.explanation}</p>`;
-                            
-                            recommendationContent.innerHTML = htmlOutput;
-
-                        } else {
-                            recommendationContent.innerHTML = '<p class="text-red-500">Não foi possível gerar uma recomendação. Por favor, tente novamente.</p>';
+            // Animação da linha do roadmap
+            const sections = document.querySelectorAll('section[id^="step-"]');
+            const lineObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const line = entry.target.querySelector('.section-line');
+                        if (line) {
+                            line.classList.add('animate');
                         }
-                    } catch (error) {
-                        console.error('Erro ao chamar a API Gemini:', error);
-                        recommendationContent.innerHTML = '<p class="text-red-500">Ocorreu um erro ao gerar a recomendação. Por favor, tente novamente mais tarde.</p>';
-                    } finally {
-                        loadingIndicator.classList.add('hidden');
+                        lineObserver.unobserve(entry.target); // Anima apenas uma vez
                     }
                 });
-            }
+            }, {
+                threshold: 0.4 // Aciona quando 40% da seção estiver visível
+            });
 
-            // Lógica para o Gerador de Atividades Diárias Personalizadas (Gemini API)
-            const generateActivityBtn = document.getElementById('generate-activity-btn');
-            const activityChildAgeSelect = document.getElementById('activity-child-age');
-            const developmentAreaSelect = document.getElementById('development-area');
-            const activityTypeSelect = document.getElementById('activity-type');
-            const activityResultsDiv = document.getElementById('activity-results');
-            const activityLoadingIndicator = document.getElementById('activity-loading-indicator');
-            const activityContent = document.getElementById('activity-content');
-
-            if (generateActivityBtn) {
-                generateActivityBtn.addEventListener('click', async () => {
-                    const age = activityChildAgeSelect.value;
-                    const area = developmentAreaSelect.value;
-                    const type = activityTypeSelect.value;
-
-                    if (!age || !area || !type) {
-                        alert('Por favor, selecione a idade da criança, a área de desenvolvimento e o tipo de atividade.');
-                        return;
-                    }
-
-                    // Mostrar indicador de carregamento e ocultar resultados anteriores
-                    activityResultsDiv.classList.remove('hidden');
-                    activityLoadingIndicator.classList.remove('hidden');
-                    activityContent.innerHTML = ''; // Limpar conteúdo anterior
-
-                    const prompt = `Gere uma atividade diária para uma criança de ${age} focada em ${area}, que seja do tipo ${type}. Inclua uma breve descrição da atividade, uma lista de materiais necessários (se aplicável, caso contrário, diga 'Nenhum material específico.') e o objetivo principal da atividade em relação à área de desenvolvimento. Formate a resposta como JSON com as chaves "description", "materials", e "objective".`;
-
-                    try {
-                        let chatHistory = [];
-                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                        const payload = {
-                            contents: chatHistory,
-                            generationConfig: {
-                                responseMimeType: "application/json",
-                                responseSchema: {
-                                    type: "OBJECT",
-                                    properties: {
-                                        "description": { "type": "STRING" },
-                                        "materials": { "type": "STRING" },
-                                        "objective": { "type": "STRING" }
-                                    },
-                                    "propertyOrdering": ["description", "materials", "objective"]
-                                }
-                            }
-                        };
-                        const apiKey = ""; // A chave API será fornecida em tempo de execução pelo Canvas
-                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-                        
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-                        
-                        const result = await response.json();
-
-                        if (result.candidates && result.candidates.length > 0 &&
-                            result.candidates[0].content && result.candidates[0].content.parts &&
-                            result.candidates[0].content.parts.length > 0) {
-                            
-                            const jsonText = result.candidates[0].content.parts[0].text;
-                            const parsedJson = JSON.parse(jsonText);
-
-                            let htmlOutput = `<p class="text-gray-700 mb-3"><strong>Descrição:</strong> ${parsedJson.description}</p>`;
-                            htmlOutput += `<p class="text-gray-700 mb-3"><strong>Materiais:</strong> ${parsedJson.materials}</p>`;
-                            htmlOutput += `<p class="text-gray-700"><strong>Objetivo:</strong> ${parsedJson.objective}</p>`;
-                            
-                            activityContent.innerHTML = htmlOutput;
-
-                        } else {
-                            activityContent.innerHTML = '<p class="text-red-500">Não foi possível gerar uma atividade. Por favor, tente novamente.</p>';
-                        }
-                    } catch (error) {
-                        console.error('Erro ao chamar a API Gemini para atividades:', error);
-                        activityContent.innerHTML = '<p class="text-red-500">Ocorreu um erro ao gerar a atividade. Por favor, tente novamente mais tarde.</p>';
-                    } finally {
-                        activityLoadingIndicator.classList.add('hidden');
-                    }
-                });
-            }
-
-            // Lógica para o Gerador de Histórias Terapêuticas (Gemini API)
-            const generateStoryBtn = document.getElementById('generate-story-btn');
-            const storyChildAgeSelect = document.getElementById('story-child-age');
-            const storyThemeSelect = document.getElementById('story-theme');
-            const storyResultsDiv = document.getElementById('story-results');
-            const storyLoadingIndicator = document.getElementById('story-loading-indicator');
-            const storyContent = document.getElementById('story-content');
-
-            if (generateStoryBtn) {
-                generateStoryBtn.addEventListener('click', async () => {
-                    const age = storyChildAgeSelect.value;
-                    const theme = storyThemeSelect.value;
-
-                    if (!age || !theme) {
-                        alert('Por favor, selecione a idade da criança e um tema para a história.');
-                        return;
-                    }
-
-                    // Mostrar indicador de carregamento e ocultar resultados anteriores
-                    storyResultsDiv.classList.remove('hidden');
-                    storyLoadingIndicator.classList.remove('hidden');
-                    storyContent.innerHTML = ''; // Limpar conteúdo anterior
-
-                    const prompt = `Gere uma história terapêutica curta e adequada para uma criança de ${age} com o tema "${theme}". A história deve ter um título e uma moral clara no final. Formate a resposta como JSON com as chaves "title", "story", e "moral".`;
-
-                    try {
-                        let chatHistory = [];
-                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                        const payload = {
-                            contents: chatHistory,
-                            generationConfig: {
-                                responseMimeType: "application/json",
-                                responseSchema: {
-                                    type: "OBJECT",
-                                    properties: {
-                                        "title": { "type": "STRING" },
-                                        "story": { "type": "STRING" },
-                                        "moral": { "type": "STRING" }
-                                    },
-                                    "propertyOrdering": ["title", "story", "moral"]
-                                }
-                            }
-                        };
-                        const apiKey = ""; // A chave API será fornecida em tempo de execução pelo Canvas
-                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-                        
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-                        
-                        const result = await response.json();
-
-                        if (result.candidates && result.candidates.length > 0 &&
-                            result.candidates[0].content && result.candidates[0].content.parts &&
-                            result.candidates[0].content.parts.length > 0) {
-                            
-                            const jsonText = result.candidates[0].content.parts[0].text;
-                            const parsedJson = JSON.parse(jsonText);
-
-                            let htmlOutput = `<h4 class="font-bold text-purple-700 mb-2">${parsedJson.title}</h4>`;
-                            htmlOutput += `<p class="text-gray-700 mb-3">${parsedJson.story}</p>`;
-                            htmlOutput += `<p class="text-gray-700"><strong>Moral da História:</strong> ${parsedJson.moral}</p>`;
-                            
-                            storyContent.innerHTML = htmlOutput;
-
-                        } else {
-                            storyContent.innerHTML = '<p class="text-red-500">Não foi possível gerar a história. Por favor, tente novamente.</p>';
-                        }
-                    } catch (error) {
-                        console.error('Erro ao chamar a API Gemini para histórias:', error);
-                        storyContent.innerHTML = '<p class="text-red-500">Ocorreu um erro ao gerar a história. Por favor, tente novamente mais tarde.</p>';
-                    } finally {
-                        storyLoadingIndicator.classList.add('hidden');
-                    }
-                });
-            }
+            sections.forEach(section => {
+                lineObserver.observe(section);
+            });
         });
     </script>
 </body>
