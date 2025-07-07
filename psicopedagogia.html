@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psicopedagogia | EIBM</title>
-    <meta name="description" content="Psicopedagogia infantil especializada na EIBM: Avaliação e intervenção em dificuldades de aprendizagem, transtornos específicos e desenvolvimento de potencialidades educacionais.">
-    <!-- Tailwind CSS -->
+    <title>Psicopedagogia | EIBM - Desenvolvimento da Aprendizagem</title>
+    <meta name="description" content="Psicopedagogia infantil especializada na EIBM: Avaliação e intervenção em dificuldades de aprendizagem, transtornos específicos e desenvolvimento de potencialidades educacionais. Foco em flexibilidade cognitiva, memória e planejamento.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -17,7 +17,8 @@
                         accent: '#ED3924',       // Vermelho
                         blue: {
                             light: '#439CD5',
-                            royal: '#136CB2',
+                            DEFAULT: '#136CB2',
+                            dark: '#195184',
                         },
                         green: {
                             light: '#9DCB5B',
@@ -27,16 +28,16 @@
                             light: '#E8694B',
                             dark: '#A53434',
                         },
-                        yellow: {
-                            light: '#F2E5B0',
-                            DEFAULT: '#EFCD18',   // Cor principal da Psicopedagogia
-                            dark: '#D4AF37',
-                        },
-                        orange: '#EA8C2C',
+                        // Definindo a paleta de roxos
                         purple: {
-                            light: '#D29BFF',
-                            DEFAULT: '#A358E1',
-                            dark: '#9930C2',
+                            light: '#D29BFF', // Roxo mais claro
+                            DEFAULT: '#A358E1', // Roxo principal
+                            dark: '#9930C2', // Roxo mais escuro
+                        },
+                        orange: {
+                            light: '#FFB766',
+                            DEFAULT: '#EA8C2C',
+                            dark: '#C66F23',
                         },
                         gold: '#D4AF37',
                         brown: '#8B4513',
@@ -50,31 +51,70 @@
             }
         }
     </script>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Estilos personalizados para a página -->
     <style>
-        .bg-gradient-yellow {
-            background: linear-gradient(135deg, rgba(239, 205, 24, 0.08) 0%, rgba(212, 175, 55, 0.15) 100%);
+        /* Estilos gerais e animações */
+        .animated-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        .hover-scale {
+        .animated-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-500 { transition-delay: 0.5s; }
+        .delay-600 { transition-delay: 0.6s; }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+        .card-icon-bg {
+            background-color: rgba(163, 88, 225, 0.15); /* purple-DEFAULT with opacity */
+        }
+        .border-purple-main {
+            border-color: #A358E1;
+        }
+        .text-purple-main {
+            color: #A358E1;
+        }
+        .bg-purple-main {
+            background-color: #A358E1;
+        }
+        .bg-purple-dark-main {
+            background-color: #9930C2;
+        }
+        .bg-gradient-psychopedagogy-purple {
+            background: linear-gradient(135deg, #D29BFF 0%, #A358E1 100%);
+        }
+        .bg-gradient-psychopedagogy-purple-light {
+            background: linear-gradient(135deg, #F8F0FF 0%, #D29BFF 100%);
+        }
+
+        /* Accordion styles */
+        .accordion-header {
+            cursor: pointer;
+        }
+        .accordion-icon {
             transition: transform 0.3s ease;
         }
-        .hover-scale:hover {
-            transform: scale(1.03);
-        }
-        .card-shadow {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        .accordion-header.active .accordion-icon {
+            transform: rotate(45deg);
         }
     </style>
 </head>
-<body class="font-sans text-gray-800">
+
+<body class="font-sans text-gray-800 bg-purple-50 min-h-screen">
     <!-- Header/Navigation -->
-    <header class="bg-white shadow-md">
+    <header class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
@@ -87,12 +127,12 @@
                 <!-- Navigation -->
                 <nav class="hidden md:block">
                     <ul class="flex space-x-6">
-                        <li><a href="terapia-ocupacional.html" class="text-black hover:text-blue-royal font-medium">Terapia Ocupacional</a></li>
-                        <li><a href="fonoaudiologia.html" class="text-black hover:text-blue-royal font-medium">Fonoaudiologia</a></li>
-                        <li><a href="Psicologia.html" class="text-black hover:text-blue-royal font-medium">Psicologia</a></li>
-                        <li><a href="psicopedagogia.html" class="text-black hover:text-blue-royal font-medium border-b-2 border-blue">Psicopedagogia</a></li>
-                        <li><a href="ideia.html" class="text-black hover:text-blue-royal font-medium">IDEIA</a></li>
-                        <li><a href="contato.html" class="text-black hover:text-blue-royal font-medium">Contato</a></li>
+                        <li><a href="terapia-ocupacional.html" class="text-gray-800 hover:text-blue-dark font-medium">Terapia Ocupacional</a></li>
+                        <li><a href="fonoaudiologia.html" class="text-gray-800 hover:text-blue-dark font-medium">Fonoaudiologia</a></li>
+                        <li><a href="psicologia.html" class="text-gray-800 hover:text-blue-dark font-medium">Psicologia</a></li>
+                        <li><a href="psicopedagogia.html" class="text-purple-dark font-bold border-b-2 border-purple-dark">Psicopedagogia</a></li>
+                        <li><a href="ideia.html" class="text-gray-800 hover:text-blue-dark font-medium">IDEIA</a></li>
+                        <li><a href="contato.html" class="text-gray-800 hover:text-blue-dark font-medium">Contato</a></li>
                     </ul>
                 </nav>
                 
@@ -106,400 +146,264 @@
         <!-- Mobile Menu (hidden by default) -->
         <div class="fixed top-0 left-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 p-5 transform -translate-x-full transition-transform duration-300" id="mobile-menu">
             <div class="flex justify-between items-center mb-6">
-                <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12">
+                <img src="attached_assets/logo_eibm_terapias.svg" alt="Logótipo EIBM" class="h-12">
                 <button id="close-menu">
                     <i class="fas fa-times text-2xl text-primary"></i>
                 </button>
             </div>
             <ul class="space-y-4">
-                <li><a href="index.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Portal</a></li>
-                <li><a href="terapias.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Terapias</a></li>
-                <li><a href="especialidades.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Especialidades</a></li>
-                <li><a href="ideia.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">IDEA</a></li>
-                <li><a href="transtornos.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Transtornos Alimentares</a></li>
-                <li><a href="psicologia.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Psicologia</a></li>
-                <li><a href="fonoaudiologia.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Fonoaudiologia e Musicoterapia</a></li>
-                <li><a href="terapia-ocupacional.html" class="block py-2 text-primary hover:text-yellow-dark font-medium">Terapia Ocupacional</a></li>
-                <li><a href="psicopedagogia.html" class="block py-2 text-yellow-dark font-bold">Psicopedagogia</a></li>
+                <li><a href="index.html" class="block py-2 text-primary hover:text-gray-800 font-medium">Início</a></li>
+                <li><a href="terapias.html" class="block py-2 text-primary hover:text-gray-800 font-medium">Terapias</a></li>
+                <li><a href="especialidades.html" class="block py-2 text-primary hover:text-gray-800 font-medium">Especialidades</a></li>
+                <li><a href="ideia.html" class="block py-2 text-primary hover:text-gray-800 font-medium font-bold">IDEIA</a></li>
+                <li><a href="transtornos.html" class="block py-2 text-primary hover:text-gray-800 font-medium">Transtornos Alimentares</a></li>
+                <li><a href="contato.html" class="block py-2 text-primary hover:text-gray-800 font-medium">Contato</a></li>
             </ul>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="py-16 bg-gradient-yellow relative overflow-hidden">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 z-10">
-                    <div class="inline-block bg-yellow/20 px-4 py-1 rounded-full text-yellow-700 font-medium mb-4">
-                        Especialidade Educacional
-                    </div>
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-700 font-heading mb-6">
-                        Psicopedagogia Infantil
-                    </h2>
-                    <p class="text-lg text-gray-700 mb-6">
-                        A Psicopedagogia na EIBM é dedicada a identificar e intervir em dificuldades e transtornos de aprendizagem, considerando todos os aspectos envolvidos nesse processo.
-                    </p>
-                    <p class="text-lg text-gray-700 mb-8">
-                        Por meio de uma abordagem personalizada, buscamos compreender como cada criança aprende, desenvolvendo estratégias que promovam uma aprendizagem significativa e prazerosa.
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="bg-yellow/20 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium">Dificuldades de aprendizagem</span>
-                        <span class="bg-yellow/20 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium">Métodos de estudo</span>
-                        <span class="bg-yellow/20 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium">Adaptação curricular</span>
-                        <span class="bg-yellow/20 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium">Estimulação cognitiva</span>
-                    </div>
+    <section id="hero" class="pt-28 pb-16 md:pt-40 md:pb-24 bg-gradient-to-b from-purple-light to-white relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
+            <div class="md:w-1/2 text-center md:text-left animated-element">
+                <span class="inline-block bg-purple-dark/20 text-purple-dark px-4 py-1 rounded-full text-sm font-medium mb-4">Especialidade em Aprendizagem</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 leading-tight font-heading">
+                    Psicopedagogia: Desvendando o Potencial da Aprendizagem
+                </h1>
+                <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto md:mx-0">
+                    Na EIBM, a psicopedagogia é a chave para transformar desafios em descobertas. Através de uma abordagem que integra aspectos emocionais e comportamentais, estimulamos habilidades essenciais como planejamento, criatividade, memória e flexibilidade cognitiva.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                    <a href="#intervencao" class="bg-purple-dark hover:bg-purple-700 text-white font-bold px-8 py-4 rounded-full shadow-lg transition-all duration-300 hover-lift">
+                        Saiba Mais
+                    </a>
+                    <a href="#contato" class="bg-white text-purple-dark border-2 border-purple-dark hover:bg-purple-50 font-bold px-8 py-4 rounded-full shadow-lg transition-all duration-300 hover-lift">
+                        Agende uma Avaliação
+                    </a>
                 </div>
-                <div class="md:w-1/2 flex justify-center z-10">
-                    <div class="bg-white p-8 rounded-xl shadow-xl max-w-md card-shadow">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-yellow/20 rounded-full flex items-center justify-center">
-                                <i class="fas fa-book-reader text-3xl text-yellow-700"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-xl font-bold text-yellow-700">Aprender é descobrir potenciais</h3>
-                                <p class="text-gray-600">Superando desafios na aprendizagem</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 mb-6">
-                            "A Psicopedagogia constrói pontes entre o potencial da criança e sua realização acadêmica. Na EIBM, trabalhamos para transformar dificuldades em oportunidades de crescimento e desenvolvimento cognitivo."
-                        </p>
-                        <div class="flex items-center">
-                            <img src="assets/about-image.svg" alt="Equipe EIBM" class="w-12 h-12 rounded-full object-cover mr-3">
-                            <div>
-                                <p class="font-medium">Equipe de Psicopedagogia</p>
-                                <p class="text-sm text-gray-600">EIBM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center animated-element delay-200">
+                <img src="https://placehold.co/500x400/A358E1/FFFFFF?text=Psicopedagogia+EIBM" alt="Ilustração de criança aprendendo" class="w-full max-w-md rounded-xl shadow-2xl">
             </div>
         </div>
         <!-- Decorative elements -->
-        <div class="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-yellow opacity-10"></div>
-        <div class="absolute top-12 -left-12 w-32 h-32 rounded-full bg-yellow opacity-10"></div>
+        <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-purple-dark opacity-5 rounded-full"></div>
+        <div class="absolute top-20 right-20 w-32 h-32 bg-purple-dark opacity-5 rounded-full"></div>
     </section>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Áreas de Atuação -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <h3 class="text-2xl md:text-3xl font-bold text-yellow-700 mb-10 text-center">
-                    Áreas de Atuação da Psicopedagogia
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Dificuldades de Aprendizagem -->
-                    <div class="bg-yellow-50/40 p-6 rounded-xl shadow-md hover-scale card-shadow">
-                        <div class="w-16 h-16 bg-yellow/20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-book-open text-2xl text-yellow-700"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-yellow-700 mb-3 text-center">Dificuldades de Aprendizagem</h4>
-                        <p class="text-gray-700 mb-4">
-                            Avaliação e intervenção em dificuldades relacionadas à leitura, escrita, matemática, atenção e memória, criando planos personalizados.
-                        </p>
-                        <ul class="space-y-2">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
-                                <span>Dislexia e disgrafia</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
-                                <span>Discalculia</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
-                                <span>Transtornos de atenção</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
-                                <span>Dificuldades visuoespaciais</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Métodos e Técnicas de Estudo -->
-                    <div class="bg-yellow-50/40 p-6 rounded-xl shadow-md hover-scale card-shadow">
-                        <div class="w-16 h-16 bg-yellow/20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-tasks text-2xl text-yellow-700"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-yellow-700 mb-3 text-center">Métodos de Estudo</h4>
-                        <p class="text-gray-700 mb-4">
-                            Desenvolvimento de estratégias personalizadas de aprendizagem baseadas no perfil cognitivo de cada criança, respeitando seu ritmo e potencial.
-                        </p>
-                        <ul class="space-y-2">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
-                                <span>Técnicas de organização</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
-                                <span>Gestão do tempo</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
-                                <span>Estratégias de memorização</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
-                                <span>Mapas mentais e resumos</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Adaptação Curricular -->
-                    <div class="bg-yellow-50/40 p-6 rounded-xl shadow-md hover-scale card-shadow">
-                        <div class="w-16 h-16 bg-yellow/20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-chalkboard-teacher text-2xl text-yellow-700"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-yellow-700 mb-3 text-center">Adaptação Curricular</h4>
-                        <p class="text-gray-700 mb-4">
-                            Orientação e desenvolvimento de adaptações curriculares para crianças com necessidades educacionais especiais, em parceria com escolas.
-                        </p>
-                        <ul class="space-y-2">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
-                                <span>Materiais pedagógicos adaptados</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
-                                <span>Avaliações diferenciadas</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
-                                <span>Tecnologias assistivas</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-yellow-700 mt-1 mr-2"></i>
-                                <span>Orientação às escolas</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <main class="container mx-auto px-4 py-16">
+        <!-- Dificuldades de Aprendizagem Section -->
+        <section id="dificuldades" class="mb-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12 font-heading animated-element">
+                Dificuldades de Aprendizagem: Compreender para Superar
+            </h2>
+            <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12 animated-element delay-100">
+                A identificação precoce e a intervenção especializada são cruciais para apoiar crianças com transtornos que afetam o aprendizado. Conheça as principais dificuldades que abordamos:
+            </p>
 
-        <!-- Abordagens Psicopedagógicas -->
-        <section class="py-16 bg-gradient-yellow">
-            <div class="container mx-auto px-4">
-                <div class="mb-12 text-center">
-                    <h3 class="text-2xl md:text-3xl font-bold text-yellow-700 mb-3">Abordagens Psicopedagógicas</h3>
-                    <p class="text-gray-700 max-w-3xl mx-auto">Metodologias baseadas em evidências que utilizamos em nossos atendimentos de Psicopedagogia</p>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Avaliação Psicopedagógica -->
-                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 bg-yellow/30 rounded-full flex items-center justify-center mr-3">
-                                <i class="fas fa-clipboard-check text-lg text-yellow-700"></i>
-                            </div>
-                            <h4 class="font-bold text-yellow-700">Avaliação Psicopedagógica</h4>
-                        </div>
-                        <p class="text-gray-700 text-sm">
-                            Processo sistemático para identificar capacidades e dificuldades, analisando aspectos cognitivos, emocionais e ambientais que influenciam a aprendizagem.
-                        </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dislexia -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-purple-dark hover-lift animated-element delay-200">
+                    <div class="w-16 h-16 card-icon-bg rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-spell-check text-3xl text-purple-dark"></i>
                     </div>
-                    
-                    <!-- Intervenção Cognitivo-Comportamental -->
-                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 bg-yellow/30 rounded-full flex items-center justify-center mr-3">
-                                <i class="fas fa-brain text-lg text-yellow-700"></i>
-                            </div>
-                            <h4 class="font-bold text-yellow-700">Abordagem Cognitiva</h4>
-                        </div>
-                        <p class="text-gray-700 text-sm">
-                            Utilização de estratégias para modificar padrões de pensamento que interferem na aprendizagem, fortalecendo habilidades metacognitivas.
-                        </p>
-                    </div>
-                    
-                    <!-- Jogos e Atividades Lúdicas -->
-                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 bg-yellow/30 rounded-full flex items-center justify-center mr-3">
-                                <i class="fas fa-puzzle-piece text-lg text-yellow-700"></i>
-                            </div>
-                            <h4 class="font-bold text-yellow-700">Aprendizagem Lúdica</h4>
-                        </div>
-                        <p class="text-gray-700 text-sm">
-                            Uso de jogos, brincadeiras e atividades lúdicas como ferramentas terapêuticas para desenvolver habilidades cognitivas e emocionais.
-                        </p>
-                    </div>
-                    
-                    <!-- Mediação da Aprendizagem -->
-                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 bg-yellow/30 rounded-full flex items-center justify-center mr-3">
-                                <i class="fas fa-hands-helping text-lg text-yellow-700"></i>
-                            </div>
-                            <h4 class="font-bold text-yellow-700">Mediação da Aprendizagem</h4>
-                        </div>
-                        <p class="text-gray-700 text-sm">
-                            Baseada na teoria de Feuerstein, busca desenvolver funções cognitivas por meio da mediação, focando no potencial de aprendizagem de cada criança.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Estimulação Cognitiva Section -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h3 class="text-2xl md:text-3xl font-bold text-yellow-700 mb-3">Estimulação Cognitiva</h3>
-                    <p class="text-gray-600 max-w-3xl mx-auto">Trabalhando habilidades essenciais para o desenvolvimento educacional</p>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Atenção e Concentração -->
-                    <div class="bg-yellow-50/50 p-6 rounded-xl shadow-md card-shadow hover-scale">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-yellow/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-eye text-xl text-yellow-700"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-yellow-700">Atenção e Concentração</h4>
-                        </div>
-                        <p class="text-gray-700">
-                            Atividades para desenvolver a capacidade de manter o foco, filtrar estímulos irrelevantes e sustentar a atenção por períodos adequados, essenciais para o processo de aprendizagem escolar e desenvolvimento cognitivo.
-                        </p>
-                    </div>
-                    
-                    <!-- Memória e Aprendizagem -->
-                    <div class="bg-yellow-50/50 p-6 rounded-xl shadow-md card-shadow hover-scale">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-yellow/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-memory text-xl text-yellow-700"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-yellow-700">Memória e Aprendizagem</h4>
-                        </div>
-                        <p class="text-gray-700">
-                            Técnicas para fortalecer diferentes tipos de memória (de trabalho, visual, auditiva, sequencial) fundamentais para o armazenamento e recuperação de informações durante o processo de aprendizagem.
-                        </p>
-                    </div>
-                    
-                    <!-- Raciocínio Lógico -->
-                    <div class="bg-yellow-50/50 p-6 rounded-xl shadow-md card-shadow hover-scale">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-yellow/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-calculator text-xl text-yellow-700"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-yellow-700">Raciocínio Lógico</h4>
-                        </div>
-                        <p class="text-gray-700">
-                            Atividades estruturadas para desenvolver a capacidade de estabelecer relações, identificar padrões, fazer inferências e resolver problemas, especialmente importantes para o desempenho em matemática e ciências.
-                        </p>
-                    </div>
-                    
-                    <!-- Habilidades Socioemocionais -->
-                    <div class="bg-yellow-50/50 p-6 rounded-xl shadow-md card-shadow hover-scale">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-yellow/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-heart text-xl text-yellow-700"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-yellow-700">Habilidades Socioemocionais</h4>
-                        </div>
-                        <p class="text-gray-700">
-                            Desenvolvimento de competências emocionais como autoconhecimento, gerenciamento de emoções e habilidades sociais que impactam diretamente no desempenho acadêmico e na motivação para aprender.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Section -->
-        <section class="py-16 bg-yellow-50/50">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h3 class="text-2xl md:text-3xl font-bold text-yellow-700 mb-3">Nossa Equipe</h3>
-                    <p class="text-gray-600 max-w-3xl mx-auto">Psicopedagogos especializados em atendimento infantil</p>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-md max-w-4xl mx-auto card-shadow">
-                    <p class="text-gray-700 mb-4">
-                        Nossa equipe de psicopedagogos é formada por profissionais com formação específica em Psicopedagogia e ampla experiência no trabalho com crianças com dificuldades de aprendizagem, transtornos do neurodesenvolvimento e altas habilidades. Todos são registrados no Conselho de Psicopedagogia e investem constantemente em atualização profissional.
-                    </p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Dislexia</h3>
                     <p class="text-gray-700">
-                        Atuamos de forma integrada com as demais especialidades da clínica, além de manter contato próximo com as escolas, professores e coordenadores pedagógicos, formando uma rede de apoio para garantir o melhor desenvolvimento educacional de cada criança.
+                        Um transtorno que afeta a leitura e a escrita, manifestando-se em trocas de letras, dificuldades na interpretação de textos e na fluência da leitura. Nossa intervenção visa desenvolver estratégias compensatórias e fortalecer as habilidades fonológicas.
+                    </p>
+                </div>
+
+                <!-- Discalculia -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-purple-dark hover-lift animated-element delay-300">
+                    <div class="w-16 h-16 card-icon-bg rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-calculator text-3xl text-purple-dark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Discalculia</h3>
+                    <p class="text-gray-700">
+                        Transtorno que afeta o raciocínio matemático, causando dificuldades na identificação de números, na compreensão de conceitos matemáticos e na realização de cálculos. Trabalhamos com abordagens lúdicas e concretas para construir o pensamento lógico-matemático.
+                    </p>
+                </div>
+
+                <!-- Disgrafia -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-purple-dark hover-lift animated-element delay-400">
+                    <div class="w-16 h-16 card-icon-bg rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-pencil-alt text-3xl text-purple-dark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Disgrafia</h3>
+                    <p class="text-gray-700">
+                        Um transtorno que afeta a coordenação motora fina, resultando em dificuldades na escrita, tornando-a ilegível ou com traços irregulares. Nossa terapia foca no desenvolvimento da motricidade fina e na organização espacial da escrita.
+                    </p>
+                </div>
+
+                <!-- TDAH (Adicionado conforme a descrição do prompt) -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-purple-dark hover-lift animated-element delay-500">
+                    <div class="w-16 h-16 card-icon-bg rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-head-side-mask text-3xl text-purple-dark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">TDAH e Dificuldades Atencionais</h3>
+                    <p class="text-gray-700">
+                        Crianças com Transtorno do Déficit de Atenção e Hiperatividade (TDAH) ou outras dificuldades atencionais podem ter desafios na concentração, impulsividade e organização. Desenvolvemos estratégias para melhorar o foco e a autorregulação.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ Section -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h3 class="text-2xl md:text-3xl font-bold text-yellow-700 mb-3">Perguntas Frequentes</h3>
-                    <p class="text-gray-600 max-w-3xl mx-auto">Respostas para suas dúvidas sobre a Psicopedagogia Infantil</p>
+        <!-- Intervenção Psicopedagógica Section -->
+        <section id="intervencao" class="mb-20 bg-gradient-psychopedagogy-purple-light p-12 rounded-2xl shadow-xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12 font-heading animated-element">
+                Intervenção Psicopedagógica: Estratégias e Abordagens
+            </h2>
+            <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12 animated-element delay-100">
+                Nossa intervenção é personalizada, focando nas necessidades individuais de cada criança e na construção de um caminho de sucesso na aprendizagem.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div class="space-y-8 animated-element delay-200">
+                    <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md border-l-4 border-purple-dark">
+                        <div class="w-12 h-12 card-icon-bg rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-cogs text-xl text-purple-dark"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Desenvolvimento de Habilidades Cognitivas</h3>
+                            <p class="text-gray-700">
+                                Trabalhamos ativamente no desenvolvimento de habilidades como planejamento, organização e flexibilidade cognitiva, essenciais para a superação das dificuldades de aprendizagem. A flexibilidade cognitiva é crucial para quebrar a rigidez, permitindo que a criança se adapte e busque soluções alternativas.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md border-l-4 border-purple-dark">
+                        <div class="w-12 h-12 card-icon-bg rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-palette text-xl text-purple-dark"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Adaptação de Estratégias de Ensino</h3>
+                            <p class="text-gray-700">
+                                Adaptamos as estratégias de ensino ao estilo de aprendizado da criança, considerando aspectos sensoriais e utilizando recursos visuais, auditivos e sinestésicos para tornar o aprendizado mais acessível e eficaz.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="space-y-6 max-w-4xl mx-auto">
-                    <!-- Pergunta 1 -->
-                    <div class="bg-yellow-50/30 rounded-xl overflow-hidden shadow-md card-shadow">
-                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
-                            <h4 class="text-lg font-bold text-yellow-700">Como identificar se meu filho precisa de acompanhamento psicopedagógico?</h4>
-                            <i class="fas fa-plus text-yellow-700 transition-transform accordion-icon"></i>
-                        </button>
-                        <div class="px-6 pb-4 accordion-content hidden">
+
+                <div class="relative animated-element delay-300">
+                    <img src="https://placehold.co/600x450/A358E1/FFFFFF?text=Intervenção+Psicopedagógica" alt="Ilustração de estratégias de ensino" class="w-full rounded-xl shadow-2xl">
+                    <div class="absolute -bottom-8 -right-8 bg-white p-6 rounded-xl shadow-xl border-t-4 border-purple-dark text-center">
+                        <h4 class="text-lg font-bold text-gray-800 mb-2">Parceria Essencial</h4>
+                        <p class="text-gray-700 text-sm">
+                            A colaboração entre família, escola e psicopedagogo é fundamental para o sucesso da intervenção, promovendo uma rede de apoio contínua.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Desenvolvimento Infantil Section -->
+        <section id="desenvolvimento" class="mb-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12 font-heading animated-element">
+                Desenvolvimento Infantil: Marcos e Intervenção Precoce
+            </h2>
+            <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12 animated-element delay-100">
+                Observar os marcos do desenvolvimento e agir precocemente são passos cruciais para garantir o pleno potencial de cada criança.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="relative animated-element delay-200">
+                    <img src="https://placehold.co/600x450/9930C2/FFFFFF?text=Desenvolvimento+Infantil" alt="Ilustração de marcos do desenvolvimento infantil" class="w-full rounded-xl shadow-2xl">
+                    <div class="absolute -top-8 -left-8 bg-white p-6 rounded-xl shadow-xl border-t-4 border-purple-dark text-center">
+                        <h4 class="text-lg font-bold text-gray-800 mb-2">Estimulação Abrangente</h4>
+                        <p class="text-gray-700 text-sm">
+                            Estimulamos habilidades motoras, cognitivas, emocionais e sociais para um desenvolvimento integral.
+                        </p>
+                    </div>
+                </div>
+                <div class="space-y-8 animated-element delay-300">
+                    <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md border-l-4 border-purple-dark">
+                        <div class="w-12 h-12 card-icon-bg rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-baby text-xl text-purple-dark"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Importância da Intervenção Precoce</h3>
                             <p class="text-gray-700">
-                                Alguns sinais que podem indicar a necessidade de uma avaliação psicopedagógica incluem: dificuldades persistentes na leitura, escrita ou matemática, mesmo com apoio em casa; desinteresse ou desmotivação em relação às atividades escolares; discrepância entre o potencial da criança e seu desempenho acadêmico; dificuldade em manter a atenção nas tarefas; resistência ou angústia diante de atividades escolares; e comentários frequentes de professores sobre dificuldades específicas. Se observar esses sinais, é recomendável buscar uma avaliação psicopedagógica para entender melhor as necessidades da criança.
+                                A intervenção precoce é vital para identificar e tratar possíveis atrasos, maximizando as chances de um desenvolvimento saudável. Observar a capacidade de sustentar o corpo, reconhecer números e diferenciar formas e cores são exemplos de marcos importantes.
                             </p>
                         </div>
                     </div>
                     
-                    <!-- Pergunta 2 -->
-                    <div class="bg-yellow-50/30 rounded-xl overflow-hidden shadow-md card-shadow">
-                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
-                            <h4 class="text-lg font-bold text-yellow-700">Como funciona a avaliação psicopedagógica?</h4>
-                            <i class="fas fa-plus text-yellow-700 transition-transform accordion-icon"></i>
-                        </button>
-                        <div class="px-6 pb-4 accordion-content hidden">
-                            <p class="text-gray-700 mb-3">
-                                A avaliação psicopedagógica na EIBM é um processo completo que ocorre em várias etapas. Inicialmente, realizamos uma entrevista detalhada com os pais para conhecer a história de vida da criança, seu percurso escolar e as dificuldades observadas. Em seguida, realizamos sessões individuais com a criança, utilizando testes específicos, jogos e atividades que ajudam a identificar seus pontos fortes e fragilidades nas diversas áreas do conhecimento.
-                            </p>
+                    <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md border-l-4 border-purple-dark">
+                        <div class="w-12 h-12 card-icon-bg rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-puzzle-piece text-xl text-purple-dark"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Psicopedagogia e Habilidades Essenciais</h3>
                             <p class="text-gray-700">
-                                Também solicitamos informações da escola e, quando necessário, de outros profissionais que atendem a criança. Após a coleta e análise de todos os dados, elaboramos um relatório completo e realizamos uma devolutiva com os pais, apresentando os resultados e sugerindo encaminhamentos e estratégias adequadas para o caso.
+                                A psicopedagogia auxilia crianças com dificuldades de aprendizagem, trabalhando habilidades como coordenação motora, percepção espacial e atenção, que são a base para o sucesso acadêmico e na vida.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vínculo e Confiança Section -->
+        <section id="vinculo" class="mb-20 bg-gradient-psychopedagogy-purple p-12 rounded-2xl shadow-xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12 font-heading animated-element">
+                Vínculo e Confiança: A Base da Intervenção
+            </h2>
+            <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12 animated-element delay-100">
+                Construir um ambiente seguro e de confiança é o ponto de partida para qualquer processo terapêutico eficaz.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="space-y-8 animated-element delay-200">
+                    <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md border-l-4 border-purple-dark">
+                        <div class="w-12 h-12 card-icon-bg rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-handshake text-xl text-purple-dark"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">A Importância do Vínculo Terapêutico</h3>
+                            <p class="text-gray-700">
+                                O vínculo entre o psicopedagogo e a criança é fundamental para o sucesso da intervenção. Criamos um ambiente de confiança e segurança onde a criança se sente à vontade para explorar, errar e aprender.
                             </p>
                         </div>
                     </div>
                     
-                    <!-- Pergunta 3 -->
-                    <div class="bg-yellow-50/30 rounded-xl overflow-hidden shadow-md card-shadow">
-                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
-                            <h4 class="text-lg font-bold text-yellow-700">Qual a duração e frequência das sessões de psicopedagogia?</h4>
-                            <i class="fas fa-plus text-yellow-700 transition-transform accordion-icon"></i>
-                        </button>
-                        <div class="px-6 pb-4 accordion-content hidden">
+                    <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md border-l-4 border-purple-dark">
+                        <div class="w-12 h-12 card-icon-bg rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-user-friends text-xl text-purple-dark"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Abordagem Personalizada e Colaborativa</h3>
                             <p class="text-gray-700">
-                                As sessões de psicopedagogia na EIBM têm duração média de 50 minutos e a frequência recomendada é semanal para a maioria dos casos. Essa regularidade permite a consistência necessária para o desenvolvimento das habilidades trabalhadas. Em alguns casos, dependendo da intensidade das dificuldades, podemos recomendar duas sessões semanais, especialmente em períodos específicos como início do ano letivo ou preparação para avaliações importantes. Conforme a criança avança e desenvolve as habilidades necessárias, a frequência pode ser ajustada. O plano terapêutico é sempre personalizado, considerando as necessidades específicas de cada criança, o contexto familiar e escolar.
+                                Adaptamos as atividades e abordagens às necessidades e características de cada criança, respeitando seu ritmo e estilo de aprendizagem. A comunicação contínua com a família e a escola é essencial para entender as dificuldades e promover um trabalho conjunto e eficaz.
                             </p>
                         </div>
                     </div>
+                </div>
+                <div class="flex justify-center animated-element delay-300">
+                    <img src="https://placehold.co/600x450/9930C2/FFFFFF?text=Vínculo+e+Confiança" alt="Ilustração de psicopedagogo e criança" class="w-full max-w-md rounded-xl shadow-2xl">
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section class="bg-yellow-dark py-14">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
-                    Agende uma Avaliação Psicopedagógica
-                </h2>
-                <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                    Converse com nossa equipe e descubra como a Psicopedagogia pode ajudar no desenvolvimento educacional do seu filho.
-                </p>
-                <a href="contato.html" class="bg-white text-yellow-700 hover:bg-yellow-50 font-medium px-6 py-3 rounded-full inline-block transition-colors">
-                    Entrar em Contato
-                </a>
-            </div>
+        <section id="contato" class="bg-purple-dark-main py-16 rounded-2xl shadow-xl text-center animated-element delay-100">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 font-heading">
+                Pronto para Desvendar o Potencial de Aprendizagem do seu Filho?
+            </h2>
+            <p class="text-lg text-white/90 mb-10 max-w-2xl mx-auto">
+                Agende uma avaliação psicopedagógica e descubra como podemos construir um caminho de sucesso e confiança para o desenvolvimento educacional da sua criança.
+            </p>
+            <a href="contato.html" class="bg-white text-purple-dark-main hover:bg-purple-50 font-bold px-10 py-5 rounded-full shadow-lg transition-all duration-300 hover-lift text-lg">
+                <i class="fas fa-calendar-alt mr-3"></i> Agendar Avaliação
+            </a>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10">
+    <footer class="bg-gray-900 text-white py-10 mt-16">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="flex items-center mb-6 md:mb-0">
-                    <img src="assets/logo-eibm-white.svg" alt="Logo EIBM" class="h-10 mr-3">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="attached_assets/logo_eibm_clinica_escrito.svg" alt="Logótipo EIBM" class="h-10 mr-3">
                     <div>
                         <h3 class="text-xl font-bold">EIBM</h3>
                         <p class="text-xs text-gray-400">Especialidades Integradas e Bem-estar Multidisciplinar</p>
@@ -508,17 +412,17 @@
                 
                 <div class="text-center md:text-right">
                     <p class="text-gray-400">&copy; 2025 EIBM - Todos os direitos reservados.</p>
-                    <div class="flex justify-center md:justify-end space-x-4 mt-3">
-                        <a href="#" class="text-white hover:text-yellow transition-colors" aria-label="Facebook">
+                    <div class="flex justify-center md:justify-end space-x-4 mt-2">
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="text-white hover:text-yellow transition-colors" aria-label="Instagram">
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="text-white hover:text-yellow transition-colors" aria-label="YouTube">
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="YouTube">
                             <i class="fab fa-youtube"></i>
                         </a>
-                        <a href="#" class="text-white hover:text-yellow transition-colors" aria-label="LinkedIn">
+                        <a href="#" class="text-white hover:text-accent transition-colors" aria-label="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
@@ -527,31 +431,110 @@
         </div>
     </footer>
 
-    <!-- Script para o acordeão FAQ -->
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-purple-dark-main text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 focus:outline-none hover:bg-purple-700 z-50">
+        <i class="fas fa-chevron-up text-xl"></i>
+    </button>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerOffset = document.querySelector('header').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
             
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    const content = this.nextElementSibling;
-                    const icon = this.querySelector('.accordion-icon');
-                    
-                    // Toggle content
-                    content.classList.toggle('hidden');
-                    
-                    // Rotate icon
-                    if (content.classList.contains('hidden')) {
-                        icon.classList.remove('transform', 'rotate-45');
-                    } else {
-                        icon.classList.add('transform', 'rotate-45');
-                    }
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.remove('-translate-x-full');
+                    document.body.style.overflow = 'hidden';
                 });
+            }
+            
+            if (closeMenu && mobileMenu) {
+                closeMenu.addEventListener('click', () => {
+                    mobileMenu.classList.add('-translate-x-full');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            if (mobileMenu) {
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('-translate-x-full');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+        });
+
+        // Back to Top Button visibility
+        const backToTopButton = document.getElementById('back-to-top');
+        if (backToTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // Intersection Observer for animations
+        const animatedElements = document.querySelectorAll('.animated-element');
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.1 // 10% of element visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, observerOptions);
+
+        animatedElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Accordion functionality for FAQ
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.accordion-icon');
+                
+                header.classList.toggle('active');
+                content.classList.toggle('hidden');
             });
         });
     </script>
-
-    <!-- JavaScript principal -->
-    <script src="script.js"></script>
 </body>
 </html>

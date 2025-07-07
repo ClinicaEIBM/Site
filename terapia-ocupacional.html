@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terapia Ocupacional | EIBM</title>
-    <meta name="description" content="Terapia Ocupacional infantil especializada na EIBM: Integração sensorial, desenvolvimento motor e atividades de vida diária para crianças com necessidades específicas.">
+    <title>Terapia Ocupacional | EIBM - Desenvolvimento e Autonomia Infantil</title>
+    <meta name="description" content="Terapia Ocupacional infantil especializada na EIBM: Integração sensorial, desenvolvimento motor e atividades de vida diária para crianças com necessidades específicas. Abordagem multidisciplinar e intervenção precoce.">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,16 +12,13 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#195184',      // Azul principal
-                        secondary: '#6CBB45',    // Verde
-                        accent: '#ED3924',       // Vermelho
+                        primary: '#195184',      // Azul principal da marca
+                        secondary: '#136CB2',    // Novo azul principal para Terapia Ocupacional
+                        accent: '#ED3924',       // Vermelho (inalterado)
                         blue: {
-                            light: '#439CD5',
-                            royal: '#136CB2',
-                        },
-                        green: {
-                            light: '#9DCB5B',    // Cor principal da Terapia Ocupacional
-                            dark: '#648543',
+                            light: '#439CD5',    // Azul claro
+                            DEFAULT: '#136CB2',  // Azul padrão (novo secundário)
+                            dark: '#195184',     // Azul escuro (novo primary)
                         },
                         red: {
                             light: '#E8694B',
@@ -57,8 +54,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Estilos personalizados para a página -->
     <style>
-        .bg-gradient-green {
-            background: linear-gradient(135deg, rgba(157, 203, 91, 0.08) 0%, rgba(108, 187, 69, 0.15) 100%);
+        /* Gradiente para a Terapia Ocupacional (agora em tons de azul) */
+        .bg-gradient-to-blue-to {
+            background: linear-gradient(135deg, rgba(67, 156, 213, 0.08) 0%, rgba(19, 108, 178, 0.15) 100%);
         }
         .hover-scale {
             transition: transform 0.3s ease;
@@ -69,29 +67,69 @@
         .card-shadow {
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
+
+        /* Animações inspiradas na página de Psicopedagogia */
+        .animated-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animated-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-500 { transition-delay: 0.5s; }
+        .delay-600 { transition-delay: 0.6s; }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+        .card-icon-bg-to {
+            background-color: rgba(19, 108, 178, 0.15); /* secondary with opacity */
+        }
+        .border-secondary-main {
+            border-color: #136CB2;
+        }
+        .text-secondary-main {
+            color: #136CB2;
+        }
+        .bg-secondary-main {
+            background-color: #136CB2;
+        }
+        .bg-secondary-dark-main {
+            background-color: #195184;
+        }
+        .bg-gradient-to-light {
+            background: linear-gradient(135deg, #E0F2FF 0%, #B3D9FF 100%); /* Lighter blue gradient */
+        }
     </style>
 </head>
-<body class="font-sans text-gray-800">
+<body class="font-sans text-gray-800 bg-blue-50 bg-opacity-30 min-h-screen">
     <!-- Header/Navigation -->
-    <header class="bg-white shadow-md">
+    <header class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                  <!-- Logo -->
                  <div class="flex items-center">
                     <a href="terapias.html" class="flex items-center">
-                        <img src="attached_assets/logo_eibm_terapias_escrito.svg" alt="EIBM Terapias" class="h-12 md:h-16">
+                        <img src="https://placehold.co/100x40/FFFFFF/000000?text=EIBM+Terapias" onerror="this.onerror=null;this.src='attached_assets/logo_eibm_terapias_escrito.svg';" alt="EIBM Terapias" class="h-12 md:h-16">
                     </a>
                 </div>
                 
                 <!-- Navigation -->
                 <nav class="hidden md:block">
                     <ul class="flex space-x-6">
-                        <li><a href="terapia-ocupacional.html" class="text-black hover:text-blue-royal font-medium border-b-2 border-blue">Terapia Ocupacional</a></li>
-                        <li><a href="fonoaudiologia.html" class="text-black hover:text-blue-royal font-medium">Fonoaudiologia</a></li>
-                        <li><a href="Psicologia.html" class="text-black hover:text-blue-royal font-medium">Psicologia</a></li>
-                        <li><a href="psicopedagogia.html" class="text-black hover:text-blue-royal font-medium">Psicopedagogia</a></li>
-                        <li><a href="ideia.html" class="text-black hover:text-blue-royal font-medium">IDEIA</a></li>
-                        <li><a href="contato.html" class="text-black hover:text-blue-royal font-medium">Contato</a></li>
+                        <li><a href="terapia-ocupacional.html" class="text-black hover:text-blue-dark font-medium border-b-2 border-secondary">Terapia Ocupacional</a></li>
+                        <li><a href="fonoaudiologia.html" class="text-black hover:text-blue-dark font-medium">Fonoaudiologia</a></li>
+                        <li><a href="Psicologia.html" class="text-black hover:text-blue-dark font-medium">Psicologia</a></li>
+                        <li><a href="psicopedagogia.html" class="text-black hover:text-blue-dark font-medium">Psicopedagogia</a></li>
+                        <li><a href="ideia.html" class="text-black hover:text-blue-dark font-medium">IDEIA</a></li>
+                        <li><a href="contato.html" class="text-black hover:text-blue-dark font-medium">Contato</a></li>
                     </ul>
                 </nav>
                 
@@ -105,207 +143,216 @@
         <!-- Mobile Menu (hidden by default) -->
         <div class="fixed top-0 left-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 p-5 transform -translate-x-full transition-transform duration-300" id="mobile-menu">
             <div class="flex justify-between items-center mb-6">
-                <img src="assets/logo-eibm.svg" alt="Logo EIBM" class="h-12">
+                <img src="https://placehold.co/100x40/FFFFFF/000000?text=EIBM" onerror="this.onerror=null;this.src='assets/logo-eibm.svg';" alt="Logo EIBM" class="h-12">
                 <button id="close-menu">
                     <i class="fas fa-times text-2xl text-primary"></i>
                 </button>
             </div>
             <ul class="space-y-4">
-                <li><a href="index.html" class="block py-2 text-primary hover:text-green-dark font-medium">Portal</a></li>
-                <li><a href="terapias.html" class="block py-2 text-primary hover:text-green-dark font-medium">Terapias</a></li>
-                <li><a href="especialidades.html" class="block py-2 text-primary hover:text-green-dark font-medium">Especialidades</a></li>
-                <li><a href="ideia.html" class="block py-2 text-primary hover:text-green-dark font-medium">IDEA</a></li>
-                <li><a href="transtornos.html" class="block py-2 text-primary hover:text-green-dark font-medium">Transtornos Alimentares</a></li>
-                <li><a href="psicologia.html" class="block py-2 text-primary hover:text-green-dark font-medium">Psicologia</a></li>
-                <li><a href="fonoaudiologia.html" class="block py-2 text-primary hover:text-green-dark font-medium">Fonoaudiologia e Musicoterapia</a></li>
-                <li><a href="terapia-ocupacional.html" class="block py-2 text-green-dark font-bold">Terapia Ocupacional</a></li>
-                <li><a href="psicopedagogia.html" class="block py-2 text-primary hover:text-green-dark font-medium">Psicopedagogia</a></li>
+                <li><a href="index.html" class="block py-2 text-primary hover:text-blue-dark font-medium">Portal</a></li>
+                <li><a href="terapias.html" class="block py-2 text-primary hover:text-blue-dark font-medium">Terapias</a></li>
+                <li><a href="especialidades.html" class="block py-2 text-primary hover:text-blue-dark font-medium">Especialidades</a></li>
+                <li><a href="ideia.html" class="block py-2 text-primary hover:text-blue-dark font-medium">IDEA</a></li>
+                <li><a href="transtornos.html" class="block py-2 text-primary hover:text-blue-dark font-medium">Transtornos Alimentares</a></li>
+                <li><a href="psicologia.html" class="block py-2 text-primary hover:text-blue-dark font-medium">Psicologia</a></li>
+                <li><a href="fonoaudiologia.html" class="block py-2 text-primary hover:text-blue-dark font-medium">Fonoaudiologia e Musicoterapia</a></li>
+                <li><a href="terapia-ocupacional.html" class="block py-2 text-secondary font-bold">Terapia Ocupacional</a></li>
+                <li><a href="psicopedagogia.html" class="block py-2 text-primary hover:text-blue-dark font-medium">Psicopedagogia</a></li>
             </ul>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="py-16 bg-gradient-green relative overflow-hidden">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 z-10">
-                    <div class="inline-block bg-green-light/20 px-4 py-1 rounded-full text-green-dark font-medium mb-4">
-                        Terapia Especializada
-                    </div>
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-green-dark font-heading mb-6">
-                        Terapia Ocupacional Infantil
-                    </h2>
-                    <p class="text-lg text-gray-700 mb-6">
-                        A Terapia Ocupacional na EIBM é especializada no desenvolvimento e aprimoramento das habilidades necessárias para as atividades cotidianas da criança.
-                    </p>
-                    <p class="text-lg text-gray-700 mb-8">
-                        Trabalhamos com crianças que apresentam dificuldades motoras, sensoriais, cognitivas ou socioemocionais que impactam seu desempenho nas atividades escolares, brincadeiras, autocuidado e interações sociais.
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="bg-green-light/20 text-green-dark px-4 py-2 rounded-full text-sm font-medium">Integração sensorial</span>
-                        <span class="bg-green-light/20 text-green-dark px-4 py-2 rounded-full text-sm font-medium">Desenvolvimento motor</span>
-                        <span class="bg-green-light/20 text-green-dark px-4 py-2 rounded-full text-sm font-medium">Atividades de vida diária</span>
-                        <span class="bg-green-light/20 text-green-dark px-4 py-2 rounded-full text-sm font-medium">Autonomia infantil</span>
-                    </div>
+    <section class="pt-28 pb-16 md:pt-40 md:pb-24 bg-gradient-to-blue-to relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
+            <div class="md:w-1/2 text-center md:text-left animated-element">
+                <span class="inline-block bg-secondary/20 text-secondary px-4 py-1 rounded-full text-sm font-medium mb-4">Especialidade em Desenvolvimento</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 leading-tight font-heading">
+                    Terapia Ocupacional: Habilitando para a Vida Diária
+                </h1>
+                <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto md:mx-0">
+                    Na EIBM, a Terapia Ocupacional foca no desenvolvimento e aprimoramento das habilidades essenciais para as atividades cotidianas da criança, promovendo autonomia e participação plena. Ela aborda o desempenho ocupacional, envolvendo a vida diária e atividades que a criança quer participar.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                    <a href="#integracao-sensorial" class="bg-secondary hover:bg-blue-dark text-white font-bold px-8 py-4 rounded-full shadow-lg transition-all duration-300 hover-lift">
+                        Integração Sensorial
+                    </a>
+                    <a href="#contato" class="bg-white text-secondary border-2 border-secondary hover:bg-blue-50 font-bold px-8 py-4 rounded-full shadow-lg transition-all duration-300 hover-lift">
+                        Agende uma Avaliação
+                    </a>
                 </div>
-                <div class="md:w-1/2 flex justify-center z-10">
-                    <div class="bg-white p-8 rounded-xl shadow-xl max-w-md card-shadow">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-green-light/20 rounded-full flex items-center justify-center">
-                                <i class="fas fa-child text-3xl text-green-dark"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-xl font-bold text-green-dark">Independência é desenvolvimento</h3>
-                                <p class="text-gray-600">Habilitando para o cotidiano e a autonomia</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 mb-6">
-                            "A Terapia Ocupacional trabalha as habilidades essenciais para o dia a dia. Na EIBM, focamos em desenvolver a autonomia e independência, capacitando a criança para participação plena nas atividades cotidianas e escolares."
-                        </p>
-                        <div class="flex items-center">
-                            <img src="assets/about-image.svg" alt="Equipe EIBM" class="w-12 h-12 rounded-full object-cover mr-3">
-                            <div>
-                                <p class="font-medium">Equipe de Terapia Ocupacional</p>
-                                <p class="text-sm text-gray-600">EIBM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center animated-element delay-200">
+                <img src="https://placehold.co/500x400/136CB2/FFFFFF?text=Terapia+Ocupacional+EIBM" alt="Ilustração de criança em terapia ocupacional" class="w-full max-w-md rounded-xl shadow-2xl">
             </div>
         </div>
         <!-- Decorative elements -->
-        <div class="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-green-light opacity-10"></div>
-        <div class="absolute top-12 -left-12 w-32 h-32 rounded-full bg-green-light opacity-10"></div>
+        <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-secondary opacity-5 rounded-full"></div>
+        <div class="absolute top-20 right-20 w-32 h-32 bg-secondary opacity-5 rounded-full"></div>
     </section>
 
     <!-- Main Content -->
-    <main>
-        <!-- Áreas de Atuação -->
-        <section class="py-16 bg-white">
+    <main class="container mx-auto px-4 py-16">
+
+        <!-- Nova Seção: Integração Sensorial -->
+        <section id="integracao-sensorial" class="mb-20 bg-gradient-to-light p-12 rounded-2xl shadow-xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12 font-heading animated-element">
+                Integração Sensorial: A Chave para o Desempenho Ocupacional
+            </h2>
+            <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12 animated-element delay-100">
+                Uma Ferramenta Essencial na Terapia Ocupacional para Organizar o Mundo.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div class="space-y-8 animated-element delay-200">
+                    <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md border-l-4 border-secondary">
+                        <div class="w-12 h-12 card-icon-bg-to rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-puzzle-piece text-xl text-secondary"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">O Processo Neurológico Fundamental</h3>
+                            <p class="text-gray-700">
+                                A Integração Sensorial é um processo neurológico fundamental que organiza as sensações do próprio corpo e do ambiente, permitindo que a criança utilize seu corpo de forma eficaz no ambiente. Ela nos permite compreender como o cérebro da criança processa informações sensoriais (táteis, visuais, auditivas, vestibulares, proprioceptivas).
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md border-l-4 border-secondary">
+                        <div class="w-12 h-12 card-icon-bg-to rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-tools text-xl text-secondary"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Uma Ferramenta Poderosa na TO</h3>
+                            <p class="text-gray-700">
+                                Na Terapia Ocupacional, a Integração Sensorial não é um fim em si mesma, mas uma poderosa ferramenta e uma das principais abordagens para atingir metas terapêuticas. A partir da compreensão do processamento sensorial, criamos intervenções que ajudam a criança a produzir respostas adaptativas e a participar ativamente das atividades do dia a dia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative animated-element delay-300">
+                    <img src="https://placehold.co/600x450/195184/FFFFFF?text=Integração+Sensorial" alt="Ilustração de integração sensorial" class="w-full rounded-xl shadow-2xl">
+                    <div class="absolute -bottom-8 -right-8 bg-white p-6 rounded-xl shadow-xl border-t-4 border-secondary text-center">
+                        <h4 class="text-lg font-bold text-gray-800 mb-2">Impacto no Desempenho</h4>
+                        <p class="text-gray-700 text-sm">
+                            Dificuldades sensoriais podem impactar o desempenho em atividades escolares, brincadeiras e autocuidado.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mt-12 animated-element delay-400">
+                Quando há dificuldades no processamento sensorial, a criança pode apresentar hipersensibilidade (reações exageradas a estímulos, como não gostar de certas texturas de roupas ou sons altos) ou hipossensibilidade (busca constante por estímulos, como girar ou pular sem parar). Nosso trabalho com Integração Sensorial visa otimizar essa organização neurológica, facilitando o desenvolvimento motor, a regulação emocional e o engajamento social, sempre com foco em capacitar a criança para o desempenho ocupacional desejado.
+            </p>
+        </section>
+
+        <!-- Áreas de Atuação (Revisada) -->
+        <section id="areas-atuacao" class="mb-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12 font-heading animated-element">
+                Outras Áreas de Atuação da Terapia Ocupacional
+            </h2>
+            <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12 animated-element delay-100">
+                Além da Integração Sensorial, atuamos em diversas frentes para promover o desenvolvimento integral da criança.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Desenvolvimento Motor -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-secondary hover-lift animated-element delay-200">
+                    <div class="w-16 h-16 card-icon-bg-to rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-running text-3xl text-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Desenvolvimento Motor</h3>
+                    <p class="text-gray-700">
+                        Trabalho focado em desenvolver habilidades motoras grossas e finas, incluindo dificuldades de planejamento motor, fundamentais para as atividades escolares e cotidianas, além da participação em brincadeiras.
+                    </p>
+                </div>
+
+                <!-- Atividades de Vida Diária -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-secondary hover-lift animated-element delay-300">
+                    <div class="w-16 h-16 card-icon-bg-to rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-hands-helping text-3xl text-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Atividades de Vida Diária</h3>
+                    <p class="text-gray-700">
+                        Desenvolvimento de habilidades para atividades cotidianas, promovendo maior independência e autonomia da criança em suas rotinas diárias.
+                    </p>
+                </div>
+                
+                <!-- Habilidades Escolares e Lúdicas -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-secondary hover-lift animated-element delay-400">
+                    <div class="w-16 h-16 card-icon-bg-to rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-school text-3xl text-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Habilidades Escolares e Lúdicas</h3>
+                    <p class="text-gray-700">
+                        Apoio no desenvolvimento de habilidades necessárias para o sucesso no ambiente escolar e para a participação em brincadeiras e interações sociais.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marcos do Desenvolvimento (Revisada) -->
+        <section id="marcos-desenvolvimento" class="py-16 bg-gradient-to-blue-to mb-20">
             <div class="container mx-auto px-4">
-                <h3 class="text-2xl md:text-3xl font-bold text-green-dark mb-10 text-center">
-                    Áreas de Atuação da Terapia Ocupacional
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Integração Sensorial -->
-                    <div class="bg-green-50/40 p-6 rounded-xl shadow-md hover-scale card-shadow">
-                        <div class="w-16 h-16 bg-green-light/20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-brain text-2xl text-green-dark"></i>
+                <div class="mb-12 text-center animated-element">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-heading">Marcos do Desenvolvimento Infantil: Um Caminho para a Autonomia</h3>
+                    <p class="text-lg text-gray-700 max-w-3xl mx-auto">Compreender a evolução infantil para uma intervenção eficaz e o alcance de comportamentos reais.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div class="space-y-8 animated-element delay-200">
+                        <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md border-l-4 border-secondary">
+                            <div class="w-12 h-12 card-icon-bg-to rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-baby text-xl text-secondary"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Da Infância Precoce à Exploração do Mundo</h3>
+                                <p class="text-gray-700">
+                                    Os marcos do desenvolvimento vão muito além dos primeiros meses. Acompanhamos a criança desde o controle cervical (0-3 meses), o sentar com e sem apoio, o engatinhar, até o ficar em pé e o andar. Cada nova habilidade motora e cognitiva, como alcançar objetos, seguir com o olhar, balbuciar, apontar, e interagir socialmente, é um passo crucial para a autonomia.
+                                </p>
+                            </div>
                         </div>
-                        <h4 class="text-xl font-bold text-green-dark mb-3 text-center">Integração Sensorial</h4>
-                        <p class="text-gray-700 mb-4">
-                            Avaliação e intervenção para crianças com dificuldades de processamento sensorial, como hipersensibilidade a estímulos, busca sensorial excessiva ou dificuldade de organização corporal.
-                        </p>
-                        <ul class="space-y-2">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-dark mt-1 mr-2"></i>
-                                <span>Hipersensibilidade sensorial</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-dark mt-1 mr-2"></i>
-                                <span>Distúrbios do processamento tátil</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-dark mt-1 mr-2"></i>
-                                <span>Disfunções vestibulares</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-dark mt-1 mr-2"></i>
-                                <span>Busca sensorial excessiva</span>
-                            </li>
-                        </ul>
+                        
+                        <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md border-l-4 border-secondary">
+                            <div class="w-12 h-12 card-icon-bg-to rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-chart-line text-xl text-secondary"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Intervenção Precoce e Comportamentos Reais</h3>
+                                <p class="text-gray-700">
+                                    A intervenção precoce é vital para identificar e tratar possíveis atrasos, maximizando as chances de um desenvolvimento saudável e a aquisição de "comportamentos reais" – ou seja, habilidades funcionais e adaptativas que a criança utiliza no seu dia a dia. Diagnósticos tardios em condições como o autismo reforçam a importância de identificar e tratar dificuldades desde a infância, para garantir que o desenvolvimento da criança não seja limitado e ela possa interagir plenamente com o mundo.
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <!-- Desenvolvimento Motor -->
-                    <div class="bg-green-50/40 p-6 rounded-xl shadow-md hover-scale card-shadow">
-                        <div class="w-16 h-16 bg-green-light/20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-running text-2xl text-green-dark"></i>
+                    <div class="relative flex justify-center animated-element delay-300">
+                        <img src="https://placehold.co/600x450/439CD5/FFFFFF?text=Desenvolvimento+Infantil" alt="Ilustração de marcos do desenvolvimento infantil" class="w-full rounded-xl shadow-2xl">
+                        <div class="absolute -bottom-8 -right-8 bg-white p-6 rounded-xl shadow-xl border-t-4 border-secondary text-center">
+                            <h4 class="text-lg font-bold text-gray-800 mb-2">Observação Atenta</h4>
+                            <p class="text-gray-700 text-sm">
+                                A observação dos marcos de desenvolvimento é essencial para identificar necessidades e agir proativamente.
+                            </p>
                         </div>
-                        <h4 class="text-xl font-bold text-green-dark mb-3 text-center">Desenvolvimento Motor</h4>
-                        <p class="text-gray-700 mb-4">
-                            Trabalho focado em desenvolver habilidades motoras grossas e finas, fundamentais para as atividades escolares e cotidianas, além da participação em brincadeiras.
-                        </p>
-                        <ul class="space-y-2">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-dark mt-1 mr-2"></i>
-                                <span>Coordenação motora fina</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-dark mt-1 mr-2"></i>
-                                <span>Habilidades grafomotoras</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-dark mt-1 mr-2"></i>
-                                <span>Equilíbrio e coordenação</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-dark mt-1 mr-2"></i>
-                                <span>Planejamento motor</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Atividades de Vida Diária -->
-                    <div class="bg-green-50/40 p-6 rounded-xl shadow-md hover-scale card-shadow">
-                        <div class="w-16 h-16 bg-green-light/20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-hands-helping text-2xl text-green-dark"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-green-dark mb-3 text-center">Atividades de Vida Diária</h4>
-                        <p class="text-gray-700 mb-4">
-                            Desenvolvimento de habilidades para atividades cotidianas, promovendo maior independência e autonomia da criança em suas rotinas diárias.
-                        </p>
-                        <ul class="space-y-2">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-dark mt-1 mr-2"></i>
-                                <span>Alimentação e higiene</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-dark mt-1 mr-2"></i>
-                                <span>Vestir-se e despir-se</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-dark mt-1 mr-2"></i>
-                                <span>Organização e rotina</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-dark mt-1 mr-2"></i>
-                                <span>Adaptações do ambiente</span>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Abordagens Terapêuticas -->
-        <section class="py-16 bg-gradient-green">
+        <!-- Abordagens Terapêuticas (Revisada) -->
+        <section class="py-16 bg-gradient-to-blue-to mb-20">
             <div class="container mx-auto px-4">
-                <div class="mb-12 text-center">
-                    <h3 class="text-2xl md:text-3xl font-bold text-green-dark mb-3">Abordagens Terapêuticas</h3>
-                    <p class="text-gray-700 max-w-3xl mx-auto">Metodologias baseadas em evidências que utilizamos em nossos atendimentos de Terapia Ocupacional</p>
+                <div class="mb-12 text-center animated-element">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-heading">Nossa Metodologia e Abordagens</h3>
+                    <p class="text-lg text-gray-700 max-w-3xl mx-auto">Metodologias baseadas em evidências que utilizamos em nossos atendimentos de Terapia Ocupacional</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- ASI -->
-                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 bg-green-light/30 rounded-full flex items-center justify-center mr-3">
-                                <i class="fas fa-puzzle-piece text-lg text-green-dark"></i>
-                            </div>
-                            <h4 class="font-bold text-green-dark">Integração Sensorial (ASI)</h4>
-                        </div>
-                        <p class="text-gray-700 text-sm">
-                            Abordagem que visa organizar as sensações do corpo e do ambiente para que a criança produza respostas adaptativas e forme percepções adequadas.
-                        </p>
-                    </div>
-                    
                     <!-- CO-OP -->
-                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale">
+                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale animated-element delay-100">
                         <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 bg-green-light/30 rounded-full flex items-center justify-center mr-3">
-                                <i class="fas fa-lightbulb text-lg text-green-dark"></i>
+                            <div class="w-10 h-10 bg-secondary/30 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-lightbulb text-lg text-secondary"></i>
                             </div>
-                            <h4 class="font-bold text-green-dark">CO-OP</h4>
+                            <h4 class="font-bold text-secondary">CO-OP</h4>
                         </div>
                         <p class="text-gray-700 text-sm">
                             Abordagem cognitiva que incentiva a criança a descobrir estratégias próprias para resolver problemas motores e cotidianos.
@@ -313,12 +360,12 @@
                     </div>
                     
                     <!-- Psicomotricidade -->
-                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale">
+                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale animated-element delay-200">
                         <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 bg-green-light/30 rounded-full flex items-center justify-center mr-3">
-                                <i class="fas fa-child text-lg text-green-dark"></i>
+                            <div class="w-10 h-10 bg-secondary/30 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-child text-lg text-secondary"></i>
                             </div>
-                            <h4 class="font-bold text-green-dark">Psicomotricidade</h4>
+                            <h4 class="font-bold text-secondary">Psicomotricidade</h4>
                         </div>
                         <p class="text-gray-700 text-sm">
                             Trabalho que integra aspectos motores, cognitivos e emocionais, utilizando o corpo e o movimento como base do desenvolvimento.
@@ -326,63 +373,63 @@
                     </div>
                     
                     <!-- Ludoterapia -->
-                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale">
+                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale animated-element delay-300">
                         <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 bg-green-light/30 rounded-full flex items-center justify-center mr-3">
-                                <i class="fas fa-gamepad text-lg text-green-dark"></i>
+                            <div class="w-10 h-10 bg-secondary/30 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-gamepad text-lg text-secondary"></i>
                             </div>
-                            <h4 class="font-bold text-green-dark">Ludoterapia</h4>
+                            <h4 class="font-bold text-secondary">Ludoterapia</h4>
                         </div>
                         <p class="text-gray-700 text-sm">
                             Utilização de brincadeiras e jogos terapêuticos para desenvolver habilidades específicas de forma prazerosa e significativa.
+                        </p>
+                    </div>
+
+                    <!-- ABA -->
+                    <div class="bg-white p-5 rounded-lg shadow-md card-shadow hover-scale animated-element delay-400">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-secondary/30 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-lightbulb text-lg text-secondary"></i>
+                            </div>
+                            <h4 class="font-bold text-secondary">Análise do Comportamento Aplicada (ABA)</h4>
+                        </div>
+                        <p class="text-gray-700 text-sm">
+                            Integramos conhecimentos da ABA para compreender e intervir em comportamentos, sempre com o cuidado de respeitar as necessidades sensoriais da criança e evitar estímulos aversivos.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Benefícios Section -->
-        <section class="py-16 bg-white">
+        <!-- Benefícios Section (Revisada) -->
+        <section class="py-16 bg-gradient-to-blue-to mb-20">
             <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h3 class="text-2xl md:text-3xl font-bold text-green-dark mb-3">Benefícios da Terapia Ocupacional</h3>
-                    <p class="text-gray-600 max-w-3xl mx-auto">Como seu filho pode se desenvolver com nosso acompanhamento</p>
+                <div class="text-center mb-12 animated-element">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-heading">Benefícios da Terapia Ocupacional</h3>
+                    <p class="text-lg text-gray-700 max-w-3xl mx-auto">Como seu filho pode se desenvolver com nosso acompanhamento</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Melhora das Habilidades Motoras -->
-                    <div class="bg-green-50/50 p-6 rounded-xl shadow-md card-shadow hover-scale">
+                    <div class="bg-white p-6 rounded-xl shadow-md card-shadow hover-lift animated-element delay-100">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-green-light/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-hand-paper text-xl text-green-dark"></i>
+                            <div class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-hand-paper text-xl text-secondary"></i>
                             </div>
-                            <h4 class="text-xl font-bold text-green-dark">Melhora das Habilidades Motoras</h4>
+                            <h4 class="text-xl font-bold text-gray-800 mb-2">Melhora das Habilidades Motoras</h4>
                         </div>
                         <p class="text-gray-700">
                             Desenvolvimento de coordenação motora grossa e fina, destreza manual, planejamento motor e força muscular, importantes para diversas atividades como escrever, desenhar, andar de bicicleta e praticar esportes.
                         </p>
                     </div>
                     
-                    <!-- Regulação Sensorial -->
-                    <div class="bg-green-50/50 p-6 rounded-xl shadow-md card-shadow hover-scale">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-green-light/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-eye text-xl text-green-dark"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-green-dark">Regulação Sensorial</h4>
-                        </div>
-                        <p class="text-gray-700">
-                            Maior capacidade de processar e responder adequadamente a estímulos sensoriais (táteis, visuais, auditivos, proprioceptivos, vestibulares), reduzindo comportamentos como hipersensibilidade ou busca sensorial excessiva.
-                        </p>
-                    </div>
-                    
                     <!-- Maior Independência -->
-                    <div class="bg-green-50/50 p-6 rounded-xl shadow-md card-shadow hover-scale">
+                    <div class="bg-white p-6 rounded-xl shadow-md card-shadow hover-lift animated-element delay-200">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-green-light/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-tasks text-xl text-green-dark"></i>
+                            <div class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-tasks text-xl text-secondary"></i>
                             </div>
-                            <h4 class="text-xl font-bold text-green-dark">Maior Independência</h4>
+                            <h4 class="text-xl font-bold text-gray-800 mb-2">Maior Independência</h4>
                         </div>
                         <p class="text-gray-700">
                             Desenvolvimento de habilidades para realizar atividades de vida diária como se vestir, se alimentar, tomar banho e organizar materiais, promovendo maior autonomia e confiança.
@@ -390,15 +437,28 @@
                     </div>
                     
                     <!-- Melhor Desempenho Escolar -->
-                    <div class="bg-green-50/50 p-6 rounded-xl shadow-md card-shadow hover-scale">
+                    <div class="bg-white p-6 rounded-xl shadow-md card-shadow hover-lift animated-element delay-300">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-green-light/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-graduation-cap text-xl text-green-dark"></i>
+                            <div class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-graduation-cap text-xl text-secondary"></i>
                             </div>
-                            <h4 class="text-xl font-bold text-green-dark">Melhor Desempenho Escolar</h4>
+                            <h4 class="text-xl font-bold text-gray-800 mb-2">Melhor Desempenho Escolar</h4>
                         </div>
                         <p class="text-gray-700">
-                            Aprimoramento de habilidades essenciais para o aprendizado como coordenação visomotora, atenção sustentada, organização espacial e planejamento de tarefas, impactando positivamente o desempenho escolar.
+                            Aprimoramento de habilidades essenciais para o aprendizado como coordenação visomotora, atenção sustentada, organização espacial e planejamento de tarefas, impactando positivamente o desempenho escolar. A Terapia Ocupacional pode contribuir para aumentar o nível de alerta e atenção em crianças com TDAH, auxiliando na concentração e na organização.
+                        </p>
+                    </div>
+
+                     <!-- Qualidade de Vida e Engajamento Social -->
+                     <div class="bg-white p-6 rounded-xl shadow-md card-shadow hover-lift animated-element delay-400 col-span-1 md:col-span-2">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-heart text-xl text-secondary"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-2">Qualidade de Vida e Engajamento Social</h4>
+                        </div>
+                        <p class="text-gray-700">
+                            Nosso objetivo é garantir que a criança participe plenamente da vida, promovendo adaptações positivas que não causem impacto funcional negativo. Abordamos a falta de engajamento social e reforçamos que o brincar é essencial para o desenvolvimento cognitivo e social. Crianças com defensividade tátil podem ter dificuldades com corte de cabelo e banho, necessitando de adaptações específicas.
                         </p>
                     </div>
                 </div>
@@ -406,37 +466,37 @@
         </section>
 
         <!-- Team Section -->
-        <section class="py-16 bg-green-50/50">
+        <section class="py-16 bg-gradient-to-blue-to mb-20">
             <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h3 class="text-2xl md:text-3xl font-bold text-green-dark mb-3">Nossa Equipe</h3>
-                    <p class="text-gray-600 max-w-3xl mx-auto">Terapeutas ocupacionais especializados em atendimento infantil</p>
+                <div class="text-center mb-12 animated-element">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-heading">Nossa Equipe</h3>
+                    <p class="text-lg text-gray-700 max-w-3xl mx-auto">Terapeutas ocupacionais especializados em atendimento infantil</p>
                 </div>
-                <div class="bg-white p-8 rounded-xl shadow-md max-w-4xl mx-auto card-shadow">
+                <div class="bg-white p-8 rounded-xl shadow-md max-w-4xl mx-auto card-shadow animated-element delay-100">
                     <p class="text-gray-700 mb-4">
-                        Nossa equipe de terapeutas ocupacionais é formada por profissionais com ampla experiência e formação especializada em desenvolvimento infantil, integração sensorial, reabilitação neurológica e métodos terapêuticos voltados para crianças. Todos são registrados no Conselho Regional de Fisioterapia e Terapia Ocupacional (CREFITO) e investem constantemente em educação continuada.
+                        Nossa equipe de terapeutas ocupacionais é formada por profissionais com ampla experiência e formação especializada em desenvolvimento infantil, reabilitação neurológica e métodos terapêuticos voltados para crianças. Todos são registrados no Conselho Regional de Fisioterapia e Terapia Ocupacional (CREFITO) e investem constantemente em educação continuada.
                     </p>
                     <p class="text-gray-700">
-                        Trabalhamos de forma integrada com as demais especialidades da clínica, seguindo os princípios da prática centrada no cliente e baseada em evidências, sempre considerando os contextos familiar, escolar e social em que ela está inserida.
+                        Trabalhamos de forma integrada com as demais especialidades da clínica, seguindo os princípios da prática centrada no cliente e baseada em evidências, sempre considerando os contextos familiar, escolar e social em que ela está inserida. Essa abordagem multidisciplinar, integrando a TO com outras terapias, é fundamental para um tratamento completo e eficaz.
                     </p>
                 </div>
             </div>
         </section>
 
         <!-- FAQ Section -->
-        <section class="py-16 bg-white">
+        <section class="py-16 bg-gradient-to-blue-to mb-20">
             <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h3 class="text-2xl md:text-3xl font-bold text-green-dark mb-3">Perguntas Frequentes</h3>
-                    <p class="text-gray-600 max-w-3xl mx-auto">Respostas para suas dúvidas sobre a Terapia Ocupacional Infantil</p>
+                <div class="text-center mb-12 animated-element">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-heading">Perguntas Frequentes</h3>
+                    <p class="text-lg text-gray-700 max-w-3xl mx-auto">Respostas para suas dúvidas sobre a Terapia Ocupacional Infantil</p>
                 </div>
                 
                 <div class="space-y-6 max-w-4xl mx-auto">
                     <!-- Pergunta 1 -->
-                    <div class="bg-green-50/30 rounded-xl overflow-hidden shadow-md card-shadow">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-shadow animated-element delay-100">
                         <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
-                            <h4 class="text-lg font-bold text-green-dark">Como saber se meu filho precisa de Terapia Ocupacional?</h4>
-                            <i class="fas fa-plus text-green-dark transition-transform accordion-icon"></i>
+                            <h4 class="text-lg font-bold text-secondary">Como saber se meu filho precisa de Terapia Ocupacional?</h4>
+                            <i class="fas fa-plus text-secondary transition-transform accordion-icon"></i>
                         </button>
                         <div class="px-6 pb-4 accordion-content hidden">
                             <p class="text-gray-700">
@@ -446,10 +506,10 @@
                     </div>
                     
                     <!-- Pergunta 2 -->
-                    <div class="bg-green-50/30 rounded-xl overflow-hidden shadow-md card-shadow">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-shadow animated-element delay-200">
                         <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
-                            <h4 class="text-lg font-bold text-green-dark">Como funciona uma sessão de Terapia Ocupacional para crianças?</h4>
-                            <i class="fas fa-plus text-green-dark transition-transform accordion-icon"></i>
+                            <h4 class="text-lg font-bold text-secondary">Como funciona uma sessão de Terapia Ocupacional para crianças?</h4>
+                            <i class="fas fa-plus text-secondary transition-transform accordion-icon"></i>
                         </button>
                         <div class="px-6 pb-4 accordion-content hidden">
                             <p class="text-gray-700 mb-3">
@@ -462,14 +522,40 @@
                     </div>
                     
                     <!-- Pergunta 3 -->
-                    <div class="bg-green-50/30 rounded-xl overflow-hidden shadow-md card-shadow">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-shadow animated-element delay-300">
                         <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
-                            <h4 class="text-lg font-bold text-green-dark">Qual a frequência recomendada dos atendimentos?</h4>
-                            <i class="fas fa-plus text-green-dark transition-transform accordion-icon"></i>
+                            <h4 class="text-lg font-bold text-secondary">Qual a frequência recomendada dos atendimentos?</h4>
+                            <i class="fas fa-plus text-secondary transition-transform accordion-icon"></i>
                         </button>
                         <div class="px-6 pb-4 accordion-content hidden">
                             <p class="text-gray-700">
                                 A frequência varia de acordo com as necessidades individuais. Geralmente, recomendamos atendimentos semanais para a maioria das crianças, pois proporciona regularidade e consistência no desenvolvimento das habilidades. Casos mais complexos podem se beneficiar de atendimentos duas vezes por semana, enquanto para acompanhamentos de manutenção ou orientações específicas, podem ser quinzenais. A frequência será determinada após avaliação, considerando os objetivos terapêuticos, disponibilidade da família e necessidades específicas da criança.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pergunta: Qual a diferença entre Fisioterapia e Terapia Ocupacional? -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-shadow animated-element delay-400">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
+                            <h4 class="text-lg font-bold text-secondary">Qual a diferença entre Fisioterapia e Terapia Ocupacional?</h4>
+                            <i class="fas fa-plus text-secondary transition-transform accordion-icon"></i>
+                        </button>
+                        <div class="px-6 pb-4 accordion-content hidden">
+                            <p class="text-gray-700">
+                                Enquanto a fisioterapia foca na função muscular e motora (ex: fortalecer músculos, melhorar tônus e marcha), a Terapia Ocupacional concentra-se na funcionalidade e habilidade para o dia a dia. A TO trabalha na adaptação de atividades (como alimentação ou escrita), considerando o impacto da função muscular na execução das tarefas, para promover a autonomia e a participação da criança.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pergunta: Qual o papel da família no processo terapêutico? -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-shadow animated-element delay-500">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none accordion-header">
+                            <h4 class="text-lg font-bold text-secondary">Qual o papel da família no processo terapêutico?</h4>
+                            <i class="fas fa-plus text-secondary transition-transform accordion-icon"></i>
+                        </button>
+                        <div class="px-6 pb-4 accordion-content hidden">
+                            <p class="text-gray-700">
+                                A participação e o apoio da família são essenciais para o sucesso da intervenção. É crucial que a família siga as orientações e reforce os comportamentos adequados em casa. Sem a continuidade e a consistência do trabalho em equipe, os progressos alcançados na terapia podem não ser generalizados e sustentados no ambiente diário da criança.
                             </p>
                         </div>
                     </div>
@@ -478,27 +564,25 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="bg-green-dark py-14">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
-                    Agende uma Avaliação Inicial
-                </h2>
-                <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                    Converse com nossa equipe e descubra como a Terapia Ocupacional pode ajudar no desenvolvimento do seu filho.
-                </p>
-                <a href="contato.html" class="bg-white text-green-dark hover:bg-green-50 font-medium px-6 py-3 rounded-full inline-block transition-colors">
-                    Entrar em Contato
-                </a>
-            </div>
+        <section id="contato" class="bg-secondary-dark-main py-16 rounded-2xl shadow-xl text-center animated-element delay-100">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 font-heading">
+                Agende uma Avaliação Inicial
+            </h2>
+            <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                Converse com nossa equipe e descubra como a Terapia Ocupacional pode ajudar no desenvolvimento do seu filho.
+            </p>
+            <a href="contato.html" class="bg-white text-secondary-dark-main hover:bg-blue-50 font-medium px-6 py-3 rounded-full inline-block transition-colors">
+                Entrar em Contato
+            </a>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10">
+    <footer class="bg-gray-900 text-white py-10 mt-16">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-6 md:mb-0">
-                    <img src="assets/logo-eibm-white.svg" alt="Logo EIBM" class="h-10 mr-3">
+                    <img src="https://placehold.co/100x40/FFFFFF/000000?text=EIBM" onerror="this.onerror=null;this.src='assets/logo-eibm-white.svg';" alt="Logo EIBM" class="h-10 mr-3">
                     <div>
                         <h3 class="text-xl font-bold">EIBM</h3>
                         <p class="text-xs text-gray-400">Especialidades Integradas e Bem-estar Multidisciplinar</p>
@@ -508,16 +592,16 @@
                 <div class="text-center md:text-right">
                     <p class="text-gray-400">&copy; 2025 EIBM - Todos os direitos reservados.</p>
                     <div class="flex justify-center md:justify-end space-x-4 mt-3">
-                        <a href="#" class="text-white hover:text-green-light transition-colors" aria-label="Facebook">
+                        <a href="#" class="text-white hover:text-blue-light transition-colors" aria-label="Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="text-white hover:text-green-light transition-colors" aria-label="Instagram">
+                        <a href="#" class="text-white hover:text-blue-light transition-colors" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="text-white hover:text-green-light transition-colors" aria-label="YouTube">
+                        <a href="#" class="text-white hover:text-blue-light transition-colors" aria-label="YouTube">
                             <i class="fab fa-youtube"></i>
                         </a>
-                        <a href="#" class="text-white hover:text-green-light transition-colors" aria-label="LinkedIn">
+                        <a href="#" class="text-white hover:text-blue-light transition-colors" aria-label="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
@@ -525,6 +609,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-secondary-dark-main text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 focus:outline-none hover:bg-secondary z-50">
+        <i class="fas fa-chevron-up text-xl"></i>
+    </button>
 
     <!-- Script para o acordeão FAQ -->
     <script>
@@ -547,10 +636,74 @@
                     }
                 });
             });
+
+            // Intersection Observer for animations
+            const animatedElements = document.querySelectorAll('.animated-element');
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // 10% of element visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Back to Top Button visibility
+            const backToTopButton = document.getElementById('back-to-top');
+            if (backToTopButton) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        backToTopButton.classList.remove('opacity-0', 'invisible');
+                        backToTopButton.classList.add('opacity-100', 'visible');
+                    } else {
+                        backToTopButton.classList.remove('opacity-100', 'visible');
+                        backToTopButton.classList.add('opacity-0', 'invisible');
+                    }
+                });
+                backToTopButton.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // Mobile Menu Toggle (from script.js, adapted for direct inclusion)
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.remove('-translate-x-full');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+            
+            if (closeMenu && mobileMenu) {
+                closeMenu.addEventListener('click', () => {
+                    mobileMenu.classList.add('-translate-x-full');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            if (mobileMenu) {
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('-translate-x-full');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
         });
     </script>
-
-    <!-- JavaScript principal -->
-    <script src="script.js"></script>
 </body>
 </html>
