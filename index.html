@@ -58,6 +58,7 @@
                 position: relative;
                 transform-style: preserve-3d;
                 perspective: 1000px;
+                top: 60%; /* Movido para baixo */
             }
             .circle-item {
                 position: absolute;
@@ -211,6 +212,22 @@
                 @keyframes orbit-east { 0% { transform: translate(-50%,-50%) rotate(0deg) translateX(130px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateX(130px) rotate(-360deg); } }
                 @keyframes orbit-west { 0% { transform: translate(-50%,-50%) rotate(0deg) translateX(-130px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateX(-130px) rotate(-360deg); } }
             }
+
+            /* Estilos para a imagem de fundo do logo */
+            #main-background-logo {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('attached_assets/logosembolinha.png'); /* Caminho para a imagem do logo sem a bolinha */
+                background-repeat: no-repeat;
+                background-position: center 55%; /* Ajustado para centralizar verticalmente um pouco abaixo */
+                background-size: 180%; /* Ajustado para 180% */
+                opacity: 0.25; /* Ajustado para 0.25 */
+                z-index: 1; /* Garante que fique atrás das esferas */
+                pointer-events: none; /* Permite que cliques passem através da imagem */
+            }
         </style>
     </head>
     <body class="font-sans text-gray-800 bg-gray-50 min-h-screen">
@@ -263,7 +280,10 @@
         </div>
 
 
-        <main class="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[80vh]">
+        <main class="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[90vh] relative">
+            <!-- Div para a imagem de fundo do logo -->
+            <div id="main-background-logo"></div>
+
             <div class="relative w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl mx-auto h-[320px] xs:h-[380px] sm:h-[440px] md:h-[520px] lg:h-[580px]" id="prisma-container">
                 <!-- Círculos Orbitantes -->
                 <div class="circle-item" id="circle-terapias">
