@@ -86,7 +86,7 @@
                         beige: '#F5F5DC',
                     },
                     fontFamily: {
-                        sans: ['Nunito', 'sans-serif'],
+                        sans: ['Merriweather', 'sans-serif'],
                         heading: ['Poppins', 'sans-serif'],
                     },
                     
@@ -97,8 +97,20 @@
     </script>
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            zoom: 0.85;
+        }
+        #scroll-indicator-hero {
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 20px; /* Ajuste a distância do fundo conforme necessário */
+            right: auto;
+            top: auto;
+        }
+    </style>
     <style>
         .therapy-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -832,7 +844,7 @@
             </div>
         </section>
 
-        <section id="step-8" class="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-white py-24 relative flex items-center scroll-snap-align-start">
+        <section id="step-8" class="min-h-screen bg-gradient-to-br from-white via-yellow-50 to-white py-24 relative flex items-center scroll-snap-align-start">
             <div class="section-line" id="line-8"></div>
             
             <div class="container mx-auto px-4 relative z-10">
@@ -1158,23 +1170,7 @@
           }
         }, { passive: true }); // 'passive: true' para melhor performance de scroll
       });
-
-        // Indicador de scroll da Hero Section (visível apenas na Hero)
-    const heroScrollIndicator = document.getElementById('scroll-indicator-hero');
-    if (heroScrollIndicator) {
-        window.addEventListener('scroll', () => {
-            const heroSection = document.getElementById('hero');
-            // Verifica se a parte inferior da secção hero ainda está visível na viewport
-            if (heroSection && heroSection.getBoundingClientRect().bottom > 100) { 
-                heroScrollIndicator.style.opacity = '0.9';
-                heroScrollIndicator.style.visibility = 'visible';
-            } else {
-                heroScrollIndicator.style.opacity = '0';
-                heroScrollIndicator.style.visibility = 'hidden';
-            }
-        }, { passive: true });
-    }
-
+        
     // Botão Voltar ao Topo
     const backToTopButton = document.getElementById('back-to-top');
     if (backToTopButton) {
