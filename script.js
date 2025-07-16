@@ -22,47 +22,41 @@ document.addEventListener('DOMContentLoaded', () => {
 function initMobileMenu() {
     const menuToggle = document.getElementById('menu-toggle');
     const closeMenu = document.getElementById('close-menu');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    // Verifica se os elementos existem antes de prosseguir
-    if (!mobileMenu) return;
-    
-    const mobileLinks = mobileMenu.querySelectorAll('a');
+    const mobileMenuPanel = document.getElementById('mobile-menu-panel');
 
-    // Abre o menu (se o botão existir)
+    const openMobileMenu = () => {
+        if (mobileMenuPanel) {
+            mobileMenuPanel.classList.remove('translate-x-full');
+            document.body.classList.add('mobile-menu-active'); // Para o overlay
+        }
+    };
+
+    const closeMobileMenu = () => {
+        if (mobileMenuPanel) {
+            mobileMenuPanel.classList.add('translate-x-full');
+            document.body.classList.remove('mobile-menu-active'); // Remove o overlay
+        }
+    };
+
     if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Impede rolagem da página
-        });
+        menuToggle.addEventListener('click', openMobileMenu);
     }
-
-    // Fecha o menu (se o botão existir)
     if (closeMenu) {
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = ''; // Restaura rolagem
-        });
+        closeMenu.addEventListener('click', closeMobileMenu);
     }
-
+    
     // Fecha o menu ao clicar em um link
-    if (mobileLinks && mobileLinks.length > 0) {
+    if (mobileMenuPanel) {
+        const mobileLinks = mobileMenuPanel.querySelectorAll('a');
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
+            link.addEventListener('click', closeMobileMenu);
         });
     }
 
-    // Fecha o menu ao clicar fora dele
-    document.addEventListener('click', (e) => {
-        if (mobileMenu && menuToggle && mobileMenu.classList.contains('active') && 
-            !mobileMenu.contains(e.target) && 
-            e.target !== menuToggle && 
-            !menuToggle.contains(e.target)) {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
+    // Fecha o menu ao clicar no overlay
+    document.body.addEventListener("click", function (e) {
+        if (e.target === document.body && document.body.classList.contains('mobile-menu-active')) {
+            closeMobileMenu();
         }
     });
 }

@@ -40,9 +40,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
         <style>
-            /* --- Global Styles & Overlays --- */
+            /* --- Estilos Globais e Overlays --- */
             html { scroll-behavior: smooth; }
             header { position: relative; z-index: 40; }
+            /* Overlay para o menu mobile e sinopse */
             body.synopsis-active::after, body.mobile-menu-active::after {
                 content: "";
                 position: fixed;
@@ -53,12 +54,12 @@
                 pointer-events: auto;
             }
 
-            /* --- Prisma Container & Circle Items --- */
+            /* --- Container do Prisma e Itens Circulares --- */
             #prisma-container {
                 position: relative;
                 transform-style: preserve-3d;
                 perspective: 1000px;
-                top: 60%; /* Movido para baixo */
+                top: 55%;
             }
             .circle-item {
                 position: absolute;
@@ -80,7 +81,7 @@
                 opacity: 0.7;
             }
 
-            /* --- Circle Buttons (The clickable cards) --- */
+            /* --- Botões Circulares (Cartões clicáveis) --- */
             .circle-button {
                 cursor: pointer;
                 transition: all 0.4s ease;
@@ -101,7 +102,7 @@
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             }
 
-            /* --- Circle Labels --- */
+            /* --- Rótulos dos Círculos --- */
             .circle-label {
                 position: absolute;
                 top: 105%;
@@ -117,7 +118,7 @@
                 font-size: 14px;
             }
 
-            /* --- Synopsis Card (Info Box) - Repositioned --- */
+            /* --- Cartão de Sinopse (Caixa de Informação) --- */
             .circle-synopsis {
                 position: fixed;
                 top: 50%;
@@ -146,7 +147,7 @@
             #synopsis-idea { border-color: #EFCD18; }
             #synopsis-especialidades { border-color: #6CBB45; }
 
-            /* --- Synopsis Content --- */
+            /* --- Conteúdo da Sinopse --- */
             .synopsis-close {
                 position: absolute;
                 top: 0.5rem; right: 0.5rem;
@@ -186,7 +187,7 @@
                 box-shadow: 0 7px 20px rgba(0,0,0,0.15);
             }
 
-            /* --- Orbit Animations & Positioning --- */
+            /* --- Animações de Órbita e Posicionamento --- */
             @keyframes orbit-north { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(-200px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(-200px) rotate(-360deg); } }
             @keyframes orbit-south { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(200px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(200px) rotate(-360deg); } }
             @keyframes orbit-east { 0% { transform: translate(-50%,-50%) rotate(0deg) translateX(200px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateX(200px) rotate(-360deg); } }
@@ -196,7 +197,7 @@
             #circle-especialidades { animation: orbit-south 40s linear infinite; }
             #circle-idea { animation: orbit-west 40s linear infinite; }
             
-            /* --- Responsive Adjustments --- */
+            /* --- Ajustes Responsivos --- */
             @media (max-width: 767px) {
                 @keyframes orbit-north { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(-150px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(-150px) rotate(-360deg); } }
                 @keyframes orbit-south { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(150px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(150px) rotate(-360deg); } }
@@ -207,10 +208,10 @@
                 .circle-button { width: 90px !important; height: 90px !important; border-width: 4px; }
                 .circle-button img { max-height: 80%; max-width: 80%; }
                 .circle-label { font-size: 12px; padding: 4px 10px; }
-                @keyframes orbit-north { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(-130px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(-130px) rotate(-360deg); } }
-                @keyframes orbit-south { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(130px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(130px) rotate(-360deg); } }
-                @keyframes orbit-east { 0% { transform: translate(-50%,-50%) rotate(0deg) translateX(130px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateX(130px) rotate(-360deg); } }
-                @keyframes orbit-west { 0% { transform: translate(-50%,-50%) rotate(0deg) translateX(-130px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateX(-130px) rotate(-360deg); } }
+                @keyframes orbit-north { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(-120px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(-120px) rotate(-360deg); } }
+                @keyframes orbit-south { 0% { transform: translate(-50%,-50%) rotate(0deg) translateY(120px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateY(120px) rotate(-360deg); } }
+                @keyframes orbit-east { 0% { transform: translate(-50%,-50%) rotate(0deg) translateX(120px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateX(120px) rotate(-360deg); } }
+                @keyframes orbit-west { 0% { transform: translate(-50%,-50%) rotate(0deg) translateX(-120px) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg) translateX(-120px) rotate(-360deg); } }
             }
 
             /* Estilos para a imagem de fundo do logo */
@@ -220,13 +221,13 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-image: url('attached_assets/logosembolinha.png'); /* Caminho para a imagem do logo sem a bolinha */
+                background-image: url('attached_assets/logosembolinha.png');
                 background-repeat: no-repeat;
-                background-position: center 55%; /* Ajustado para centralizar verticalmente um pouco abaixo */
-                background-size: 180%; /* Ajustado para 180% */
-                opacity: 0.25; /* Ajustado para 0.25 */
-                z-index: 1; /* Garante que fique atrás das esferas */
-                pointer-events: none; /* Permite que cliques passem através da imagem */
+                background-position: center 55%;
+                background-size: contain;
+                opacity: 0.15;
+                z-index: 1;
+                pointer-events: none;
             }
         </style>
     </head>
@@ -239,7 +240,7 @@
                            <img src="attached_assets/logo_eibm_clinica_escrito.svg" alt="Logo EIBM" class="h-12 md:h-16" />
                         </a>
                     </div>
-                    <!-- Desktop Menu -->
+                    <!-- Menu Desktop -->
                     <nav class="hidden md:block">
                         <ul class="flex space-x-6">
                             <li><a href="especialidades.html" class="text-primary hover:text-blue-royal font-medium">Clínica EIBM</a></li>
@@ -249,7 +250,7 @@
                             <li><a href="contato.html" class="text-primary hover:text-blue-royal font-medium">Contato</a></li>
                         </ul>
                     </nav>
-                    <!-- Mobile Menu Button -->
+                    <!-- Botão do Menu Mobile -->
                     <div class="md:hidden">
                         <button id="menu-toggle" class="text-primary focus:outline-none">
                             <i class="fas fa-bars text-2xl"></i>
@@ -259,15 +260,15 @@
             </div>
         </header>
 
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu-panel" class="fixed top-0 right-0 h-full w-72 bg-white shadow-lg p-6 transform translate-x-full transition-transform duration-300 ease-in-out z-90">
-            <!-- Close Button -->
+        <!-- Painel do Menu Mobile -->
+        <div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-white shadow-lg p-6 transform translate-x-full transition-transform duration-300 ease-in-out z-[90]">
+            <!-- Botão de Fechar -->
             <div class="flex justify-end mb-8">
                 <button id="close-menu" class="text-gray-600 hover:text-primary">
                     <i class="fas fa-times text-3xl"></i>
                 </button>
             </div>
-            <!-- Menu Links -->
+            <!-- Links do Menu -->
             <nav>
                 <ul class="space-y-6">
                    <li><a href="especialidades.html" class="block text-primary hover:text-blue-royal font-medium text-lg">Clínica EIBM</a></li>
@@ -279,12 +280,11 @@
             </nav>
         </div>
 
-
-        <main class="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[90vh] relative">
+        <main class="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[85vh] relative">
             <!-- Div para a imagem de fundo do logo -->
             <div id="main-background-logo"></div>
 
-            <div class="relative w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl mx-auto h-[320px] xs:h-[380px] sm:h-[440px] md:h-[520px] lg:h-[580px]" id="prisma-container">
+            <div class="relative w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl mx-auto h-[320px] sm:h-[440px] md:h-[520px] lg:h-[580px]" id="prisma-container">
                 <!-- Círculos Orbitantes -->
                 <div class="circle-item" id="circle-terapias">
                     <div class="circle-button w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] border-primary rounded-full" data-synopsis-target="#synopsis-terapias">
@@ -316,7 +316,7 @@
             </div>
         </main>
         
-        <!-- Cards de Informação (Sinopses) -->
+        <!-- Cartões de Informação (Sinopses) -->
         <div id="synopsis-terapias" class="circle-synopsis">
             <button class="synopsis-close" aria-label="Fechar sinopse"><i class="fas fa-times"></i></button>
             <h3 class="synopsis-title text-primary">EIBM Terapias</h3>
@@ -353,67 +353,79 @@
             <a href="especialidades.html" class="synopsis-button bg-secondary hover:bg-green-light">Visitar</a>
         </div>
 
-
-        <!-- Footer Comentado -->
-        <!-- 
-        <footer class="fixed bottom-0 left-0 w-full z-50 bg-gray-900 text-white py-6">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400">&copy; 2025 EIBM - Todos os direitos reservados.</p>                     
-                </div>
+        <!-- Footer Simplificado -->
+        <footer class="bg-gray-900 text-white py-6">
+            <div class="container mx-auto px-4 text-left">
+                <p class="text-gray-400">&copy; 2025 EIBM - Todos os direitos reservados.</p>
             </div>
-        </footer> 
-        -->
+        </footer>
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                // --- Mobile Menu Logic ---
+                // --- Elementos do DOM ---
                 const menuToggle = document.getElementById('menu-toggle');
                 const closeMenu = document.getElementById('close-menu');
-                const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const prismaContainer = document.getElementById("prisma-container");
+                const circles = document.querySelectorAll(".circle-item");
+                const synopses = document.querySelectorAll(".circle-synopsis");
+                
+                let activeSynopsisCircle = null;
 
+                // --- Funções do Menu Mobile ---
                 const openMobileMenu = () => {
-                    mobileMenuPanel.classList.remove('translate-x-full');
-                    document.body.classList.add('mobile-menu-active');
+                    if (mobileMenu) {
+                        mobileMenu.classList.remove('translate-x-full');
+                        document.body.classList.add('mobile-menu-active');
+                    }
                 };
 
                 const closeMobileMenu = () => {
-                    mobileMenuPanel.classList.add('translate-x-full');
-                    document.body.classList.remove('mobile-menu-active');
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('translate-x-full');
+                        document.body.classList.remove('mobile-menu-active');
+                    }
                 };
 
-                if (menuToggle) {
-                    menuToggle.addEventListener('click', openMobileMenu);
-                }
-                if (closeMenu) {
-                    closeMenu.addEventListener('click', closeMobileMenu);
-                }
-
-                // --- Synopsis Logic ---
-                const container = document.getElementById("prisma-container");
-                if (!container) return;
-
-                const circles = document.querySelectorAll(".circle-item");
-                const synopses = document.querySelectorAll(".circle-synopsis");
-                let activeCircle = null;
-                let activeSynopsis = null;
-
-                function resetAll() {
-                    container.classList.remove("animation-paused");
-                    circles.forEach((circle) => {
-                        circle.classList.remove("active", "inactive");
-                    });
-                    synopses.forEach((synopsis) => {
-                        synopsis.classList.remove("active");
-                    });
+                // --- Funções da Sinopse ---
+                const resetSynopsis = () => {
+                    if (prismaContainer) prismaContainer.classList.remove("animation-paused");
+                    circles.forEach(circle => circle.classList.remove("active", "inactive"));
+                    synopses.forEach(synopsis => synopsis.classList.remove("active"));
                     document.body.classList.remove("synopsis-active");
-                    activeCircle = null;
-                    activeSynopsis = null;
+                    activeSynopsisCircle = null;
+                };
+
+                // --- Event Listeners ---
+
+                // Abrir menu
+                if (menuToggle) {
+                    menuToggle.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Impede que o clique feche o menu imediatamente
+                        openMobileMenu();
+                    });
                 }
 
-                circles.forEach((circle) => {
+                // Fechar menu pelo botão 'X'
+                if (closeMenu) {
+                    closeMenu.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        closeMobileMenu();
+                    });
+                }
+
+                // Clicar nos links do menu fecha o menu
+                if (mobileMenu) {
+                    mobileMenu.querySelectorAll('a').forEach(link => {
+                        link.addEventListener('click', closeMobileMenu);
+                    });
+                    // Clicar dentro do painel do menu não o fecha
+                    mobileMenu.addEventListener('click', e => e.stopPropagation());
+                }
+                
+                // Abrir sinopse ao clicar nos círculos
+                circles.forEach(circle => {
                     const button = circle.querySelector(".circle-button");
-                    
                     button.addEventListener("click", function (e) {
                         e.preventDefault();
                         e.stopPropagation();
@@ -421,66 +433,51 @@
                         const targetId = button.dataset.synopsisTarget;
                         const targetSynopsis = document.querySelector(targetId);
 
-                        if (activeCircle === circle) {
+                        if (activeSynopsisCircle === circle) {
                             const link = targetSynopsis.querySelector(".synopsis-button").getAttribute("href");
                             if (link) window.location.href = link;
                             return;
                         }
 
-                        resetAll();
+                        resetSynopsis();
 
-                        // Ativar o círculo clicado e a sinopse correspondente
                         circle.classList.add("active");
-                        if (targetSynopsis) {
-                            targetSynopsis.classList.add("active");
-                            activeSynopsis = targetSynopsis;
-                        }
+                        if (targetSynopsis) targetSynopsis.classList.add("active");
                         
-                        activeCircle = circle;
-                        container.classList.add("animation-paused");
+                        activeSynopsisCircle = circle;
+                        if (prismaContainer) prismaContainer.classList.add("animation-paused");
                         document.body.classList.add("synopsis-active");
 
-                        // Desativar outros círculos
-                        circles.forEach((c) => {
-                            if (c !== circle) {
-                                c.classList.add("inactive");
-                            }
+                        circles.forEach(c => {
+                            if (c !== circle) c.classList.add("inactive");
                         });
                     });
                 });
-
-                // Adicionar evento de fechar para cada sinopse
+                
+                // Fechar sinopse pelo botão 'X'
                 synopses.forEach(synopsis => {
-                    const closeButton = synopsis.querySelector(".synopsis-close");
-                    if(closeButton) {
-                        closeButton.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            resetAll();
-                        });
-                    }
+                    synopsis.querySelector(".synopsis-close")?.addEventListener('click', e => {
+                        e.stopPropagation();
+                        resetSynopsis();
+                    });
+                    // Clicar dentro da sinopse não a fecha
+                    synopsis.addEventListener('click', e => e.stopPropagation());
                 });
 
-                // Fechar ao clicar no overlay (fundo)
-                document.body.addEventListener("click", function (e) {
-                    // Close synopsis if active
-                    if (e.target === document.body && document.body.classList.contains('synopsis-active')) {
-                        resetAll();
-                    }
-                    // Close mobile menu if active
-                    if (e.target !== mobileMenuPanel && !mobileMenuPanel.contains(e.target) && document.body.classList.contains('mobile-menu-active')) {
+                // Fechamento global (clique no overlay ou tecla Esc)
+                const handleGlobalClose = () => {
+                    if (document.body.classList.contains('mobile-menu-active')) {
                         closeMobileMenu();
                     }
-                });
-
-                // Fechar com a tecla Esc
-                document.addEventListener("keydown", function (e) {
+                    if (document.body.classList.contains('synopsis-active')) {
+                        resetSynopsis();
+                    }
+                };
+                
+                document.body.addEventListener("click", handleGlobalClose);
+                document.addEventListener("keydown", e => {
                     if (e.key === "Escape") {
-                        if (activeCircle) {
-                           resetAll();
-                        }
-                        if (document.body.classList.contains('mobile-menu-active')) {
-                           closeMobileMenu();
-                        }
+                        handleGlobalClose();
                     }
                 });
             });
